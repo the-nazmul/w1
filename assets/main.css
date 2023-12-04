@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap");
 
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
 /** Reset some basic elements */
 body,
 h1,
@@ -35,6 +39,25 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+}
+
+@font-face {
+  font-family: 'National';
+  src: url('fonts/national-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Avenir';
+  src: url('fonts/AvenirLTStd-Light.otf') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+
+p {
+  font-family: 'National';
 }
 
 /** Set `margin-bottom` to maintain vertical rhythm */
@@ -103,7 +126,7 @@ h6 {
 
 /** Links */
 a {
-  color: #333;
+  color: #1f2b7b;
   text-decoration: none;
   text-decoration: underline;
 }
@@ -315,6 +338,7 @@ table td {
   align-items: center;
   font-size: 2rem;
   font-weight: 300;
+  font-family: 'Avenir', serif;
 }
 
 @media screen and (max-width: 544px) {
@@ -351,7 +375,7 @@ table td {
   height: 3rem;
   font-weight: 700;
   list-style: none;
-  color: #883C82;
+  color: #DB1D08;
 }
 
 @media screen and (max-width: 544px) {
@@ -395,13 +419,15 @@ table td {
 }
 
 .site-title {
-  font-size: 50px;
-  font-family: Montserrat, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 2rem;
+  font-family: 'Avenir', Montserrat, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: 0.5px;
   margin-bottom: 0;
   text-align: center;
+  display: flex;
+  align-items: center;
 }
 
 @media screen and (max-width: 544px) {
@@ -412,6 +438,7 @@ table td {
 
 .site-title a {
   text-decoration: none !important;
+  text-transform: uppercase;
 }
 
 .site-title:hover {
@@ -438,7 +465,7 @@ table td {
   margin-top: 2.5rem;
   margin-bottom: 1.25rem;
   line-height: 1.3;
-  color: #883C82;
+  color: #DB1D08;
 }
 
 .about-me {
