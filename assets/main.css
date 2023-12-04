@@ -201,7 +201,7 @@ pre>code {
 .wrapper-top {
   max-width: calc(1200px - (20px * 2));
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin: 25px auto;
 }
 
@@ -585,8 +585,9 @@ table td {
   margin-bottom: 20px;
 }
 
-.publication figure {
-  width: 75px;
+figure img {
+  width: auto;
+  height: 20px;
 }
 
 .work-grid {
@@ -705,7 +706,7 @@ font-family: 'Avenir', Arial, Helvetica, sans-serif;
 .experience-description {
   font-size: 13.6px;
   widows: 2;
-  font-family: 'National' 'Courier New', Courier, monospace;
+  font-family: 'National', 'Courier New', Courier, monospace;
 }
 
 .experience-description {
