@@ -79,8 +79,10 @@ figure,
 }
 
 .font-weight-bold {
-  font-weight: 700;
+  color: #1f2b7b;
 }
+
+
 
 /** `main` element */
 main {
@@ -197,14 +199,14 @@ pre>code {
 
 /** Wrapper */
 .wrapper-top {
-  max-width: 100%;
+  max-width: calc(1200px - (20px * 2));
   display: flex;
   justify-content: space-around;
+  margin: 25px auto;
 }
 
 .wrapper {
-  max-width: -webkit-calc(800px - (20px * 2));
-  max-width: calc(800px - (20px * 2));
+  max-width: calc(1200px - (20px * 2));
   margin-right: auto;
   margin-left: auto;
   margin-top: 1.25rem;
@@ -332,6 +334,21 @@ table td {
     padding-top: 10px;
   }
 }
+
+.brief {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.about {
+  margin-left: 30px;
+}
+
+.skills-all {
+  margin-right:30px;
+}
+
+
 
 .scrolling-words-container {
   display: flex;
@@ -558,6 +575,16 @@ table td {
 /** Portfolio work grid */
 .work {
   margin-bottom: 2.5rem;
+}
+
+.publication {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.publication figure {
+  width: 75px;
 }
 
 .work-grid {
