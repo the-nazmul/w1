@@ -337,7 +337,7 @@ table td {
 
 .brief {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 2fr 1fr;
 }
 
 .about {
@@ -348,6 +348,17 @@ table td {
   margin-right:30px;
 }
 
+
+@media screen and (max-width: 544px) {
+  .brief {
+    display: block;
+  }
+
+  .about, .skills-all {
+    margin: 0px 10px;
+  }
+
+}
 
 
 .scrolling-words-container {
@@ -436,7 +447,7 @@ table td {
 }
 
 .site-title {
-  font-size: 2rem;
+  font-size: 1.7rem;
   font-family: 'Avenir', Montserrat, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-weight: 700;
   line-height: 1.2;
@@ -449,7 +460,8 @@ table td {
 
 @media screen and (max-width: 544px) {
   .site-title {
-    font-size: 42px;
+    margin: 0px 10px;
+    line-height: 1.7;
   }
 }
 
