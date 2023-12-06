@@ -57,6 +57,7 @@ body {
 
 p {
   font-family: 'National';
+  font-size: 19px;
 }
 
 /** Set `margin-bottom` to maintain vertical rhythm */
@@ -348,12 +349,20 @@ table td {
 @media screen and (max-width: 544px) {
   .scroll {
     padding-top: 10px;
+    margin-right: 10px;
   }
 }
 
 .brief {
   display: grid;
   grid-template-columns: 2fr 1fr;
+}
+
+.portrait {
+  height: 100px;
+  width: 100px;
+  float: left;
+  margin-right: 20px;
 }
 
 .about {
@@ -370,8 +379,12 @@ table td {
     display: block;
   }
 
-  .about, .skills-all {
+  .about {
     margin: 0px 10px;
+  }
+
+  .skills-all {
+    margin: 50px 10px 0px 10px
   }
 
 }
