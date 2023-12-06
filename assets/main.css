@@ -217,7 +217,7 @@ pre>code {
 /** Wrapper */
 .wrapper-top {
   max-width: calc(1200px - (20px * 2));
-  display: flex;
+  display: grid;
   justify-content: space-between;
   margin: 25px auto;
 }
@@ -353,7 +353,7 @@ table td {
   }
 }
 
-.brief {
+.brief, .brief-2 {
   display: grid;
   grid-template-columns: 2fr 1fr;
 }
@@ -390,7 +390,6 @@ table td {
 }
 
 .client-grid {
-  max-width: calc(1200px - (20px * 2));
   margin-top: 1.25rem;
   line-height: 3.5rem;
   margin-left: auto;
@@ -398,7 +397,7 @@ table td {
 }
 
 .site-logo__logo, .client-grid img {
-  height: 40px;
+  height: 30px;
   display: inline-block;
   filter: saturate(0%) brightness(0.3) contrast(100%);
   padding: 1rem 0.5rem;
