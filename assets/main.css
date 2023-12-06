@@ -411,9 +411,15 @@ table td {
   vertical-align: middle
 }
 
-.site-logo__logo:hover, .client-grid img:hover {
+img.special {
+  filter: saturate(0%) brightness(1.5) contrast(100%);
+} 
+
+.img.special:hover, .site-logo__logo:hover, .client-grid img:hover {
   filter: none
 }
+
+
 
 
 
