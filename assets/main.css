@@ -217,6 +217,13 @@ pre>code {
 /** Wrapper */
 .wrapper-top {
   max-width: calc(1200px - (20px * 2));
+  display: flex;
+  justify-content: space-between;
+  margin: 25px auto;
+}
+
+.wrapper-mid {
+  max-width: calc(1200px - (20px * 2));
   display: grid;
   justify-content: space-between;
   margin: 25px auto;
