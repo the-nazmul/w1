@@ -346,7 +346,7 @@ table td {
 
 /** Site header */
 .scroll {
-  height: 10vh;
+  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -365,11 +365,15 @@ table td {
   grid-template-columns: 2fr 1fr;
 }
 
+.brief-2 {
+  background-color: aliceblue;
+  margin: 50px 0px;
+}
+
 .portrait {
   height: 100px;
   width: 100px;
-  float: left;
-  margin-right: 20px;
+ 
 }
 
 .about {
@@ -382,7 +386,7 @@ table td {
 
 
 @media screen and (max-width: 544px) {
-  .brief {
+  .brief, .brief-2 {
     display: block;
   }
 
@@ -404,10 +408,10 @@ table td {
 }
 
 .site-logo__logo, .client-grid img {
-  height: 30px;
+  height: 25px;
   display: inline-block;
   filter: saturate(0%) brightness(0.3) contrast(100%);
-  padding: 1rem 0.5rem;
+  padding: 1rem 2rem;
   vertical-align: middle
 }
 
