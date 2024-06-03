@@ -20,7 +20,7 @@ dd,
 ol,
 ul,
 figure {
-  margin: 0;
+  /* margin: 0; */
   padding: 0;
 }
 
