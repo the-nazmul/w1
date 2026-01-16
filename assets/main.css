@@ -1,15 +1,17 @@
+/* --- swap your current “card” look for a flatter, editorial one --- */
+/* No border-radius. No box-shadow. Use hairlines + spacing + subtle tint. */
 @font-face {
-  font-family: "Avenir";
-  src: url("./fonts/AvenirLTStd-Light.otf") format("opentype");
-  font-style: normal;
-  font-display: swap;
+    font-family: "Avenir";
+    src: url("./fonts/AvenirLTStd-Light.otf") format("opentype");
+    font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
-  font-family: "National";
-  src: url("./fonts/national-book.woff2") format("woff2");
-  font-style: normal;
-  font-display: swap;
+    font-family: "National";
+    src: url("./fonts/national-book.woff2") format("woff2");
+    font-style: normal;
+    font-display: swap;
 }
 
 :root {
@@ -23,10 +25,9 @@
     --accent: #db1d08;
     --wrap: 1080px;
     --pad: 20px;
-    --sans: "Avenir", Montserrat, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    --mono: "National", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --sans: 'Avenir', Montserrat, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --mono: 'National', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
-
 
 * {
     box-sizing: border-box;
@@ -743,8 +744,6 @@ a:hover,
     grid-template-columns: 1fr 1fr 1fr;
     gap: 24px;
     align-items: start;
-    padding-left: clamp(16px, 4vw, 32px);
-    padding-right: clamp(16px, 4vw, 32px);
 }
 
 .stack {
@@ -772,6 +771,7 @@ a:hover,
     border-bottom: 1px solid transparent;
     position: relative;
     padding-right: 1.1em;
+    display: flow;
 }
 
 .row__title a:hover {
@@ -880,6 +880,8 @@ a:hover,
 
     .section--split {
         grid-template-columns: 1fr;
+        padding-left: clamp(16px, 4vw, 32px);
+        padding-right: clamp(16px, 4vw, 32px);
     }
 }
 
