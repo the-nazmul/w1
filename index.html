@@ -177,24 +177,44 @@
             <section class="section" aria-labelledby="work">
                 <div class="section__head">
                     <h2 id="work">Selected work</h2>
-                    <p class="section__sub">Investigations, analysis, and interactives. Filter by tag.</p>
+                    <p class="section__sub">Reporting, investigations, data analysis, etc. Filter by role, method, or
+                        type.</p>
                 </div>
 
-                <div class="work-filters" aria-label="Filters">
+                <div class="work-filters" aria-label="Filter work by type">
                     <button class="filter" data-filter="all" aria-pressed="true">All</button>
-                    <button class="filter" data-filter="award" aria-pressed="false"
-                        data-label="Award-winning">★</button>
-                    <button class="filter" data-filter="data" aria-pressed="false" data-label="Data work">⌁</button>
-                    <button class="filter" data-filter="interactive" aria-pressed="false"
-                        data-label="Interactive">↗</button>
+
+                    <button class="filter" data-filter="award" title="Award-winning" data-label="Award-winning"
+                        aria-label="Award-winning">★</button>
+                    <button class="filter" data-filter="editing" title="Editing" data-label="Editing"
+                        aria-label="Editing">✎</button>
+                    <button class="filter" data-filter="data" title="Data work" data-label="Data work"
+                        aria-label="Data work">⌁</button>
+                    <button class="filter" data-filter="interactive" title="Interactive" data-label="Interactive"
+                        aria-label="Interactive">↗</button>
+
+                    <button class="filter" data-filter="investigation" title="Investigative reporting"
+                        data-label="Investigative reporting" aria-label="Investigative reporting">⊕</button>
+                    <button class="filter" data-filter="analysis" title="Analysis" data-label="Analysis"
+                        aria-label="Analysis">≡</button>
+                    <button class="filter" data-filter="osint" title="OSINT / verification"
+                        data-label="OSINT / verification" aria-label="OSINT / verification">⌖</button>
+
+                    <button class="filter" data-filter="reporting" title="Reporting" data-label="Reporting"
+                        aria-label="Reporting">•</button>
+                    <button class="filter" data-filter="assistance" title="Reporting assistance"
+                        data-label="Reporting assistance" aria-label="Reporting assistance">◌</button>
+                    <button class="filter" data-filter="opinion" title="Opinion" data-label="Opinion"
+                        aria-label="Opinion">∼</button>
                 </div>
+
 
 
                 <div class="work-grid work-grid--dense" id="workGrid">
 
 
                     <!-- 1. Haaretz (Magazine) -->
-                    <article class="work" data-tags="">
+                    <article class="work" data-tags="reporting analysis">
                         <a href="https://www.haaretz.com/middle-east-news/2026-01-15/ty-article-magazine/.premium/bangladeshs-interest-in-joining-gaza-security-force-comes-with-conditions/0000019b-c20c-decf-a99f-cb7cff330000"
                             target="_blank" rel="noopener noreferrer">
                             <img class="work__img"
@@ -205,7 +225,14 @@
                                     <span class="work__pub">Haaretz</span>
                                     <span class="work__dot">·</span>
                                     <time class="work__date" datetime="2026-01-15">Jan 2026</time>
-                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                    <span class="work__tags">
+                                        <button class="tag" data-filter="reporting" aria-label="Reporting"
+                                            title="Reporting">•</button>
+
+                                        <button class="tag" data-filter="analysis" aria-label="Analysis"
+                                            title="Analysis">≡</button>
+
+                                    </span>
                                 </div>
                                 <h3 class="work__title">Bangladesh’s ‘interest’ in joining Gaza security force comes
                                     with conditions</h3>
@@ -217,7 +244,7 @@
 
 
                     <!-- 2. Bloomberg News -->
-                    <article class="work" data-tags="">
+                    <article class="work" data-tags="data">
                         <a href="https://www.bloomberg.com/news/features/2025-10-01/businesses-eager-to-beat-tariffs-turn-to-trump-connected-lobbyists"
                             target="_blank" rel="noopener noreferrer">
                             <img class="work__img"
@@ -228,7 +255,12 @@
                                     <span class="work__pub">Bloomberg</span>
                                     <span class="work__dot">·</span>
                                     <time class="work__date" datetime="2025-10-01">Oct 2025</time>
-                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                    <span class="work__tags">
+
+                                        <button class="tag" data-filter="data" aria-label="Data work"
+                                            title="Data work">⌁</button>
+
+                                    </span>
                                 </div>
                                 <h3 class="work__title">A Gunmaker’s Lobbying Shows How Trump’s Tariffs Changed the Game
                                 </h3>
@@ -240,7 +272,7 @@
 
 
                     <!-- 3. Bloomberg News -->
-                    <article class="work" data-tags="">
+                    <article class="work" data-tags="data">
                         <a href="https://www.bloomberg.com/news/features/2025-05-07/trump-budget-cut-threat-leaves-state-local-government-funding-uncertain"
                             target="_blank" rel="noopener noreferrer">
                             <img class="work__img"
@@ -251,7 +283,10 @@
                                     <span class="work__pub">Bloomberg</span>
                                     <span class="work__dot">·</span>
                                     <time class="work__date" datetime="2025-05-07">May 2025</time>
-                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                    <span class="work__tags">
+                                        <button class="tag" data-filter="data" aria-label="Data work"
+                                            title="Data work">⌁</button>
+                                    </span>
                                 </div>
                                 <h3 class="work__title">States, Cities Face Funding Collapse Threat With Trump Cuts</h3>
                                 <p class="work__desc">Officials confront deep uncertainty over funding for programs that
@@ -261,7 +296,7 @@
                     </article>
 
                     <!-- 4. Bloomberg News -->
-                    <article class="work" data-tags="">
+                    <article class="work" data-tags="data">
                         <a href="https://www.bloomberg.com/news/articles/2025-01-03/economy-in-counties-trump-won-points-to-governing-challenges"
                             target="_blank" rel="noopener noreferrer">
                             <img class="work__img"
@@ -272,7 +307,10 @@
                                     <span class="work__pub">Bloomberg</span>
                                     <span class="work__dot">·</span>
                                     <time class="work__date" datetime="2025-01-03">Jan 2025</time>
-                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                    <span class="work__tags">
+                                        <button class="tag" data-filter="data" aria-label="Data work"
+                                            title="Data work">⌁</button>
+                                    </span>
                                 </div>
                                 <h3 class="work__title">Economy in Counties Trump Won Points to Governing Challenges
                                 </h3>
@@ -283,7 +321,7 @@
                     </article>
 
                     <!-- 5. Bloomberg News -->
-                    <article class="work" data-tags="">
+                    <article class="work" data-tags="data">
                         <a href="https://www.bloomberg.com/news/articles/2024-11-11/hong-kong-has-a-record-number-of-jobs-in-finance-as-city-recovers-from-slump"
                             target="_blank" rel="noopener noreferrer">
                             <img class="work__img"
@@ -294,7 +332,10 @@
                                     <span class="work__pub">Bloomberg</span>
                                     <span class="work__dot">·</span>
                                     <time class="work__date" datetime="2024-11-11">Nov 2024</time>
-                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                    <span class="work__tags">
+                                        <button class="tag" data-filter="data" aria-label="Data work"
+                                            title="Data work">⌁</button>
+                                    </span>
                                 </div>
                                 <h3 class="work__title">Hong Kong Finance Jobs Rebound to Record After Talent Push</h3>
                                 <p class="work__desc">A data-backed look at a rebound in licensed finance professionals
@@ -305,7 +346,7 @@
 
 
                     <!-- 6. Bloomberg News -->
-                    <article class="work" data-tags="">
+                    <article class="work" data-tags="data">
                         <a href="https://www.bloomberg.com/news/articles/2024-10-17/couche-tard-s-7-eleven-overlaps-to-face-skeptical-us-ftc-review"
                             target="_blank" rel="noopener noreferrer">
                             <img class="work__img"
@@ -316,7 +357,10 @@
                                     <span class="work__pub">Bloomberg</span>
                                     <span class="work__dot">·</span>
                                     <time class="work__date" datetime="2024-10-17">Oct 2024</time>
-                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                    <span class="work__tags">
+                                        <button class="tag" data-filter="data" aria-label="Data work"
+                                            title="Data work">⌁</button>
+                                    </span>
                                 </div>
                                 <h3 class="work__title">Couche-Tard's 7-Eleven Overlaps to Face Skeptical US FTC Review
                                 </h3>
@@ -328,7 +372,7 @@
 
 
                     <!-- 7. Bloomberg Graphics -->
-                    <article class="work" data-tags="">
+                    <article class="work" data-tags="data interactive">
                         <a href="https://www.bloomberg.com/graphics/2024-election-swing-state-economy/" target="_blank"
                             rel="noopener noreferrer">
                             <img class="work__img"
@@ -340,7 +384,13 @@
                                     <span class="work__pub">Bloomberg</span>
                                     <span class="work__dot">·</span>
                                     <time class="work__date" datetime="2024-08-08">Aug 2024</time>
-                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                    <span class="work__tags">
+
+                                        <button class="tag" data-filter="data" aria-label="Data work"
+                                            title="Data work">⌁</button>
+                                        <button class="tag" data-filter="interactive" aria-label="Interactive"
+                                            title="Interactive">↗</button>
+                                    </span>
                                 </div>
                                 <h3 class="work__title">The Swing-State Economic Realities Shaping the US Election</h3>
                                 <p class="work__desc">A visual/data explainer on economic cracks across swing states and
@@ -351,7 +401,7 @@
 
 
                     <!-- 8. Bloomberg Graphics -->
-                    <article class="work" data-tags="">
+                    <article class="work" data-tags="investigation data">
                         <a href="https://www.bloomberg.com/graphics/2024-bangladesh-land-minister-uk-property/?srnd=undefined"
                             target="_blank" rel="noopener noreferrer">
                             <img class="work__img"
@@ -362,7 +412,14 @@
                                     <span class="work__pub">Bloomberg</span>
                                     <span class="work__dot">·</span>
                                     <time class="work__date" datetime="2024-02-18">Feb 2024</time>
-                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                    <span class="work__tags">
+                                        <button class="tag" data-filter="investigation"
+                                            aria-label="Investigative reporting"
+                                            title="Investigative reporting">⊕</button>
+
+                                        <button class="tag" data-filter="data" aria-label="Data work"
+                                            title="Data work">⌁</button>
+                                    </span>
                                 </div>
                                 <h3 class="work__title">Bangladeshi Politician's UK Property Empire Under Scrutiny</h3>
                                 <p class="work__desc">An investigation into a former land minister’s large UK property
@@ -404,7 +461,7 @@
 
                     <!-- 10. Bloomberg News -->
 
-                    <article class="work" data-tags="data">
+                    <article class="work" data-tags="data reporting">
                         <a href="https://www.bloomberg.com/news/articles/2023-09-11/pandemic-population-boom-in-rural-hotspots-sparks-resentment"
                             target="_blank" rel="noopener noreferrer">
                             <img class="work__img" src="./assets/images/bloomberg-story-1.webp"
@@ -415,9 +472,12 @@
                                     <span class="work__dot">·</span>
                                     <time class="work__date" datetime="2023-09">Sep 2023</time>
 
-                                    <span class="work__tags">
-                                        <button class="tag" data-filter="data" aria-label="Data work"
-                                            title="Data work">⌁</button>
+                                    <button class="tag" data-filter="reporting" aria-label="Reporting"
+                                        title="Reporting">•</button>
+
+
+                                    <button class="tag" data-filter="data" aria-label="Data work"
+                                        title="Data work">⌁</button>
                                     </span>
                                 </div>
 
@@ -431,7 +491,7 @@
 
                     <!-- 11. Grist/Public Health Watch -->
 
-                    <article class="work" data-tags="data">
+                    <article class="work" data-tags="data award osint">
                         <a href="https://grist.org/health/in-a-small-french-town-where-houston-based-lyondellbasell-is-a-fixture-residents-complain-of-unending-pollution/"
                             target="_blank" rel="noopener noreferrer">
                             <img class="work__img"
@@ -444,6 +504,13 @@
                                     <time class="work__date" datetime="2023-09-05">Sep 2023</time>
 
                                     <span class="work__tags">
+                                        <button class="tag" data-filter="award" aria-label="Award-winning"
+                                            title="Award-winning">★</button>
+
+                                        <button class="tag" data-filter="osint" aria-label="OSINT / verification"
+                                            title="OSINT / verification">⌖</button>
+
+
                                         <button class="tag" data-filter="data" aria-label="Data work"
                                             title="Data work">⌁</button>
                                     </span>
@@ -464,7 +531,7 @@
 
 
                     <!-- 12. BenarNews / Radio Free Asia -->
-                    <article class="work" data-tags="">
+                    <article class="work" data-tags="reporting analysis">
                         <a href="https://www.rfa.org/english/news/myanmar/bangladeshborderrohingya-02022023153254.html"
                             target="_blank" rel="noopener noreferrer">
                             <img class="work__img"
@@ -476,7 +543,15 @@
                                     <span class="work__pub">BenarNews / Radio Free Asia</span>
                                     <span class="work__dot">·</span>
                                     <time class="work__date" datetime="2023-02-02">Feb 2023</time>
-                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                    <span class="work__tags">
+
+                                        <button class="tag" data-filter="reporting" aria-label="Reporting"
+                                            title="Reporting">•</button>
+
+                                        <button class="tag" data-filter="analysis" aria-label="Analysis"
+                                            title="Analysis">≡</button>
+
+                                    </span>
                                 </div>
                                 <h3 class="work__title">In Bangladesh’s border with Myanmar, 2 Rohingya militant groups
                                     fight for dominance</h3>
@@ -487,8 +562,39 @@
                     </article>
 
 
-                    <!-- 13. Devex -->
-                    <article class="work" data-tags="">
+
+                    <!-- 13. Netra News -->
+                    <article class="work" data-tags="editing osint award">
+                        <a href="https://netra.news/2022/secret-prisoners-of-dhaka/" target="_blank"
+                            rel="noopener noreferrer">
+                            <img class="work__img"
+                                src="https://netra.news/content/images/size/w2000/2022/08/header-en.png"
+                                alt="Illustration showing location of the secret detention centre" loading="lazy">
+                            <div class="work__body">
+                                <div class="work__meta">
+                                    <span class="work__pub">Netra News</span>
+                                    <span class="work__dot">·</span>
+                                    <time class="work__date" datetime="2022-08-14">Aug 2022</time>
+                                    <span class="work__tags">
+                                        <button class="tag" data-filter="editing" data-label="Editing"
+                                            aria-label="Editing">✎</button>
+                                        <button class="tag" data-filter="award" aria-label="Award-winning"
+                                            title="Award-winning">★</button>
+                                        <button class="tag" data-filter="osint" aria-label="OSINT / verification"
+                                            title="OSINT / verification">⌖</button>
+                                    </span>
+                                </div>
+                                <h3 class="work__title">Secret prisoners of Dhaka</h3>
+                                <p class="work__desc">Survivors blow the lid off a secret prison operated by the DGFI,
+                                    Bangladesh’s notorious military intelligence agency.</p>
+                            </div>
+                        </a>
+                    </article>
+
+
+
+                    <!-- 14. Devex -->
+                    <article class="work" data-tags="analysis reporting">
                         <a href="https://www.devex.com/news/5-years-on-rohingyas-in-bangladesh-face-hostility-and-dwindling-aid-103860"
                             target="_blank" rel="noopener noreferrer">
                             <img class="work__img"
@@ -500,7 +606,13 @@
                                     <span class="work__pub">Devex</span>
                                     <span class="work__dot">·</span>
                                     <time class="work__date" datetime="2022-08-25">Aug 2022</time>
-                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                    <span class="work__tags">
+                                        <button class="tag" data-filter="reporting" aria-label="Reporting"
+                                            title="Reporting">•</button>
+
+                                        <button class="tag" data-filter="analysis" aria-label="Analysis"
+                                            title="Analysis">≡</button>
+                                    </span>
                                 </div>
                                 <h3 class="work__title">5 years on, Rohingyas in Bangladesh face hostility and dwindling
                                     aid</h3>
@@ -511,8 +623,8 @@
                     </article>
 
 
-                    <!-- 14. The Washington Post -->
-                    <article class="work" data-tags="">
+                    <!-- 15. The Washington Post -->
+                    <article class="work" data-tags="osint assistance">
                         <a href="https://www.washingtonpost.com/politics/2022/08/15/election-deniers-march-toward-power-key-2024-battlegrounds/"
                             target="_blank" rel="noopener noreferrer">
                             <img class="work__img"
@@ -524,7 +636,14 @@
                                     <span class="work__pub">The Washington Post</span>
                                     <span class="work__dot">·</span>
                                     <time class="work__date" datetime="2022-08-15">Aug 2022</time>
-                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                    <span class="work__tags">
+                                        <button class="tag" data-filter="osint" aria-label="OSINT / verification"
+                                            title="OSINT / verification">⌖</button>
+                                        <button class="tag" data-filter="assistance" aria-label="Reporting assistance"
+                                            title="Reporting assistance">◌</button>
+
+
+                                    </span>
                                 </div>
                                 <h3 class="work__title">Election deniers march toward power in key 2024 battlegrounds
                                 </h3>
@@ -535,8 +654,8 @@
                     </article>
 
 
-                    <!-- 15. San Francisco Chronicle -->
-                    <article class="work" data-tags="">
+                    <!-- 16. San Francisco Chronicle -->
+                    <article class="work" data-tags="investigation osint">
                         <a href="https://www.sfchronicle.com/bayarea/article/Facebook-GearLaunch-17024417.php"
                             target="_blank" rel="noopener noreferrer">
                             <img class="work__img"
@@ -547,7 +666,14 @@
                                     <span class="work__pub">San Francisco Chronicle</span>
                                     <span class="work__dot">·</span>
                                     <time class="work__date" datetime="2022-03-26">Mar 2022</time>
-                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                    <span class="work__tags">
+                                        <button class="tag" data-filter="osint" aria-label="OSINT / verification"
+                                            title="OSINT / verification">⌖</button>
+                                        <button class="tag" data-filter="investigation"
+                                            aria-label="Investigative reporting"
+                                            title="Investigative reporting">⊕</button>
+
+                                    </span>
                                 </div>
                                 <h3 class="work__title">Internet entrepreneurs far from the U.S. are inflaming political
                                     division on Facebook to sell T-shirts and coffee mugs</h3>
@@ -558,8 +684,8 @@
                     </article>
 
 
-                    <!-- 16. Foreign Policy -->
-                    <article class="work" data-tags="">
+                    <!-- 17. Foreign Policy -->
+                    <article class="work" data-tags="analysis opinion">
                         <a href="https://foreignpolicy.com/2022/01/04/bangladesh-police-brutality-crossfires-gunfights-killings-rab-corruption/"
                             target="_blank" rel="noopener noreferrer">
                             <img class="work__img"
@@ -571,7 +697,13 @@
                                     <span class="work__pub">Foreign Policy</span>
                                     <span class="work__dot">·</span>
                                     <time class="work__date" datetime="2022-01">Jan 2022</time>
-                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                    <span class="work__tags">
+                                        <button class="tag" data-filter="analysis" aria-label="Analysis"
+                                            title="Analysis">≡</button>
+                                        <button class="tag" data-filter="opinion" aria-label="Opinion / commentary"
+                                            title="Opinion / commentary">∼</button>
+
+                                    </span>
                                 </div>
                                 <h3 class="work__title">The U.S. Has a Police Brutality Problem. So Does Bangladesh.
                                 </h3>
@@ -582,8 +714,8 @@
                     </article>
 
 
-                    <!-- 17. Netra News -->
-                    <article class="work" data-tags="">
+                    <!-- 18. Netra News -->
+                    <article class="work" data-tags="investigation osint">
                         <a href="https://netra.news/2021/power-corruption-all-the-state-ministers-men/" target="_blank"
                             rel="noopener noreferrer">
                             <img class="work__img"
@@ -595,7 +727,14 @@
                                     <span class="work__pub">Netra News</span>
                                     <span class="work__dot">·</span>
                                     <time class="work__date" datetime="2021-08-13">Aug 2021</time>
-                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                    <span class="work__tags">
+                                        <button class="tag" data-filter="investigation"
+                                            aria-label="Investigative reporting"
+                                            title="Investigative reporting">⊕</button>
+                                        <button class="tag" data-filter="osint" aria-label="OSINT / verification"
+                                            title="OSINT / verification">⌖</button>
+
+                                    </span>
                                 </div>
                                 <h3 class="work__title">Power corruption: All the state minister’s men</h3>
                                 <p class="work__desc">In a classic self-dealing scheme, a Bangladeshi minister assists a
@@ -605,8 +744,8 @@
                         </a>
                     </article>
 
-                    <!-- 18. Columbia Journalism Review -->
-                    <article class="work" data-tags="">
+                    <!-- 19. Columbia Journalism Review -->
+                    <article class="work" data-tags="assistance">
                         <a href="https://www.cjr.org/widescreen/journalism-and-covid-map-me.php/" target="_blank"
                             rel="noopener noreferrer">
                             <img class="work__img"
@@ -617,7 +756,11 @@
                                     <span class="work__pub">Columbia Journalism Review</span>
                                     <span class="work__dot">·</span>
                                     <time class="work__date" datetime="2020-09-10">Sep 2020</time>
-                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                    <span class="work__tags">
+                                        <button class="tag" data-filter="assistance" aria-label="Reporting assistance"
+                                            title="Reporting assistance">◌</button>
+
+                                    </span>
                                 </div>
                                 <h3 class="work__title">Infection and Repression</h3>
                                 <p class="work__desc">A reported map and narrative tracking how the spread of Covid-19
@@ -626,8 +769,8 @@
                         </a>
                     </article>
 
-                    <!-- 19. Telegraph -->
-                    <article class="work" data-tags="">
+                    <!-- 20. Telegraph -->
+                    <article class="work" data-tags="reporting">
                         <a href="https://www.telegraph.co.uk/global-health/climate-and-people/coronavirus-exposes-deep-divide-bangladeshi-society/"
                             target="_blank" rel="noopener noreferrer">
                             <img class="work__img"
@@ -638,7 +781,11 @@
                                     <span class="work__pub">The Telegraph</span>
                                     <span class="work__dot">·</span>
                                     <time class="work__date" datetime="2020-11-06">Jun 2020</time>
-                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                    <span class="work__tags">
+                                        <button class="tag" data-filter="reporting" aria-label="Reporting"
+                                            title="Reporting">•</button>
+
+                                    </span>
                                 </div>
                                 <h3 class="work__title">Coronavirus exposes the deep divide in Bangladeshi society</h3>
                                 <p class="work__desc">Hospitals are struggling to cope and the humanitarian crisis is
@@ -647,8 +794,8 @@
                         </a>
                     </article>
 
-                    <!-- 20. The Economist -->
-                    <article class="work" data-tags="">
+                    <!-- 21. The Economist -->
+                    <article class="work" data-tags="analysis reporting">
                         <a href="https://www.economist.com/asia/2020/06/06/covid-19-infections-are-rising-fast-in-bangladesh-india-and-pakistan"
                             target="_blank" rel="noopener noreferrer">
                             <img class="work__img"
@@ -659,7 +806,13 @@
                                     <span class="work__pub">The Economist</span>
                                     <span class="work__dot">·</span>
                                     <time class="work__date" datetime="2020-06-06">Jun 2020</time>
-                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                    <span class="work__tags">
+                                        <button class="tag" data-filter="reporting" aria-label="Reporting"
+                                            title="Reporting">•</button>
+                                        <button class="tag" data-filter="analysis" aria-label="Analysis"
+                                            title="Analysis">≡</button>
+
+                                    </span>
                                 </div>
                                 <h3 class="work__title">Covid-19 infections are rising fast in Bangladesh, India and
                                     Pakistan</h3>
@@ -669,8 +822,8 @@
                         </a>
                     </article>
 
-                    <!-- 21. Haaretz (Opinion) -->
-                    <article class="work" data-tags="">
+                    <!-- 22. Haaretz (Opinion) -->
+                    <article class="work" data-tags="opinion analysis">
                         <a href="https://www.haaretz.com/israel-news/2020-05-14/ty-article-opinion/.premium/for-bangladesh-not-recognizing-israel-is-a-moral-choice-above-all/0000017f-e8a4-df2c-a1ff-fef577cd0000"
                             target="_blank" rel="noopener noreferrer">
                             <img class="work__img"
@@ -682,7 +835,13 @@
                                     <span class="work__pub">Haaretz</span>
                                     <span class="work__dot">·</span>
                                     <time class="work__date" datetime="2020-05">May 2020</time>
-                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                    <span class="work__tags">
+                                        <button class="tag" data-filter="analysis" aria-label="Analysis"
+                                            title="Analysis">≡</button>
+                                        <button class="tag" data-filter="opinion" aria-label="Opinion / commentary"
+                                            title="Opinion / commentary">∼</button>
+
+                                    </span>
                                 </div>
                                 <h3 class="work__title">For Bangladesh, Recognizing Israel Is an Immoral Choice</h3>
                                 <p class="work__desc">An opinion piece arguing Bangladesh’s Israel policy is rooted in
