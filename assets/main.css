@@ -81,7 +81,6 @@ a:hover,
 /* --- header / hero --- */
 .site-header {
     padding: 30px 0 18px;
-    border-bottom: 1px solid var(--hair);
 }
 
 .hero {
@@ -214,7 +213,6 @@ a:hover,
 /* right column becomes “note” instead of a card */
 .hero__tagline {
     padding: 0 0 0 16px;
-    border-left: 1px solid var(--hair);
 }
 
 /* scrolling words */
@@ -319,8 +317,6 @@ a:hover,
 
 .section--tint {
     background: var(--panel);
-    border-top: 1px solid var(--hair-soft);
-    border-bottom: 1px solid var(--hair-soft);
 }
 
 .section--tint+.section {
@@ -340,7 +336,6 @@ a:hover,
 
 /* each item: minimal, no card */
 .work {
-    border-top: 1px solid var(--hair);
     padding-top: 12px;
 }
 
@@ -353,7 +348,6 @@ a:hover,
 /* image: consistent aspect ratio = visual rhythm */
 .work__img {
     width: 100%;
-    border: 1px solid var(--hair-soft);
     aspect-ratio: 16 / 9;
     object-fit: cover;
     display: block;
@@ -562,6 +556,7 @@ a:hover,
 /* Make this section denser than default sections */
 .section.section--tint {
     padding: 28px 0;
+    border: none;
 }
 
 /* Reset accidental top nudges + keep clean column rhythm */
@@ -720,8 +715,7 @@ a:hover,
     gap: 10px;
     margin-top: 12px;
     padding-top: 12px;
-    border-top: 1px solid var(--hair-soft);
-    justify-content: center;
+    justify-content: start;
 }
 
 .pill {
@@ -888,7 +882,6 @@ a:hover,
     .hero__tagline {
         border-left: 0;
         padding-left: 0;
-        border-top: 1px solid var(--hair-soft);
         padding-top: 14px;
     }
 
