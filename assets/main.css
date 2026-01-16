@@ -291,7 +291,7 @@ a:hover,
 .section__head {
     display: flex;
     align-items: baseline;
-    justify-content: space-between;
+    justify-content: start;
     gap: 12px;
     margin-bottom: 14px;
 }
@@ -555,35 +555,44 @@ a:hover,
 
 
 /* --- logos: calmer --- */
+/* =========================
+   Logos section spacing fix
+   ========================= */
 
-.logo-groups {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    border-top: 0;
-    padding-top: 0;
-    margin-top: 10px;
+/* Make this section denser than default sections */
+.section.section--tint {
+    padding: 28px 0;
 }
 
+/* Reset accidental top nudges + keep clean column rhythm */
+.logo-groups {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 0;
+}
+
+/* Title → logo breathing room */
 .logo-group__title {
-    margin: 0 0 10px;
+    margin: 0 0 14px;
     font-size: 13px;
     letter-spacing: .12em;
     text-transform: uppercase;
     color: var(--muted);
     font-weight: 700;
+    line-height: 1.2;
 }
 
-
-
-
+/* Calmer logo grid rhythm */
 .logos {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
     align-items: center;
+    gap: 16px;
 }
 
+/* Logo treatment */
 .logos .logo {
     height: 22px;
     width: auto;
@@ -594,7 +603,6 @@ a:hover,
 
 .logos svg.logo {
     color: var(--text);
-    /* enables currentColor */
 }
 
 .logos .logo:hover {
@@ -602,26 +610,12 @@ a:hover,
     filter: none;
 }
 
-.logo-groups {
-    position: relative;
-    grid-template-columns: 1fr 1fr;
-    gap: 28px;
+/* Slight lift for pale logos */
+.logos .logo--light {
+    opacity: .85;
+    filter: saturate(0%) contrast(110%) brightness(1.15);
 }
 
-@media (min-width: 900px) {
-    .logo-groups::before {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 0;
-        bottom: 0;
-        width: 1px;
-        background: color-mix(in oklab, var(--text) 10%, transparent);
-        transform: translateX(-14px);
-        /* half the gap, tweak to taste */
-        pointer-events: none;
-    }
-}
 
 
 /* --- timeline: simple rows with a left rule --- */
@@ -637,6 +631,12 @@ a:hover,
     gap: 16px;
     padding-left: 14px;
     border-left: 2px solid var(--hair);
+}
+
+.item__meta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .item__kicker {
@@ -859,6 +859,20 @@ a:hover,
     }
 }
 
+/* Subtle vertical divider on wide screens */
+@media (min-width: 900px) {
+    .logo-groups::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: color-mix(in oklab, var(--text) 10%, transparent);
+        transform: translateX(-14px);
+        pointer-events: none;
+    }
+}
 
 /* responsive: stack hero */
 @media (max-width: 820px) {
