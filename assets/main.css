@@ -8,13 +8,10 @@
     --muted: #666;
     --hair: rgba(0, 0, 0, .06);
     --hair-soft: rgba(0, 0, 0, .08);
-
     --ink: #1f2b7b;
     --accent: #db1d08;
-
     --wrap: 1080px;
     --pad: 20px;
-
     --sans: "Avenir", Montserrat, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     --mono: "National", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
@@ -39,12 +36,14 @@ body {
 
 a {
     color: var(--ink);
-    text-decoration: underline;
-    text-underline-offset: 3px;
+    text-decoration: none;
 }
 
-a:hover {
+a:hover,
+.links a:hover {
     color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
 .muted {
@@ -107,6 +106,10 @@ a:hover {
     text-decoration: none;
 }
 
+.lede {
+    font-size: 14px;
+}
+
 .lede .bio-toggle {
     margin-left: 6px;
     padding: 0;
@@ -119,7 +122,7 @@ a:hover {
     text-transform: uppercase;
     color: var(--muted);
     cursor: pointer;
-    text-decoration: underline;
+    text-decoration: none;
     text-underline-offset: 3px;
     vertical-align: baseline;
 }
@@ -148,10 +151,10 @@ a:hover {
 
 .bio-more p {
     margin: 0 0 10px;
-    font-family: var(--mono);
+    font-family: var(--sans);
     font-size: 13px;
     line-height: 1.55;
-    color: var(--muted);
+    color: var(--text);
 }
 
 .bio-more p:last-child {
@@ -178,7 +181,7 @@ a:hover {
     font: 400 13px / 1.55 var(--sans);
     color: var(--ink);
     cursor: pointer;
-    text-decoration: underline;
+    text-decoration: none;
     text-underline-offset: 3px;
 }
 
@@ -263,7 +266,7 @@ a:hover {
 
 /* --- sections --- */
 .section {
-    padding: 30px 0;
+    padding: 40px 0;
 }
 
 .section+.section {
@@ -318,7 +321,7 @@ a:hover {
 .work-grid--dense {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px 18px;
+    gap: 25px;
 }
 
 
@@ -371,25 +374,43 @@ a:hover {
 }
 
 .work-more {
-    margin-top: 14px;
-    padding: 0;
-    border: 0;
-    background: none;
-    font: inherit;
+    display: block;
+    margin: 20px auto 0 auto;
+    align-items: center;
+    gap: 6px;
+
+    padding: 6px 10px;
+    border: 1px solid var(--hair-soft);
+    background: transparent;
+
     font-family: var(--mono);
-    font-size: 13px;
+    font-size: 12.5px;
     letter-spacing: .08em;
     text-transform: uppercase;
     color: var(--muted);
+
     cursor: pointer;
-    text-decoration: underline;
-    text-underline-offset: 3px;
+    transition: color .15s ease, border-color .15s ease, background .15s ease;
+}
+
+.work-more::after {
+    content: "＋";
+    font-size: 12px;
+    line-height: 1;
+    opacity: .8;
 }
 
 .work-more:hover,
 .work-more:focus-visible {
     color: var(--ink);
+    border-color: var(--hair);
+    background: var(--bg-soft);
 }
+
+.work-more:focus-visible {
+    outline: none;
+}
+
 
 
 /* icon tag buttons: look like tiny typographic marks */
@@ -433,7 +454,7 @@ a:hover {
 }
 
 .work a:hover .work__title {
-    text-decoration: underline;
+    text-decoration: none;
     text-underline-offset: 3px;
 }
 
@@ -442,39 +463,39 @@ a:hover {
    ========================= */
 
 .work-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 12px 0 14px;
-  padding-top: 10px;
-  border-top: 1px solid var(--hair-soft);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0 14px;
+    padding-top: 10px;
+    border-top: 1px solid var(--hair-soft);
 }
 
 /* filter button */
 .filter {
-  position: relative;
-  padding: 0;
-  border: 0;
-  background: none;
+    position: relative;
+    padding: 0;
+    border: 0;
+    background: none;
 
-  font-family: var(--mono);
-  font-size: 13px;
-  line-height: 1;
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1;
 
-  color: var(--muted);
-  cursor: pointer;
+    color: var(--muted);
+    cursor: pointer;
 }
 
 /* hover / focus */
 .filter:hover,
 .filter:focus-visible {
-  color: var(--ink);
-  outline: none;
+    color: var(--ink);
+    outline: none;
 }
 
 /* active filter */
 .filter[aria-pressed="true"] {
-  color: var(--ink);
+    color: var(--ink);
 }
 
 /* =========================
@@ -482,32 +503,32 @@ a:hover {
    ========================= */
 
 .filter[data-label]::after {
-  content: attr(data-label);
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translate(-50%, 6px);
+    content: attr(data-label);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 6px);
 
-  white-space: nowrap;
-  pointer-events: none;
+    white-space: nowrap;
+    pointer-events: none;
 
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: .06em;
-  text-transform: uppercase;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
 
-  color: var(--ink);
-  background: var(--bg);
-  padding: 3px 6px;
+    color: var(--ink);
+    background: var(--bg);
+    padding: 3px 6px;
 
-  border: 1px solid var(--hair-soft);
-  opacity: 0;
+    border: 1px solid var(--hair-soft);
+    opacity: 0;
 }
 
 /* show immediately (no delay) */
 .filter:hover::after,
 .filter:focus-visible::after {
-  opacity: 1;
+    opacity: 1;
 }
 
 /* =========================
@@ -515,7 +536,7 @@ a:hover {
    ========================= */
 
 .work[hidden] {
-  display: none !important;
+    display: none !important;
 }
 
 
@@ -546,7 +567,7 @@ a:hover {
 .logos {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px 18px;
+    gap: 15px;
     align-items: center;
 }
 
@@ -568,10 +589,25 @@ a:hover {
     filter: none;
 }
 
-/* optional: for logos that look too faint when desaturated */
-.logos .logo--light {
-    opacity: .85;
-    filter: saturate(0%) contrast(110%) brightness(1.15);
+.logo-groups {
+    position: relative;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+}
+
+@media (min-width: 900px) {
+    .logo-groups::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: color-mix(in oklab, var(--text) 10%, transparent);
+        transform: translateX(-14px);
+        /* half the gap, tweak to taste */
+        pointer-events: none;
+    }
 }
 
 
@@ -579,11 +615,8 @@ a:hover {
 .timeline {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 30px;
 }
-
-
-
 
 .item {
     display: grid;
@@ -597,6 +630,7 @@ a:hover {
     font-weight: 800;
 }
 
+.item__location,
 .item__date {
     margin-top: 4px;
     color: var(--muted);
