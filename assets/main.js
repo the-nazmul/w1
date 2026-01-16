@@ -4,7 +4,7 @@
 
 function wireToggles() {
     document.addEventListener("click", (e) => {
-        const btn = e.target.closest(".bio-toggle, .exp-toggle");
+        const btn = e.target.closest(".bio-toggle, .exp-toggle, .link-toggle");
         if (!btn) return;
 
         const id = btn.getAttribute("aria-controls") || btn.dataset.target;
@@ -23,6 +23,12 @@ function wireToggles() {
             return;
         }
 
+        // LINK toggle: show/hide the reveal span (Email/CV)
+        if (btn.classList.contains("link-toggle")) {
+            panel.hidden = expanded;
+            return;
+        }
+
         // EXPERIENCE global toggle: show/hide all item-more blocks inside the container
         if (btn.classList.contains("exp-toggle")) {
             const moreBlocks = panel.querySelectorAll(".item-more");
@@ -35,6 +41,7 @@ function wireToggles() {
         }
     });
 }
+
 
 
 
