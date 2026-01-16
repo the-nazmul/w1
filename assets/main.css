@@ -437,73 +437,85 @@ a:hover {
     text-underline-offset: 3px;
 }
 
-/* filter row */
+/* =========================
+   Work filters (symbol row)
+   ========================= */
+
 .work-filters {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin: 12px 0 14px;
-    padding-top: 10px;
-    border-top: 1px solid var(--hair-soft);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 14px;
+  padding-top: 10px;
+  border-top: 1px solid var(--hair-soft);
 }
 
 /* filter button */
 .filter {
-    position: relative;
-    padding: 0;
-    border: 0;
-    background: none;
-    font: inherit;
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--muted);
-    cursor: pointer;
-    text-decoration: underline;
-    text-underline-offset: 3px;
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: none;
+
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1;
+
+  color: var(--muted);
+  cursor: pointer;
 }
 
+/* hover / focus */
 .filter:hover,
 .filter:focus-visible {
-    color: var(--ink);
+  color: var(--ink);
+  outline: none;
 }
 
-/* pressed (active) filter */
+/* active filter */
 .filter[aria-pressed="true"] {
-    color: var(--ink);
+  color: var(--ink);
 }
 
-/* instant hover label */
+/* =========================
+   Instant hover label
+   ========================= */
+
 .filter[data-label]::after {
-    content: attr(data-label);
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%, 4px);
-    white-space: nowrap;
+  content: attr(data-label);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 6px);
 
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: .06em;
-    text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
 
-    color: var(--text);
-    background: var(--bg);
-    padding: 3px 6px;
-    border: 1px solid var(--hair-soft);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
 
-    opacity: 0;
-    pointer-events: none;
+  color: var(--ink);
+  background: var(--bg);
+  padding: 3px 6px;
+
+  border: 1px solid var(--hair-soft);
+  opacity: 0;
 }
 
-/* show immediately */
+/* show immediately (no delay) */
 .filter:hover::after,
 .filter:focus-visible::after {
-    opacity: 1;
+  opacity: 1;
 }
 
-/* hide filtered-out items */
+/* =========================
+   Filtered items
+   ========================= */
+
 .work[hidden] {
-    display: none !important;
+  display: none !important;
 }
 
 
