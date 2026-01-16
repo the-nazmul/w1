@@ -16,6 +16,21 @@
     --mono: "National", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
+@font-face {
+  font-family: "Avenir";
+  src: url("./assets/fonts/AvenirLTStd-Light.otf") format("opentype");
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "National";
+  src: url("./assets/fonts/national-book.woff2") format("woff2");
+  font-style: normal;
+  font-display: swap;
+}
+
+
 * {
     box-sizing: border-box;
 }
