@@ -1,5 +1,16 @@
-/* --- swap your current “card” look for a flatter, editorial one --- */
-/* No border-radius. No box-shadow. Use hairlines + spacing + subtle tint. */
+@font-face {
+  font-family: "Avenir";
+  src: url("./assets/fonts/AvenirLTStd-Light.otf") format("opentype");
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "National";
+  src: url("./assets/fonts/national-book.woff2") format("woff2");
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
     --bg: #fffff9;
@@ -14,20 +25,6 @@
     --pad: 20px;
     --sans: "Avenir", Montserrat, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     --mono: "National", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-}
-
-@font-face {
-  font-family: "Avenir";
-  src: url("./assets/fonts/AvenirLTStd-Light.otf") format("opentype");
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "National";
-  src: url("./assets/fonts/national-book.woff2") format("woff2");
-  font-style: normal;
-  font-display: swap;
 }
 
 
