@@ -58,33 +58,64 @@
                         <span class="ink">data</span>,
                         <span class="ink">investigations</span>,
                         and <span class="ink">political economy</span>.
+                        <button class="bio-toggle" aria-expanded="false" aria-controls="bio-more">More</button>
                     </p>
 
-                    <button class="bio-toggle" aria-expanded="false">
-                        More
-                    </button>
-
-                    <div class="bio-more" hidden>
+                    <div class="bio-more" id="bio-more" hidden>
                         <p>
                             Nazmul Ahasan is Executive Editor at
-                            <a href="https://netra.news/about/" target="_blank" rel="noopener">Netra News</a>,
+                            <a href="https://netra.news/about/" target="_blank" rel="noopener noreferrer"
+                                aria-label="About Netra News">
+                                Netra News
+                            </a>,
                             a public-interest journalism platform in Bangladesh.
                         </p>
 
                         <p>
-                            Previously, he was a US economy reporter at Bloomberg News in Washington, DC,
-                            and earlier an editor at Radio Free Asia’s BenarNews, shaping coverage from
-                            South and Southeast Asia. Before moving to the United States, he worked at
-                            <i>The Daily Star</i> and Netra News in Dhaka.
+                            Previously, he was a US economy reporter at
+                            <a href="https://www.bloomberg.com/authors/AWWNyCBthbk/nazmul-ahasan" target="_blank"
+                                rel="noopener noreferrer" aria-label="Nazmul Ahasan author page at Bloomberg News">
+                                Bloomberg News
+                            </a>
+                            in Washington, DC, and earlier an editor at Radio Free Asia’s BenarNews,
+                            shaping coverage from South and Southeast Asia. Before moving to the United
+                            States, he worked at <i>The Daily Star</i> and Netra News in Dhaka.
                         </p>
 
                         <p>
                             He graduated from the UC Berkeley Graduate School of Journalism in 2023.
-                            His work has appeared in <i>Foreign Policy</i>, <i>The Economist</i>,
-                            <i>The Telegraph</i>, <i>Haaretz</i>, Columbia Journalism Review,
-                            and the <i>San Francisco Chronicle</i>.
+                            His work has appeared in
+                            <i>
+                                <a href="https://foreignpolicy.com/author/nazmul-ahasan/" target="_blank"
+                                    rel="noopener noreferrer" aria-label="Nazmul Ahasan author page at Foreign Policy">
+                                    Foreign Policy
+                                </a>
+                            </i>,
+                            <i>The Economist</i>,
+                            <i>
+                                <a href="https://www.telegraph.co.uk/authors/n/na-ne/nazmul-ahasan/" target="_blank"
+                                    rel="noopener noreferrer" aria-label="Nazmul Ahasan author page at The Telegraph">
+                                    The Telegraph
+                                </a>
+                            </i>,
+                            <i>
+                                <a href="https://www.haaretz.com/ty-WRITER/0000017f-da59-d42c-afff-dffbc0150000"
+                                    target="_blank" rel="noopener noreferrer"
+                                    aria-label="Nazmul Ahasan author page at Haaretz">
+                                    Haaretz
+                                </a>
+                            </i>,
+                            Columbia Journalism Review, and the
+                            <i>
+                                <a href="https://www.sfchronicle.com/bayarea/article/Facebook-GearLaunch-17024417.php"
+                                    target="_blank" rel="noopener noreferrer"
+                                    aria-label="San Francisco Chronicle article by Nazmul Ahasan">
+                                    San Francisco Chronicle
+                                </a>
+                            </i>.
                         </p>
                     </div>
+
 
 
                     <ul class="links">
@@ -98,7 +129,6 @@
                         </li>
 
                         <li><a href="https://twitter.com/the_nazmul" rel="me">X</a></li>
-                        <li><a href="https://github.com/the-nazmul" rel="me">GitHub</a></li>
                         <li><a href="https://www.linkedin.com/in/nazmulahasan/" rel="me">LinkedIn</a></li>
 
                         <li>
@@ -152,23 +182,208 @@
 
                 <div class="work-filters" aria-label="Filters">
                     <button class="filter" data-filter="all" aria-pressed="true">All</button>
-                    <button class="filter" data-filter="award" aria-pressed="false" title="Award-winning">★</button>
-                    <button class="filter" data-filter="data" aria-pressed="false" title="Data work">⌁</button>
-                    <button class="filter" data-filter="interactive" aria-pressed="false" title="Interactive">↗</button>
+                    <button class="filter" data-filter="award" aria-pressed="false"
+                        data-label="Award-winning">★</button>
+                    <button class="filter" data-filter="data" aria-pressed="false" data-label="Data work">⌁</button>
+                    <button class="filter" data-filter="interactive" aria-pressed="false"
+                        data-label="Interactive">↗</button>
                 </div>
 
+
                 <div class="work-grid work-grid--dense" id="workGrid">
+
+
+                    <!-- 1. Haaretz (Magazine) -->
+                    <article class="work" data-tags="">
+                        <a href="https://www.haaretz.com/middle-east-news/2026-01-15/ty-article-magazine/.premium/bangladeshs-interest-in-joining-gaza-security-force-comes-with-conditions/0000019b-c20c-decf-a99f-cb7cff330000"
+                            target="_blank" rel="noopener noreferrer">
+                            <img class="work__img"
+                                src="https://img.haarets.co.il/bs/0000019b-c20d-d641-a9bf-c39ddd210001/37/4c/8c6fdcab49cc92ce7e3c8491e2f6/404471.jpg"
+                                alt="Pro-Palestinian protesters in Bangladesh's capital Dhaka" loading="lazy">
+                            <div class="work__body">
+                                <div class="work__meta">
+                                    <span class="work__pub">Haaretz</span>
+                                    <span class="work__dot">·</span>
+                                    <time class="work__date" datetime="2026-01-15">Jan 2026</time>
+                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                </div>
+                                <h3 class="work__title">Bangladesh’s ‘interest’ in joining Gaza security force comes
+                                    with conditions</h3>
+                                <p class="work__desc">Bangladesh weighs a delicate foreign-policy decision after
+                                    signaling interest in a proposed international stabilization force.</p>
+                            </div>
+                        </a>
+                    </article>
+
+
+                    <!-- 2. Bloomberg News -->
+                    <article class="work" data-tags="">
+                        <a href="https://www.bloomberg.com/news/features/2025-10-01/businesses-eager-to-beat-tariffs-turn-to-trump-connected-lobbyists"
+                            target="_blank" rel="noopener noreferrer">
+                            <img class="work__img"
+                                src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ieqNZQZb47oc/v1/1334x2000.webp"
+                                alt="Brian Ballard, a top Trump-aligned lobbyist, poses for a photo" loading="lazy">
+                            <div class="work__body">
+                                <div class="work__meta">
+                                    <span class="work__pub">Bloomberg</span>
+                                    <span class="work__dot">·</span>
+                                    <time class="work__date" datetime="2025-10-01">Oct 2025</time>
+                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                </div>
+                                <h3 class="work__title">A Gunmaker’s Lobbying Shows How Trump’s Tariffs Changed the Game
+                                </h3>
+                                <p class="work__desc">Lobbying on tariffs and other trade-related issues hit an all-time
+                                    high in the first half of 2025.</p>
+                            </div>
+                        </a>
+                    </article>
+
+
+                    <!-- 3. Bloomberg News -->
+                    <article class="work" data-tags="">
+                        <a href="https://www.bloomberg.com/news/features/2025-05-07/trump-budget-cut-threat-leaves-state-local-government-funding-uncertain"
+                            target="_blank" rel="noopener noreferrer">
+                            <img class="work__img"
+                                src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ic_KamWZgeds/v2/2000x1334.webp"
+                                alt="A stretch of Moorland Road in Waukesha County, Wisconsin." loading="lazy">
+                            <div class="work__body">
+                                <div class="work__meta">
+                                    <span class="work__pub">Bloomberg</span>
+                                    <span class="work__dot">·</span>
+                                    <time class="work__date" datetime="2025-05-07">May 2025</time>
+                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                </div>
+                                <h3 class="work__title">States, Cities Face Funding Collapse Threat With Trump Cuts</h3>
+                                <p class="work__desc">Officials confront deep uncertainty over funding for programs that
+                                    undergird local economies.</p>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- 4. Bloomberg News -->
+                    <article class="work" data-tags="">
+                        <a href="https://www.bloomberg.com/news/articles/2025-01-03/economy-in-counties-trump-won-points-to-governing-challenges"
+                            target="_blank" rel="noopener noreferrer">
+                            <img class="work__img"
+                                src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ievdfrcsznEU/v0/1200x974.jpg"
+                                alt="A map of US by county population and economy size" loading="lazy">
+                            <div class="work__body">
+                                <div class="work__meta">
+                                    <span class="work__pub">Bloomberg</span>
+                                    <span class="work__dot">·</span>
+                                    <time class="work__date" datetime="2025-01-03">Jan 2025</time>
+                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                </div>
+                                <h3 class="work__title">Economy in Counties Trump Won Points to Governing Challenges
+                                </h3>
+                                <p class="work__desc">County-level GDP data show slower growth since the pandemic in
+                                    many places central to Trump’s coalition.</p>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- 5. Bloomberg News -->
+                    <article class="work" data-tags="">
+                        <a href="https://www.bloomberg.com/news/articles/2024-11-11/hong-kong-has-a-record-number-of-jobs-in-finance-as-city-recovers-from-slump"
+                            target="_blank" rel="noopener noreferrer">
+                            <img class="work__img"
+                                src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iiZrYuBfizSw/v0/1200x800.jpg"
+                                alt="Hong Kong financial center" loading="lazy">
+                            <div class="work__body">
+                                <div class="work__meta">
+                                    <span class="work__pub">Bloomberg</span>
+                                    <span class="work__dot">·</span>
+                                    <time class="work__date" datetime="2024-11-11">Nov 2024</time>
+                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                </div>
+                                <h3 class="work__title">Hong Kong Finance Jobs Rebound to Record After Talent Push</h3>
+                                <p class="work__desc">A data-backed look at a rebound in licensed finance professionals
+                                    as the city shows early signs of recovery.</p>
+                            </div>
+                        </a>
+                    </article>
+
+
+                    <!-- 6. Bloomberg News -->
+                    <article class="work" data-tags="">
+                        <a href="https://www.bloomberg.com/news/articles/2024-10-17/couche-tard-s-7-eleven-overlaps-to-face-skeptical-us-ftc-review"
+                            target="_blank" rel="noopener noreferrer">
+                            <img class="work__img"
+                                src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iA20JXuTKD20/v0/-1x-1.webp"
+                                alt="US states by overlaps between Circle-K and 7-Eleven stores" loading="lazy">
+                            <div class="work__body">
+                                <div class="work__meta">
+                                    <span class="work__pub">Bloomberg</span>
+                                    <span class="work__dot">·</span>
+                                    <time class="work__date" datetime="2024-10-17">Oct 2024</time>
+                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                </div>
+                                <h3 class="work__title">Couche-Tard's 7-Eleven Overlaps to Face Skeptical US FTC Review
+                                </h3>
+                                <p class="work__desc">A Bloomberg News analysis of store overlaps and why US antitrust
+                                    scrutiny could be tough for a potential deal.</p>
+                            </div>
+                        </a>
+                    </article>
+
+
+                    <!-- 7. Bloomberg Graphics -->
+                    <article class="work" data-tags="">
+                        <a href="https://www.bloomberg.com/graphics/2024-election-swing-state-economy/" target="_blank"
+                            rel="noopener noreferrer">
+                            <img class="work__img"
+                                src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iTF_GXIvegeU/v0/-1x-1.jpg"
+                                alt="The outcome of this year’s election could hang on local economies in swing states and places like Erie, Jackson and Washoe counties."
+                                loading="lazy">
+                            <div class="work__body">
+                                <div class="work__meta">
+                                    <span class="work__pub">Bloomberg</span>
+                                    <span class="work__dot">·</span>
+                                    <time class="work__date" datetime="2024-08-08">Aug 2024</time>
+                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                </div>
+                                <h3 class="work__title">The Swing-State Economic Realities Shaping the US Election</h3>
+                                <p class="work__desc">A visual/data explainer on economic cracks across swing states and
+                                    what they may mean for the 2024 race.</p>
+                            </div>
+                        </a>
+                    </article>
+
+
+                    <!-- 8. Bloomberg Graphics -->
+                    <article class="work" data-tags="">
+                        <a href="https://www.bloomberg.com/graphics/2024-bangladesh-land-minister-uk-property/?srnd=undefined"
+                            target="_blank" rel="noopener noreferrer">
+                            <img class="work__img"
+                                src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iM.LXV1CyFUQ/v0/-1x-1.jpg"
+                                alt="Illustration of Bangladesh minister" loading="lazy">
+                            <div class="work__body">
+                                <div class="work__meta">
+                                    <span class="work__pub">Bloomberg</span>
+                                    <span class="work__dot">·</span>
+                                    <time class="work__date" datetime="2024-02-18">Feb 2024</time>
+                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                </div>
+                                <h3 class="work__title">Bangladeshi Politician's UK Property Empire Under Scrutiny</h3>
+                                <p class="work__desc">An investigation into a former land minister’s large UK property
+                                    holdings and what they suggest about scrutiny of foreign money.</p>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- 9. Netra News -->
 
                     <article class="work" data-tags="award data interactive">
                         <a href="https://interactive.netra.news/extrajudicial-killings-bangladesh/" target="_blank"
                             rel="noopener noreferrer">
-                            <img class="work__img" src="./assets/images/netra-4.webp"
+                            <img class="work__img"
+                                src="https://interactive.netra.news/extrajudicial-killings-bangladesh/assets/img/extrajudicial-killings-bangladesh-cover.webp"
                                 alt="Screenshot of a chart made for the story" loading="lazy">
                             <div class="work__body">
                                 <div class="work__meta">
                                     <span class="work__pub">Netra News</span>
                                     <span class="work__dot">·</span>
-                                    <time class="work__date" datetime="2023">2023</time>
+                                    <time class="work__date" datetime="2023">Nov 2023</time>
 
                                     <span class="work__tags">
                                         <button class="tag" data-filter="award" aria-label="Award-winning"
@@ -186,6 +401,8 @@
                             </div>
                         </a>
                     </article>
+
+                    <!-- 10. Bloomberg News -->
 
                     <article class="work" data-tags="data">
                         <a href="https://www.bloomberg.com/news/articles/2023-09-11/pandemic-population-boom-in-rural-hotspots-sparks-resentment"
@@ -212,8 +429,275 @@
                         </a>
                     </article>
 
-                    <!-- add more -->
+                    <!-- 11. Grist/Public Health Watch -->
+
+                    <article class="work" data-tags="data">
+                        <a href="https://grist.org/health/in-a-small-french-town-where-houston-based-lyondellbasell-is-a-fixture-residents-complain-of-unending-pollution/"
+                            target="_blank" rel="noopener noreferrer">
+                            <img class="work__img"
+                                src="https://grist.org/wp-content/uploads/2023/08/LyondellBasellHouston.jpg"
+                                alt="LyondellBasell’s HQ building" loading="lazy">
+                            <div class="work__body">
+                                <div class="work__meta">
+                                    <span class="work__pub">Public Health Watch / Grist</span>
+                                    <span class="work__dot">·</span>
+                                    <time class="work__date" datetime="2023-09-05">Sep 2023</time>
+
+                                    <span class="work__tags">
+                                        <button class="tag" data-filter="data" aria-label="Data work"
+                                            title="Data work">⌁</button>
+                                    </span>
+                                </div>
+
+                                <h3 class="work__title">In a small French town where Houston-based LyondellBasell is a
+                                    fixture, residents complain of unending pollution
+                                </h3>
+                                <p class="work__desc">Activists in both countries complain that regulators prioritize
+                                    the economic well-being of polluting industries over the environment and public
+                                    health.
+                                </p>
+                            </div>
+                        </a>
+                    </article>
+
+
+
+
+                    <!-- 12. BenarNews / Radio Free Asia -->
+                    <article class="work" data-tags="">
+                        <a href="https://www.rfa.org/english/news/myanmar/bangladeshborderrohingya-02022023153254.html"
+                            target="_blank" rel="noopener noreferrer">
+                            <img class="work__img"
+                                src="https://www.rfa.org/resizer/v2/ISREPY3XIHNGUP2QR4F7M6VOPQ.jpg?auth=2f18b06ef9ec559e2488aed5c78d6172bd1ac4ea59a3aee48e968499b4f69c48&width=1440&height=811"
+                                alt="This screengrab from a video shows smoke in the distance from a fire at a Rohingya settlement in a no-man’s land between Bangladesh and Myanma"
+                                loading="lazy">
+                            <div class="work__body">
+                                <div class="work__meta">
+                                    <span class="work__pub">BenarNews / Radio Free Asia</span>
+                                    <span class="work__dot">·</span>
+                                    <time class="work__date" datetime="2023-02-02">Feb 2023</time>
+                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                </div>
+                                <h3 class="work__title">In Bangladesh’s border with Myanmar, 2 Rohingya militant groups
+                                    fight for dominance</h3>
+                                <p class="work__desc">The Rohingya Solidarity Organization re-emerged after Myanmar’s
+                                    2021 coup and clashed with ARSA in a turf war along the border.</p>
+                            </div>
+                        </a>
+                    </article>
+
+
+                    <!-- 13. Devex -->
+                    <article class="work" data-tags="">
+                        <a href="https://www.devex.com/news/5-years-on-rohingyas-in-bangladesh-face-hostility-and-dwindling-aid-103860"
+                            target="_blank" rel="noopener noreferrer">
+                            <img class="work__img"
+                                src="https://res.cloudinary.com/devex/image/fetch/c_scale,f_auto,q_auto,w_834/https://lh4.googleusercontent.com/tgCvfCdjPO2VThFZFNsYdq24688uYEjU_Sb2E0Ww0UGlOeZ6to3-gqdYDO5w4eX4VcJEF_UxMhaZbe91r8ewqquIZz97JwyQ6htzYstEgjL0BxPOFQglpBerWKyD-wlEVcOYDjbn3ExxcTcDGzr89z8"
+                                alt="A mother and her child make their way to the International Organization for Migration center to collect relief supplies after a fire broke out in Cox's Bazar, Bangladesh"
+                                loading="lazy">
+                            <div class="work__body">
+                                <div class="work__meta">
+                                    <span class="work__pub">Devex</span>
+                                    <span class="work__dot">·</span>
+                                    <time class="work__date" datetime="2022-08-25">Aug 2022</time>
+                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                </div>
+                                <h3 class="work__title">5 years on, Rohingyas in Bangladesh face hostility and dwindling
+                                    aid</h3>
+                                <p class="work__desc">Rights groups highlighted discrimination as aid workers warned the
+                                    Rohingya crisis risks being neglected amid competing global emergencies.</p>
+                            </div>
+                        </a>
+                    </article>
+
+
+                    <!-- 14. The Washington Post -->
+                    <article class="work" data-tags="">
+                        <a href="https://www.washingtonpost.com/politics/2022/08/15/election-deniers-march-toward-power-key-2024-battlegrounds/"
+                            target="_blank" rel="noopener noreferrer">
+                            <img class="work__img"
+                                src="https://www.washingtonpost.com/wp-apps/imrs.php?src=https%3A%2F%2Fd1i4t8bqe7zgj6.cloudfront.net%2F08-12-2022%2Ft_094c146804044e7191183772732d2670_name_20220701_TRUMP_ELECTION_V10.jpg&w=960"
+                                alt="Republicans running for state and federal office have repeatedly echoed former president Donald Trump's false claims about the 2020 election."
+                                loading="lazy">
+                            <div class="work__body">
+                                <div class="work__meta">
+                                    <span class="work__pub">The Washington Post</span>
+                                    <span class="work__dot">·</span>
+                                    <time class="work__date" datetime="2022-08-15">Aug 2022</time>
+                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                </div>
+                                <h3 class="work__title">Election deniers march toward power in key 2024 battlegrounds
+                                </h3>
+                                <p class="work__desc">GOP nominees who dispute the 2020 results could be positioned to
+                                    play a critical role in the next presidential election.</p>
+                            </div>
+                        </a>
+                    </article>
+
+
+                    <!-- 15. San Francisco Chronicle -->
+                    <article class="work" data-tags="">
+                        <a href="https://www.sfchronicle.com/bayarea/article/Facebook-GearLaunch-17024417.php"
+                            target="_blank" rel="noopener noreferrer">
+                            <img class="work__img"
+                                src="https://s.hdnux.com/photos/01/24/63/12/22229665/16/ratio3x2_960.webp"
+                                alt="An illustration of a storefront" loading="lazy">
+                            <div class="work__body">
+                                <div class="work__meta">
+                                    <span class="work__pub">San Francisco Chronicle</span>
+                                    <span class="work__dot">·</span>
+                                    <time class="work__date" datetime="2022-03-26">Mar 2022</time>
+                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                </div>
+                                <h3 class="work__title">Internet entrepreneurs far from the U.S. are inflaming political
+                                    division on Facebook to sell T-shirts and coffee mugs</h3>
+                                <p class="work__desc">How overseas operators used fake Facebook profiles and polarizing
+                                    content to drive merchandise sales.</p>
+                            </div>
+                        </a>
+                    </article>
+
+
+                    <!-- 16. Foreign Policy -->
+                    <article class="work" data-tags="">
+                        <a href="https://foreignpolicy.com/2022/01/04/bangladesh-police-brutality-crossfires-gunfights-killings-rab-corruption/"
+                            target="_blank" rel="noopener noreferrer">
+                            <img class="work__img"
+                                src="https://foreignpolicy.com/wp-content/uploads/2022/01/bangladesh-GettyImages-158901700.jpg?quality=90"
+                                alt="Bangladeshi Rapid Action Battalion personnel look on from an armored vehicle during a protest in Dhaka"
+                                loading="lazy">
+                            <div class="work__body">
+                                <div class="work__meta">
+                                    <span class="work__pub">Foreign Policy</span>
+                                    <span class="work__dot">·</span>
+                                    <time class="work__date" datetime="2022-01">Jan 2022</time>
+                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                </div>
+                                <h3 class="work__title">The U.S. Has a Police Brutality Problem. So Does Bangladesh.
+                                </h3>
+                                <p class="work__desc">An argument piece comparing police violence and accountability
+                                    failures in Bangladesh and the United States.</p>
+                            </div>
+                        </a>
+                    </article>
+
+
+                    <!-- 17. Netra News -->
+                    <article class="work" data-tags="">
+                        <a href="https://netra.news/2021/power-corruption-all-the-state-ministers-men/" target="_blank"
+                            rel="noopener noreferrer">
+                            <img class="work__img"
+                                src="https://netra.news/content/images/size/w2000/wordpress/2021/08/netra-grfx_43362186-3-1.png"
+                                alt="Illustration featuring Nasrul Hamid Bipu, the state minister at the Ministry of Power, Energy and Mineral Resources."
+                                loading="lazy">
+                            <div class="work__body">
+                                <div class="work__meta">
+                                    <span class="work__pub">Netra News</span>
+                                    <span class="work__dot">·</span>
+                                    <time class="work__date" datetime="2021-08-13">Aug 2021</time>
+                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                </div>
+                                <h3 class="work__title">Power corruption: All the state minister’s men</h3>
+                                <p class="work__desc">In a classic self-dealing scheme, a Bangladeshi minister assists a
+                                    front company controlled by close aides and family to clinch a $305 million deal.
+                                </p>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- 18. Columbia Journalism Review -->
+                    <article class="work" data-tags="">
+                        <a href="https://www.cjr.org/widescreen/journalism-and-covid-map-me.php/" target="_blank"
+                            rel="noopener noreferrer">
+                            <img class="work__img"
+                                src="https://www.cjr.org/wp-content/uploads/2020/09/Screen-Shot-2020-09-10-at-8.53.44-AM-e1599751671435.jpg"
+                                alt="World Map" loading="lazy">
+                            <div class="work__body">
+                                <div class="work__meta">
+                                    <span class="work__pub">Columbia Journalism Review</span>
+                                    <span class="work__dot">·</span>
+                                    <time class="work__date" datetime="2020-09-10">Sep 2020</time>
+                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                </div>
+                                <h3 class="work__title">Infection and Repression</h3>
+                                <p class="work__desc">A reported map and narrative tracking how the spread of Covid-19
+                                    coincided with a rise in repression worldwide.</p>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- 19. Telegraph -->
+                    <article class="work" data-tags="">
+                        <a href="https://www.telegraph.co.uk/global-health/climate-and-people/coronavirus-exposes-deep-divide-bangladeshi-society/"
+                            target="_blank" rel="noopener noreferrer">
+                            <img class="work__img"
+                                src="https://www.telegraph.co.uk/content/dam/global-health/2020/06/10/1350462053324994719_IMG_1445-3_trans_NvBQzQNjv4BqvEGOs1QWCDBlYMwZQkSShJ4tl0g9dtRDeYbLMRD-ezU.JPG?imwidth=1920"
+                                alt="Bangladesh people" loading="lazy">
+                            <div class="work__body">
+                                <div class="work__meta">
+                                    <span class="work__pub">The Telegraph</span>
+                                    <span class="work__dot">·</span>
+                                    <time class="work__date" datetime="2020-11-06">Jun 2020</time>
+                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                </div>
+                                <h3 class="work__title">Coronavirus exposes the deep divide in Bangladeshi society</h3>
+                                <p class="work__desc">Hospitals are struggling to cope and the humanitarian crisis is
+                                    deepening as the South Asian country emerges from lockdown</p>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- 20. The Economist -->
+                    <article class="work" data-tags="">
+                        <a href="https://www.economist.com/asia/2020/06/06/covid-19-infections-are-rising-fast-in-bangladesh-india-and-pakistan"
+                            target="_blank" rel="noopener noreferrer">
+                            <img class="work__img"
+                                src="https://www.economist.com/cdn-cgi/image/width=1424,quality=80,format=auto/sites/default/files/images/print-edition/20200606_ASP007_0.jpg"
+                                alt="India hospital beds" loading="lazy">
+                            <div class="work__body">
+                                <div class="work__meta">
+                                    <span class="work__pub">The Economist</span>
+                                    <span class="work__dot">·</span>
+                                    <time class="work__date" datetime="2020-06-06">Jun 2020</time>
+                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                </div>
+                                <h3 class="work__title">Covid-19 infections are rising fast in Bangladesh, India and
+                                    Pakistan</h3>
+                                <p class="work__desc">A regional update on the rapid rise of Covid-19 infections across
+                                    South Asia as restrictions eased.</p>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- 21. Haaretz (Opinion) -->
+                    <article class="work" data-tags="">
+                        <a href="https://www.haaretz.com/israel-news/2020-05-14/ty-article-opinion/.premium/for-bangladesh-not-recognizing-israel-is-a-moral-choice-above-all/0000017f-e8a4-df2c-a1ff-fef577cd0000"
+                            target="_blank" rel="noopener noreferrer">
+                            <img class="work__img"
+                                src="https://img.haarets.co.il/bs/0000017f-e8a4-df2c-a1ff-fef56bac0000/61/b9/fddb2bd688123f4e10059e78886e/1430293488.jpg"
+                                alt="Woman passes by with a giant Yasser Arafat portrait painted on wall"
+                                loading="lazy">
+                            <div class="work__body">
+                                <div class="work__meta">
+                                    <span class="work__pub">Haaretz</span>
+                                    <span class="work__dot">·</span>
+                                    <time class="work__date" datetime="2020-05">May 2020</time>
+                                    <span class="work__tags"><!-- TODO: tags/buttons --></span>
+                                </div>
+                                <h3 class="work__title">For Bangladesh, Recognizing Israel Is an Immoral Choice</h3>
+                                <p class="work__desc">An opinion piece arguing Bangladesh’s Israel policy is rooted in
+                                    moral and historical considerations.</p>
+                            </div>
+                        </a>
+                    </article>
+
+
+
                 </div>
+
+                <button class="work-more" id="workMore" type="button">
+                    View more
+                </button>
             </section>
 
 
@@ -288,82 +772,126 @@
             <section class="section" aria-labelledby="experience">
                 <div class="section__head">
                     <h2 id="experience">Experience</h2>
+                    <button class="exp-toggle item-toggle" aria-expanded="false" aria-controls="experience-details">
+                        Expanded view
+                    </button>
                 </div>
 
-                <div class="timeline">
 
+                <div class="timeline" id="experience-details">
+
+                    <!-- Netra News (Executive Editor) -->
                     <article class="item">
                         <div class="item__meta">
                             <div class="item__kicker">Netra News</div>
                             <div class="item__date">Jan 2026 — present</div>
                         </div>
+
                         <div class="item__body">
                             <h3 class="item__title">Executive Editor</h3>
+
                             <ul class="bullets">
                                 <li>Help lead news coverage and editorial strategy at an independent, public-interest
                                     newsroom in Bangladesh.</li>
-                                <li>Oversee daily reporting, investigations, and long-form projects, with a focus on
-                                    accountability, governance, and human rights.</li>
-                                <li>Manage editors and reporters, set editorial priorities, and ensure rigorous
-                                    fact-checking and legal review.</li>
-                                <li>Guide data-driven and investigative work, including cross-border collaborations and
-                                    multimedia storytelling.</li>
                             </ul>
+
+
+
+                            <div class="item-more" id="exp-netra-2026" hidden>
+                                <ul class="bullets">
+                                    <li>Oversee daily reporting, investigations, and long-form projects, with a focus on
+                                        accountability, governance, and human rights.</li>
+                                    <li>Manage editors and reporters, set editorial priorities, and ensure rigorous
+                                        fact-checking and legal review.</li>
+                                    <li>Guide data-driven and investigative work, including cross-border collaborations
+                                        and multimedia storytelling.</li>
+                                </ul>
+                            </div>
                         </div>
                     </article>
 
+                    <!-- Bloomberg News -->
                     <article class="item">
                         <div class="item__meta">
                             <div class="item__kicker">Bloomberg News</div>
                             <div class="item__date">Jan 2024 — Dec 2025</div>
                         </div>
+
                         <div class="item__body">
                             <h3 class="item__title">US Economy Reporter</h3>
+
                             <ul class="bullets">
                                 <li>Reported on the US economy with an emphasis on data-driven analysis of labour
                                     markets, public finance, and demographic change.</li>
-                                <li>Produced enterprise stories linking economic trends to political and policy
-                                    outcomes.</li>
-                                <li>Used geospatial, statistical, and large administrative datasets to surface
-                                    regulatory and market dynamics.</li>
                             </ul>
+
+
+                            <div class="item-more" id="exp-bloomberg" hidden>
+                                <ul class="bullets">
+                                    <li>Produced enterprise stories linking economic trends to political and policy
+                                        outcomes.</li>
+                                    <li>Used geospatial, statistical, and large administrative datasets to surface
+                                        regulatory and market dynamics.</li>
+                                </ul>
+                            </div>
                         </div>
                     </article>
 
+                    <!-- Investigative Reporting Workshop -->
                     <article class="item">
                         <div class="item__meta">
                             <div class="item__kicker">Investigative Reporting Workshop (American University)</div>
                             <div class="item__date">2023 — 2024</div>
                         </div>
+
                         <div class="item__body">
                             <h3 class="item__title">Reporting Fellow / Contributor</h3>
+
                             <ul class="bullets">
                                 <li>Contributed to long-form investigative projects using data analysis, document
                                     review, and field reporting.</li>
-                                <li>Collaborated with editors and researchers on accountability reporting with national
-                                    and international impact.</li>
                             </ul>
+
+
+
+                            <div class="item-more" id="exp-irw" hidden>
+                                <ul class="bullets">
+                                    <li>Collaborated with editors and researchers on accountability reporting with
+                                        national and international impact.</li>
+                                </ul>
+                            </div>
                         </div>
                     </article>
 
+                    <!-- BenarNews / Radio Free Asia -->
                     <article class="item">
                         <div class="item__meta">
                             <div class="item__kicker">BenarNews / Radio Free Asia</div>
                             <div class="item__date">Aug 2023 — Jan 2024</div>
                         </div>
+
                         <div class="item__body">
                             <h3 class="item__title">English-Language Editor</h3>
+
                             <ul class="bullets">
                                 <li>Edited and shaped coverage of Bangladesh’s 2024 election, political violence, and
                                     democratic backsliding.</li>
-                                <li>Worked with correspondents across South and Southeast Asia to ensure accuracy,
-                                    clarity, and policy relevance.</li>
-                                <li>Handled fast-moving breaking news alongside deeper analytical and enterprise pieces.
-                                </li>
                             </ul>
+
+
+
+                            <div class="item-more" id="exp-rfa" hidden>
+                                <ul class="bullets">
+                                    <li>Worked with correspondents across South and Southeast Asia to ensure accuracy,
+                                        clarity, and policy relevance.</li>
+                                    <li>Handled fast-moving breaking news alongside deeper analytical and enterprise
+                                        pieces.</li>
+                                </ul>
+                            </div>
                         </div>
                     </article>
 
+                    <!-- Investigative Reporting Program (UC Berkeley) -->
                     <article class="item">
                         <div class="item__meta">
                             <div class="item__kicker">Investigative Reporting Program (UC Berkeley)</div>
@@ -372,62 +900,88 @@
 
                         <div class="item__body">
                             <h3 class="item__title">Reporting Fellow / Investigative Journalist</h3>
+
                             <ul class="bullets">
                                 <li>Reported on investigative and data-driven projects under UC Berkeley’s Investigative
                                     Reporting Program.</li>
-                                <li>Worked on accountability reporting using public records, large datasets, and
-                                    document-heavy investigations.</li>
-                                <li>Collaborated with editors, developers, and reporters on long-form investigations
-                                    with national and international relevance.</li>
-                                <li>Applied verification, OSINT, and data analysis methods to stories on governance,
-                                    public policy, and human rights.</li>
                             </ul>
+
+
+
+                            <div class="item-more" id="exp-irp" hidden>
+                                <ul class="bullets">
+                                    <li>Worked on accountability reporting using public records, large datasets, and
+                                        document-heavy investigations.</li>
+                                    <li>Collaborated with editors, developers, and reporters on long-form investigations
+                                        with national and international relevance.</li>
+                                    <li>Applied verification, OSINT, and data analysis methods to stories on governance,
+                                        public policy, and human rights.</li>
+                                </ul>
+                            </div>
                         </div>
                     </article>
 
-
+                    <!-- Netra News (Deputy Editor / Reporter) -->
                     <article class="item">
                         <div class="item__meta">
                             <div class="item__kicker">Netra News</div>
                             <div class="item__date">2019 — 2021; 2022 — 2023</div>
                         </div>
+
                         <div class="item__body">
                             <h3 class="item__title">Deputy Editor & Investigative Reporter (later Freelance Editor)</h3>
+
                             <ul class="bullets">
                                 <li>Investigated corruption, governance failures, and human rights abuses in Bangladesh.
                                 </li>
-                                <li>Led the <em>Body Count</em> project on extrajudicial killings and co-reported
-                                    <em>Secret Prisoners of Dhaka</em>.
-                                </li>
-                                <li>Oversaw editorial workflows and upheld investigative and ethical standards.</li>
                             </ul>
+
+
+
+                            <div class="item-more" id="exp-netra-old" hidden>
+                                <ul class="bullets">
+                                    <li>Led the <em>Body Count</em> project on extrajudicial killings and co-reported
+                                        <em>Secret Prisoners of Dhaka</em>.
+                                    </li>
+                                    <li>Oversaw editorial workflows and upheld investigative and ethical standards.</li>
+                                </ul>
+                            </div>
                         </div>
                     </article>
 
+                    <!-- The Daily Star -->
                     <article class="item">
                         <div class="item__meta">
                             <div class="item__kicker">The Daily Star</div>
                             <div class="item__date">2018 — 2019</div>
                         </div>
+
                         <div class="item__body">
                             <h3 class="item__title">Editorial Assistant</h3>
+
                             <ul class="bullets">
                                 <li>Supported newsroom operations at Bangladesh’s largest English-language daily.</li>
-                                <li>Assisted with editing, research, and coordination for national and international
-                                    coverage.</li>
                             </ul>
+
+
+                            <div class="item-more" id="exp-dailystar" hidden>
+                                <ul class="bullets">
+                                    <li>Assisted with editing, research, and coordination for national and international
+                                        coverage.</li>
+                                </ul>
+                            </div>
                         </div>
                     </article>
-
-
 
                 </div>
             </section>
 
 
+
             <!-- add HD Centre / IRW / IRP etc as needed -->
         </div>
         </section>
+
 
         <section class="section section--split" aria-labelledby="cred">
             <!-- Column 1: Education + Books -->
@@ -437,47 +991,42 @@
                 <div class="stack">
                     <div class="row">
                         <div class="row__title">
-                            <a href="https://journalism.berkeley.edu/" target="_blank" rel="noopener">UC Berkeley
+                            <a href="https://journalism.berkeley.edu/person/nazmul/" target="_blank" rel="noopener">UC
+                                Berkeley
                                 Graduate School of Journalism</a>
                         </div>
                         <div class="row__meta">2023</div>
-                        <div class="row__desc">Master of Journalism (Investigative & Data Journalism)</div>
+                        <div class="row__desc">Master of Journalism (Investigative &amp; Data Journalism)</div>
                     </div>
 
                     <div class="row">
                         <div class="row__title">
-                            <a href="https://daffodilvarsity.edu.bd/" target="_blank" rel="noopener">Daffodil
-                                International University</a>
+                            Daffodil
+                            International University
                         </div>
                         <div class="row__meta">2018</div>
-                        <div class="row__desc">BSS (Journalism & Mass Communication)</div>
+                        <div class="row__desc">BSS (Journalism &amp; Mass Communication)</div>
                     </div>
                 </div>
 
-                <h2 style="margin-top:18px;">Books & research</h2>
+                <h2 style="margin-top:18px;">Books &amp; research</h2>
 
                 <div class="stack">
                     <div class="row">
                         <div class="row__title">
-                            <a href="#" target="_blank" rel="noopener">Academic Freedom in Bangladesh</a>
+                            <a href="https://www.taylorfrancis.com/chapters/oa-edit/10.4324/9781003306481-6/academic-freedom-bangladesh-mubashar-hasan-nazmul-ahasan"
+                                target="_blank" rel="noopener">Academic Freedom in Bangladesh</a>
                         </div>
                         <div class="row__meta">Routledge · 2022 · Co-author</div>
                     </div>
 
                     <div class="row">
                         <div class="row__title">
-                            <a href="#" target="_blank" rel="noopener">The Win-Win Game in Politics?</a>
+                            <a href="https://link.springer.com/chapter/10.1007/978-981-16-4314-9_5" target="_blank"
+                                rel="noopener">The Win-Win Game in Politics?</a>
                         </div>
                         <div class="row__meta">Springer · 2021 · Co-author</div>
                     </div>
-
-                    <!-- optional: add more publications here -->
-                    <!--
-      <div class="row">
-        <div class="row__title"><a href="#" target="_blank" rel="noopener">Title</a></div>
-        <div class="row__meta">Publisher · Year · Role</div>
-      </div>
-      -->
                 </div>
             </div>
 
@@ -486,70 +1035,121 @@
                 <h2>Honours</h2>
 
                 <div class="stack">
-                    <div class="row">
-                        <div class="row__title"><a href="#" target="_blank" rel="noopener">Sigma Awards Winner</a></div>
-                        <div class="row__meta">2024</div>
-                    </div>
 
                     <div class="row">
-                        <div class="row__title"><a href="#" target="_blank" rel="noopener">Loeb Award (Finalist)</a>
+                        <div class="row__title">
+                            <span class="label">Winner</span>
+                            <span class="label">Lead</span>
+                            <a href="https://www.sigmaawards.org/meet-the-winners-of-the-sigmas-2024-for-data-journalism/"
+                                target="_blank" rel="noopener">
+                                Sigma Awards for Data Journalism
+                            </a>
                         </div>
                         <div class="row__meta">2024</div>
                     </div>
 
                     <div class="row">
-                        <div class="row__title"><a href="#" target="_blank" rel="noopener">Collier Prize (Second
-                                Place)</a></div>
+                        <div class="row__title">
+                            <span class="label">Finalist</span>
+                            <span class="label">Shared</span>
+                            <a href="https://www.prnewswire.com/news-releases/2024-loeb-award-finalists-career-honorees-and-awards-event-at-rainbow-room-in-new-york-city-announced-by-ucla-anderson-302228597.html"
+                                target="_blank" rel="noopener">
+                                Loeb Award
+                            </a>
+                        </div>
                         <div class="row__meta">2024</div>
                     </div>
 
                     <div class="row">
                         <div class="row__title">
+                            <span class="label">Second</span>
+                            <span class="label">Shared</span>
+                            <a href="https://www.jou.ufl.edu/collier-prize-for-state-government-accountability/collier-prize-winners-2024/"
+                                target="_blank" rel="noopener">
+                                Collier Prize for State Government Accountability
+                            </a>
+                        </div>
+                        <div class="row__meta">2024</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="row__title">
+                            <span class="label">Certificate</span>
+                            <span class="label">Shared</span>
                             <a href="https://gijn.org/stories/global-shining-light-award-investigative-journalism-winners-2023/"
                                 target="_blank" rel="noopener">
-                                Global Shining Light Award (Certificate of Excellence)
+                                Global Shining Light Award
                             </a>
                         </div>
                         <div class="row__meta">2023</div>
                     </div>
 
                     <div class="row">
-                        <div class="row__title"><a href="#" target="_blank" rel="noopener">Thomas L. Stokes Award
-                                (Energy & Environment)</a></div>
+                        <div class="row__title">
+                            <span class="label">Winner</span>
+                            <span class="label">Shared</span>
+                            <a href="https://nationalpress.org/award-winner/nazmul-ahasan/" target="_blank"
+                                rel="noopener">
+                                Thomas L. Stokes Award (Energy &amp; Environment)
+                            </a>
+                        </div>
                         <div class="row__meta">2023</div>
                     </div>
 
-                    <!-- optional: add more recognition here -->
                 </div>
             </div>
+
+
 
             <!-- Column 3: Fellowships -->
             <div>
                 <h2>Fellowships</h2>
 
                 <div class="stack">
+
+
                     <div class="row">
                         <div class="row__title">
-                            <a href="#" target="_blank" rel="noopener">Data Science for Social Justice Fellow</a>
+                            <a href="https://sabew.org/2025/02/goldschmidt-fellows-selected-for-2025-d-c-workshop/"
+                                target="_blank" rel="noopener">Goldschmidt Fellow</a>
+                        </div>
+                        <div class="row__meta">Society for Advancing Business Editing and Writing · 2025</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="row__title">
+                            <a href="https://dlab.berkeley.edu/people/nazmul-ahasan" target="_blank" rel="noopener">Data
+                                Science for Social Justice Fellow</a>
                         </div>
                         <div class="row__meta">UC Berkeley D-Lab · 2022</div>
                     </div>
 
                     <div class="row">
-                        <div class="row__title">Subir Chowdhury Fellow</div>
-                        <div class="row__meta">UC Berkeley · 2021</div>
+                        <div class="row__title">
+                            <a href="https://saja.org/page-935554/12893612" target="_blank" rel="noopener">SAJA
+                                Scholarship</a>
+                        </div>
+                        <div class="row__meta">South Asian Journalists Association · 2022</div>
                     </div>
 
-                    <!-- placeholders for future fellowships -->
-                    <!--
-      <div class="row">
-        <div class="row__title"><a href="#" target="_blank" rel="noopener">Fellowship name</a></div>
-        <div class="row__meta">Organisation · Year</div>
-      </div>
-      -->
+                    <div class="row">
+                        <div class="row__title">
+                            Berkeley Journalism Fellowship
+                        </div>
+                        <div class="row__meta">UC Berkeley Graduate School of Journalism · 2021</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="row__title">
+                            <a href="https://chowdhurycenter.berkeley.edu/people/nazmul-ahasan" target="_blank"
+                                rel="noopener">Subir Chowdhury Fellow</a>
+                        </div>
+                        <div class="row__meta">Chowdhury Center for Bangladesh Studies, UC Berkeley · 2021</div>
+                    </div>
                 </div>
             </div>
         </section>
+
 
 
         </div>
