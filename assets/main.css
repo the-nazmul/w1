@@ -89,8 +89,8 @@ a:hover {
     width: 92px;
     height: 92px;
     object-fit: cover;
-    /* editorial feel: square crop, crisp edge */
     border: 1px solid var(--hair);
+    border-radius: 999px;
 }
 
 .site-title {
@@ -107,47 +107,36 @@ a:hover {
     text-decoration: none;
 }
 
-.lede {
-    margin: .55rem 0 .75rem;
-    font-family: var(--mono);
-    font-size: 15px;
-    color: var(--muted);
-    max-width: 60ch;
-}
-
-/* Header bio toggle (flat / editorial) */
-.bio-toggle {
-    margin-top: 6px;
+.lede .bio-toggle {
+    margin-left: 6px;
     padding: 0;
     background: none;
     border: 0;
     font: inherit;
     font-family: var(--mono);
-    font-size: 13px;
+    font-size: 11px;
     letter-spacing: .08em;
     text-transform: uppercase;
     color: var(--muted);
     cursor: pointer;
     text-decoration: underline;
     text-underline-offset: 3px;
+    vertical-align: baseline;
 }
 
-.bio-toggle:hover {
+.lede .bio-toggle:hover {
     color: var(--ink);
 }
 
-.bio-toggle[aria-expanded="true"] {
-    color: var(--ink);
-}
-
-.bio-toggle::after {
+.lede .bio-toggle::after {
     content: " ↓";
-    font-size: 0.9em;
+    font-size: .85em;
 }
 
-.bio-toggle[aria-expanded="true"]::after {
+.lede .bio-toggle[aria-expanded="true"]::after {
     content: " ↑";
 }
+
 
 
 .bio-more {
@@ -160,7 +149,7 @@ a:hover {
 .bio-more p {
     margin: 0 0 10px;
     font-family: var(--mono);
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.55;
     color: var(--muted);
 }
@@ -186,7 +175,7 @@ a:hover {
     background: none;
     border: 0;
     padding: 0;
-    font: inherit;
+    font: 400 13px / 1.55 var(--sans);
     color: var(--ink);
     cursor: pointer;
     text-decoration: underline;
@@ -201,7 +190,7 @@ a:hover {
 .link-reveal {
     margin-left: 6px;
     font-family: var(--mono);
-    font-size: 14px;
+    font-size: 13px;
     color: var(--muted);
 }
 
@@ -271,36 +260,6 @@ a:hover {
     }
 }
 
-/* tools: understated, not “pills” */
-.pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px solid var(--hair-soft);
-}
-
-.pill {
-    font-family: var(--mono);
-    font-size: 12.5px;
-    color: var(--ink);
-    padding: 0;
-    background: none;
-    border: 0;
-    white-space: nowrap;
-}
-
-.pill::before {
-    content: "·";
-    margin-right: 8px;
-    color: var(--hair);
-}
-
-.pill:first-child::before {
-    content: "";
-    margin: 0;
-}
 
 /* --- sections --- */
 .section {
@@ -311,9 +270,21 @@ a:hover {
     border-top: 1px solid var(--hair-soft);
 }
 
+
+
 .section__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
     margin-bottom: 14px;
 }
+
+.section__head .exp-toggle {
+    margin-top: 2px;
+}
+
+
 
 .section__head h2 {
     margin: 0 0 6px;
@@ -399,6 +370,28 @@ a:hover {
     align-items: center;
 }
 
+.work-more {
+    margin-top: 14px;
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.work-more:hover,
+.work-more:focus-visible {
+    color: var(--ink);
+}
+
+
 /* icon tag buttons: look like tiny typographic marks */
 .tag {
     padding: 0;
@@ -454,7 +447,9 @@ a:hover {
     border-top: 1px solid var(--hair-soft);
 }
 
+/* filter button */
 .filter {
+    position: relative;
     padding: 0;
     border: 0;
     background: none;
@@ -467,18 +462,50 @@ a:hover {
     text-underline-offset: 3px;
 }
 
+.filter:hover,
+.filter:focus-visible {
+    color: var(--ink);
+}
+
+/* pressed (active) filter */
 .filter[aria-pressed="true"] {
     color: var(--ink);
 }
 
-.filter:hover {
-    color: var(--ink);
+/* instant hover label */
+.filter[data-label]::after {
+    content: attr(data-label);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 4px);
+    white-space: nowrap;
+
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+
+    color: var(--text);
+    background: var(--bg);
+    padding: 3px 6px;
+    border: 1px solid var(--hair-soft);
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* show immediately */
+.filter:hover::after,
+.filter:focus-visible::after {
+    opacity: 1;
 }
 
 /* hide filtered-out items */
 .work[hidden] {
     display: none !important;
 }
+
 
 
 /* --- logos: calmer --- */
@@ -543,6 +570,9 @@ a:hover {
     gap: 18px;
 }
 
+
+
+
 .item {
     display: grid;
     grid-template-columns: 200px 1fr;
@@ -568,6 +598,7 @@ a:hover {
     font-weight: 800;
 }
 
+
 .bullets {
     margin: 0;
     padding-left: 16px;
@@ -580,12 +611,82 @@ a:hover {
     margin: 6px 0;
 }
 
+/* --- experience expand / collapse --- */
+
+
+/* experience global toggle */
+.pill,
+.label,
+.exp-toggle {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--muted);
+    background: none;
+    border: 1px solid var(--hair);
+    padding: 6px 10px;
+    cursor: pointer;
+    line-height: 1;
+    transition: color .15s ease, border-color .15s ease;
+    font-weight: 100;
+}
+
+.exp-toggle:hover,
+.exp-toggle:focus-visible {
+    color: var(--ink);
+    border-color: var(--ink);
+}
+
+.exp-toggle[aria-expanded="true"] {
+    color: var(--ink);
+    border-color: var(--ink);
+}
+
+.exp-toggle::after {
+    content: " ↘";
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.exp-toggle[aria-expanded="true"]::after {
+    content: " ↗";
+}
+
+
+
+
+/* tools: understated, not “pills” */
+.pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--hair-soft);
+    justify-content: center;
+}
+
+.pill {
+    color: var(--ink);
+}
+
+.pill::before {
+    color: var(--hair);
+}
+
+.pill:first-child::before {
+    content: "";
+    margin: 0;
+}
+
+
 /* split section */
 .section--split {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 24px;
     align-items: start;
+    padding-left: clamp(16px, 4vw, 32px);
+    padding-right: clamp(16px, 4vw, 32px);
 }
 
 .stack {
@@ -615,15 +716,6 @@ a:hover {
     padding-right: 1.1em;
 }
 
-.row__title a::after {
-    content: "↗";
-    position: absolute;
-    right: 0;
-    top: 0;
-    font-size: 0.85em;
-    color: var(--muted);
-}
-
 .row__title a:hover {
     border-bottom-color: currentColor;
 }
@@ -651,6 +743,20 @@ a:hover {
     font-size: 13.5px;
 }
 
+/* honours role indicators */
+
+
+
+/* tighten row title alignment */
+.row__title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 6px;
+}
+
+
+
 /* footer */
 .site-footer {
     border-top: 1px solid var(--hair);
@@ -677,6 +783,8 @@ a:hover {
     height: 1em;
     fill: currentColor;
 }
+
+
 
 
 
@@ -724,6 +832,11 @@ a:hover {
 }
 
 @media (max-width: 560px) {
+
+    .links {
+        justify-content: center;
+    }
+
     .bio-more {
         margin-left: auto;
         margin-right: auto;
