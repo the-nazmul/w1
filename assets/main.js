@@ -1,8 +1,46 @@
 /* =========================
    Generic toggle handling
    ========================= */
-
 function wireToggles() {
+    function setExperienceView(panel, expanded) {
+        const items = panel.querySelectorAll(".item");
+
+        items.forEach((item) => {
+            const more = item.querySelector(".item-more");
+            if (!more) return;
+
+            const extraLis = Array.from(more.querySelectorAll("li"));
+
+            if (expanded) {
+                // Expanded: show all extra bullets
+                if (extraLis.length) more.hidden = false;
+                extraLis.forEach((li) => (li.hidden = false));
+            } else {
+                // Collapsed/default: base bullet + first extra bullet (if any) => 2 bullets total
+                if (!extraLis.length) {
+                    more.hidden = true;
+                    return;
+                }
+                more.hidden = false;
+                extraLis.forEach((li, i) => (li.hidden = i !== 0));
+            }
+        });
+    }
+
+    // --- INIT: enforce default view (2 bullets where possible) ---
+    const expBtn = document.querySelector(".exp-toggle");
+    const expPanelId = expBtn?.getAttribute("aria-controls") || expBtn?.dataset.target;
+    const expPanel = expPanelId
+        ? document.getElementById(expPanelId) || document.querySelector(expPanelId)
+        : null;
+
+    if (expBtn && expPanel) {
+        expBtn.setAttribute("aria-expanded", "false");
+        expBtn.textContent = "Expanded View";
+        setExperienceView(expPanel, false);
+    }
+
+    // --- CLICK HANDLER ---
     document.addEventListener("click", (e) => {
         const btn = e.target.closest(".bio-toggle, .exp-toggle, .link-toggle");
         if (!btn) return;
@@ -13,36 +51,28 @@ function wireToggles() {
         const panel = document.getElementById(id) || document.querySelector(id);
         if (!panel) return;
 
-        const expanded = btn.getAttribute("aria-expanded") === "true";
-        btn.setAttribute("aria-expanded", String(!expanded));
+        const isExpanded = btn.getAttribute("aria-expanded") === "true";
+        const nextExpanded = !isExpanded;
+        btn.setAttribute("aria-expanded", String(nextExpanded));
 
-        // BIO toggle: show/hide the single bio panel
         if (btn.classList.contains("bio-toggle")) {
-            panel.hidden = expanded;
-            btn.textContent = expanded ? "More" : "Less";
+            panel.hidden = isExpanded;
+            btn.textContent = isExpanded ? "More" : "Less";
             return;
         }
 
-        // LINK toggle: show/hide the reveal span (Email/CV)
         if (btn.classList.contains("link-toggle")) {
-            panel.hidden = expanded;
+            panel.hidden = isExpanded;
             return;
         }
 
-        // EXPERIENCE global toggle: show/hide all item-more blocks inside the container
         if (btn.classList.contains("exp-toggle")) {
-            const moreBlocks = panel.querySelectorAll(".item-more");
-            moreBlocks.forEach((blk) => {
-                blk.hidden = expanded; // expanded=false -> show all, expanded=true -> hide all
-            });
-
-            btn.textContent = expanded ? "Expanded view" : "Collapsed view";
+            setExperienceView(panel, nextExpanded);
+            btn.textContent = nextExpanded ? "Collapsed View" : "Expanded View";
             return;
         }
     });
 }
-
-
 
 
 /* =========================
