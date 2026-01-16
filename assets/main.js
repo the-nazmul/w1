@@ -88,10 +88,6 @@ function wireWorkFilters() {
     });
 }
 
-/* =========================
-   Selected work: View more
-   ========================= */
-
 function wireWorkViewMore() {
     const grid = document.getElementById("workGrid");
     const btn = document.getElementById("workMore");
@@ -105,11 +101,10 @@ function wireWorkViewMore() {
         return 3;
     }
 
-
-
+    // Always show 2 rows on initial load, across all devices
     function initialVisibleCount() {
         const cols = colsPerRow();
-        const rows = cols === 3 ? 3 : cols === 2 ? 2 : 1;
+        const rows = 2;
         return rows * cols;
     }
 
@@ -134,15 +129,18 @@ function wireWorkViewMore() {
     render();
 
     btn.addEventListener("click", () => {
+        // Add one full row each click
         visible = Math.min(items.length, visible + colsPerRow());
         render();
     });
 
     window.addEventListener("resize", () => {
+        // Keep at least 2 rows after resize, but don't hide already-revealed items
         visible = Math.max(visible, initialVisibleCount());
         render();
     });
 }
+
 
 /* =========================
    Back to top
