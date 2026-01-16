@@ -16,6 +16,9 @@
     <meta property="og:locale" content="en_US" />
     <meta property="og:url" content="https://nazmulahasan.com/" />
     <meta property="og:site_name" content="Nazmul Ahasan" />
+    <meta property="og:image" content="https://nazmulahasan.com/assets/images/nazmul-ahasan-portrait.webp" />
+    <meta name="twitter:image" content="https://nazmulahasan.com/assets/images/nazmul-ahasan-portrait.webp" />
+
     <meta property="og:description"
         content="Nazmul Ahasan is a Bangladeshi journalist specialising in data and investigative reporting." />
 
@@ -58,7 +61,8 @@
                         <span class="ink">data</span>,
                         <span class="ink">investigations</span>,
                         and <span class="ink">political economy</span>.
-                        <button class="bio-toggle" aria-expanded="false" aria-controls="bio-more">More</button>
+                        <button type="button" class="bio-toggle" aria-expanded="false"
+                            aria-controls="bio-more">More</button>
                     </p>
 
                     <div class="bio-more" id="bio-more" hidden>
@@ -177,7 +181,7 @@
             <section class="section" aria-labelledby="work">
                 <div class="section__head">
                     <h2 id="work">Selected work</h2>
-                    <p class="section__sub">Reporting, investigations, data analysis, etc. Filter by role, method, or
+                    <p class="section__sub">Filter by role, method, or
                         type.</p>
                 </div>
 
@@ -867,9 +871,7 @@
                 <div class="container">
                     <div class="section__head">
                         <h2 id="clients">Bylines & interviews</h2>
-                        <p class="section__sub">Selected outlets where my work has appeared and where I’ve been
-                            interviewed.
-                        </p>
+
                     </div>
 
                     <div class="logo-groups">
@@ -930,8 +932,9 @@
 
             <section class="section" aria-labelledby="experience">
                 <div class="section__head">
-                    <h2 id="experience">Experience</h2>
-                    <button class="exp-toggle item-toggle" aria-expanded="false" aria-controls="experience-details">
+                    <h2>Experience</h2>
+                    <button type="button" class="exp-toggle item-toggle" aria-expanded="false"
+                        aria-controls="experience-details">
                         Expanded view
                     </button>
                 </div>
@@ -944,6 +947,7 @@
                         <div class="item__meta">
                             <div class="item__kicker">Netra News</div>
                             <div class="item__date">Jan 2026 — present</div>
+                            <div class="item__location">Dhaka</div>
                         </div>
 
                         <div class="item__body">
@@ -974,6 +978,7 @@
                         <div class="item__meta">
                             <div class="item__kicker">Bloomberg News</div>
                             <div class="item__date">Jan 2024 — Dec 2025</div>
+                            <div class="item__location">Washington DC</div>
                         </div>
 
                         <div class="item__body">
@@ -996,37 +1001,12 @@
                         </div>
                     </article>
 
-                    <!-- Investigative Reporting Workshop -->
-                    <article class="item">
-                        <div class="item__meta">
-                            <div class="item__kicker">Investigative Reporting Workshop (American University)</div>
-                            <div class="item__date">2023 — 2024</div>
-                        </div>
-
-                        <div class="item__body">
-                            <h3 class="item__title">Reporting Fellow / Contributor</h3>
-
-                            <ul class="bullets">
-                                <li>Contributed to long-form investigative projects using data analysis, document
-                                    review, and field reporting.</li>
-                            </ul>
-
-
-
-                            <div class="item-more" id="exp-irw" hidden>
-                                <ul class="bullets">
-                                    <li>Collaborated with editors and researchers on accountability reporting with
-                                        national and international impact.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </article>
-
                     <!-- BenarNews / Radio Free Asia -->
                     <article class="item">
                         <div class="item__meta">
                             <div class="item__kicker">BenarNews / Radio Free Asia</div>
                             <div class="item__date">Aug 2023 — Jan 2024</div>
+                            <div class="item__location">Washington DC</div>
                         </div>
 
                         <div class="item__body">
@@ -1050,11 +1030,39 @@
                         </div>
                     </article>
 
+                    <!-- Investigative Reporting Workshop -->
+                    <article class="item">
+                        <div class="item__meta">
+                            <div class="item__kicker">Investigative Reporting Workshop</div>
+                            <div class="item__date">2023 — 2024</div>
+                            <div class="item__location">Washington DC</div>
+                        </div>
+
+                        <div class="item__body">
+                            <h3 class="item__title">Reporting Fellow / Contributor</h3>
+
+                            <ul class="bullets">
+                                <li>Contributed to long-form investigative projects using data analysis, document
+                                    review, and field reporting.</li>
+                            </ul>
+
+
+
+                            <div class="item-more" id="exp-irw" hidden>
+                                <ul class="bullets">
+                                    <li>Collaborated with editors and researchers on accountability reporting with
+                                        national and international impact.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
                     <!-- Investigative Reporting Program (UC Berkeley) -->
                     <article class="item">
                         <div class="item__meta">
-                            <div class="item__kicker">Investigative Reporting Program (UC Berkeley)</div>
+                            <div class="item__kicker">Investigative Reporting Program</div>
                             <div class="item__date">2022 — 2023</div>
+                            <div class="item__location">Berkeley</div>
                         </div>
 
                         <div class="item__body">
@@ -1084,11 +1092,12 @@
                     <article class="item">
                         <div class="item__meta">
                             <div class="item__kicker">Netra News</div>
+                            <div class="item__location">Dhaka & Berkeley</div>
                             <div class="item__date">2019 — 2021; 2022 — 2023</div>
                         </div>
 
                         <div class="item__body">
-                            <h3 class="item__title">Deputy Editor & Investigative Reporter (later Freelance Editor)</h3>
+                            <h3 class="item__title">Investigative Reporter & Deputy Editor</h3>
 
                             <ul class="bullets">
                                 <li>Investigated corruption, governance failures, and human rights abuses in Bangladesh.
@@ -1113,6 +1122,7 @@
                         <div class="item__meta">
                             <div class="item__kicker">The Daily Star</div>
                             <div class="item__date">2018 — 2019</div>
+                            <div class="item__location">Dhaka</div>
                         </div>
 
                         <div class="item__body">
@@ -1135,9 +1145,6 @@
                 </div>
             </section>
 
-
-
-            <!-- add HD Centre / IRW / IRP etc as needed -->
         </div>
         </section>
 
