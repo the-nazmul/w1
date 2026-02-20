@@ -1492,43 +1492,25 @@
   <script>
     /* ── Toggles ─────────────────────────────────── */
 function wireToggles() {
+  // Experience: show/hide the whole ".item-more" block
   function setExperienceView(panel, expanded) {
     panel.querySelectorAll('.item').forEach(item => {
       const more = item.querySelector('.item-more');
       if (!more) return;
-      const extraLis = [...more.querySelectorAll('li')];
-
-      if (expanded) {
-        more.hidden = false;
-        extraLis.forEach(li => (li.hidden = false));
-      } else {
-        if (!extraLis.length) {
-          more.hidden = true;
-          return;
-        }
-        more.hidden = false;
-        extraLis.forEach((li, i) => (li.hidden = i !== 0));
-      }
+      more.hidden = !expanded;
     });
   }
 
-  // Init experience toggle (safe)
-  const expBtn = document.querySelector('.exp-toggle');
-  const expPanelId = expBtn?.getAttribute('aria-controls');
-  const expPanel = expPanelId ? document.getElementById(expPanelId) : null;
-  if (expBtn && expPanel) {
-    expBtn.setAttribute('aria-expanded', 'false');
-    expBtn.textContent = 'Expanded View';
-    setExperienceView(expPanel, false);
-  }
-
-  // Bind bio toggle directly (fix)
+  // --- Bio toggle (bind directly) ---
   const bioBtn = document.querySelector('.bio-toggle');
   const bioPanelId = bioBtn?.getAttribute('aria-controls');
   const bioPanel = bioPanelId ? document.getElementById(bioPanelId) : null;
+
   if (bioBtn && bioPanel) {
-    bioBtn.setAttribute('aria-expanded', 'false');
+    // default state
     bioPanel.hidden = true;
+    bioBtn.setAttribute('aria-expanded', 'false');
+    bioBtn.textContent = 'More';
 
     bioBtn.addEventListener('click', () => {
       const next = bioBtn.getAttribute('aria-expanded') !== 'true';
@@ -1538,7 +1520,7 @@ function wireToggles() {
     });
   }
 
-  // Keep delegated handler for link + exp toggles
+  // --- Delegated toggles: Experience + link reveals ---
   document.addEventListener('click', e => {
     const btn = e.target.closest('.exp-toggle, .link-toggle');
     if (!btn) return;
@@ -1554,15 +1536,27 @@ function wireToggles() {
 
     const isExpanded = btn.getAttribute('aria-expanded') === 'true';
     const next = !isExpanded;
+
     btn.setAttribute('aria-expanded', String(next));
 
     if (btn.classList.contains('link-toggle')) {
       panel.hidden = !next;
-    } else if (btn.classList.contains('exp-toggle')) {
+    } else {
       setExperienceView(panel, next);
       btn.textContent = next ? 'Collapsed View' : 'Expanded View';
     }
   });
+
+  // --- Experience: init collapsed ---
+  const expBtn = document.querySelector('.exp-toggle');
+  const expPanelId = expBtn?.getAttribute('aria-controls');
+  const expPanel = expPanelId ? document.getElementById(expPanelId) : null;
+
+  if (expBtn && expPanel) {
+    expBtn.setAttribute('aria-expanded', 'false');
+    expBtn.textContent = 'Expanded View';
+    setExperienceView(expPanel, false);
+  }
 }
 
     /* ── Work filters ────────────────────────────── */
