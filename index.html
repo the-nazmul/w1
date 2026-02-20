@@ -467,45 +467,17 @@
     .work[hidden] { display: none !important; }
 
     /* ─── Tint section (logos) ───────────────────── */
-    .section--tint {
-      background: rgba(24,22,14,.025);
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      padding: 30px 0;
-    }
-
-    .logo-groups {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
-    }
-    .logo-group__title {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--faint);
-      margin-bottom: 14px;
-    }
-    .logos {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 18px;
-    }
-    .logos .logo {
-      height: 18px;
-      width: auto;
-      opacity: .4;
-      filter: saturate(0%) contrast(100%);
-      transition: opacity .2s;
-    }
+   
+        .section--tint { background: var(--bg-tint); }
+    .section--tint + .section { border-top: none; }
+    .logo-groups { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: start; }
+    .logo-group__title { font: 300 0.68rem/1 var(--mono); letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+    .logos { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 22px; }
+    .logos .logo { height: 18px; width: auto; opacity: 0.45; filter: saturate(0%) contrast(100%); transition: opacity 0.22s; }
     .logos svg.logo { color: var(--text); }
-    .logos .logo:hover { opacity: .75; }
-    .logos .logo--light {
-      opacity: .5;
-      filter: saturate(0%) contrast(100%) brightness(1.15);
-    }
+    .logos .logo:hover { opacity: 0.9; }
+    .logos .logo--light { opacity: 0.65; filter: saturate(0%) contrast(80%); }
+
 
     /* ─── Timeline ───────────────────────────────── */
     .timeline { display: flex; flex-direction: column; gap: 0; }
@@ -742,66 +714,60 @@
 
   <!-- ── Header ────────────────────────────────────── -->
   <header id="top" class="site-header">
-    <div class="container">
-      <div class="hero">
-        <div class="hero__id">
-          <img class="portrait"
-            src="https://nazmulahasan.com/assets/images/nazmul-ahasan-portrait.webp"
-            alt="Nazmul Ahasan" />
-          <div class="hero__text">
-            <h1 class="site-title"><a href="/">Nazmul<br>Ahasan</a></h1>
-            <p class="lede">
-              Bangladeshi journalist working at the intersection of
-              <span class="ink">data</span>,
-              <span class="ink">investigations</span>,
-              and <span class="ink">political economy</span>.
-              <button type="button" class="bio-toggle" aria-expanded="false" aria-controls="bio-more">More</button>
-            </p>
-            <div class="bio-more" id="bio-more" hidden>
-              <p>Nazmul Ahasan is Executive Editor at <a href="https://netra.news/about/" target="_blank" rel="noopener">Netra News</a>, a public-interest journalism platform in Bangladesh.</p>
-              <p>Previously, he was a US economy reporter at <a href="https://www.bloomberg.com/authors/AWWNyCBthbk/nazmul-ahasan" target="_blank" rel="noopener">Bloomberg News</a> in Washington, DC, and earlier an editor at Radio Free Asia's BenarNews. Before moving to the United States, he worked at <i>The Daily Star</i> and Netra News in Dhaka.</p>
-              <p>He graduated from the UC Berkeley Graduate School of Journalism in 2023. His work has appeared in <i><a href="https://foreignpolicy.com/author/nazmul-ahasan/" target="_blank" rel="noopener">Foreign Policy</a></i>, <i>The Economist</i>, <i><a href="https://www.telegraph.co.uk/authors/n/na-ne/nazmul-ahasan/" target="_blank" rel="noopener">The Telegraph</a></i>, <i><a href="https://www.haaretz.com/ty-WRITER/0000017f-da59-d42c-afff-dffbc0150000" target="_blank" rel="noopener">Haaretz</a></i>, Columbia Journalism Review, and the <i><a href="https://www.sfchronicle.com/bayarea/article/Facebook-GearLaunch-17024417.php" target="_blank" rel="noopener">San Francisco Chronicle</a></i>.</p>
-            </div>
-            <ul class="links">
-              <li>
-                <button class="link-toggle" data-target="email" aria-expanded="false">Email</button>
-                <span class="link-reveal" id="email" hidden>nazmul[at]berkeley[dot]edu</span>
-              </li>
-              <li><a href="https://twitter.com/the_nazmul" rel="me">X</a></li>
-              <li><a href="https://www.linkedin.com/in/nazmulahasan/" rel="me">LinkedIn</a></li>
-              <li>
-                <button class="link-toggle" data-target="cv" aria-expanded="false">CV</button>
-                <span class="link-reveal" id="cv" hidden>Available upon request</span>
-              </li>
-            </ul>
-          </div>
+  <div class="container hero">
+    <div class="hero__id">
+      <img class="portrait" src="https://nazmulahasan.com/assets/images/nazmul-ahasan-portrait.webp" alt="A portrait of Nazmul Ahasan" />
+      <div>
+        <h1 class="site-title"><a href="/">Nazmul<br>Ahasan</a></h1>
+        <p class="lede">
+          Bangladeshi journalist working at the intersection of
+          <span class="ink">data</span>, <span class="ink">investigations</span>,
+          and <span class="ink">political economy</span>.
+          <button type="button" class="bio-toggle" aria-expanded="false" aria-controls="bio-more">More</button>
+        </p>
+        <div class="bio-more" id="bio-more" hidden>
+          <p>Nazmul Ahasan is Executive Editor at <a href="https://netra.news/about/" target="_blank" rel="noopener noreferrer">Netra News</a>, a public-interest journalism platform in Bangladesh.</p>
+          <p>Previously, he was a US economy reporter at <a href="https://www.bloomberg.com/authors/AWWNyCBthbk/nazmul-ahasan" target="_blank" rel="noopener noreferrer">Bloomberg News</a> in Washington, DC, and earlier an editor at Radio Free Asia's BenarNews, shaping coverage from South and Southeast Asia. Before moving to the United States, he worked at <i>The Daily Star</i> and Netra News in Dhaka.</p>
+          <p>He graduated from the UC Berkeley Graduate School of Journalism in 2023. His work has appeared in <i><a href="https://foreignpolicy.com/author/nazmul-ahasan/" target="_blank" rel="noopener noreferrer">Foreign Policy</a></i>, <i>The Economist</i>, <i><a href="https://www.telegraph.co.uk/authors/n/na-ne/nazmul-ahasan/" target="_blank" rel="noopener noreferrer">The Telegraph</a></i>, <i><a href="https://www.haaretz.com/ty-WRITER/0000017f-da59-d42c-afff-dffbc0150000" target="_blank" rel="noopener noreferrer">Haaretz</a></i>, Columbia Journalism Review, and the <i><a href="https://www.sfchronicle.com/bayarea/article/Facebook-GearLaunch-17024417.php" target="_blank" rel="noopener noreferrer">San Francisco Chronicle</a></i>.</p>
         </div>
-
-        <div class="hero__tagline">
-          <div class="scrolling-words" aria-label="Focus areas">
-            <div class="scrolling-words__box" aria-hidden="true">
-              <ul>
-                <li>osint</li>
-                <li>data analysis</li>
-                <li>data viz</li>
-                <li>web dev</li>
-                <li>code</li>
-              </ul>
-            </div>
-            <span class="and">and</span>
-            <span class="bold"> journalism</span>
-          </div>
-          <div class="pills" aria-label="Tools">
-            <span class="pill">Python</span>
-            <span class="pill">R</span>
-            <span class="pill">D3.js</span>
-            <span class="pill">HTML / CSS</span>
-            <span class="pill">OpenRefine</span>
-          </div>
-        </div>
+        <ul class="links">
+          <li>
+            <button class="link-toggle" data-target="email" aria-expanded="false">Email</button>
+            <span class="link-reveal" id="email" hidden>nazmul[at]berkeley[dot]edu</span>
+          </li>
+          <li><a href="https://twitter.com/the_nazmul" rel="me">X</a></li>
+          <li><a href="https://www.linkedin.com/in/nazmulahasan/" rel="me">LinkedIn</a></li>
+          <li>
+            <button class="link-toggle" data-target="cv" aria-expanded="false">CV</button>
+            <span class="link-reveal" id="cv" hidden>Full CV available upon request</span>
+          </li>
+        </ul>
       </div>
     </div>
-  </header>
+    <div class="hero__tagline">
+      <div class="scrolling-words" aria-label="Focus areas">
+        <div class="scrolling-words__box" aria-hidden="true">
+          <ul>
+            <li>osint</li>
+            <li>data analysis</li>
+            <li>data viz</li>
+            <li>web dev</li>
+            <li>code</li>
+          </ul>
+        </div>
+        <span>and</span>
+        <span class="bold ink">journalism</span>
+      </div>
+      <div class="pills" aria-label="Tools">
+        <span class="pill">Python</span>
+        <span class="pill">R</span>
+        <span class="pill">D3.js</span>
+        <span class="pill">HTML/CSS</span>
+        <span class="pill">OpenRefine</span>
+      </div>
+    </div>
+  </div>
+</header>
 
   <!-- ── Main ──────────────────────────────────────── -->
   <main class="page-content">
@@ -1200,38 +1166,30 @@
 
       <!-- Publications -->
       <section class="section section--tint" aria-labelledby="clients">
-        <div class="container">
-          <div class="logo-groups">
-            <div class="logo-group">
-              <h3 class="logo-group__title">Works appeared in</h3>
-              <div class="logos" aria-label="Publications">
-                <!-- Washington Post SVG (inline, abbreviated for brevity - using img fallback concept) -->
-                <svg class="logo logo--light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 403 62" aria-label="The Washington Post" style="height:20px;width:auto;">
-                  <path fill="currentColor" fill-rule="nonzero" d="M23.097 19.081v21.831c2.945-1.593 5.007-4.366 6.008-7.494l.236.12c-.649 7.788-5.95 15.575-14.196 15.575C6.84 49.113.714 42.918.714 33.005c0-7.433 4.83-12.095 11.015-16.285a10.782 10.782 0 00-2.769-.354c-4.242 0-6.715 2.891-6.715 5.842H1.89c-.059-.413-.059-.826-.059-1.239 0-5.251 2.769-11.624 9.484-11.624 4.3 0 7.599 3.953 12.605 3.953 2.003 0 4.477-.944 5.478-3.127h.177c-.059 3.836-1.236 7.79-6.479 8.91zm3.18 22.362c-2.945 3.127-6.125 5.782-10.248 5.782-7.657 0-13.547-6.018-13.547-14.75 0-5.133 2.12-7.906 4.476-11.152h-.236c-1.473 1.475-5.36 5.192-5.36 11.505 0 9.677 6.067 15.636 14.019 15.636 5.537 0 9.306-3.834 11.015-6.961l-.118-.06zm2.356-28.616c-1.001 1.888-3.121 4.307-7.421 4.307-4.3 0-8.246-2.95-11.722-2.95-3.181 0-5.36 2.124-6.185 3.717l.06.118c1.118-1.12 2.826-2.242 5.595-2.242 4.594 0 7.54 2.833 12.193 2.833 4.948 0 7.186-3.246 7.598-5.723l-.118-.06zM9.258 16.918c-3.004 3.128-5.773 6.55-5.773 13.217 0 3.657 1.237 7.434 4.006 9.794l1.708-.886V23.21l-1.59.826-.295-.59 8.247-4.485c-2.238-.47-4.241-1.474-6.303-2.064zm10.19 2.301c-.412.058-.824.058-1.295.058-.825 0-1.59-.058-2.356-.236V36.25l-7.717 4.192c1.59 1.18 3.534 1.887 6.008 1.887 2.003 0 3.77-.413 5.36-1.121V19.199zm-8.481 3.01l-1.12.648v15.814l1.12-.59V22.208z"/>
-                </svg>
-                <span class="logo" style="font-family:Georgia,serif;font-size:13px;font-style:italic;opacity:.45;letter-spacing:.02em;">The Economist</span>
-                <span class="logo" style="font-family:Georgia,serif;font-size:12px;font-style:italic;opacity:.4;letter-spacing:.04em;font-weight:600;text-transform:uppercase;">Foreign Policy</span>
-                <span class="logo" style="font-family:Georgia,serif;font-size:13px;opacity:.4;font-weight:700;letter-spacing:-.01em;">Bloomberg</span>
-                <span class="logo" style="font-family:Georgia,serif;font-size:11px;font-style:italic;opacity:.4;letter-spacing:.08em;font-weight:600;text-transform:uppercase;">Grist</span>
-                <span class="logo" style="font-family:Georgia,serif;font-size:12px;font-style:italic;opacity:.4;letter-spacing:.04em;">The Telegraph</span>
-                <span class="logo" style="font-family:Georgia,serif;font-size:11px;font-weight:700;opacity:.4;letter-spacing:.05em;text-transform:uppercase;">Haaretz</span>
-                <span class="logo" style="font-family:Georgia,serif;font-size:11px;font-weight:600;opacity:.4;letter-spacing:.06em;text-transform:uppercase;">The Hindu</span>
-                <span class="logo" style="font-family:Georgia,serif;font-size:12px;font-style:italic;opacity:.4;">The Daily Star</span>
-                <span class="logo" style="font-family:Georgia,serif;font-size:11px;font-style:italic;opacity:.4;letter-spacing:.04em;">SF Chronicle</span>
-                <span class="logo" style="font-family:Georgia,serif;font-size:11px;font-weight:600;opacity:.4;letter-spacing:.06em;text-transform:uppercase;">CJR</span>
-              </div>
-            </div>
-            <div class="logo-group">
-              <h3 class="logo-group__title">Interviewed by</h3>
-              <div class="logos">
-                <span class="logo" style="font-family:Georgia,serif;font-size:12px;font-style:italic;opacity:.4;font-weight:600;">The Guardian</span>
-                <span class="logo" style="font-family:Georgia,serif;font-size:11px;font-weight:700;opacity:.4;letter-spacing:.08em;text-transform:uppercase;">Al Jazeera</span>
-                <span class="logo" style="font-family:Georgia,serif;font-size:13px;font-weight:700;opacity:.4;letter-spacing:.04em;text-transform:uppercase;">BBC</span>
-              </div>
-            </div>
+      <div class="logo-groups">
+        <div class="logo-group">
+          <h3 class="logo-group__title">Works appeared in</h3>
+          <div class="logos" aria-label="Works appeared in">
+            <img class="logo logo--light" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/The_Washington_Post_wordmark.svg/640px-The_Washington_Post_wordmark.svg.png" alt="The Washington Post">
+            <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Bloomberg-Logo.svg/320px-Bloomberg-Logo.svg.png" alt="Bloomberg">
+            <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Foreign_Policy_logo.svg/320px-Foreign_Policy_logo.svg.png" alt="Foreign Policy">
+            <img class="logo logo--light" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/The_Economist_Logo.svg/320px-The_Economist_Logo.svg.png" alt="The Economist">
+            <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/The_Telegraph_logo.svg/320px-The_Telegraph_logo.svg.png" alt="The Telegraph">
+            <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Haaretz_english_logo.svg/320px-Haaretz_english_logo.svg.png" alt="Haaretz">
+            <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/The_Hindu_Logo.svg/320px-The_Hindu_Logo.svg.png" alt="The Hindu">
+            <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/San_Francisco_Chronicle_logo.svg/320px-San_Francisco_Chronicle_logo.svg.png" alt="San Francisco Chronicle">
           </div>
         </div>
-      </section>
+        <div class="logo-group">
+          <h3 class="logo-group__title">Interviewed by</h3>
+          <div class="logos" aria-label="Interviewed by">
+            <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Guardian_logo.svg/320px-Guardian_logo.svg.png" alt="The Guardian">
+            <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Al_Jazeera_English.svg/320px-Al_Jazeera_English.svg.png" alt="Al Jazeera">
+            <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/BBC_Logo_2021.svg/200px-BBC_Logo_2021.svg.png" alt="BBC">
+          </div>
+        </div>
+      </div>
+    </section>
 
       <!-- Experience -->
       <section class="section" aria-labelledby="experience">
@@ -1553,8 +1511,8 @@
         btn.setAttribute('aria-expanded', String(next));
 
         if (btn.classList.contains('bio-toggle')) {
-          panel.hidden = isExpanded;
-          btn.textContent = isExpanded ? 'More' : 'Less';
+          next ? panel.removeAttribute('hidden') : panel.setAttribute('hidden', '');
+          btn.textContent = next ? 'Less' : 'More';
         } else if (btn.classList.contains('link-toggle')) {
           panel.hidden = isExpanded;
         } else if (btn.classList.contains('exp-toggle')) {
