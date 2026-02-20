@@ -557,7 +557,8 @@
 }
 
     /* ─── Tint section (logos) ───────────────────── */
-   
+       .bloomberg, .bloomberg:hover { filter: brightness(0); }
+
         .section--tint { background: var(--bg-tint); }
     .section--tint + .section { border-top: none; }
     .logo-groups { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: start; }
@@ -580,7 +581,6 @@
     .logos { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 22px; }
     .logos svg.logo { color: var(--text); }
     .logos .logo:hover { opacity: 1; filter: none; transition: none;}
-    .bloomberg, .bloomberg:hover { filter: brightness(0); }
 
 
     /* ─── Timeline ───────────────────────────────── */
