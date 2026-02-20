@@ -472,11 +472,24 @@
     .section--tint + .section { border-top: none; }
     .logo-groups { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: start; }
     .logo-group__title { font: 300 0.68rem/1 var(--mono); letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+    /* Keep logo row consistent even if image sources change */
+.logos .logo {
+  height: 18px;          /* keep your current visual height */
+  width: auto;
+  max-width: 180px;      /* prevents extra-wide wordmarks from stretching */
+  object-fit: contain;   /* makes odd aspect ratios behave */
+  opacity: 0.45;
+  filter: saturate(0%) contrast(100%);
+  transition: opacity 0.22s;
+}
+
+.logos .logo--light {
+  opacity: 0.65;
+  filter: saturate(0%) contrast(80%);
+}
     .logos { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 22px; }
-    .logos .logo { height: 18px; width: auto; opacity: 0.45; filter: saturate(0%) contrast(100%); transition: opacity 0.22s; }
     .logos svg.logo { color: var(--text); }
     .logos .logo:hover { opacity: 0.9; }
-    .logos .logo--light { opacity: 0.65; filter: saturate(0%) contrast(80%); }
 
 
     /* ─── Timeline ───────────────────────────────── */
@@ -687,6 +700,7 @@
     @media (max-width: 640px) {
       .work-grid--dense { grid-template-columns: 1fr; }
       .topbar__links { display: none; }
+        .logos .logo { max-width: 140px; }
     }
     @media (max-width: 560px) {
       .hero__id { grid-template-columns: 1fr; }
@@ -694,6 +708,7 @@
       .item { grid-template-columns: 1fr; }
       .item__body { padding-left: 0; border-left: none; margin-top: 10px; }
     }
+    
   </style>
 </head>
 <body>
