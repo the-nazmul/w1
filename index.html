@@ -387,88 +387,174 @@
     .filter:focus-visible::after { opacity: 1; }
 
     /* ─── Work grid ──────────────────────────────── */
-    .work-grid--dense {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      border-top: 1px solid var(--rule);
-      border-left: 1px solid var(--rule);
-    }
-    .work {
-      border-right: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-    }
-    .work a {
-      display: block;
-      color: inherit;
-      text-decoration: none;
-      padding: 18px;
-      height: 100%;
-      transition: background .2s;
-    }
-    .work a:hover { background: rgba(24,22,14,.02); }
+   /* ─── Work grid (FULL REPLACE) ─────────────────── */
+.work-grid--dense {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--rule);
+  border-left: 1px solid var(--rule);
+}
 
-    .work__img {
-      width: 100%;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-      filter: saturate(70%);
-      transition: filter .3s;
-    }
-    .work a:hover .work__img { filter: saturate(100%); }
+.work {
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
 
-    .work__meta {
-      display: flex;
-      align-items: baseline;
-      gap: 6px;
-      margin-top: 11px;
-      font-family: var(--mono);
-      font-size: 10.5px;
-      letter-spacing: .06em;
-      color: var(--faint);
-    }
-    .work__pub { color: var(--muted); font-weight: 400; text-transform: uppercase; letter-spacing: .08em; }
-    .work__dot { color: var(--faint); }
-    .work__tags { margin-left: auto; display: inline-flex; gap: 5px; }
+.work a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  padding: 18px;
+  height: 100%;
+  position: relative;
+  overflow: hidden; /* clip the image zoom */
+  transition: background .2s;
+}
 
-    .tag {
-      padding: 0;
-      border: none;
-      background: none;
-      font-size: 12px;
-      color: var(--faint);
-      cursor: pointer;
-      line-height: 1;
-      transition: color .15s;
-    }
-    .tag:hover { color: var(--accent); }
+.work a:hover {
+  background: rgba(24,22,14,.02);
+}
 
-    .work__title {
-      margin-top: 8px;
-      font-family: var(--body);
-      font-size: .975rem;
-      font-weight: 400;
-      line-height: 1.35;
-      color: var(--text);
-    }
+/* Image: default b&w, then reveal original colour on hover */
+.work__img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
 
-    .work-more {
-      display: block;
-      margin: 0 auto;
-      margin-top: 24px;
-      padding: 9px 22px;
-      background: none;
-      border: 1px solid var(--rule-mid);
-      font-family: var(--mono);
-      font-size: 10.5px;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      cursor: pointer;
-      transition: border-color .15s, color .15s;
-    }
-    .work-more:hover { border-color: var(--muted); color: var(--text); }
-    .work[hidden] { display: none !important; }
+  /* default look */
+  filter: grayscale(100%);
+  opacity: .82;
+  transform: scale(1);
+
+  transition:
+    filter .7s ease-out,
+    opacity .7s ease-out,
+    transform .7s ease-out;
+}
+
+.work a:hover .work__img {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* Dark overlay like your React version (only over the image area) */
+.work a::after {
+  content: "";
+  position: absolute;
+
+  /* match card padding so overlay aligns with image */
+  left: 18px;
+  right: 18px;
+  top: 18px;
+
+  /* same geometry as .work__img */
+  aspect-ratio: 16/9;
+
+  background: rgba(0,0,0,.15);
+  pointer-events: none;
+  transition: background .4s ease;
+  z-index: 2;
+}
+
+.work a:hover::after {
+  background: transparent;
+}
+
+/* Meta row */
+.work__meta {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-top: 11px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .06em;
+  color: var(--faint);
+  position: relative;
+  z-index: 3;
+}
+
+.work__pub {
+  color: var(--muted);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.work__dot { color: var(--faint); }
+
+.work__tags {
+  margin-left: auto;
+  display: inline-flex;
+  gap: 5px;
+}
+
+.tag {
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 12px;
+  color: var(--faint);
+  cursor: pointer;
+  line-height: 1;
+  transition: color .15s;
+}
+
+.tag:hover { color: var(--accent); }
+
+/* Title */
+.work__title {
+  margin-top: 8px;
+  font-family: var(--body);
+  font-size: .975rem;
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--text);
+  position: relative;
+  z-index: 3;
+}
+
+/* Optional: ensure body text stays above overlay */
+.work__body {
+  position: relative;
+  z-index: 3;
+}
+
+/* View more button */
+.work-more {
+  display: block;
+  margin: 0 auto;
+  margin-top: 24px;
+  padding: 9px 22px;
+  background: none;
+  border: 1px solid var(--rule-mid);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color .15s, color .15s;
+}
+
+.work-more:hover {
+  border-color: var(--muted);
+  color: var(--text);
+}
+
+.work[hidden] { display: none !important; }
+
+/* ─── Responsive grid ──────────────────────────── */
+@media (max-width: 980px) {
+  .work-grid--dense { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .work-grid--dense { grid-template-columns: 1fr; }
+}
 
     /* ─── Tint section (logos) ───────────────────── */
    
