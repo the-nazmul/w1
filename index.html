@@ -1,1290 +1,1653 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="google-site-verification" content="wkBgNehZv8UXDadm1wgfGS88gS6m_e41EAo_-RJGk8Y" />
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nazmul Ahasan | Journalist</title>
+  <meta name="description" content="Nazmul Ahasan is a Bangladeshi journalist specialising in data and investigative reporting." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 
-    <title>Nazmul Ahasan | Personal Website</title>
-    <meta name="description"
-        content="Nazmul Ahasan is a Bangladeshi journalist specialising in data and investigative reporting." />
-    <meta name="author" content="Nazmul Ahasan" />
-    <link rel="canonical" href="https://nazmulahasan.com/" />
+  <style>
+    /* ─── Tokens ─────────────────────────────────── */
+    :root {
+      --bg:       #f8f6f2;
+      --paper:    #faf9f6;
+      --text:     #18160e;
+      --muted:    #7a7568;
+      --faint:    #c8c4b8;
+      --rule:     rgba(24,22,14,.10);
+      --rule-mid: rgba(24,22,14,.16);
+      --accent:   #8b1a0e;   /* one accent only — restrained, sombre */
+      --blue:     #1e3458;   /* links */
+      --wrap:     1060px;
+      --pad:      clamp(18px, 4vw, 36px);
 
-    <meta property="og:title" content="Nazmul Ahasan" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:url" content="https://nazmulahasan.com/" />
-    <meta property="og:site_name" content="Nazmul Ahasan" />
-    <meta property="og:image" content="https://nazmulahasan.com/assets/images/nazmul-ahasan-portrait.webp" />
-    <meta name="twitter:image" content="https://nazmulahasan.com/assets/images/nazmul-ahasan-portrait.webp" />
+      --serif:    'Cormorant Garamond', 'Palatino Linotype', Georgia, serif;
+      --body:     'Source Serif 4',    Georgia, 'Times New Roman', serif;
+      --mono:     'JetBrains Mono',    'Courier New', monospace;
+    }
 
-    <meta property="og:description"
-        content="Nazmul Ahasan is a Bangladeshi journalist specialising in data and investigative reporting." />
+    /* ─── Reset ──────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
 
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Nazmul Ahasan" />
-    <meta name="twitter:site" content="@the_nazmul" />
-    <meta name="twitter:creator" content="@the_nazmul" />
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font: 400 17px/1.65 var(--body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png" />
-    <link rel="alternate" type="application/atom+xml" href="https://nazmulahasan.com/feed.xml" title="Nazmul Ahasan" />
+    img { display: block; max-width: 100%; }
+    button { font-family: inherit; }
 
-    <link rel="stylesheet" href="./assets/main.css" />
-    <script src="./assets/main.js" defer></script>
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
-    <script type="application/ld+json">
-      {
-        "@context":"https://schema.org",
-        "@type":"WebSite",
-        "name":"Nazmul Ahasan",
-        "headline":"Nazmul Ahasan",
-        "url":"https://nazmulahasan.com/",
-        "description":"Nazmul Ahasan is Executive Editor at Netra News, focused on Bangladesh.",
-        "author":{"@type":"Person","name":"Nazmul Ahasan"}
-      }
-    </script>
+    .muted   { color: var(--muted); }
+    .accent  { color: var(--accent); }
+
+    .container {
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: 0 var(--pad);
+    }
+
+    /* ─── Site-wide rule ─────────────────────────── */
+    hr, .rule {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 0;
+    }
+
+    /* ─── Top bar ────────────────────────────────── */
+    .topbar {
+      border-bottom: 1px solid var(--rule-mid);
+      padding: 11px 0;
+    }
+    .topbar__inner {
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: 0 var(--pad);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .topbar__name {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: .04em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .topbar__links {
+      list-style: none;
+      display: flex;
+      gap: 1.75rem;
+    }
+    .topbar__links a,
+    .topbar__links button {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: color .15s;
+    }
+    .topbar__links a:hover,
+    .topbar__links button:hover { color: var(--text); }
+
+    /* ─── Header / Hero ──────────────────────────── */
+    .site-header {
+      padding: 52px 0 40px;
+      border-bottom: 1px solid var(--rule-mid);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .hero__id {
+      display: grid;
+      grid-template-columns: 82px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .portrait {
+      width: 82px;
+      height: 82px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 1px solid var(--rule-mid);
+      filter: grayscale(12%);
+    }
+
+    .hero__text { display: flex; flex-direction: column; gap: 10px; }
+
+    .site-title {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 5vw, 3.4rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.0;
+      letter-spacing: .01em;
+      color: var(--text);
+    }
+    .site-title a { color: inherit; text-decoration: none; }
+
+    .lede {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 52ch;
+    }
+    .lede .ink { color: var(--text); font-style: italic; }
+
+    .bio-toggle {
+      margin-left: 5px;
+      padding: 0;
+      background: none;
+      border: none;
+      font-family: var(--mono);
+      font-size: 9.5px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--faint);
+      cursor: pointer;
+      vertical-align: baseline;
+      transition: color .15s;
+    }
+    .bio-toggle:hover { color: var(--muted); }
+    .bio-toggle::after { content: " ↓"; }
+    .bio-toggle[aria-expanded="true"]::after { content: " ↑"; }
+
+    .bio-more {
+      padding-top: 14px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      max-width: 58ch;
+    }
+    .bio-more p {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    /* Links row */
+    .links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      padding-top: 4px;
+    }
+    .links li { display: flex; align-items: center; gap: 6px; }
+    .links a, .link-toggle {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: color .15s;
+    }
+    .links a:hover, .link-toggle:hover { color: var(--text); }
+    .link-reveal {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--muted);
+      letter-spacing: .04em;
+    }
+    /* separator dots */
+    .links li:not(:last-child)::after {
+      content: "·";
+      color: var(--faint);
+      font-size: 14px;
+      line-height: 1;
+      margin-left: 1.5rem;
+    }
+
+    /* ─── Hero right: tagline ──────────────────── */
+    .hero__tagline {
+      padding-top: 6px;
+      border-left: 1px solid var(--rule);
+      padding-left: 36px;
+    }
+
+    .scrolling-words {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--serif);
+      font-size: 1.75rem;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--muted);
+    }
+    .scrolling-words__box {
+      height: 2.2rem;
+      overflow: hidden;
+    }
+    .scrolling-words__box ul {
+      list-style: none;
+    }
+    .scrolling-words__box li {
+      height: 2.2rem;
+      display: flex;
+      align-items: center;
+      font-style: italic;
+      font-weight: 500;
+      color: var(--accent);
+    }
+    .scrolling-words .and { color: var(--faint); font-size: 1.1rem; }
+    .scrolling-words .bold {
+      font-style: italic;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    @keyframes scrollUp {
+      15%, 25%  { transform: translateY(-20%); }
+      40%, 50%  { transform: translateY(-40%); }
+      65%, 75%  { transform: translateY(-60%); }
+      90%, 100% { transform: translateY(-80%); }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .scrolling-words__box ul { animation: scrollUp 10s infinite; }
+    }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 20px;
+    }
+    .pill {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--rule-mid);
+      background: none;
+      padding: 4px 9px;
+      transition: border-color .15s, color .15s;
+    }
+    .pill:hover { border-color: var(--muted); color: var(--text); }
+
+    /* ─── Main content ───────────────────────────── */
+    .page-content { flex: 1; padding: 0 0 72px; }
+
+    /* ─── Section ────────────────────────────────── */
+    .section {
+      padding: 44px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .section:last-child { border-bottom: none; }
+
+    .section__head {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+    .section__head h2 {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: .04em;
+      color: var(--muted);
+    }
+    .section__rule {
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+    .section__sub {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+
+    /* ─── Work filters ───────────────────────────── */
+    .work-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      margin-bottom: 28px;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 1px 0;
+    }
+    .filter {
+      position: relative;
+      padding: 8px 14px;
+      border: none;
+      background: none;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--faint);
+      cursor: pointer;
+      transition: color .15s, background .15s;
+    }
+    .filter:hover,
+    .filter:focus-visible { color: var(--text); outline: none; }
+    .filter[aria-pressed="true"] {
+      color: var(--accent);
+    }
+    .filter[data-label]::after {
+      content: attr(data-label);
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      font-family: var(--mono);
+      font-size: 9.5px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--paper);
+      padding: 2px 6px;
+      border: 1px solid var(--rule);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 10;
+      transition: opacity .1s;
+    }
+    .filter:hover::after,
+    .filter:focus-visible::after { opacity: 1; }
+
+    /* ─── Work grid ──────────────────────────────── */
+    .work-grid--dense {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--rule);
+      border-left: 1px solid var(--rule);
+    }
+    .work {
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .work a {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+      padding: 18px;
+      height: 100%;
+      transition: background .2s;
+    }
+    .work a:hover { background: rgba(24,22,14,.02); }
+
+    .work__img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      filter: saturate(70%);
+      transition: filter .3s;
+    }
+    .work a:hover .work__img { filter: saturate(100%); }
+
+    .work__meta {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-top: 11px;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: .06em;
+      color: var(--faint);
+    }
+    .work__pub { color: var(--muted); font-weight: 400; text-transform: uppercase; letter-spacing: .08em; }
+    .work__dot { color: var(--faint); }
+    .work__tags { margin-left: auto; display: inline-flex; gap: 5px; }
+
+    .tag {
+      padding: 0;
+      border: none;
+      background: none;
+      font-size: 12px;
+      color: var(--faint);
+      cursor: pointer;
+      line-height: 1;
+      transition: color .15s;
+    }
+    .tag:hover { color: var(--accent); }
+
+    .work__title {
+      margin-top: 8px;
+      font-family: var(--body);
+      font-size: .975rem;
+      font-weight: 400;
+      line-height: 1.35;
+      color: var(--text);
+    }
+
+    .work-more {
+      display: block;
+      margin: 0 auto;
+      margin-top: 24px;
+      padding: 9px 22px;
+      background: none;
+      border: 1px solid var(--rule-mid);
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      transition: border-color .15s, color .15s;
+    }
+    .work-more:hover { border-color: var(--muted); color: var(--text); }
+    .work[hidden] { display: none !important; }
+
+    /* ─── Tint section (logos) ───────────────────── */
+    .section--tint {
+      background: rgba(24,22,14,.025);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 30px 0;
+    }
+
+    .logo-groups {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .logo-group__title {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 14px;
+    }
+    .logos {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 18px;
+    }
+    .logos .logo {
+      height: 18px;
+      width: auto;
+      opacity: .4;
+      filter: saturate(0%) contrast(100%);
+      transition: opacity .2s;
+    }
+    .logos svg.logo { color: var(--text); }
+    .logos .logo:hover { opacity: .75; }
+    .logos .logo--light {
+      opacity: .5;
+      filter: saturate(0%) contrast(100%) brightness(1.15);
+    }
+
+    /* ─── Timeline ───────────────────────────────── */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+
+    .item {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 0;
+      border-top: 1px solid var(--rule);
+      padding: 22px 0;
+    }
+    .item:last-child { border-bottom: 1px solid var(--rule); }
+
+    .item__meta {
+      padding-right: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .item__kicker {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .item__date, .item__location {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: .04em;
+      color: var(--faint);
+      line-height: 1.6;
+    }
+
+    .item__body { padding-left: 28px; border-left: 1px solid var(--rule); }
+    .item__title {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 500;
+      font-style: italic;
+      line-height: 1.2;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    .bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .bullets li {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--muted);
+      padding-left: 14px;
+      position: relative;
+    }
+    .bullets li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--faint);
+      font-size: 11px;
+      top: 3px;
+    }
+
+    /* Toggle btns */
+    .exp-toggle, .item-toggle {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--faint);
+      background: none;
+      border: 1px solid var(--rule);
+      padding: 5px 11px;
+      cursor: pointer;
+      transition: color .15s, border-color .15s;
+    }
+    .exp-toggle:hover, .item-toggle:hover { color: var(--muted); border-color: var(--rule-mid); }
+    .exp-toggle[aria-expanded="true"] { color: var(--muted); border-color: var(--rule-mid); }
+    .exp-toggle::after { content: " ↘"; font-size: 10px; }
+    .exp-toggle[aria-expanded="true"]::after { content: " ↗"; }
+
+    /* ─── Split section ──────────────────────────── */
+    .section--split {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+      align-items: start;
+    }
+    .section--split > div {
+      padding: 44px var(--pad);
+    }
+    .section--split > div + div {
+      border-left: 1px solid var(--rule);
+    }
+    .section--split > div:first-child { padding-left: 0; }
+    .section--split > div:last-child  { padding-right: 0; }
+
+    .section--split h2 {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 18px;
+      letter-spacing: .04em;
+    }
+    .section--split h2 + h2 { margin-top: 32px; }
+
+    .stack { display: flex; flex-direction: column; }
+
+    .row {
+      padding: 12px 0;
+      border-top: 1px solid var(--rule);
+    }
+    .stack .row:last-child { border-bottom: 1px solid var(--rule); }
+
+    .row__title {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 4px 6px;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--text);
+    }
+    .row__title a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+    .row__title a:hover { border-bottom-color: var(--text); }
+    .row__meta {
+      margin-top: 3px;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--faint);
+      letter-spacing: .04em;
+    }
+    .row__desc {
+      margin-top: 4px;
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* Honours labels */
+    .label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--faint);
+      border: 1px solid var(--rule);
+      padding: 2px 5px;
+      line-height: 1.4;
+      white-space: nowrap;
+    }
+
+    /* ─── Footer ─────────────────────────────────── */
+    .site-footer {
+      border-top: 1px solid var(--rule-mid);
+      padding: 16px 0;
+      margin-top: auto;
+    }
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .to-top {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--faint);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color .15s;
+    }
+    .to-top:hover { color: var(--muted); text-decoration: none; }
+    .to-top .icon { width: 1em; height: 1em; fill: currentColor; }
+    .footer .muted {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .08em;
+      color: var(--faint);
+    }
+
+    /* ─── Responsive ─────────────────────────────── */
+    @media (max-width: 980px) {
+      .work-grid--dense { grid-template-columns: repeat(2, 1fr); }
+      .logo-groups { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 820px) {
+      .hero { grid-template-columns: 1fr; gap: 32px; }
+      .hero__tagline { border-left: none; padding-left: 0; padding-top: 0; border-top: 1px solid var(--rule); padding-top: 20px; }
+      .section--split { grid-template-columns: 1fr; }
+      .section--split > div { padding: 28px 0; }
+      .section--split > div + div { border-left: none; border-top: 1px solid var(--rule); }
+      .section--split > div:first-child { padding-top: 0; }
+    }
+    @media (max-width: 640px) {
+      .work-grid--dense { grid-template-columns: 1fr; }
+      .topbar__links { display: none; }
+    }
+    @media (max-width: 560px) {
+      .hero__id { grid-template-columns: 1fr; }
+      .portrait { display: none; }
+      .item { grid-template-columns: 1fr; }
+      .item__body { padding-left: 0; border-left: none; margin-top: 10px; }
+    }
+  </style>
 </head>
-
 <body>
-    <header id="top" class="site-header">
-        <div class="container hero">
-            <div class="hero__id">
-                <img class="portrait" src="./assets/images/nazmul-ahasan-portrait.webp"
-                    alt="A portrait of Nazmul Ahasan" />
-                <div>
-                    <h1 class="site-title"><a href="/">Nazmul<br />Ahasan</a></h1>
-                    <p class="lede">
-                        Bangladeshi journalist working at the intersection of
-                        <span class="ink">data</span>,
-                        <span class="ink">investigations</span>,
-                        and <span class="ink">political economy</span>.
-                        <button type="button" class="bio-toggle" aria-expanded="false"
-                            aria-controls="bio-more">More</button>
-                    </p>
 
-                    <div class="bio-more" id="bio-more" hidden>
-                        <p>
-                            Nazmul Ahasan is Executive Editor at
-                            <a href="https://netra.news/about/" target="_blank" rel="noopener noreferrer"
-                                aria-label="About Netra News">
-                                Netra News
-                            </a>,
-                            a public-interest journalism platform in Bangladesh.
-                        </p>
+  <!-- ── Top bar ───────────────────────────────────── -->
+  <div class="topbar">
+    <div class="topbar__inner">
+      <a class="topbar__name" href="#top">Nazmul Ahasan</a>
+      <ul class="topbar__links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#cred">Awards</a></li>
+        <li><a href="https://twitter.com/the_nazmul" target="_blank" rel="noopener">X</a></li>
+        <li><a href="https://www.linkedin.com/in/nazmulahasan/" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
 
-                        <p>
-                            Previously, he was a US economy reporter at
-                            <a href="https://www.bloomberg.com/authors/AWWNyCBthbk/nazmul-ahasan" target="_blank"
-                                rel="noopener noreferrer" aria-label="Nazmul Ahasan author page at Bloomberg News">
-                                Bloomberg News
-                            </a>
-                            in Washington, DC, and earlier an editor at Radio Free Asia’s BenarNews,
-                            shaping coverage from South and Southeast Asia. Before moving to the United
-                            States, he worked at <i>The Daily Star</i> and Netra News in Dhaka.
-                        </p>
-
-                        <p>
-                            He graduated from the UC Berkeley Graduate School of Journalism in 2023.
-                            His work has appeared in
-                            <i>
-                                <a href="https://foreignpolicy.com/author/nazmul-ahasan/" target="_blank"
-                                    rel="noopener noreferrer" aria-label="Nazmul Ahasan author page at Foreign Policy">
-                                    Foreign Policy
-                                </a>
-                            </i>,
-                            <i>The Economist</i>,
-                            <i>
-                                <a href="https://www.telegraph.co.uk/authors/n/na-ne/nazmul-ahasan/" target="_blank"
-                                    rel="noopener noreferrer" aria-label="Nazmul Ahasan author page at The Telegraph">
-                                    The Telegraph
-                                </a>
-                            </i>,
-                            <i>
-                                <a href="https://www.haaretz.com/ty-WRITER/0000017f-da59-d42c-afff-dffbc0150000"
-                                    target="_blank" rel="noopener noreferrer"
-                                    aria-label="Nazmul Ahasan author page at Haaretz">
-                                    Haaretz
-                                </a>
-                            </i>,
-                            Columbia Journalism Review, and the
-                            <i>
-                                <a href="https://www.sfchronicle.com/bayarea/article/Facebook-GearLaunch-17024417.php"
-                                    target="_blank" rel="noopener noreferrer"
-                                    aria-label="San Francisco Chronicle article by Nazmul Ahasan">
-                                    San Francisco Chronicle
-                                </a>
-                            </i>.
-                        </p>
-                    </div>
-
-
-
-                    <ul class="links">
-                        <li>
-                            <button class="link-toggle" data-target="email" aria-expanded="false">
-                                Email
-                            </button>
-                            <span class="link-reveal" id="email" hidden>
-                                nazmul[at]berkeley[dot]edu
-                            </span>
-                        </li>
-
-                        <li><a href="https://twitter.com/the_nazmul" rel="me">X</a></li>
-                        <li><a href="https://www.linkedin.com/in/nazmulahasan/" rel="me">LinkedIn</a></li>
-
-                        <li>
-                            <button class="link-toggle" data-target="cv" aria-expanded="false">
-                                CV
-                            </button>
-                            <span class="link-reveal" id="cv" hidden>
-                                Full CV available upon request
-                            </span>
-                        </li>
-                    </ul>
-
-                </div>
+  <!-- ── Header ────────────────────────────────────── -->
+  <header id="top" class="site-header">
+    <div class="container">
+      <div class="hero">
+        <div class="hero__id">
+          <img class="portrait"
+            src="https://nazmulahasan.com/assets/images/nazmul-ahasan-portrait.webp"
+            alt="Nazmul Ahasan" />
+          <div class="hero__text">
+            <h1 class="site-title"><a href="/">Nazmul<br>Ahasan</a></h1>
+            <p class="lede">
+              Bangladeshi journalist working at the intersection of
+              <span class="ink">data</span>,
+              <span class="ink">investigations</span>,
+              and <span class="ink">political economy</span>.
+              <button type="button" class="bio-toggle" aria-expanded="false" aria-controls="bio-more">More</button>
+            </p>
+            <div class="bio-more" id="bio-more" hidden>
+              <p>Nazmul Ahasan is Executive Editor at <a href="https://netra.news/about/" target="_blank" rel="noopener">Netra News</a>, a public-interest journalism platform in Bangladesh.</p>
+              <p>Previously, he was a US economy reporter at <a href="https://www.bloomberg.com/authors/AWWNyCBthbk/nazmul-ahasan" target="_blank" rel="noopener">Bloomberg News</a> in Washington, DC, and earlier an editor at Radio Free Asia's BenarNews. Before moving to the United States, he worked at <i>The Daily Star</i> and Netra News in Dhaka.</p>
+              <p>He graduated from the UC Berkeley Graduate School of Journalism in 2023. His work has appeared in <i><a href="https://foreignpolicy.com/author/nazmul-ahasan/" target="_blank" rel="noopener">Foreign Policy</a></i>, <i>The Economist</i>, <i><a href="https://www.telegraph.co.uk/authors/n/na-ne/nazmul-ahasan/" target="_blank" rel="noopener">The Telegraph</a></i>, <i><a href="https://www.haaretz.com/ty-WRITER/0000017f-da59-d42c-afff-dffbc0150000" target="_blank" rel="noopener">Haaretz</a></i>, Columbia Journalism Review, and the <i><a href="https://www.sfchronicle.com/bayarea/article/Facebook-GearLaunch-17024417.php" target="_blank" rel="noopener">San Francisco Chronicle</a></i>.</p>
             </div>
+            <ul class="links">
+              <li>
+                <button class="link-toggle" data-target="email" aria-expanded="false">Email</button>
+                <span class="link-reveal" id="email" hidden>nazmul[at]berkeley[dot]edu</span>
+              </li>
+              <li><a href="https://twitter.com/the_nazmul" rel="me">X</a></li>
+              <li><a href="https://www.linkedin.com/in/nazmulahasan/" rel="me">LinkedIn</a></li>
+              <li>
+                <button class="link-toggle" data-target="cv" aria-expanded="false">CV</button>
+                <span class="link-reveal" id="cv" hidden>Available upon request</span>
+              </li>
+            </ul>
+          </div>
+        </div>
 
-            <div class="hero__tagline">
-                <div class="scrolling-words" aria-label="Focus areas">
-                    <div class="scrolling-words__box" aria-hidden="true">
-                        <ul>
-                            <li>osint</li>
-                            <li>data analysis</li>
-                            <li>data viz</li>
-                            <li>web dev</li>
-                            <li>code</li>
-                        </ul>
-                    </div>
-                    <span>and</span>
-                    <span class="bold ink"> journalism</span>
-                </div>
-
-                <div class="pills" aria-label="Tools">
-                    <span class="pill">Python</span>
-                    <span class="pill">R</span>
-                    <span class="pill">D3.js</span>
-                    <span class="pill">HTML/CSS</span>
-                    <span class="pill">OpenRefine</span>
-                </div>
+        <div class="hero__tagline">
+          <div class="scrolling-words" aria-label="Focus areas">
+            <div class="scrolling-words__box" aria-hidden="true">
+              <ul>
+                <li>osint</li>
+                <li>data analysis</li>
+                <li>data viz</li>
+                <li>web dev</li>
+                <li>code</li>
+              </ul>
             </div>
+            <span class="and">and</span>
+            <span class="bold"> journalism</span>
+          </div>
+          <div class="pills" aria-label="Tools">
+            <span class="pill">Python</span>
+            <span class="pill">R</span>
+            <span class="pill">D3.js</span>
+            <span class="pill">HTML / CSS</span>
+            <span class="pill">OpenRefine</span>
+          </div>
         </div>
-    </header>
-
-    <main class="page-content">
-        <div class="container">
-
-
-            <section class="section" aria-labelledby="work">
-                <div class="section__head">
-                    <h2 id="work">Selected work</h2>
-                    <p class="section__sub">Filter by role, method, or
-                        type.</p>
-                </div>
-
-                <div class="work-filters" aria-label="Filter work by type">
-                    <button class="filter" data-filter="all" aria-pressed="true">All</button>
-
-                    <button class="filter" data-filter="award" title="Award-winning" data-label="Award-winning"
-                        aria-label="Award-winning">★</button>
-                    <button class="filter" data-filter="editing" title="Editing" data-label="Editing"
-                        aria-label="Editing">✎</button>
-                    <button class="filter" data-filter="data" title="Data work" data-label="Data work"
-                        aria-label="Data work">⌁</button>
-                    <button class="filter" data-filter="interactive" title="Interactive" data-label="Interactive"
-                        aria-label="Interactive">↗</button>
-
-                    <button class="filter" data-filter="investigation" title="Investigative reporting"
-                        data-label="Investigative reporting" aria-label="Investigative reporting">⊕</button>
-                    <button class="filter" data-filter="analysis" title="Analysis" data-label="Analysis"
-                        aria-label="Analysis">≡</button>
-                    <button class="filter" data-filter="osint" title="OSINT / verification"
-                        data-label="OSINT / verification" aria-label="OSINT / verification">⌖</button>
-
-                    <button class="filter" data-filter="reporting" title="Reporting" data-label="Reporting"
-                        aria-label="Reporting">•</button>
-                    <button class="filter" data-filter="assistance" title="Reporting assistance"
-                        data-label="Reporting assistance" aria-label="Reporting assistance">◌</button>
-                    <button class="filter" data-filter="opinion" title="Opinion" data-label="Opinion"
-                        aria-label="Opinion">∼</button>
-                </div>
-
-
-
-                <div class="work-grid work-grid--dense" id="workGrid">
-
-
-                    <!-- 1. Haaretz (Magazine) -->
-                    <article class="work" data-tags="reporting analysis">
-                        <a href="https://www.haaretz.com/middle-east-news/2026-01-15/ty-article-magazine/.premium/bangladeshs-interest-in-joining-gaza-security-force-comes-with-conditions/0000019b-c20c-decf-a99f-cb7cff330000"
-                            target="_blank" rel="noopener noreferrer">
-                            <img class="work__img"
-                                src="https://img.haarets.co.il/bs/0000019b-c20d-d641-a9bf-c39ddd210001/37/4c/8c6fdcab49cc92ce7e3c8491e2f6/404471.jpg"
-                                alt="Pro-Palestinian protesters in Bangladesh's capital Dhaka" loading="lazy">
-                            <div class="work__body">
-                                <div class="work__meta">
-                                    <span class="work__pub">Haaretz</span>
-                                    <span class="work__dot">·</span>
-                                    <time class="work__date" datetime="2026-01-15">Jan 2026</time>
-                                    <span class="work__tags">
-                                        <button class="tag" data-filter="reporting" aria-label="Reporting"
-                                            title="Reporting">•</button>
-
-                                        <button class="tag" data-filter="analysis" aria-label="Analysis"
-                                            title="Analysis">≡</button>
-
-                                    </span>
-                                </div>
-                                <h3 class="work__title">Bangladesh’s ‘interest’ in joining Gaza security force comes
-                                    with conditions</h3>
-                            </div>
-                        </a>
-                    </article>
-
-
-                    <!-- 2. Bloomberg News -->
-                    <article class="work" data-tags="data">
-                        <a href="https://www.bloomberg.com/news/features/2025-10-01/businesses-eager-to-beat-tariffs-turn-to-trump-connected-lobbyists"
-                            target="_blank" rel="noopener noreferrer">
-                            <img class="work__img"
-                                src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ieqNZQZb47oc/v1/1334x2000.webp"
-                                alt="Brian Ballard, a top Trump-aligned lobbyist, poses for a photo" loading="lazy">
-                            <div class="work__body">
-                                <div class="work__meta">
-                                    <span class="work__pub">Bloomberg</span>
-                                    <span class="work__dot">·</span>
-                                    <time class="work__date" datetime="2025-10-01">Oct 2025</time>
-                                    <span class="work__tags">
-
-                                        <button class="tag" data-filter="data" aria-label="Data work"
-                                            title="Data work">⌁</button>
-
-                                    </span>
-                                </div>
-                                <h3 class="work__title">A Gunmaker’s Lobbying Shows How Trump’s Tariffs Changed the Game
-                                </h3>
-                            </div>
-                        </a>
-                    </article>
-
-
-                    <!-- 3. Bloomberg News -->
-                    <article class="work" data-tags="data">
-                        <a href="https://www.bloomberg.com/news/features/2025-05-07/trump-budget-cut-threat-leaves-state-local-government-funding-uncertain"
-                            target="_blank" rel="noopener noreferrer">
-                            <img class="work__img"
-                                src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ic_KamWZgeds/v2/2000x1334.webp"
-                                alt="A stretch of Moorland Road in Waukesha County, Wisconsin." loading="lazy">
-                            <div class="work__body">
-                                <div class="work__meta">
-                                    <span class="work__pub">Bloomberg</span>
-                                    <span class="work__dot">·</span>
-                                    <time class="work__date" datetime="2025-05-07">May 2025</time>
-                                    <span class="work__tags">
-                                        <button class="tag" data-filter="data" aria-label="Data work"
-                                            title="Data work">⌁</button>
-                                    </span>
-                                </div>
-                                <h3 class="work__title">States, Cities Face Funding Collapse Threat With Trump Cuts</h3>
-                            </div>
-                        </a>
-                    </article>
-
-                    <!-- 4. Bloomberg News -->
-                    <article class="work" data-tags="data">
-                        <a href="https://www.bloomberg.com/news/articles/2025-01-03/economy-in-counties-trump-won-points-to-governing-challenges"
-                            target="_blank" rel="noopener noreferrer">
-                            <img class="work__img"
-                                src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ievdfrcsznEU/v0/1200x974.jpg"
-                                alt="A map of US by county population and economy size" loading="lazy">
-                            <div class="work__body">
-                                <div class="work__meta">
-                                    <span class="work__pub">Bloomberg</span>
-                                    <span class="work__dot">·</span>
-                                    <time class="work__date" datetime="2025-01-03">Jan 2025</time>
-                                    <span class="work__tags">
-                                        <button class="tag" data-filter="data" aria-label="Data work"
-                                            title="Data work">⌁</button>
-                                    </span>
-                                </div>
-                                <h3 class="work__title">Economy in Counties Trump Won Points to Governing Challenges
-                                </h3>
-                            </div>
-                        </a>
-                    </article>
-
-                    <!-- 5. Bloomberg News -->
-                    <article class="work" data-tags="data">
-                        <a href="https://www.bloomberg.com/news/articles/2024-11-11/hong-kong-has-a-record-number-of-jobs-in-finance-as-city-recovers-from-slump"
-                            target="_blank" rel="noopener noreferrer">
-                            <img class="work__img"
-                                src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iiZrYuBfizSw/v0/1200x800.jpg"
-                                alt="Hong Kong financial center" loading="lazy">
-                            <div class="work__body">
-                                <div class="work__meta">
-                                    <span class="work__pub">Bloomberg</span>
-                                    <span class="work__dot">·</span>
-                                    <time class="work__date" datetime="2024-11-11">Nov 2024</time>
-                                    <span class="work__tags">
-                                        <button class="tag" data-filter="data" aria-label="Data work"
-                                            title="Data work">⌁</button>
-                                    </span>
-                                </div>
-                                <h3 class="work__title">Hong Kong Finance Jobs Rebound to Record After Talent Push</h3>
-                            </div>
-                        </a>
-                    </article>
-
-
-                    <!-- 6. Bloomberg News -->
-                    <article class="work" data-tags="data">
-                        <a href="https://www.bloomberg.com/news/articles/2024-10-17/couche-tard-s-7-eleven-overlaps-to-face-skeptical-us-ftc-review"
-                            target="_blank" rel="noopener noreferrer">
-                            <img class="work__img"
-                                src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iA20JXuTKD20/v0/-1x-1.webp"
-                                alt="US states by overlaps between Circle-K and 7-Eleven stores" loading="lazy">
-                            <div class="work__body">
-                                <div class="work__meta">
-                                    <span class="work__pub">Bloomberg</span>
-                                    <span class="work__dot">·</span>
-                                    <time class="work__date" datetime="2024-10-17">Oct 2024</time>
-                                    <span class="work__tags">
-                                        <button class="tag" data-filter="data" aria-label="Data work"
-                                            title="Data work">⌁</button>
-                                    </span>
-                                </div>
-                                <h3 class="work__title">Couche-Tard's 7-Eleven Overlaps to Face Skeptical US FTC Review
-                                </h3>
-                            </div>
-                        </a>
-                    </article>
-
-
-                    <!-- 7. Bloomberg Graphics -->
-                    <article class="work" data-tags="data interactive">
-                        <a href="https://www.bloomberg.com/graphics/2024-election-swing-state-economy/" target="_blank"
-                            rel="noopener noreferrer">
-                            <img class="work__img"
-                                src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iTF_GXIvegeU/v0/-1x-1.jpg"
-                                alt="The outcome of this year’s election could hang on local economies in swing states and places like Erie, Jackson and Washoe counties."
-                                loading="lazy">
-                            <div class="work__body">
-                                <div class="work__meta">
-                                    <span class="work__pub">Bloomberg</span>
-                                    <span class="work__dot">·</span>
-                                    <time class="work__date" datetime="2024-08-08">Aug 2024</time>
-                                    <span class="work__tags">
-
-                                        <button class="tag" data-filter="data" aria-label="Data work"
-                                            title="Data work">⌁</button>
-                                        <button class="tag" data-filter="interactive" aria-label="Interactive"
-                                            title="Interactive">↗</button>
-                                    </span>
-                                </div>
-                                <h3 class="work__title">The Swing-State Economic Realities Shaping the US Election</h3>
-                            </div>
-                        </a>
-                    </article>
-
-
-                    <!-- 8. Bloomberg Graphics -->
-                    <article class="work" data-tags="investigation data">
-                        <a href="https://www.bloomberg.com/graphics/2024-bangladesh-land-minister-uk-property/?srnd=undefined"
-                            target="_blank" rel="noopener noreferrer">
-                            <img class="work__img"
-                                src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iM.LXV1CyFUQ/v0/-1x-1.jpg"
-                                alt="Illustration of Bangladesh minister" loading="lazy">
-                            <div class="work__body">
-                                <div class="work__meta">
-                                    <span class="work__pub">Bloomberg</span>
-                                    <span class="work__dot">·</span>
-                                    <time class="work__date" datetime="2024-02-18">Feb 2024</time>
-                                    <span class="work__tags">
-                                        <button class="tag" data-filter="investigation"
-                                            aria-label="Investigative reporting"
-                                            title="Investigative reporting">⊕</button>
-
-                                        <button class="tag" data-filter="data" aria-label="Data work"
-                                            title="Data work">⌁</button>
-                                    </span>
-                                </div>
-                                <h3 class="work__title">Bangladeshi Politician's UK Property Empire Under Scrutiny</h3>
-                            </div>
-                        </a>
-                    </article>
-
-                    <!-- 9. Netra News -->
-
-                    <article class="work" data-tags="award data interactive">
-                        <a href="https://interactive.netra.news/extrajudicial-killings-bangladesh/" target="_blank"
-                            rel="noopener noreferrer">
-                            <img class="work__img"
-                                src="https://interactive.netra.news/extrajudicial-killings-bangladesh/assets/img/extrajudicial-killings-bangladesh-cover.webp"
-                                alt="Screenshot of a chart made for the story" loading="lazy">
-                            <div class="work__body">
-                                <div class="work__meta">
-                                    <span class="work__pub">Netra News</span>
-                                    <span class="work__dot">·</span>
-                                    <time class="work__date" datetime="2023">Nov 2023</time>
-
-                                    <span class="work__tags">
-                                        <button class="tag" data-filter="award" aria-label="Award-winning"
-                                            title="Award-winning">★</button>
-                                        <button class="tag" data-filter="data" aria-label="Data work"
-                                            title="Data work">⌁</button>
-                                        <button class="tag" data-filter="interactive" aria-label="Interactive"
-                                            title="Interactive">↗</button>
-                                    </span>
-                                </div>
-
-                                <h3 class="work__title">BODY COUNT: Extrajudicial Executions in Bangladesh</h3>
-                            </div>
-                        </a>
-                    </article>
-
-                    <!-- 10. Bloomberg News -->
-
-                    <article class="work" data-tags="data reporting">
-                        <a href="https://www.bloomberg.com/news/articles/2023-09-11/pandemic-population-boom-in-rural-hotspots-sparks-resentment"
-                            target="_blank" rel="noopener noreferrer">
-                            <img class="work__img" src="./assets/images/bloomberg-story-1.webp"
-                                alt="Map showing U.S. county-level population change" loading="lazy">
-                            <div class="work__body">
-                                <div class="work__meta">
-                                    <span class="work__pub">Bloomberg</span>
-                                    <span class="work__dot">·</span>
-                                    <time class="work__date" datetime="2023-09">Sep 2023</time>
-
-                                    <button class="tag" data-filter="reporting" aria-label="Reporting"
-                                        title="Reporting">•</button>
-
-
-                                    <button class="tag" data-filter="data" aria-label="Data work"
-                                        title="Data work">⌁</button>
-                                    </span>
-                                </div>
-
-                                <h3 class="work__title">Pandemic Population Boom in Rural Hotspots Sparks Resentment
-                                </h3>
-                            </div>
-                        </a>
-                    </article>
-
-                    <!-- 11. Grist/Public Health Watch -->
-
-                    <article class="work" data-tags="data award osint">
-                        <a href="https://grist.org/health/in-a-small-french-town-where-houston-based-lyondellbasell-is-a-fixture-residents-complain-of-unending-pollution/"
-                            target="_blank" rel="noopener noreferrer">
-                            <img class="work__img"
-                                src="https://grist.org/wp-content/uploads/2023/08/LyondellBasellHouston.jpg"
-                                alt="LyondellBasell’s HQ building" loading="lazy">
-                            <div class="work__body">
-                                <div class="work__meta">
-                                    <span class="work__pub">Public Health Watch / Grist</span>
-                                    <span class="work__dot">·</span>
-                                    <time class="work__date" datetime="2023-09-05">Sep 2023</time>
-
-                                    <span class="work__tags">
-                                        <button class="tag" data-filter="award" aria-label="Award-winning"
-                                            title="Award-winning">★</button>
-
-                                        <button class="tag" data-filter="osint" aria-label="OSINT / verification"
-                                            title="OSINT / verification">⌖</button>
-
-
-                                        <button class="tag" data-filter="data" aria-label="Data work"
-                                            title="Data work">⌁</button>
-                                    </span>
-                                </div>
-
-                                <h3 class="work__title">In a small French town where Houston-based LyondellBasell is a
-                                    fixture, residents complain of unending pollution
-                                </h3>
-                            </div>
-                        </a>
-                    </article>
-
-
-
-
-                    <!-- 12. BenarNews / Radio Free Asia -->
-                    <article class="work" data-tags="reporting analysis">
-                        <a href="https://www.rfa.org/english/news/myanmar/bangladeshborderrohingya-02022023153254.html"
-                            target="_blank" rel="noopener noreferrer">
-                            <img class="work__img"
-                                src="https://www.rfa.org/resizer/v2/ISREPY3XIHNGUP2QR4F7M6VOPQ.jpg?auth=2f18b06ef9ec559e2488aed5c78d6172bd1ac4ea59a3aee48e968499b4f69c48&width=1440&height=811"
-                                alt="This screengrab from a video shows smoke in the distance from a fire at a Rohingya settlement in a no-man’s land between Bangladesh and Myanma"
-                                loading="lazy">
-                            <div class="work__body">
-                                <div class="work__meta">
-                                    <span class="work__pub">BenarNews / Radio Free Asia</span>
-                                    <span class="work__dot">·</span>
-                                    <time class="work__date" datetime="2023-02-02">Feb 2023</time>
-                                    <span class="work__tags">
-
-                                        <button class="tag" data-filter="reporting" aria-label="Reporting"
-                                            title="Reporting">•</button>
-
-                                        <button class="tag" data-filter="analysis" aria-label="Analysis"
-                                            title="Analysis">≡</button>
-
-                                    </span>
-                                </div>
-                                <h3 class="work__title">In Bangladesh’s border with Myanmar, 2 Rohingya militant groups
-                                    fight for dominance</h3>
-                            </div>
-                        </a>
-                    </article>
-
-
-
-                    <!-- 13. Netra News -->
-                    <article class="work" data-tags="editing osint award">
-                        <a href="https://netra.news/2022/secret-prisoners-of-dhaka/" target="_blank"
-                            rel="noopener noreferrer">
-                            <img class="work__img"
-                                src="https://netra.news/content/images/size/w2000/2022/08/header-en.png"
-                                alt="Illustration showing location of the secret detention centre" loading="lazy">
-                            <div class="work__body">
-                                <div class="work__meta">
-                                    <span class="work__pub">Netra News</span>
-                                    <span class="work__dot">·</span>
-                                    <time class="work__date" datetime="2022-08-14">Aug 2022</time>
-                                    <span class="work__tags">
-                                        <button class="tag" data-filter="editing" data-label="Editing"
-                                            aria-label="Editing">✎</button>
-                                        <button class="tag" data-filter="award" aria-label="Award-winning"
-                                            title="Award-winning">★</button>
-                                        <button class="tag" data-filter="osint" aria-label="OSINT / verification"
-                                            title="OSINT / verification">⌖</button>
-                                    </span>
-                                </div>
-                                <h3 class="work__title">Secret prisoners of Dhaka</h3>
-                            </div>
-                        </a>
-                    </article>
-
-
-
-                    <!-- 14. Devex -->
-                    <article class="work" data-tags="analysis reporting">
-                        <a href="https://www.devex.com/news/5-years-on-rohingyas-in-bangladesh-face-hostility-and-dwindling-aid-103860"
-                            target="_blank" rel="noopener noreferrer">
-                            <img class="work__img"
-                                src="https://res.cloudinary.com/devex/image/fetch/c_scale,f_auto,q_auto,w_834/https://lh4.googleusercontent.com/tgCvfCdjPO2VThFZFNsYdq24688uYEjU_Sb2E0Ww0UGlOeZ6to3-gqdYDO5w4eX4VcJEF_UxMhaZbe91r8ewqquIZz97JwyQ6htzYstEgjL0BxPOFQglpBerWKyD-wlEVcOYDjbn3ExxcTcDGzr89z8"
-                                alt="A mother and her child make their way to the International Organization for Migration center to collect relief supplies after a fire broke out in Cox's Bazar, Bangladesh"
-                                loading="lazy">
-                            <div class="work__body">
-                                <div class="work__meta">
-                                    <span class="work__pub">Devex</span>
-                                    <span class="work__dot">·</span>
-                                    <time class="work__date" datetime="2022-08-25">Aug 2022</time>
-                                    <span class="work__tags">
-                                        <button class="tag" data-filter="reporting" aria-label="Reporting"
-                                            title="Reporting">•</button>
-
-                                        <button class="tag" data-filter="analysis" aria-label="Analysis"
-                                            title="Analysis">≡</button>
-                                    </span>
-                                </div>
-                                <h3 class="work__title">5 years on, Rohingyas in Bangladesh face hostility and dwindling
-                                    aid</h3>
-                            </div>
-                        </a>
-                    </article>
-
-
-                    <!-- 15. The Washington Post -->
-                    <article class="work" data-tags="osint assistance">
-                        <a href="https://www.washingtonpost.com/politics/2022/08/15/election-deniers-march-toward-power-key-2024-battlegrounds/"
-                            target="_blank" rel="noopener noreferrer">
-                            <img class="work__img"
-                                src="https://www.washingtonpost.com/wp-apps/imrs.php?src=https%3A%2F%2Fd1i4t8bqe7zgj6.cloudfront.net%2F08-12-2022%2Ft_094c146804044e7191183772732d2670_name_20220701_TRUMP_ELECTION_V10.jpg&w=960"
-                                alt="Republicans running for state and federal office have repeatedly echoed former president Donald Trump's false claims about the 2020 election."
-                                loading="lazy">
-                            <div class="work__body">
-                                <div class="work__meta">
-                                    <span class="work__pub">The Washington Post</span>
-                                    <span class="work__dot">·</span>
-                                    <time class="work__date" datetime="2022-08-15">Aug 2022</time>
-                                    <span class="work__tags">
-                                        <button class="tag" data-filter="osint" aria-label="OSINT / verification"
-                                            title="OSINT / verification">⌖</button>
-                                        <button class="tag" data-filter="assistance" aria-label="Reporting assistance"
-                                            title="Reporting assistance">◌</button>
-
-
-                                    </span>
-                                </div>
-                                <h3 class="work__title">Election deniers march toward power in key 2024 battlegrounds
-                                </h3>
-                            </div>
-                        </a>
-                    </article>
-
-
-                    <!-- 16. San Francisco Chronicle -->
-                    <article class="work" data-tags="investigation osint">
-                        <a href="https://www.sfchronicle.com/bayarea/article/Facebook-GearLaunch-17024417.php"
-                            target="_blank" rel="noopener noreferrer">
-                            <img class="work__img"
-                                src="https://s.hdnux.com/photos/01/24/63/12/22229665/16/ratio3x2_960.webp"
-                                alt="An illustration of a storefront" loading="lazy">
-                            <div class="work__body">
-                                <div class="work__meta">
-                                    <span class="work__pub">San Francisco Chronicle</span>
-                                    <span class="work__dot">·</span>
-                                    <time class="work__date" datetime="2022-03-26">Mar 2022</time>
-                                    <span class="work__tags">
-                                        <button class="tag" data-filter="osint" aria-label="OSINT / verification"
-                                            title="OSINT / verification">⌖</button>
-                                        <button class="tag" data-filter="investigation"
-                                            aria-label="Investigative reporting"
-                                            title="Investigative reporting">⊕</button>
-
-                                    </span>
-                                </div>
-                                <h3 class="work__title">Internet entrepreneurs far from the U.S. are inflaming political
-                                    division on Facebook to sell T-shirts and coffee mugs</h3>
-                            </div>
-                        </a>
-                    </article>
-
-
-                    <!-- 17. Foreign Policy -->
-                    <article class="work" data-tags="analysis opinion">
-                        <a href="https://foreignpolicy.com/2022/01/04/bangladesh-police-brutality-crossfires-gunfights-killings-rab-corruption/"
-                            target="_blank" rel="noopener noreferrer">
-                            <img class="work__img"
-                                src="https://foreignpolicy.com/wp-content/uploads/2022/01/bangladesh-GettyImages-158901700.jpg?quality=90"
-                                alt="Bangladeshi Rapid Action Battalion personnel look on from an armored vehicle during a protest in Dhaka"
-                                loading="lazy">
-                            <div class="work__body">
-                                <div class="work__meta">
-                                    <span class="work__pub">Foreign Policy</span>
-                                    <span class="work__dot">·</span>
-                                    <time class="work__date" datetime="2022-01">Jan 2022</time>
-                                    <span class="work__tags">
-                                        <button class="tag" data-filter="analysis" aria-label="Analysis"
-                                            title="Analysis">≡</button>
-                                        <button class="tag" data-filter="opinion" aria-label="Opinion / commentary"
-                                            title="Opinion / commentary">∼</button>
-
-                                    </span>
-                                </div>
-                                <h3 class="work__title">The U.S. Has a Police Brutality Problem. So Does Bangladesh.
-                                </h3>
-                            </div>
-                        </a>
-                    </article>
-
-
-                    <!-- 18. Netra News -->
-                    <article class="work" data-tags="investigation osint">
-                        <a href="https://netra.news/2021/power-corruption-all-the-state-ministers-men/" target="_blank"
-                            rel="noopener noreferrer">
-                            <img class="work__img"
-                                src="https://netra.news/content/images/size/w2000/wordpress/2021/08/netra-grfx_43362186-3-1.png"
-                                alt="Illustration featuring Nasrul Hamid Bipu, the state minister at the Ministry of Power, Energy and Mineral Resources."
-                                loading="lazy">
-                            <div class="work__body">
-                                <div class="work__meta">
-                                    <span class="work__pub">Netra News</span>
-                                    <span class="work__dot">·</span>
-                                    <time class="work__date" datetime="2021-08-13">Aug 2021</time>
-                                    <span class="work__tags">
-                                        <button class="tag" data-filter="investigation"
-                                            aria-label="Investigative reporting"
-                                            title="Investigative reporting">⊕</button>
-                                        <button class="tag" data-filter="osint" aria-label="OSINT / verification"
-                                            title="OSINT / verification">⌖</button>
-
-                                    </span>
-                                </div>
-                                <h3 class="work__title">Power corruption: All the state minister’s men</h3>
-                            </div>
-                        </a>
-                    </article>
-
-                    <!-- 19. Columbia Journalism Review -->
-                    <article class="work" data-tags="assistance">
-                        <a href="https://www.cjr.org/widescreen/journalism-and-covid-map-me.php/" target="_blank"
-                            rel="noopener noreferrer">
-                            <img class="work__img"
-                                src="https://www.cjr.org/wp-content/uploads/2020/09/Screen-Shot-2020-09-10-at-8.53.44-AM-e1599751671435.jpg"
-                                alt="World Map" loading="lazy">
-                            <div class="work__body">
-                                <div class="work__meta">
-                                    <span class="work__pub">Columbia Journalism Review</span>
-                                    <span class="work__dot">·</span>
-                                    <time class="work__date" datetime="2020-09-10">Sep 2020</time>
-                                    <span class="work__tags">
-                                        <button class="tag" data-filter="assistance" aria-label="Reporting assistance"
-                                            title="Reporting assistance">◌</button>
-
-                                    </span>
-                                </div>
-                                <h3 class="work__title">Infection and Repression</h3>
-                            </div>
-                        </a>
-                    </article>
-
-                    <!-- 20. Telegraph -->
-                    <article class="work" data-tags="reporting">
-                        <a href="https://www.telegraph.co.uk/global-health/climate-and-people/coronavirus-exposes-deep-divide-bangladeshi-society/"
-                            target="_blank" rel="noopener noreferrer">
-                            <img class="work__img"
-                                src="https://www.telegraph.co.uk/content/dam/global-health/2020/06/10/1350462053324994719_IMG_1445-3_trans_NvBQzQNjv4BqvEGOs1QWCDBlYMwZQkSShJ4tl0g9dtRDeYbLMRD-ezU.JPG?imwidth=1920"
-                                alt="Bangladesh people" loading="lazy">
-                            <div class="work__body">
-                                <div class="work__meta">
-                                    <span class="work__pub">The Telegraph</span>
-                                    <span class="work__dot">·</span>
-                                    <time class="work__date" datetime="2020-11-06">Jun 2020</time>
-                                    <span class="work__tags">
-                                        <button class="tag" data-filter="reporting" aria-label="Reporting"
-                                            title="Reporting">•</button>
-
-                                    </span>
-                                </div>
-                                <h3 class="work__title">Coronavirus exposes the deep divide in Bangladeshi society</h3>
-                            </div>
-                        </a>
-                    </article>
-
-                    <!-- 21. The Economist -->
-                    <article class="work" data-tags="analysis reporting">
-                        <a href="https://www.economist.com/asia/2020/06/06/covid-19-infections-are-rising-fast-in-bangladesh-india-and-pakistan"
-                            target="_blank" rel="noopener noreferrer">
-                            <img class="work__img"
-                                src="https://www.economist.com/cdn-cgi/image/width=1424,quality=80,format=auto/sites/default/files/images/print-edition/20200606_ASP007_0.jpg"
-                                alt="India hospital beds" loading="lazy">
-                            <div class="work__body">
-                                <div class="work__meta">
-                                    <span class="work__pub">The Economist</span>
-                                    <span class="work__dot">·</span>
-                                    <time class="work__date" datetime="2020-06-06">Jun 2020</time>
-                                    <span class="work__tags">
-                                        <button class="tag" data-filter="reporting" aria-label="Reporting"
-                                            title="Reporting">•</button>
-                                        <button class="tag" data-filter="analysis" aria-label="Analysis"
-                                            title="Analysis">≡</button>
-
-                                    </span>
-                                </div>
-                                <h3 class="work__title">Covid-19 infections are rising fast in Bangladesh, India and
-                                    Pakistan</h3>
-                            </div>
-                        </a>
-                    </article>
-
-                    <!-- 22. Haaretz (Opinion) -->
-                    <article class="work" data-tags="opinion analysis">
-                        <a href="https://www.haaretz.com/israel-news/2020-05-14/ty-article-opinion/.premium/for-bangladesh-not-recognizing-israel-is-a-moral-choice-above-all/0000017f-e8a4-df2c-a1ff-fef577cd0000"
-                            target="_blank" rel="noopener noreferrer">
-                            <img class="work__img"
-                                src="https://img.haarets.co.il/bs/0000017f-e8a4-df2c-a1ff-fef56bac0000/61/b9/fddb2bd688123f4e10059e78886e/1430293488.jpg"
-                                alt="Woman passes by with a giant Yasser Arafat portrait painted on wall"
-                                loading="lazy">
-                            <div class="work__body">
-                                <div class="work__meta">
-                                    <span class="work__pub">Haaretz</span>
-                                    <span class="work__dot">·</span>
-                                    <time class="work__date" datetime="2020-05">May 2020</time>
-                                    <span class="work__tags">
-                                        <button class="tag" data-filter="analysis" aria-label="Analysis"
-                                            title="Analysis">≡</button>
-                                        <button class="tag" data-filter="opinion" aria-label="Opinion / commentary"
-                                            title="Opinion / commentary">∼</button>
-
-                                    </span>
-                                </div>
-                                <h3 class="work__title">For Bangladesh, Recognizing Israel Is an Immoral Choice</h3>
-                                <!-- <p class="work__desc">An opinion piece arguing Bangladesh’s Israel policy is rooted in
-                                    moral and historical considerations.</p> -->
-                            </div>
-                        </a>
-                    </article>
-
-
-
-                </div>
-
-                <button class="work-more" id="workMore" type="button">
-                    View more
-                </button>
-            </section>
-
-            <section class="section section--tint" aria-labelledby="clients">
-                <div class="container">
-                    <div class="logo-groups">
-                        <div class="logo-group">
-                            <h3 class="logo-group__title">Works appeared in</h3>
-                            <div class="logos" aria-label="Works appeared in">
-
-                                <svg class="logo logo--light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 403 62"
-                                    aria-labelledby="masthead">
-                                    <path fill="currentColor" fill-rule="nonzero"
-                                        d="M23.097 19.081v21.831c2.945-1.593 5.007-4.366 6.008-7.494l.236.12c-.649 7.788-5.95 15.575-14.196 15.575C6.84 49.113.714 42.918.714 33.005c0-7.433 4.83-12.095 11.015-16.285a10.782 10.782 0 00-2.769-.354c-4.242 0-6.715 2.891-6.715 5.842H1.89c-.059-.413-.059-.826-.059-1.239 0-5.251 2.769-11.624 9.484-11.624 4.3 0 7.599 3.953 12.605 3.953 2.003 0 4.477-.944 5.478-3.127h.177c-.059 3.836-1.236 7.79-6.479 8.91zm3.18 22.362c-2.945 3.127-6.125 5.782-10.248 5.782-7.657 0-13.547-6.018-13.547-14.75 0-5.133 2.12-7.906 4.476-11.152h-.236c-1.473 1.475-5.36 5.192-5.36 11.505 0 9.677 6.067 15.636 14.019 15.636 5.537 0 9.306-3.834 11.015-6.961l-.118-.06zm2.356-28.616c-1.001 1.888-3.121 4.307-7.421 4.307-4.3 0-8.246-2.95-11.722-2.95-3.181 0-5.36 2.124-6.185 3.717l.06.118c1.118-1.12 2.826-2.242 5.595-2.242 4.594 0 7.54 2.833 12.193 2.833 4.948 0 7.186-3.246 7.598-5.723l-.118-.06zm-16.375 4.071c-3.004 3.128-5.773 6.55-5.773 13.217 0 3.657 1.237 7.434 4.006 9.794l1.708-.886V23.21l-1.59.826-.295-.59 8.247-4.485c-2.238-.47-4.241-1.474-6.303-2.064zm10.19 2.301c-.412.058-.824.058-1.295.058-.825 0-1.59-.058-2.356-.236V36.25l-7.717 4.192c1.59 1.18 3.534 1.887 6.008 1.887 2.003 0 3.77-.413 5.36-1.121V19.199zm-8.481 3.01l-1.12.648v15.814l1.12-.59V22.208zm33.869 2.241v20.415c0 5.664-5.007 9.5-10.602 10.62l-.118-.236c2.769-1.357 4.36-4.13 4.36-7.08V27.046l-3.181-2.89-1.237 1.356v16.462l1.767 1.593v.119l-4.771 5.192-5.478-5.015v-.237l2.12-2.242V15.305L36.94 8.64l.118.058V24.51l5.125-5.546 5.36 4.839 1-1.063.472.414-1.179 1.296zM31.343 43.744v-.118l1.237-1.24V14.303L31.343 15.6v26.196l-1.885 1.889v.117l4.594 4.13.824-.944-3.533-3.245zM43.36 26.102l-3.828-3.304-.825.885 3.417 3.07v21.24c0 1.416-.295 2.89-.825 3.717l.06.059c1.472-1.063 2.002-2.656 2.002-4.72V26.102zM57.202 36.31v3.008l5.713 4.485 3.299-3.54.472.471-7.657 8.201-7.776-6.254-1.177 1.24-.472-.472 1.355-1.416V27.105l11.133-8.142 5.831 9.44-10.721 7.907zm-4.36 5.193V26.515l-1.236.886v14.692l7.304 5.959.943-1.003-7.01-5.546zm4.478-18.174l-.118.06v12.095l5.242-3.835-5.124-8.32zm1.531-1.18l-1.06.767 5.184 8.32 1.06-.768-5.184-8.319zM106.318 48.877l-8.188-7.08-6.243 7.08-8.483-7.317V29.996h-1.649c-1.473 0-2.238.945-2.592 2.065h-.177a9.39 9.39 0 01-.294-2.242c0-1.534.413-5.546 4.712-5.546V14.125c0-1.947-2.297-2.714-2.297-5.31 0-3.363 3.18-6.667 9.013-8.734l.236.177c-2.12 1.24-3.24 2.42-3.24 4.957 0 3.895 3.77 2.891 3.77 9.027v2.36l6.892-7.257 7.245 7.14 6.833-7.14 6.596 6.49v21.831l-12.134 11.21zm-21.028-8.26V28.168h-3.3c-1.708 0-2.473 1.12-2.591 2.124l.058.06c.59-.65 1.179-1.003 2.533-1.003h2.061v11.918l7.776 6.727.883-1.063-7.42-6.314zm0-27.083c0-2.418-2.12-3.245-2.12-4.778 0-2.125.824-3.894 2.12-5.546l-.118-.059c-1.767 1.358-3.416 3.541-3.416 5.664 0 2.125 2.297 3.127 2.297 5.016v10.443h1.237v-10.74zm12.428 5.901l-4.476-4.366-2.356 2.419v20.886l5.36 4.544 1.472-1.653v-21.83zM99.603 40.5v-21.89l-5.007-4.956-.942.944 4.712 4.543v22.008l7.952 6.903.943-.886-7.658-6.666zm11.427-21.83l-3.71-3.542-2.12 2.184v21.005l5.772 5.073.058-.058V18.668zm1.885-.827l-4.3-4.189-.883.944 3.946 3.776v24.663l1.237-1.18V17.842zM137.944 48.877l-5.596-5.074-5.007 5.074-6.126-5.428-.825.884-.471-.471 1.06-1.121V26.929l11.074-8.025 6.362 4.957 1.12-1.18.471.472-1.296 1.357v16.344l3.122 2.89 1.001-1.062.471.413-5.36 5.782zm-15.08-6.549v-15.93l-1.236.884v15.636l5.655 5.075.942-.944-5.36-4.72zm9.484-15.517l-4.83-3.777-.177.119v17.169l4.006 3.48 1-1.002V26.81zm1.885 16.048V25.926l-5.007-4.072-1.177.826 4.947 3.894V43.45l4.948 4.484.884-.945-4.595-4.129zm20.851-13.217h6.067V42.27l-9.365 6.608c-1.237-1.416-3.005-2.419-5.184-2.419-1.767 0-3.181.59-5.065 2.183l-.295-.118 8.012-11.682h-4.949V25.866l9.838-6.844c1.177.944 2.06 1.474 3.593 1.474 1.178 0 2.886-.236 4.182-1.297l.236.118-7.07 10.325zm-6.596 15.105c-1.709 0-3.063.59-4.242 1.416v.118c.943-.413 1.885-.53 2.769-.53 1.354 0 3.475.649 4.889 2.301l1.355-1.003c-1.12-1.299-2.474-2.302-4.771-2.302zm6.301-9.913h-3.298l-6.892 9.973.059.118c1.708-1.24 3.357-2.065 5.36-2.065 1.767 0 3.593.826 4.712 2.242l.06-.059V34.834zm-8.6 0v-9.498l-1.236.885v9.912h4.77l.943-1.298h-4.476zm12.312-11.564c-1.237.886-1.944 1.357-4.006 1.357-1.178 0-2.592-.53-3.71-1.711l-.118.06v8.613h2.238l5.655-8.26-.06-.06zm-2.827-.531c-1.06 0-2.415-.53-3.3-1.71l-1.472 1.002c1.12 1.357 2.18 1.947 3.828 1.947 1.06 0 2.592-.296 4.183-1.653l.058-.176c-1 .414-2.237.59-3.297.59zm1 10.15h-3.828l-.884 1.238h3.476v11.446l1.237-.885v-11.8zm24.799-8.439v20.415c0 5.664-5.007 9.5-10.603 10.62l-.117-.236c2.769-1.357 4.359-4.13 4.359-7.08V27.046l-3.18-2.89-1.238 1.356v16.462l1.767 1.593v.119l-4.77 5.192-5.478-5.015v-.237l2.12-2.242V15.305l6.244-6.666.117.058V24.51l5.125-5.546 5.36 4.839 1.001-1.063.472.414-1.18 1.296zM164.98 43.744v-.118l1.237-1.24V14.303L164.98 15.6v26.196l-1.885 1.889v.118l4.594 4.13.824-.945-3.533-3.244zm12.016-17.642l-3.829-3.304-.824.885 3.416 3.07v21.24c0 1.416-.294 2.89-.824 3.717l.06.059c1.472-1.063 2.002-2.656 2.002-4.72V26.102zm15.198 22.775l-5.066-4.661-1.179 1.239-.472-.473 1.356-1.474V26.457l-2.474-2.36-.943 1.062-.471-.472 5.3-5.783 4.713 4.249 1.178-1.298.53.413-1.472 1.593v17.23l2.828 2.654 1.296-1.358.47.473-5.594 6.017zm-3.476-5.782V25.512l-3.063-2.832-.824.945 2.65 2.537v17.524l4.713 4.247.883-.944-4.359-3.894zm1.767-24.662l-4.83-4.425 4.418-4.72 4.83 4.424-4.418 4.72zm-3.004-5.37l-.883.885 3.828 3.599.883-1.003-3.828-3.481zM217.1 48.877l-5.125-4.661V26.988l-3.122-2.832-1.65 1.77v15.93l1.827 1.71v.237l-4.83 5.074-5.478-5.015v-.177l2.12-2.242V26.574l-2.768-2.537-1.12 1.239-.47-.472 5.36-5.841 5.36 4.78v1.18l5.596-5.96 5.241 4.72 1.179-1.239.53.472-1.414 1.475v16.874l2.65 2.478 1.297-1.416.47.472-5.653 6.078zm-15.55-5.133v-.118c0 .118 1.178-1.18 1.178-1.18V25.688l-3.358-3.068-.825.885 2.945 2.714v15.576l-1.826 1.889v.118l4.536 4.13.942-1.003-3.592-3.185zm12.31-.472V25.985l-3.652-3.305-.942 1.003 3.357 3.009v17.17l4.417 4.13.943-1.004-4.123-3.716zm19.85 16.225c-1.942-2.124-3.298-3.009-5.124-3.009-1.943 0-4.182.768-6.479 2.006l-.177-.176 8.129-9.44-5.773-4.602-1.119 1.18-.47-.413 1.294-1.416V26.93l11.192-8.025 6.244 4.957 1.06-1.18.472.472-1.237 1.357v20.18c0 3.067 1.707 2.95 1.707 5.25 0 2.654-3.829 5.132-9.719 9.557zm-7.833-16.343V26.457l-1.237.885v16.344l5.83 4.72.885-1.063-5.478-4.19zm4.123 11.8c-1.944 0-3.712.59-5.36 1.711v.119c1.06-.413 2.238-.944 4.24-.944 1.827 0 3.358 1.002 4.89 2.773l1.178-.944c-1.473-1.71-3.24-2.714-4.948-2.714zm7.186-5.664c-1.472-.944-1.826-1.947-1.826-4.484v-1.063l-9.778 11.328.059.059c1.884-1.12 3.593-1.946 6.362-1.946 2.356 0 3.946.943 5.772 2.478 1.12-.944 1.885-1.888 1.885-3.363 0-1.18-1.002-2.065-2.474-3.009zm-1.826-22.48l-4.89-3.834-.118.118v18.113l3.771 2.95 1.237-1.416v-15.93zm3.593 21.654c-1.532-1.18-1.709-2.183-1.709-4.72V25.808l-4.948-4.012-1.118.767 4.83 3.834V44.57c0 2.537.118 3.246 1.708 4.307 1.414.944 2.532 1.947 2.532 3.304 0 .353-.058.944-.058.944l.058.059c.295-.296.649-.767.649-1.535 0-1.297-.648-2.182-1.944-3.185zm14.137.413l-5.42-4.248-1.118 1.239-.471-.473 1.295-1.415V23.33h-3.417l-.118-.119 2.062-3.069h1.472V16.19l6.244-6.667.118.119v10.501h4.712l.119.119-2.062 3.068h-2.77v17.878l3.241 2.479 1.237-1.358.471.472-5.595 6.076zm-3.829-33.69l-1.237 1.357v3.6h1.237v-4.957zm0 28.203V23.33h-1.237v20.768l5.007 3.895.883-.944-4.653-3.659zm28.685-18.35v16.52l-9.954 7.376-7.482-5.664-.883 1.003-.471-.472 1.06-1.18V26.457l10.427-7.494 6.95 5.429 1.118-1.18.472.471-1.237 1.358zm-15.844 16.993V25.926l-1.237.885v15.871l7.068 5.428 1.12-.825-6.95-5.252zm9.483-15.045l-4.948-3.895-.058.06v17.581l5.006 3.776V26.988zm1.886-1.062l-5.479-4.25-1.118.827 5.36 4.13v18.35l1.237-.943V25.926zm26.977 22.95l-5.125-4.66V26.988l-3.122-2.832-1.65 1.77v15.93l1.827 1.71v.237l-4.83 5.074-5.478-5.015v-.177l2.12-2.242V26.574l-2.768-2.537-1.12 1.239-.47-.472 5.36-5.841 5.36 4.78v1.18l5.596-5.96 5.242 4.72 1.178-1.239.53.472-1.414 1.475v16.874l2.65 2.478 1.297-1.416.47.472-5.653 6.078zm-15.551-5.132v-.118c0 .118 1.178-1.18 1.178-1.18V25.688l-3.357-3.068-.824.885 2.945 2.714v15.576l-1.826 1.889v.118l4.536 4.13.942-1.003-3.594-3.185zm12.31-.472V25.985l-3.65-3.305-.943 1.003 3.357 3.009v17.17l4.417 4.13.943-1.004-4.123-3.716zM336.837 48.877c-1.65-1.77-2.238-2.36-4.183-2.891V57.55l-.118.059-2.356-2.125-6.833 6.313-.118-.058V45.868c-2.062.472-4.241 1.534-6.362 3.657l-.118-.058c.413-4.543 2.65-7.906 6.479-9.204V28.757h-1.237c-1.708 0-2.65.885-3.475 2.478h-.176c-.177-.53-.296-1.357-.296-2.713 0-2.479 1.827-5.074 4.831-5.074h.353v-6.373l-2.415-2.183-1.178 1.18-.413-.413 5.95-6.313 5.536 5.074v5.37l1.296-1.417v-6.785h.648v6.195l7.833-8.438 6.656 6.078v25.666l-10.304 7.788zm-13.607-5.192c-2.414.471-4.122 1.947-5.241 3.894l.058.118c1.65-1.416 3.18-2.064 5.183-2.537v-1.475zm1.886-16.933h-3.24c-2.239 0-3.122 1.416-3.18 3.068l.058.059c.707-1.18 1.413-1.593 2.827-1.77h2.298v32.156l1.237-1.18V26.752zm0-10.621l-2.946-2.713-.942 1.002 2.65 2.36v6.667h1.238V16.13zm6.892 3.363l-1.296 1.357v34.163l1.296 1.18v-36.7zm7.716-1.357l-3.476-3.186-3.593 3.895v20.768c3.063.296 5.183 1.18 7.01 3.186l.059-.059V18.137zm-7.069 25.548v1.534c2.003.472 2.827 1.062 4.24 2.714l1.356-1.062c-1.414-1.77-2.828-2.831-5.596-3.186zm8.953-26.491l-4.005-3.718-.943 1.003 3.711 3.422v27.436l1.237-.944v-27.2zm26.094 7.847v16.52l-9.956 7.375-7.48-5.664-.884 1.003-.471-.472 1.06-1.18V26.457l10.427-7.494 6.95 5.429 1.118-1.18.472.471-1.236 1.358zm-15.845 16.992V25.926l-1.237.885v15.871l7.068 5.428 1.12-.825-6.95-5.252zm9.483-15.045l-4.947-3.895-.06.06v17.581l5.007 3.776V26.988zm1.886-1.062l-5.479-4.25-1.118.827 5.36 4.13v18.35l1.237-.943V25.926zm18.14 3.716h6.068V42.27l-9.365 6.608c-1.237-1.416-3.004-2.419-5.183-2.419-1.767 0-3.18.59-5.066 2.183l-.294-.118 8.01-11.682h-4.948V25.866l9.837-6.844c1.179.944 2.061 1.474 3.593 1.474 1.179 0 2.886-.236 4.182-1.297l.236.118-7.07 10.325zm-6.596 15.105c-1.708 0-3.063.59-4.24 1.416v.118c.942-.413 1.884-.53 2.768-.53 1.355 0 3.475.649 4.888 2.301l1.356-1.003c-1.119-1.299-2.474-2.302-4.772-2.302zm6.303-9.913h-3.298l-6.891 9.973.058.118c1.708-1.24 3.357-2.065 5.36-2.065 1.767 0 3.593.826 4.712 2.242l.059-.059V34.834zm-8.6 0v-9.498l-1.237.885v9.912h4.77l.943-1.298h-4.475zm12.311-11.564c-1.238.886-1.944 1.357-4.006 1.357-1.179 0-2.593-.53-3.711-1.711l-.118.06v8.613h2.237l5.655-8.26-.057-.06zm-2.828-.531c-1.06 0-2.414-.53-3.298-1.71l-1.473 1.002c1.12 1.357 2.18 1.947 3.83 1.947 1.06 0 2.591-.296 4.182-1.653l.058-.176c-1.001.414-2.238.59-3.299.59zm1.002 10.15h-3.828l-.884 1.238h3.475v11.446l1.237-.885v-11.8zm14.255 15.988l-5.42-4.248-1.119 1.239-.47-.473 1.294-1.415V23.33h-3.416l-.117-.119 2.06-3.069h1.473V16.19l6.244-6.667.118.119v10.501h4.712l.118.119-2.062 3.068h-2.768v17.878l3.24 2.479 1.237-1.358.47.472-5.594 6.076zm-3.83-33.69l-1.236 1.357v3.6h1.237v-4.957zm0 28.203V23.33h-1.236v20.768l5.006 3.895.884-.944-4.653-3.659z">
-                                    </path>
-                                </svg>
-
-                                <img class="logo logo--light" src="./assets/logos/economist.webp">
-                                <img class="logo" src="./assets/logos/foreign-policy.webp">
-                                <img class="logo" src="./assets/logos/bloomberg.webp">
-
-
-                                <svg class="logo" viewBox="0 0 305 103">
-                                    <path fill="currentColor"
-                                        d="M137 98.5C133 98.5 132 97.5 132 92.5V50.2C133.579 49.0591 135.454 48.3993 137.4 48.3C140.5 48.3 143.2 49.6 147.5 54.7C148.8 56.3 150 57 151.3 57C153.3 57 154.5 55.7 154.5 53.4V38H151.5C147.812 37.9397 144.155 38.6872 140.786 40.1901C137.418 41.6931 134.419 43.915 132 46.7V38H108V41.5H112C116 41.5 117 42.5 117 47.5V92.5C117 97.5 116 98.5 112 98.5H108V102H145V98.5H137ZM158.5 41.5H161.2C165.2 41.5 166.2 42.5 166.2 47.5V92.5C166.2 97.5 165.2 98.5 161.2 98.5H156.8V102H189.9V98.5H186.2C182.2 98.5 181.2 97.5 181.2 92.5V38H158.5V41.5ZM195.4 102H199.1V101C199.1 98.7 200.8 98.8 202.8 99.5C210.5 102.2 214.4 103 220.5 103C236.8 103 244.5 95.4 244.5 82.7C244.5 74.2 239.6 66.7 227.3 63.1L211.2 58.4C203.5 56.1 201.2 53 201.2 49.7C201.2 46.4 204.2 43.4 209.1 43.4C216.6 43.4 223.8 48 234.3 56.3C235.151 57.0952 236.241 57.5873 237.4 57.7C239.4 57.7 240.6 56.4 240.6 54.1V38H236.9V39C236.9 40.7 235.8 41.5 233.7 40.7C226.3 37.9 221.8 37 217.6 37C203.1 37 196 45.2 196 56.9C196 65.3 201.8 72.4 215.2 76.5L229.6 80.9C236.8 83.1 239.3 86 239.3 89.9C239.3 93.8 236 96.6 231.1 96.6C224.3 96.6 215.3 93.2 202.1 83C201.131 82.094 199.911 81.5015 198.6 81.3C196.6 81.3 195.4 82.6 195.4 84.9V102ZM257.8 83.9C257.8 96.3 265.1 103 278.7 103C285.1 103 294.8 101.2 302.3 98.7V87C302.3 84.7 301.1 83.4 299.1 83.4C297.9 83.4 296.8 84.1 295.6 85.9C288.4 96.7 282.8 99.6 278.2 99.6C274.2 99.6 272.8 97.8 272.8 92.7V49.5H304.7V38H272.8V14H269.1V14.7C269.1 29 260.3 40.4 247.8 42.8V49.5H257.8V83.9ZM166.2 30H181.2V12.5H166.2V30ZM84.9 64V88.3C79.1 91.9 72.6 94 67.1 94C39.7 94 15.1 64.1 15.1 33C15.1 18.4 24.7 6.9 41.4 6.9C51.9 6.9 72.3 13.6 87.4 29.8C87.8588 30.38 88.4339 30.8576 89.0884 31.2021C89.7428 31.5465 90.4621 31.7502 91.2 31.8C93.2 31.8 94.4 30.5 94.4 28.2V2H90.7V3C90.7 6.6 88.6 7.6 83.4 6C72.9626 2.50408 62.0057 0.813193 51 1C18.1 1 0 26.8 0 52C0 80.8 21.9 103 51 103C63.148 102.914 74.9783 99.11 84.9 92.1V102H99.4V50H46.4V64H84.9Z">
-                                    </path>
-                                </svg>
-                                <img class="logo" src="./assets/logos/The_Telegraph.svg">
-                                <img class="logo" src="./assets/logos/cjr.webp">
-                                <img class="logo" src="./assets/logos/sfchronicle.svg">
-                                <svg class="logo" viewBox="0 0 364.5 46.18" aria-hidden="true">
-                                    <path fill="currentColor"
-                                        d="M99.12 46.17v-1.42c2.72-.26 3.84-1.3 5.77-6.16L120.07 0h4.65l16.79 41.37c1.19 2.85 1.73 3.18 3.91 3.38v1.42h-23.88v-1.42h3a2.42 2.42 0 002.71-2.4 9.56 9.56 0 00-.73-3.12l-3.11-7.72h-12.56l-2.38 6.68a9.93 9.93 0 00-.86 3.63c0 1.7 1.13 2.93 5.18 2.93v1.42zm18-30.87l-5.31 13.62h10.55zm-48.19 8.57v14.78c0 4.48 1.69 6 5.28 6.1v1.42H50.25v-1.42c4.13 0 5.74-1.11 5.74-6.1V7.52c0-5-1.68-6.09-5.74-6.09V0h24v1.42c-3.59.13-5.28 1.61-5.28 6.09v13.24h13.51V7.52c0-4.47-1.68-6-5.27-6.09V0h24v1.42c-4.13 0-5.75 1.1-5.75 6.09v31.13c0 5 1.62 6.09 5.75 6.09v1.44H77.25v-1.42c3.59-.13 5.27-1.62 5.27-6.1V23.87zm147.93 22.3l-11-21h-1.33v13.48c0 5 1.63 6.1 5.81 6.1v1.42h-24.66v-1.42c4.18 0 5.81-1.11 5.81-6.1V7.52c0-5-1.63-6.09-5.81-6.09V0h24.57c11.26 0 16.84 4.28 16.84 12.64 0 6.3-3.27 9.47-8.41 11.67l8.84 16.41c1.45 2.65 2.36 3.89 5.27 4v1.42zM204.58 22.3c6.78 0 9.81-1.42 9.81-9.27 0-8.11-2.54-10.19-9.81-10.19zm27.84 23.87v-1.42c4.4 0 6.12-1.11 6.12-6.1V7.52c0-5-1.72-6.09-6.12-6.09V0h39.54v12.71h-1.4c-.71-7-3.83-9.87-11.1-9.87h-7.14v18.42c6.5 0 8-2.2 8.92-9.85h1.4v22.43h-1.39c-.89-7.65-2.42-9.85-8.92-9.72v15.83c0 2.46.51 3.37 3.19 3.37h5.62c4.21 0 9.57-.91 12.12-10.76h1.59l-2.31 13.61zm52.52 0v-1.42c4.49 0 6.24-1.11 6.24-6.1V2.86c-10.41 0-11.71 1.69-12.62 9.08h-1.44V0h42.13v11.92h-1.4c-.91-7.38-2.21-9.08-12.62-9.08v35.8c0 5 1.75 6.09 6.24 6.09v1.44zm36.26 0l25.88-43.33h-8.83c-6.83 0-10.12 1.76-12.35 10.12h-1.45l.88-13h38.44l-25.94 43.36h10.59c4.46 0 11.76-1.29 14.64-12.71h1.44l-1.83 15.56zm-179.82 0v-1.42c2.72-.26 3.85-1.3 5.77-6.16L162.34 0h4.64l16.79 41.37c1.19 2.85 1.73 3.18 3.91 3.38v1.42H163.8v-1.42h3a2.42 2.42 0 002.72-2.4 9.82 9.82 0 00-.73-3.12l-3.12-7.72h-12.55l-2.39 6.68a9.93 9.93 0 00-.86 3.63c0 1.7 1.13 2.93 5.18 2.93v1.42zm18-30.87l-5.31 13.62h10.56z">
-                                    </path>
-                                    <path fill="currentColor"
-                                        d="M43 22.23a20.87 20.87 0 01-1.68 8.35 21.67 21.67 0 01-11.46 11.47 21.64 21.64 0 01-16.72 0A21.67 21.67 0 011.68 30.58a21.62 21.62 0 010-16.71A21.7 21.7 0 0113.14 2.41a21.64 21.64 0 0116.72 0 21.7 21.7 0 0111.46 11.46A20.92 20.92 0 0143 22.23zm-10.33 7.35c-.06-.44-.1-.81-.13-1.09a3 3 0 01.05-.84 4 4 0 01.08-.84c.06-.28.11-.61.17-1a14.54 14.54 0 01-1.59-1.15q-.75-.58-1.59-1.17c-.56-.39-1.14-.81-1.72-1.26s-1.25-.93-2-1.43a1.47 1.47 0 01-.46-.71 2.06 2.06 0 01-.13-1.05 2.43 2.43 0 01.68-1.26 1.49 1.49 0 011.09-.51h5.54q-1.59-4.2-.08-6.63h-7.8a4.55 4.55 0 01-.13 1 4.42 4.42 0 000 1.39 2.63 2.63 0 00.12.8 4.55 4.55 0 01.21.88 7.84 7.84 0 01.13.92 3.43 3.43 0 01-.13 1.18 8.07 8.07 0 01-.63 1.51 1.53 1.53 0 01-.63.67c-.89-.67-1.87-1.4-2.94-2.18l-3.1-2.27c-1-.78-2-1.51-2.86-2.18s-1.62-1.23-2.18-1.68h-1.55c-.06 0-.09 0-.09.08a5.94 5.94 0 01.55 1.26 7.24 7.24 0 01.29 1.35c.06.44.1.91.13 1.38a8 8 0 010 1.39c-.06.56-.12 1-.17 1.42s-.11.76-.17 1.1a7.55 7.55 0 00-.13.92v1.26a9.18 9.18 0 00.13 1.6c.08.5.15 1 .21 1.51s.19 1 .25 1.51a7 7 0 010 1.59c-.06.79-.13 1.53-.21 2.23s-.18 1.33-.29 1.89-.23 1.13-.34 1.55a4.59 4.59 0 01-.34 1 .39.39 0 00.09.42h9.15a11.68 11.68 0 01-.92-5.88h-3.52a1.87 1.87 0 01-1.46-.68 3.47 3.47 0 01-.8-1.51 7.63 7.63 0 01-.3-1.89 9.59 9.59 0 01.13-2 3.78 3.78 0 01.76-2.1c.39-.45.61-.67.67-.67l19.14 14.17c0-.06 0-.09.08-.09s.06 0 0-.08a9.31 9.31 0 00-.38-1c-.14-.31-.26-.63-.38-1s-.21-.68-.29-1-.15-.6-.21-.83z">
-                                    </path>
-                                </svg>
-
-                                <img class="logo" src="./assets/logos/thehindu.svg">
-                                <img class="logo" src="./assets/logos/thedailystar.svg">
-                            </div>
-
-
-                        </div>
-
-                        <div class="logo-group">
-                            <h3 class="logo-group__title">Interviewed by</h3>
-                            <div class="logos" aria-label="Interviewed by">
-                                <img class="logo" src="./assets/logos/theguardian.webp">
-                                <img class="logo" src="./assets/logos/Aljazeera_eng.svg">
-                                <img class="logo" src="./assets/logos/bbc.webp">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section" aria-labelledby="experience">
-                <div class="section__head">
-                    <h2>Experience</h2>
-                    <button type="button" class="exp-toggle item-toggle" aria-expanded="false"
-                        aria-controls="experience-details">
-                        Expanded View
-                    </button>
-                </div>
-
-
-                <div class="timeline" id="experience-details">
-
-                    <!-- Netra News (Executive Editor) -->
-                    <article class="item">
-                        <div class="item__meta">
-                            <div class="item__kicker">Netra News</div>
-                            <div class="item__date">Jan 2026 — present</div>
-                            <div class="item__location">Dhaka</div>
-                        </div>
-
-                        <div class="item__body">
-                            <h3 class="item__title">Executive Editor</h3>
-
-                            <ul class="bullets">
-                                <li>Help lead news coverage and editorial strategy at an independent, public-interest
-                                    newsroom in Bangladesh.</li>
-                            </ul>
-
-
-
-                            <div class="item-more" id="exp-netra-2026" hidden>
-                                <ul class="bullets">
-                                    <li>Oversee daily reporting, investigations, and long-form projects, with a focus on
-                                        accountability, governance, and human rights.</li>
-                                    <li>Manage editors and reporters, set editorial priorities, and ensure rigorous
-                                        fact-checking and legal review.</li>
-                                    <li>Guide data-driven and investigative work, including cross-border collaborations
-                                        and multimedia storytelling.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Bloomberg News -->
-                    <article class="item">
-                        <div class="item__meta">
-                            <div class="item__kicker">Bloomberg News</div>
-                            <div class="item__date">Jan 2024 — Dec 2025</div>
-                            <div class="item__location">Washington DC</div>
-                        </div>
-
-                        <div class="item__body">
-                            <h3 class="item__title">US Economy Reporter</h3>
-
-                            <ul class="bullets">
-                                <li>Reported on the US economy with an emphasis on data-driven analysis of labour
-                                    markets, public finance, and demographic change.</li>
-                            </ul>
-
-
-                            <div class="item-more" id="exp-bloomberg" hidden>
-                                <ul class="bullets">
-                                    <li>Produced enterprise stories linking economic trends to political and policy
-                                        outcomes.</li>
-                                    <li>Used geospatial, statistical, and large administrative datasets to surface
-                                        regulatory and market dynamics.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- BenarNews / Radio Free Asia -->
-                    <article class="item">
-                        <div class="item__meta">
-                            <div class="item__kicker">BenarNews / Radio Free Asia</div>
-                            <div class="item__date">Aug 2023 — Jan 2024</div>
-                            <div class="item__location">Washington DC</div>
-                        </div>
-
-                        <div class="item__body">
-                            <h3 class="item__title">English-Language Editor</h3>
-
-                            <ul class="bullets">
-                                <li>Edited and shaped coverage of Bangladesh’s 2024 election, political violence, and
-                                    democratic backsliding.</li>
-                            </ul>
-
-
-
-                            <div class="item-more" id="exp-rfa" hidden>
-                                <ul class="bullets">
-                                    <li>Worked with correspondents across South and Southeast Asia to ensure accuracy,
-                                        clarity, and policy relevance.</li>
-                                    <li>Handled fast-moving breaking news alongside deeper analytical and enterprise
-                                        pieces.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Investigative Reporting Workshop -->
-                    <article class="item">
-                        <div class="item__meta">
-                            <div class="item__kicker">Investigative Reporting Workshop</div>
-                            <div class="item__date">2023 — 2024</div>
-                            <div class="item__location">Washington DC</div>
-                        </div>
-
-                        <div class="item__body">
-                            <h3 class="item__title">Reporting Fellow / Contributor</h3>
-
-                            <ul class="bullets">
-                                <li>Contributed to long-form investigative projects using data analysis, document
-                                    review, and field reporting.</li>
-                            </ul>
-
-
-
-                            <div class="item-more" id="exp-irw" hidden>
-                                <ul class="bullets">
-                                    <li>Collaborated with editors and researchers on accountability reporting with
-                                        national and international impact.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Investigative Reporting Program (UC Berkeley) -->
-                    <article class="item">
-                        <div class="item__meta">
-                            <div class="item__kicker">Investigative Reporting Program</div>
-                            <div class="item__date">2022 — 2023</div>
-                            <div class="item__location">Berkeley</div>
-                        </div>
-
-                        <div class="item__body">
-                            <h3 class="item__title">Reporting Fellow / Investigative Journalist</h3>
-
-                            <ul class="bullets">
-                                <li>Reported on investigative and data-driven projects under UC Berkeley’s Investigative
-                                    Reporting Program.</li>
-                            </ul>
-
-
-
-                            <div class="item-more" id="exp-irp" hidden>
-                                <ul class="bullets">
-                                    <li>Worked on accountability reporting using public records, large datasets, and
-                                        document-heavy investigations.</li>
-                                    <li>Collaborated with editors, developers, and reporters on long-form investigations
-                                        with national and international relevance.</li>
-                                    <li>Applied verification, OSINT, and data analysis methods to stories on governance,
-                                        public policy, and human rights.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Netra News (Deputy Editor / Reporter) -->
-                    <article class="item">
-                        <div class="item__meta">
-                            <div class="item__kicker">Netra News</div>
-                            <div class="item__location">Dhaka & Berkeley</div>
-                            <div class="item__date">2019 — 2021; 2022 — 2023</div>
-                        </div>
-
-                        <div class="item__body">
-                            <h3 class="item__title">Investigative Reporter & Deputy Editor</h3>
-
-                            <ul class="bullets">
-                                <li>Investigated corruption, governance failures, and human rights abuses in Bangladesh.
-                                </li>
-                            </ul>
-
-
-
-                            <div class="item-more" id="exp-netra-old" hidden>
-                                <ul class="bullets">
-                                    <li>Led the <em>Body Count</em> project on extrajudicial killings and co-reported
-                                        <em>Secret Prisoners of Dhaka</em>.
-                                    </li>
-                                    <li>Oversaw editorial workflows and upheld investigative and ethical standards.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- The Daily Star -->
-                    <article class="item">
-                        <div class="item__meta">
-                            <div class="item__kicker">The Daily Star</div>
-                            <div class="item__date">2018 — 2019</div>
-                            <div class="item__location">Dhaka</div>
-                        </div>
-
-                        <div class="item__body">
-                            <h3 class="item__title">Editorial Assistant</h3>
-
-                            <ul class="bullets">
-                                <li>Supported newsroom operations at Bangladesh’s largest English-language daily.</li>
-                            </ul>
-
-
-                            <div class="item-more" id="exp-dailystar" hidden>
-                                <ul class="bullets">
-                                    <li>Assisted with editing, research, and coordination for national and international
-                                        coverage.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </article>
-
-                </div>
-            </section>
-
-
-
-            <section class="section section--split" aria-labelledby="cred">
-                <!-- Column 1: Education + Books -->
-                <div>
-                    <h2 id="cred">Education</h2>
-
-                    <div class="stack">
-                        <div class="row">
-                            <div class="row__title">
-                                <a href="https://journalism.berkeley.edu/person/nazmul/" target="_blank"
-                                    rel="noopener">UC
-                                    Berkeley
-                                    Graduate School of Journalism</a>
-                            </div>
-                            <div class="row__meta">2023</div>
-                            <div class="row__desc">Master of Journalism (Investigative &amp; Data Journalism)</div>
-                        </div>
-
-                        <div class="row">
-                            <div class="row__title">
-                                Daffodil
-                                International University
-                            </div>
-                            <div class="row__meta">2018</div>
-                            <div class="row__desc">BSS (Journalism &amp; Mass Communication)</div>
-                        </div>
-                    </div>
-
-                    <h2 style="margin-top:18px;">Books &amp; research</h2>
-
-                    <div class="stack">
-                        <div class="row">
-                            <div class="row__title">
-                                <a href="https://www.taylorfrancis.com/chapters/oa-edit/10.4324/9781003306481-6/academic-freedom-bangladesh-mubashar-hasan-nazmul-ahasan"
-                                    target="_blank" rel="noopener">Academic Freedom in Bangladesh</a>
-                            </div>
-                            <div class="row__meta">Routledge · 2022 · Co-author</div>
-                        </div>
-
-                        <div class="row">
-                            <div class="row__title">
-                                <a href="https://link.springer.com/chapter/10.1007/978-981-16-4314-9_5" target="_blank"
-                                    rel="noopener">The Win-Win Game in Politics?</a>
-                            </div>
-                            <div class="row__meta">Springer · 2021 · Co-author</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Column 2: Honours -->
-                <div>
-                    <h2>Honours</h2>
-
-                    <div class="stack">
-
-                        <div class="row">
-                            <div class="row__title">
-                                <span class="label">Winner</span>
-                                <span class="label">Lead</span>
-                                <a href="https://www.sigmaawards.org/meet-the-winners-of-the-sigmas-2024-for-data-journalism/"
-                                    target="_blank" rel="noopener">
-                                    Sigma Awards for Data Journalism
-                                </a>
-                            </div>
-                            <div class="row__meta">2024</div>
-                        </div>
-
-                        <div class="row">
-                            <div class="row__title">
-                                <span class="label">Finalist</span>
-                                <span class="label">Shared</span>
-                                <a href="https://www.prnewswire.com/news-releases/2024-loeb-award-finalists-career-honorees-and-awards-event-at-rainbow-room-in-new-york-city-announced-by-ucla-anderson-302228597.html"
-                                    target="_blank" rel="noopener">
-                                    Loeb Award
-                                </a>
-                            </div>
-                            <div class="row__meta">2024</div>
-                        </div>
-
-                        <div class="row">
-                            <div class="row__title">
-                                <span class="label">Second</span>
-                                <span class="label">Shared</span>
-                                <a href="https://www.jou.ufl.edu/collier-prize-for-state-government-accountability/collier-prize-winners-2024/"
-                                    target="_blank" rel="noopener">
-                                    Collier Prize for State Government Accountability
-                                </a>
-                            </div>
-                            <div class="row__meta">2024</div>
-                        </div>
-
-                        <div class="row">
-                            <div class="row__title">
-                                <span class="label">Certificate</span>
-                                <span class="label">Shared</span>
-                                <a href="https://gijn.org/stories/global-shining-light-award-investigative-journalism-winners-2023/"
-                                    target="_blank" rel="noopener">
-                                    Global Shining Light Award
-                                </a>
-                            </div>
-                            <div class="row__meta">2023</div>
-                        </div>
-
-                        <div class="row">
-                            <div class="row__title">
-                                <span class="label">Winner</span>
-                                <span class="label">Shared</span>
-                                <a href="https://nationalpress.org/award-winner/nazmul-ahasan/" target="_blank"
-                                    rel="noopener">
-                                    Thomas L. Stokes Award (Energy &amp; Environment)
-                                </a>
-                            </div>
-                            <div class="row__meta">2023</div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-
-                <!-- Column 3: Fellowships -->
-                <div>
-                    <h2>Fellowships</h2>
-
-                    <div class="stack">
-
-
-                        <div class="row">
-                            <div class="row__title">
-                                <a href="https://sabew.org/2025/02/goldschmidt-fellows-selected-for-2025-d-c-workshop/"
-                                    target="_blank" rel="noopener">Goldschmidt Fellow</a>
-                            </div>
-                            <div class="row__meta">Society for Advancing Business Editing and Writing · 2025</div>
-                        </div>
-
-                        <div class="row">
-                            <div class="row__title">
-                                <a href="https://dlab.berkeley.edu/people/nazmul-ahasan" target="_blank"
-                                    rel="noopener">Data
-                                    Science for Social Justice Fellow</a>
-                            </div>
-                            <div class="row__meta">UC Berkeley D-Lab · 2022</div>
-                        </div>
-
-                        <div class="row">
-                            <div class="row__title">
-                                <a href="https://saja.org/page-935554/12893612" target="_blank" rel="noopener">SAJA
-                                    Scholarship</a>
-                            </div>
-                            <div class="row__meta">South Asian Journalists Association · 2022</div>
-                        </div>
-
-                        <div class="row">
-                            <div class="row__title">
-                                Berkeley Journalism Fellowship
-                            </div>
-                            <div class="row__meta">UC Berkeley Graduate School of Journalism · 2021</div>
-                        </div>
-
-                        <div class="row">
-                            <div class="row__title">
-                                <a href="https://chowdhurycenter.berkeley.edu/people/nazmul-ahasan" target="_blank"
-                                    rel="noopener">Subir Chowdhury Fellow</a>
-                            </div>
-                            <div class="row__meta">Chowdhury Center for Bangladesh Studies, UC Berkeley · 2021</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
-
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Main ──────────────────────────────────────── -->
+  <main class="page-content">
+    <div class="container">
+
+      <!-- Selected work -->
+      <section class="section" aria-labelledby="work">
+        <div class="section__head">
+          <h2 id="work">Selected work</h2>
+          <div class="section__rule"></div>
+          <span class="section__sub">Filter by role, method, or type</span>
         </div>
-    </main>
 
-    <svg style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <symbol id="icon-arrow_upward" viewBox="0 0 24 24">
-                <path
-                    d="M3.984 12l8.016-8.016 8.016 8.016-1.453 1.406-5.578-5.578v12.188h-1.969v-12.188l-5.625 5.578z" />
-            </symbol>
-        </defs>
-    </svg>
+        <div class="work-filters" aria-label="Filter">
+          <button class="filter" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter" data-filter="award"       title="Award-winning"        data-label="Award-winning"        aria-label="Award-winning">★</button>
+          <button class="filter" data-filter="editing"     title="Editing"              data-label="Editing"              aria-label="Editing">✎</button>
+          <button class="filter" data-filter="data"        title="Data work"            data-label="Data work"            aria-label="Data work">⌁</button>
+          <button class="filter" data-filter="interactive" title="Interactive"          data-label="Interactive"          aria-label="Interactive">↗</button>
+          <button class="filter" data-filter="investigation" title="Investigative"      data-label="Investigative"        aria-label="Investigative">⊕</button>
+          <button class="filter" data-filter="analysis"   title="Analysis"             data-label="Analysis"             aria-label="Analysis">≡</button>
+          <button class="filter" data-filter="osint"      title="OSINT / verification" data-label="OSINT / verification" aria-label="OSINT">⌖</button>
+          <button class="filter" data-filter="reporting"  title="Reporting"            data-label="Reporting"            aria-label="Reporting">•</button>
+          <button class="filter" data-filter="assistance" title="Assistance"           data-label="Assistance"           aria-label="Assistance">◌</button>
+          <button class="filter" data-filter="opinion"    title="Opinion"              data-label="Opinion"              aria-label="Opinion">∼</button>
+        </div>
 
-    <footer class="site-footer">
-        <div class="container footer">
-            <a class="to-top" href="#top" aria-label="Back to top">
-                <svg class="icon">
-                    <use href="#icon-arrow_upward"></use>
-                </svg>
-                Back to top
+        <div class="work-grid work-grid--dense" id="workGrid">
+
+          <article class="work" data-tags="reporting analysis">
+            <a href="https://www.haaretz.com/middle-east-news/2026-01-15/ty-article-magazine/.premium/bangladeshs-interest-in-joining-gaza-security-force-comes-with-conditions/0000019b-c20c-decf-a99f-cb7cff330000" target="_blank" rel="noopener noreferrer">
+              <img class="work__img" src="https://img.haarets.co.il/bs/0000019b-c20d-d641-a9bf-c39ddd210001/37/4c/8c6fdcab49cc92ce7e3c8491e2f6/404471.jpg" alt="Pro-Palestinian protesters in Bangladesh's capital Dhaka" loading="lazy">
+              <div class="work__body">
+                <div class="work__meta">
+                  <span class="work__pub">Haaretz</span>
+                  <span class="work__dot">·</span>
+                  <time class="work__date" datetime="2026-01-15">Jan 2026</time>
+                  <span class="work__tags">
+                    <button class="tag" data-filter="reporting" title="Reporting">•</button>
+                    <button class="tag" data-filter="analysis" title="Analysis">≡</button>
+                  </span>
+                </div>
+                <h3 class="work__title">Bangladesh's 'interest' in joining Gaza security force comes with conditions</h3>
+              </div>
             </a>
-            <div class="muted">2026 © All rights reserved</div>
-        </div>
-    </footer>
-</body>
+          </article>
 
+          <article class="work" data-tags="data">
+            <a href="https://www.bloomberg.com/news/features/2025-10-01/businesses-eager-to-beat-tariffs-turn-to-trump-connected-lobbyists" target="_blank" rel="noopener noreferrer">
+              <img class="work__img" src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ieqNZQZb47oc/v1/1334x2000.webp" alt="Brian Ballard, a top Trump-aligned lobbyist" loading="lazy">
+              <div class="work__body">
+                <div class="work__meta">
+                  <span class="work__pub">Bloomberg</span>
+                  <span class="work__dot">·</span>
+                  <time datetime="2025-10-01">Oct 2025</time>
+                  <span class="work__tags"><button class="tag" data-filter="data" title="Data work">⌁</button></span>
+                </div>
+                <h3 class="work__title">A Gunmaker's Lobbying Shows How Trump's Tariffs Changed the Game</h3>
+              </div>
+            </a>
+          </article>
+
+          <article class="work" data-tags="data">
+            <a href="https://www.bloomberg.com/news/features/2025-05-07/trump-budget-cut-threat-leaves-state-local-government-funding-uncertain" target="_blank" rel="noopener noreferrer">
+              <img class="work__img" src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ic_KamWZgeds/v2/2000x1334.webp" alt="Moorland Road in Waukesha County, Wisconsin" loading="lazy">
+              <div class="work__body">
+                <div class="work__meta">
+                  <span class="work__pub">Bloomberg</span><span class="work__dot">·</span>
+                  <time datetime="2025-05-07">May 2025</time>
+                  <span class="work__tags"><button class="tag" data-filter="data" title="Data work">⌁</button></span>
+                </div>
+                <h3 class="work__title">States, Cities Face Funding Collapse Threat With Trump Cuts</h3>
+              </div>
+            </a>
+          </article>
+
+          <article class="work" data-tags="data">
+            <a href="https://www.bloomberg.com/news/articles/2025-01-03/economy-in-counties-trump-won-points-to-governing-challenges" target="_blank" rel="noopener noreferrer">
+              <img class="work__img" src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ievdfrcsznEU/v0/1200x974.jpg" alt="Map of US by county economy size" loading="lazy">
+              <div class="work__body">
+                <div class="work__meta">
+                  <span class="work__pub">Bloomberg</span><span class="work__dot">·</span>
+                  <time datetime="2025-01-03">Jan 2025</time>
+                  <span class="work__tags"><button class="tag" data-filter="data" title="Data work">⌁</button></span>
+                </div>
+                <h3 class="work__title">Economy in Counties Trump Won Points to Governing Challenges</h3>
+              </div>
+            </a>
+          </article>
+
+          <article class="work" data-tags="data">
+            <a href="https://www.bloomberg.com/news/articles/2024-11-11/hong-kong-has-a-record-number-of-jobs-in-finance-as-city-recovers-from-slump" target="_blank" rel="noopener noreferrer">
+              <img class="work__img" src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iiZrYuBfizSw/v0/1200x800.jpg" alt="Hong Kong financial center" loading="lazy">
+              <div class="work__body">
+                <div class="work__meta">
+                  <span class="work__pub">Bloomberg</span><span class="work__dot">·</span>
+                  <time datetime="2024-11-11">Nov 2024</time>
+                  <span class="work__tags"><button class="tag" data-filter="data" title="Data work">⌁</button></span>
+                </div>
+                <h3 class="work__title">Hong Kong Finance Jobs Rebound to Record After Talent Push</h3>
+              </div>
+            </a>
+          </article>
+
+          <article class="work" data-tags="data">
+            <a href="https://www.bloomberg.com/news/articles/2024-10-17/couche-tard-s-7-eleven-overlaps-to-face-skeptical-us-ftc-review" target="_blank" rel="noopener noreferrer">
+              <img class="work__img" src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iA20JXuTKD20/v0/-1x-1.webp" alt="US states by Circle-K and 7-Eleven overlaps" loading="lazy">
+              <div class="work__body">
+                <div class="work__meta">
+                  <span class="work__pub">Bloomberg</span><span class="work__dot">·</span>
+                  <time datetime="2024-10-17">Oct 2024</time>
+                  <span class="work__tags"><button class="tag" data-filter="data" title="Data work">⌁</button></span>
+                </div>
+                <h3 class="work__title">Couche-Tard's 7-Eleven Overlaps to Face Skeptical US FTC Review</h3>
+              </div>
+            </a>
+          </article>
+
+          <article class="work" data-tags="data interactive">
+            <a href="https://www.bloomberg.com/graphics/2024-election-swing-state-economy/" target="_blank" rel="noopener noreferrer">
+              <img class="work__img" src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iTF_GXIvegeU/v0/-1x-1.jpg" alt="Swing state economic realities" loading="lazy">
+              <div class="work__body">
+                <div class="work__meta">
+                  <span class="work__pub">Bloomberg</span><span class="work__dot">·</span>
+                  <time datetime="2024-08-08">Aug 2024</time>
+                  <span class="work__tags">
+                    <button class="tag" data-filter="data" title="Data work">⌁</button>
+                    <button class="tag" data-filter="interactive" title="Interactive">↗</button>
+                  </span>
+                </div>
+                <h3 class="work__title">The Swing-State Economic Realities Shaping the US Election</h3>
+              </div>
+            </a>
+          </article>
+
+          <article class="work" data-tags="investigation data">
+            <a href="https://www.bloomberg.com/graphics/2024-bangladesh-land-minister-uk-property/" target="_blank" rel="noopener noreferrer">
+              <img class="work__img" src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iM.LXV1CyFUQ/v0/-1x-1.jpg" alt="Illustration of Bangladesh minister" loading="lazy">
+              <div class="work__body">
+                <div class="work__meta">
+                  <span class="work__pub">Bloomberg</span><span class="work__dot">·</span>
+                  <time datetime="2024-02-18">Feb 2024</time>
+                  <span class="work__tags">
+                    <button class="tag" data-filter="investigation" title="Investigative">⊕</button>
+                    <button class="tag" data-filter="data" title="Data work">⌁</button>
+                  </span>
+                </div>
+                <h3 class="work__title">Bangladeshi Politician's UK Property Empire Under Scrutiny</h3>
+              </div>
+            </a>
+          </article>
+
+          <article class="work" data-tags="award data interactive">
+            <a href="https://interactive.netra.news/extrajudicial-killings-bangladesh/" target="_blank" rel="noopener noreferrer">
+              <img class="work__img" src="https://interactive.netra.news/extrajudicial-killings-bangladesh/assets/img/extrajudicial-killings-bangladesh-cover.webp" alt="Body Count chart" loading="lazy">
+              <div class="work__body">
+                <div class="work__meta">
+                  <span class="work__pub">Netra News</span><span class="work__dot">·</span>
+                  <time datetime="2023-11">Nov 2023</time>
+                  <span class="work__tags">
+                    <button class="tag" data-filter="award" title="Award-winning">★</button>
+                    <button class="tag" data-filter="data" title="Data work">⌁</button>
+                    <button class="tag" data-filter="interactive" title="Interactive">↗</button>
+                  </span>
+                </div>
+                <h3 class="work__title">BODY COUNT: Extrajudicial Executions in Bangladesh</h3>
+              </div>
+            </a>
+          </article>
+
+          <article class="work" data-tags="data reporting">
+            <a href="https://www.bloomberg.com/news/articles/2023-09-11/pandemic-population-boom-in-rural-hotspots-sparks-resentment" target="_blank" rel="noopener noreferrer">
+              <img class="work__img" src="https://nazmulahasan.com/assets/images/bloomberg-story-1.webp" alt="Map showing US county-level population change" loading="lazy">
+              <div class="work__body">
+                <div class="work__meta">
+                  <span class="work__pub">Bloomberg</span><span class="work__dot">·</span>
+                  <time datetime="2023-09">Sep 2023</time>
+                  <span class="work__tags">
+                    <button class="tag" data-filter="reporting" title="Reporting">•</button>
+                    <button class="tag" data-filter="data" title="Data work">⌁</button>
+                  </span>
+                </div>
+                <h3 class="work__title">Pandemic Population Boom in Rural Hotspots Sparks Resentment</h3>
+              </div>
+            </a>
+          </article>
+
+          <article class="work" data-tags="data award osint">
+            <a href="https://grist.org/health/in-a-small-french-town-where-houston-based-lyondellbasell-is-a-fixture-residents-complain-of-unending-pollution/" target="_blank" rel="noopener noreferrer">
+              <img class="work__img" src="https://grist.org/wp-content/uploads/2023/08/LyondellBasellHouston.jpg" alt="LyondellBasell HQ building" loading="lazy">
+              <div class="work__body">
+                <div class="work__meta">
+                  <span class="work__pub">Public Health Watch / Grist</span><span class="work__dot">·</span>
+                  <time datetime="2023-09-05">Sep 2023</time>
+                  <span class="work__tags">
+                    <button class="tag" data-filter="award" title="Award-winning">★</button>
+                    <button class="tag" data-filter="osint" title="OSINT">⌖</button>
+                    <button class="tag" data-filter="data" title="Data work">⌁</button>
+                  </span>
+                </div>
+                <h3 class="work__title">In a small French town where LyondellBasell is a fixture, residents complain of unending pollution</h3>
+              </div>
+            </a>
+          </article>
+
+          <article class="work" data-tags="reporting analysis">
+            <a href="https://www.rfa.org/english/news/myanmar/bangladeshborderrohingya-02022023153254.html" target="_blank" rel="noopener noreferrer">
+              <img class="work__img" src="https://www.rfa.org/resizer/v2/ISREPY3XIHNGUP2QR4F7M6VOPQ.jpg?auth=2f18b06ef9ec559e2488aed5c78d6172bd1ac4ea59a3aee48e968499b4f69c48&width=1440&height=811" alt="Smoke from fire at Rohingya settlement" loading="lazy">
+              <div class="work__body">
+                <div class="work__meta">
+                  <span class="work__pub">BenarNews / RFA</span><span class="work__dot">·</span>
+                  <time datetime="2023-02-02">Feb 2023</time>
+                  <span class="work__tags">
+                    <button class="tag" data-filter="reporting" title="Reporting">•</button>
+                    <button class="tag" data-filter="analysis" title="Analysis">≡</button>
+                  </span>
+                </div>
+                <h3 class="work__title">In Bangladesh's border with Myanmar, 2 Rohingya militant groups fight for dominance</h3>
+              </div>
+            </a>
+          </article>
+
+          <article class="work" data-tags="editing osint award">
+            <a href="https://netra.news/2022/secret-prisoners-of-dhaka/" target="_blank" rel="noopener noreferrer">
+              <img class="work__img" src="https://netra.news/content/images/size/w2000/2022/08/header-en.png" alt="Illustration of secret detention centre location" loading="lazy">
+              <div class="work__body">
+                <div class="work__meta">
+                  <span class="work__pub">Netra News</span><span class="work__dot">·</span>
+                  <time datetime="2022-08-14">Aug 2022</time>
+                  <span class="work__tags">
+                    <button class="tag" data-filter="editing" title="Editing">✎</button>
+                    <button class="tag" data-filter="award" title="Award-winning">★</button>
+                    <button class="tag" data-filter="osint" title="OSINT">⌖</button>
+                  </span>
+                </div>
+                <h3 class="work__title">Secret prisoners of Dhaka</h3>
+              </div>
+            </a>
+          </article>
+
+          <article class="work" data-tags="analysis reporting">
+            <a href="https://www.devex.com/news/5-years-on-rohingyas-in-bangladesh-face-hostility-and-dwindling-aid-103860" target="_blank" rel="noopener noreferrer">
+              <img class="work__img" src="https://res.cloudinary.com/devex/image/fetch/c_scale,f_auto,q_auto,w_834/https://lh4.googleusercontent.com/tgCvfCdjPO2VThFZFNsYdq24688uYEjU_Sb2E0Ww0UGlOeZ6to3-gqdYDO5w4eX4VcJEF_UxMhaZbe91r8ewqquIZz97JwyQ6htzYstEgjL0BxPOFQglpBerWKyD-wlEVcOYDjbn3ExxcTcDGzr89z8" alt="Mother and child at IOM center, Cox's Bazar" loading="lazy">
+              <div class="work__body">
+                <div class="work__meta">
+                  <span class="work__pub">Devex</span><span class="work__dot">·</span>
+                  <time datetime="2022-08-25">Aug 2022</time>
+                  <span class="work__tags">
+                    <button class="tag" data-filter="reporting" title="Reporting">•</button>
+                    <button class="tag" data-filter="analysis" title="Analysis">≡</button>
+                  </span>
+                </div>
+                <h3 class="work__title">5 years on, Rohingyas in Bangladesh face hostility and dwindling aid</h3>
+              </div>
+            </a>
+          </article>
+
+          <article class="work" data-tags="osint assistance">
+            <a href="https://www.washingtonpost.com/politics/2022/08/15/election-deniers-march-toward-power-key-2024-battlegrounds/" target="_blank" rel="noopener noreferrer">
+              <img class="work__img" src="https://www.washingtonpost.com/wp-apps/imrs.php?src=https%3A%2F%2Fd1i4t8bqe7zgj6.cloudfront.net%2F08-12-2022%2Ft_094c146804044e7191183772732d2670_name_20220701_TRUMP_ELECTION_V10.jpg&w=960" alt="Republicans running for office" loading="lazy">
+              <div class="work__body">
+                <div class="work__meta">
+                  <span class="work__pub">The Washington Post</span><span class="work__dot">·</span>
+                  <time datetime="2022-08-15">Aug 2022</time>
+                  <span class="work__tags">
+                    <button class="tag" data-filter="osint" title="OSINT">⌖</button>
+                    <button class="tag" data-filter="assistance" title="Assistance">◌</button>
+                  </span>
+                </div>
+                <h3 class="work__title">Election deniers march toward power in key 2024 battlegrounds</h3>
+              </div>
+            </a>
+          </article>
+
+          <article class="work" data-tags="investigation osint">
+            <a href="https://www.sfchronicle.com/bayarea/article/Facebook-GearLaunch-17024417.php" target="_blank" rel="noopener noreferrer">
+              <img class="work__img" src="https://s.hdnux.com/photos/01/24/63/12/22229665/16/ratio3x2_960.webp" alt="Illustration of a storefront" loading="lazy">
+              <div class="work__body">
+                <div class="work__meta">
+                  <span class="work__pub">San Francisco Chronicle</span><span class="work__dot">·</span>
+                  <time datetime="2022-03-26">Mar 2022</time>
+                  <span class="work__tags">
+                    <button class="tag" data-filter="osint" title="OSINT">⌖</button>
+                    <button class="tag" data-filter="investigation" title="Investigative">⊕</button>
+                  </span>
+                </div>
+                <h3 class="work__title">Internet entrepreneurs far from the U.S. are inflaming political division on Facebook to sell T-shirts and coffee mugs</h3>
+              </div>
+            </a>
+          </article>
+
+          <article class="work" data-tags="analysis opinion">
+            <a href="https://foreignpolicy.com/2022/01/04/bangladesh-police-brutality-crossfires-gunfights-killings-rab-corruption/" target="_blank" rel="noopener noreferrer">
+              <img class="work__img" src="https://foreignpolicy.com/wp-content/uploads/2022/01/bangladesh-GettyImages-158901700.jpg?quality=90" alt="Bangladeshi Rapid Action Battalion" loading="lazy">
+              <div class="work__body">
+                <div class="work__meta">
+                  <span class="work__pub">Foreign Policy</span><span class="work__dot">·</span>
+                  <time datetime="2022-01">Jan 2022</time>
+                  <span class="work__tags">
+                    <button class="tag" data-filter="analysis" title="Analysis">≡</button>
+                    <button class="tag" data-filter="opinion" title="Opinion">∼</button>
+                  </span>
+                </div>
+                <h3 class="work__title">The U.S. Has a Police Brutality Problem. So Does Bangladesh.</h3>
+              </div>
+            </a>
+          </article>
+
+          <article class="work" data-tags="investigation osint">
+            <a href="https://netra.news/2021/power-corruption-all-the-state-ministers-men/" target="_blank" rel="noopener noreferrer">
+              <img class="work__img" src="https://netra.news/content/images/size/w2000/wordpress/2021/08/netra-grfx_43362186-3-1.png" alt="Illustration featuring Nasrul Hamid Bipu" loading="lazy">
+              <div class="work__body">
+                <div class="work__meta">
+                  <span class="work__pub">Netra News</span><span class="work__dot">·</span>
+                  <time datetime="2021-08-13">Aug 2021</time>
+                  <span class="work__tags">
+                    <button class="tag" data-filter="investigation" title="Investigative">⊕</button>
+                    <button class="tag" data-filter="osint" title="OSINT">⌖</button>
+                  </span>
+                </div>
+                <h3 class="work__title">Power corruption: All the state minister's men</h3>
+              </div>
+            </a>
+          </article>
+
+          <article class="work" data-tags="assistance">
+            <a href="https://www.cjr.org/widescreen/journalism-and-covid-map-me.php/" target="_blank" rel="noopener noreferrer">
+              <img class="work__img" src="https://www.cjr.org/wp-content/uploads/2020/09/Screen-Shot-2020-09-10-at-8.53.44-AM-e1599751671435.jpg" alt="World map" loading="lazy">
+              <div class="work__body">
+                <div class="work__meta">
+                  <span class="work__pub">Columbia Journalism Review</span><span class="work__dot">·</span>
+                  <time datetime="2020-09-10">Sep 2020</time>
+                  <span class="work__tags">
+                    <button class="tag" data-filter="assistance" title="Assistance">◌</button>
+                  </span>
+                </div>
+                <h3 class="work__title">Infection and Repression</h3>
+              </div>
+            </a>
+          </article>
+
+          <article class="work" data-tags="reporting">
+            <a href="https://www.telegraph.co.uk/global-health/climate-and-people/coronavirus-exposes-deep-divide-bangladeshi-society/" target="_blank" rel="noopener noreferrer">
+              <img class="work__img" src="https://www.telegraph.co.uk/content/dam/global-health/2020/06/10/1350462053324994719_IMG_1445-3_trans_NvBQzQNjv4BqvEGOs1QWCDBlYMwZQkSShJ4tl0g9dtRDeYbLMRD-ezU.JPG?imwidth=1920" alt="Bangladesh people" loading="lazy">
+              <div class="work__body">
+                <div class="work__meta">
+                  <span class="work__pub">The Telegraph</span><span class="work__dot">·</span>
+                  <time datetime="2020-06-10">Jun 2020</time>
+                  <span class="work__tags">
+                    <button class="tag" data-filter="reporting" title="Reporting">•</button>
+                  </span>
+                </div>
+                <h3 class="work__title">Coronavirus exposes the deep divide in Bangladeshi society</h3>
+              </div>
+            </a>
+          </article>
+
+          <article class="work" data-tags="analysis reporting">
+            <a href="https://www.economist.com/asia/2020/06/06/covid-19-infections-are-rising-fast-in-bangladesh-india-and-pakistan" target="_blank" rel="noopener noreferrer">
+              <img class="work__img" src="https://www.economist.com/cdn-cgi/image/width=1424,quality=80,format=auto/sites/default/files/images/print-edition/20200606_ASP007_0.jpg" alt="India hospital beds" loading="lazy">
+              <div class="work__body">
+                <div class="work__meta">
+                  <span class="work__pub">The Economist</span><span class="work__dot">·</span>
+                  <time datetime="2020-06-06">Jun 2020</time>
+                  <span class="work__tags">
+                    <button class="tag" data-filter="reporting" title="Reporting">•</button>
+                    <button class="tag" data-filter="analysis" title="Analysis">≡</button>
+                  </span>
+                </div>
+                <h3 class="work__title">Covid-19 infections are rising fast in Bangladesh, India and Pakistan</h3>
+              </div>
+            </a>
+          </article>
+
+          <article class="work" data-tags="opinion analysis">
+            <a href="https://www.haaretz.com/israel-news/2020-05-14/ty-article-opinion/.premium/for-bangladesh-not-recognizing-israel-is-a-moral-choice-above-all/0000017f-e8a4-df2c-a1ff-fef577cd0000" target="_blank" rel="noopener noreferrer">
+              <img class="work__img" src="https://img.haarets.co.il/bs/0000017f-e8a4-df2c-a1ff-fef56bac0000/61/b9/fddb2bd688123f4e10059e78886e/1430293488.jpg" alt="Yasser Arafat portrait on wall" loading="lazy">
+              <div class="work__body">
+                <div class="work__meta">
+                  <span class="work__pub">Haaretz</span><span class="work__dot">·</span>
+                  <time datetime="2020-05">May 2020</time>
+                  <span class="work__tags">
+                    <button class="tag" data-filter="analysis" title="Analysis">≡</button>
+                    <button class="tag" data-filter="opinion" title="Opinion">∼</button>
+                  </span>
+                </div>
+                <h3 class="work__title">For Bangladesh, Recognizing Israel Is an Immoral Choice</h3>
+              </div>
+            </a>
+          </article>
+
+        </div><!-- /workGrid -->
+
+        <button class="work-more" id="workMore" type="button">View more</button>
+      </section>
+
+      <!-- Publications -->
+      <section class="section section--tint" aria-labelledby="clients">
+        <div class="container">
+          <div class="logo-groups">
+            <div class="logo-group">
+              <h3 class="logo-group__title">Works appeared in</h3>
+              <div class="logos" aria-label="Publications">
+                <!-- Washington Post SVG (inline, abbreviated for brevity - using img fallback concept) -->
+                <svg class="logo logo--light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 403 62" aria-label="The Washington Post" style="height:20px;width:auto;">
+                  <path fill="currentColor" fill-rule="nonzero" d="M23.097 19.081v21.831c2.945-1.593 5.007-4.366 6.008-7.494l.236.12c-.649 7.788-5.95 15.575-14.196 15.575C6.84 49.113.714 42.918.714 33.005c0-7.433 4.83-12.095 11.015-16.285a10.782 10.782 0 00-2.769-.354c-4.242 0-6.715 2.891-6.715 5.842H1.89c-.059-.413-.059-.826-.059-1.239 0-5.251 2.769-11.624 9.484-11.624 4.3 0 7.599 3.953 12.605 3.953 2.003 0 4.477-.944 5.478-3.127h.177c-.059 3.836-1.236 7.79-6.479 8.91zm3.18 22.362c-2.945 3.127-6.125 5.782-10.248 5.782-7.657 0-13.547-6.018-13.547-14.75 0-5.133 2.12-7.906 4.476-11.152h-.236c-1.473 1.475-5.36 5.192-5.36 11.505 0 9.677 6.067 15.636 14.019 15.636 5.537 0 9.306-3.834 11.015-6.961l-.118-.06zm2.356-28.616c-1.001 1.888-3.121 4.307-7.421 4.307-4.3 0-8.246-2.95-11.722-2.95-3.181 0-5.36 2.124-6.185 3.717l.06.118c1.118-1.12 2.826-2.242 5.595-2.242 4.594 0 7.54 2.833 12.193 2.833 4.948 0 7.186-3.246 7.598-5.723l-.118-.06zM9.258 16.918c-3.004 3.128-5.773 6.55-5.773 13.217 0 3.657 1.237 7.434 4.006 9.794l1.708-.886V23.21l-1.59.826-.295-.59 8.247-4.485c-2.238-.47-4.241-1.474-6.303-2.064zm10.19 2.301c-.412.058-.824.058-1.295.058-.825 0-1.59-.058-2.356-.236V36.25l-7.717 4.192c1.59 1.18 3.534 1.887 6.008 1.887 2.003 0 3.77-.413 5.36-1.121V19.199zm-8.481 3.01l-1.12.648v15.814l1.12-.59V22.208z"/>
+                </svg>
+                <span class="logo" style="font-family:Georgia,serif;font-size:13px;font-style:italic;opacity:.45;letter-spacing:.02em;">The Economist</span>
+                <span class="logo" style="font-family:Georgia,serif;font-size:12px;font-style:italic;opacity:.4;letter-spacing:.04em;font-weight:600;text-transform:uppercase;">Foreign Policy</span>
+                <span class="logo" style="font-family:Georgia,serif;font-size:13px;opacity:.4;font-weight:700;letter-spacing:-.01em;">Bloomberg</span>
+                <span class="logo" style="font-family:Georgia,serif;font-size:11px;font-style:italic;opacity:.4;letter-spacing:.08em;font-weight:600;text-transform:uppercase;">Grist</span>
+                <span class="logo" style="font-family:Georgia,serif;font-size:12px;font-style:italic;opacity:.4;letter-spacing:.04em;">The Telegraph</span>
+                <span class="logo" style="font-family:Georgia,serif;font-size:11px;font-weight:700;opacity:.4;letter-spacing:.05em;text-transform:uppercase;">Haaretz</span>
+                <span class="logo" style="font-family:Georgia,serif;font-size:11px;font-weight:600;opacity:.4;letter-spacing:.06em;text-transform:uppercase;">The Hindu</span>
+                <span class="logo" style="font-family:Georgia,serif;font-size:12px;font-style:italic;opacity:.4;">The Daily Star</span>
+                <span class="logo" style="font-family:Georgia,serif;font-size:11px;font-style:italic;opacity:.4;letter-spacing:.04em;">SF Chronicle</span>
+                <span class="logo" style="font-family:Georgia,serif;font-size:11px;font-weight:600;opacity:.4;letter-spacing:.06em;text-transform:uppercase;">CJR</span>
+              </div>
+            </div>
+            <div class="logo-group">
+              <h3 class="logo-group__title">Interviewed by</h3>
+              <div class="logos">
+                <span class="logo" style="font-family:Georgia,serif;font-size:12px;font-style:italic;opacity:.4;font-weight:600;">The Guardian</span>
+                <span class="logo" style="font-family:Georgia,serif;font-size:11px;font-weight:700;opacity:.4;letter-spacing:.08em;text-transform:uppercase;">Al Jazeera</span>
+                <span class="logo" style="font-family:Georgia,serif;font-size:13px;font-weight:700;opacity:.4;letter-spacing:.04em;text-transform:uppercase;">BBC</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section class="section" aria-labelledby="experience">
+        <div class="section__head">
+          <h2 id="experience">Experience</h2>
+          <div class="section__rule"></div>
+          <button type="button" class="exp-toggle item-toggle" aria-expanded="false" aria-controls="experience-details">Expanded View</button>
+        </div>
+        <div class="timeline" id="experience-details">
+
+          <article class="item">
+            <div class="item__meta">
+              <div class="item__kicker">Netra News</div>
+              <div class="item__date">Jan 2026 — present</div>
+              <div class="item__location">Dhaka</div>
+            </div>
+            <div class="item__body">
+              <h3 class="item__title">Executive Editor</h3>
+              <ul class="bullets">
+                <li>Help lead news coverage and editorial strategy at an independent, public-interest newsroom in Bangladesh.</li>
+              </ul>
+              <div class="item-more" id="exp-netra-2026" hidden>
+                <ul class="bullets">
+                  <li>Oversee daily reporting, investigations, and long-form projects, with a focus on accountability, governance, and human rights.</li>
+                  <li>Manage editors and reporters, set editorial priorities, and ensure rigorous fact-checking and legal review.</li>
+                  <li>Guide data-driven and investigative work, including cross-border collaborations and multimedia storytelling.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="item">
+            <div class="item__meta">
+              <div class="item__kicker">Bloomberg News</div>
+              <div class="item__date">Jan 2024 — Dec 2025</div>
+              <div class="item__location">Washington DC</div>
+            </div>
+            <div class="item__body">
+              <h3 class="item__title">US Economy Reporter</h3>
+              <ul class="bullets">
+                <li>Reported on the US economy with an emphasis on data-driven analysis of labour markets, public finance, and demographic change.</li>
+              </ul>
+              <div class="item-more" id="exp-bloomberg" hidden>
+                <ul class="bullets">
+                  <li>Produced enterprise stories linking economic trends to political and policy outcomes.</li>
+                  <li>Used geospatial, statistical, and large administrative datasets to surface regulatory and market dynamics.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="item">
+            <div class="item__meta">
+              <div class="item__kicker">BenarNews / Radio Free Asia</div>
+              <div class="item__date">Aug 2023 — Jan 2024</div>
+              <div class="item__location">Washington DC</div>
+            </div>
+            <div class="item__body">
+              <h3 class="item__title">English-Language Editor</h3>
+              <ul class="bullets">
+                <li>Edited and shaped coverage of Bangladesh's 2024 election, political violence, and democratic backsliding.</li>
+              </ul>
+              <div class="item-more" id="exp-rfa" hidden>
+                <ul class="bullets">
+                  <li>Worked with correspondents across South and Southeast Asia to ensure accuracy, clarity, and policy relevance.</li>
+                  <li>Handled fast-moving breaking news alongside deeper analytical and enterprise pieces.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="item">
+            <div class="item__meta">
+              <div class="item__kicker">Investigative Reporting Workshop</div>
+              <div class="item__date">2023 — 2024</div>
+              <div class="item__location">Washington DC</div>
+            </div>
+            <div class="item__body">
+              <h3 class="item__title">Reporting Fellow / Contributor</h3>
+              <ul class="bullets">
+                <li>Contributed to long-form investigative projects using data analysis, document review, and field reporting.</li>
+              </ul>
+              <div class="item-more" id="exp-irw" hidden>
+                <ul class="bullets">
+                  <li>Collaborated with editors and researchers on accountability reporting with national and international impact.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="item">
+            <div class="item__meta">
+              <div class="item__kicker">Investigative Reporting Program</div>
+              <div class="item__date">2022 — 2023</div>
+              <div class="item__location">Berkeley</div>
+            </div>
+            <div class="item__body">
+              <h3 class="item__title">Reporting Fellow / Investigative Journalist</h3>
+              <ul class="bullets">
+                <li>Reported on investigative and data-driven projects under UC Berkeley's Investigative Reporting Program.</li>
+              </ul>
+              <div class="item-more" id="exp-irp" hidden>
+                <ul class="bullets">
+                  <li>Worked on accountability reporting using public records, large datasets, and document-heavy investigations.</li>
+                  <li>Applied verification, OSINT, and data analysis methods to stories on governance, public policy, and human rights.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="item">
+            <div class="item__meta">
+              <div class="item__kicker">Netra News</div>
+              <div class="item__date">2019 — 2021; 2022 — 2023</div>
+              <div class="item__location">Dhaka &amp; Berkeley</div>
+            </div>
+            <div class="item__body">
+              <h3 class="item__title">Investigative Reporter &amp; Deputy Editor</h3>
+              <ul class="bullets">
+                <li>Investigated corruption, governance failures, and human rights abuses in Bangladesh.</li>
+              </ul>
+              <div class="item-more" id="exp-netra-old" hidden>
+                <ul class="bullets">
+                  <li>Led the <em>Body Count</em> project on extrajudicial killings and co-reported <em>Secret Prisoners of Dhaka</em>.</li>
+                  <li>Oversaw editorial workflows and upheld investigative and ethical standards.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="item">
+            <div class="item__meta">
+              <div class="item__kicker">The Daily Star</div>
+              <div class="item__date">2018 — 2019</div>
+              <div class="item__location">Dhaka</div>
+            </div>
+            <div class="item__body">
+              <h3 class="item__title">Editorial Assistant</h3>
+              <ul class="bullets">
+                <li>Supported newsroom operations at Bangladesh's largest English-language daily.</li>
+              </ul>
+              <div class="item-more" id="exp-dailystar" hidden>
+                <ul class="bullets">
+                  <li>Assisted with editing, research, and coordination for national and international coverage.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Credentials: split 3-col -->
+      <section class="section section--split" aria-labelledby="cred" style="padding:0; border-top:1px solid var(--rule);">
+
+        <!-- Education + Books -->
+        <div>
+          <h2 id="cred">Education</h2>
+          <div class="stack">
+            <div class="row">
+              <div class="row__title"><a href="https://journalism.berkeley.edu/person/nazmul/" target="_blank" rel="noopener">UC Berkeley Graduate School of Journalism</a></div>
+              <div class="row__meta">2023</div>
+              <div class="row__desc">Master of Journalism — Investigative &amp; Data Journalism</div>
+            </div>
+            <div class="row">
+              <div class="row__title">Daffodil International University</div>
+              <div class="row__meta">2018</div>
+              <div class="row__desc">BSS — Journalism &amp; Mass Communication</div>
+            </div>
+          </div>
+
+          <h2 style="margin-top: 32px;">Books &amp; research</h2>
+          <div class="stack">
+            <div class="row">
+              <div class="row__title"><a href="https://www.taylorfrancis.com/chapters/oa-edit/10.4324/9781003306481-6/academic-freedom-bangladesh-mubashar-hasan-nazmul-ahasan" target="_blank" rel="noopener">Academic Freedom in Bangladesh</a></div>
+              <div class="row__meta">Routledge · 2022 · Co-author</div>
+            </div>
+            <div class="row">
+              <div class="row__title"><a href="https://link.springer.com/chapter/10.1007/978-981-16-4314-9_5" target="_blank" rel="noopener">The Win-Win Game in Politics?</a></div>
+              <div class="row__meta">Springer · 2021 · Co-author</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Honours -->
+        <div>
+          <h2>Honours</h2>
+          <div class="stack">
+            <div class="row">
+              <div class="row__title">
+                <span class="label">Winner</span>
+                <span class="label">Lead</span>
+                <a href="https://www.sigmaawards.org/meet-the-winners-of-the-sigmas-2024-for-data-journalism/" target="_blank" rel="noopener">Sigma Awards for Data Journalism</a>
+              </div>
+              <div class="row__meta">2024</div>
+            </div>
+            <div class="row">
+              <div class="row__title">
+                <span class="label">Finalist</span>
+                <span class="label">Shared</span>
+                <a href="https://www.prnewswire.com/news-releases/2024-loeb-award-finalists-career-honorees-and-awards-event-at-rainbow-room-in-new-york-city-announced-by-ucla-anderson-302228597.html" target="_blank" rel="noopener">Loeb Award</a>
+              </div>
+              <div class="row__meta">2024</div>
+            </div>
+            <div class="row">
+              <div class="row__title">
+                <span class="label">Second</span>
+                <span class="label">Shared</span>
+                <a href="https://www.jou.ufl.edu/collier-prize-for-state-government-accountability/collier-prize-winners-2024/" target="_blank" rel="noopener">Collier Prize for State Government Accountability</a>
+              </div>
+              <div class="row__meta">2024</div>
+            </div>
+            <div class="row">
+              <div class="row__title">
+                <span class="label">Certificate</span>
+                <span class="label">Shared</span>
+                <a href="https://gijn.org/stories/global-shining-light-award-investigative-journalism-winners-2023/" target="_blank" rel="noopener">Global Shining Light Award</a>
+              </div>
+              <div class="row__meta">2023</div>
+            </div>
+            <div class="row">
+              <div class="row__title">
+                <span class="label">Winner</span>
+                <span class="label">Shared</span>
+                <a href="https://nationalpress.org/award-winner/nazmul-ahasan/" target="_blank" rel="noopener">Thomas L. Stokes Award (Energy &amp; Environment)</a>
+              </div>
+              <div class="row__meta">2023</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fellowships -->
+        <div>
+          <h2>Fellowships</h2>
+          <div class="stack">
+            <div class="row">
+              <div class="row__title"><a href="https://sabew.org/2025/02/goldschmidt-fellows-selected-for-2025-d-c-workshop/" target="_blank" rel="noopener">Goldschmidt Fellow</a></div>
+              <div class="row__meta">Society for Advancing Business Editing and Writing · 2025</div>
+            </div>
+            <div class="row">
+              <div class="row__title"><a href="https://dlab.berkeley.edu/people/nazmul-ahasan" target="_blank" rel="noopener">Data Science for Social Justice Fellow</a></div>
+              <div class="row__meta">UC Berkeley D-Lab · 2022</div>
+            </div>
+            <div class="row">
+              <div class="row__title"><a href="https://saja.org/page-935554/12893612" target="_blank" rel="noopener">SAJA Scholarship</a></div>
+              <div class="row__meta">South Asian Journalists Association · 2022</div>
+            </div>
+            <div class="row">
+              <div class="row__title">Berkeley Journalism Fellowship</div>
+              <div class="row__meta">UC Berkeley Graduate School of Journalism · 2021</div>
+            </div>
+            <div class="row">
+              <div class="row__title"><a href="https://chowdhurycenter.berkeley.edu/people/nazmul-ahasan" target="_blank" rel="noopener">Subir Chowdhury Fellow</a></div>
+              <div class="row__meta">Chowdhury Center for Bangladesh Studies, UC Berkeley · 2021</div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div><!-- /container -->
+  </main>
+
+  <!-- ── Footer ────────────────────────────────────── -->
+  <svg style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <symbol id="icon-arrow_upward" viewBox="0 0 24 24">
+        <path d="M3.984 12l8.016-8.016 8.016 8.016-1.453 1.406-5.578-5.578v12.188h-1.969v-12.188l-5.625 5.578z"/>
+      </symbol>
+    </defs>
+  </svg>
+  <footer class="site-footer">
+    <div class="container footer">
+      <a class="to-top" href="#top" aria-label="Back to top">
+        <svg class="icon"><use href="#icon-arrow_upward"></use></svg>
+        Back to top
+      </a>
+      <div class="muted">2026 © All rights reserved</div>
+    </div>
+  </footer>
+
+  <script>
+    /* ── Toggles ─────────────────────────────────── */
+    function wireToggles() {
+      function setExperienceView(panel, expanded) {
+        panel.querySelectorAll('.item').forEach(item => {
+          const more = item.querySelector('.item-more');
+          if (!more) return;
+          const extraLis = [...more.querySelectorAll('li')];
+          if (expanded) {
+            more.hidden = false;
+            extraLis.forEach(li => li.hidden = false);
+          } else {
+            if (!extraLis.length) { more.hidden = true; return; }
+            more.hidden = false;
+            extraLis.forEach((li, i) => li.hidden = i !== 0);
+          }
+        });
+      }
+
+      const expBtn = document.querySelector('.exp-toggle');
+      const expPanelId = expBtn?.getAttribute('aria-controls') || expBtn?.dataset.target;
+      const expPanel = expPanelId ? document.getElementById(expPanelId) : null;
+      if (expBtn && expPanel) {
+        expBtn.setAttribute('aria-expanded', 'false');
+        expBtn.textContent = 'Expanded View';
+        setExperienceView(expPanel, false);
+      }
+
+      document.addEventListener('click', e => {
+        const btn = e.target.closest('.bio-toggle, .exp-toggle, .link-toggle');
+        if (!btn) return;
+        const id = btn.getAttribute('aria-controls') || btn.dataset.target;
+        if (!id) return;
+        const panel = document.getElementById(id);
+        if (!panel) return;
+        const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+        const next = !isExpanded;
+        btn.setAttribute('aria-expanded', String(next));
+
+        if (btn.classList.contains('bio-toggle')) {
+          panel.hidden = isExpanded;
+          btn.textContent = isExpanded ? 'More' : 'Less';
+        } else if (btn.classList.contains('link-toggle')) {
+          panel.hidden = isExpanded;
+        } else if (btn.classList.contains('exp-toggle')) {
+          setExperienceView(panel, next);
+          btn.textContent = next ? 'Collapsed View' : 'Expanded View';
+        }
+      });
+    }
+
+    /* ── Work filters ────────────────────────────── */
+    function wireWorkFilters() {
+      const grid = document.getElementById('workGrid');
+      const filterBar = document.querySelector('.work-filters');
+      if (!grid || !filterBar) return;
+      const filterButtons = filterBar.querySelectorAll('.filter');
+
+      function setActiveFilter(tag) {
+        filterButtons.forEach(btn => btn.setAttribute('aria-pressed', String(btn.dataset.filter === tag)));
+        grid.querySelectorAll('.work').forEach(card => {
+          const tags = (card.dataset.tags || '').split(/\s+/).filter(Boolean);
+          card.hidden = !(tag === 'all' || tags.includes(tag));
+        });
+        workMoreLogic();
+      }
+
+      setActiveFilter('all');
+      filterButtons.forEach(btn => btn.addEventListener('click', () => setActiveFilter(btn.dataset.filter)));
+      grid.addEventListener('click', e => {
+        const tagBtn = e.target.closest('.tag');
+        if (!tagBtn) return;
+        e.preventDefault();
+        setActiveFilter(tagBtn.dataset.filter);
+      });
+    }
+
+    /* ── View more ───────────────────────────────── */
+    let visibleCount = 0;
+    function workMoreLogic() {
+      const grid = document.getElementById('workGrid');
+      const btn  = document.getElementById('workMore');
+      if (!grid || !btn) return;
+      const visibleItems = [...grid.querySelectorAll('.work')].filter(el => !el.hidden);
+
+      function cols() {
+        if (window.matchMedia('(max-width:640px)').matches) return 1;
+        if (window.matchMedia('(max-width:980px)').matches) return 2;
+        return 3;
+      }
+
+      const show = Math.max(visibleCount, cols() * 2);
+      visibleItems.forEach((el, i) => el.style.display = i < show ? '' : 'none');
+
+      const remaining = visibleItems.length - show;
+      btn.hidden = remaining <= 0;
+      if (remaining > 0) btn.textContent = `View more (${remaining})`;
+    }
+
+    function wireWorkViewMore() {
+      const grid = document.getElementById('workGrid');
+      const btn  = document.getElementById('workMore');
+      if (!grid || !btn) return;
+
+      function cols() {
+        if (window.matchMedia('(max-width:640px)').matches) return 1;
+        if (window.matchMedia('(max-width:980px)').matches) return 2;
+        return 3;
+      }
+
+      visibleCount = cols() * 2;
+      workMoreLogic();
+
+      btn.addEventListener('click', () => {
+        visibleCount += cols();
+        workMoreLogic();
+      });
+
+      window.addEventListener('resize', workMoreLogic);
+    }
+
+    /* ── External links ──────────────────────────── */
+    function wireExternalLinks() {
+      document.querySelectorAll('a[href^="http"]').forEach(a => {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      wireToggles();
+      wireWorkFilters();
+      wireWorkViewMore();
+      wireExternalLinks();
+    });
+  </script>
+</body>
 </html>
