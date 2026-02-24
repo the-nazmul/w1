@@ -239,31 +239,39 @@
       padding-left: 36px;
     }
 
-    .scrolling-words {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--serif);
-      font-size: 1.75rem;
-      font-weight: 300;
-      line-height: 1;
-      color: var(--muted);
-    }
-    .scrolling-words__box {
-      height: 2.2rem;
-      overflow: hidden;
-    }
-    .scrolling-words__box ul {
-      list-style: none;
-    }
-    .scrolling-words__box li {
-      height: 2.2rem;
-      display: flex;
-      align-items: center;
-      font-style: italic;
-      font-weight: 500;
-      color: var(--accent);
-    }
+.scrolling-words {
+  --row: 2.2rem;           /* single source of truth */
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--serif);
+  font-size: 1.75rem;
+  font-weight: 300;
+  line-height: 1;          /* ok once rows are controlled */
+  color: var(--muted);
+}
+
+.scrolling-words__box {
+  height: var(--row);
+  overflow: hidden;
+}
+
+.scrolling-words__box ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  will-change: transform;
+}
+
+.scrolling-words__box li {
+  height: var(--row);
+  line-height: var(--row);   /* baseline consistency */
+  font-style: italic;
+  font-weight: 500;
+  color: var(--accent);
+  white-space: nowrap;
+}
+    
     .scrolling-words .and { color: var(--faint); font-size: 1.1rem; }
     .scrolling-words .bold {
       font-style: italic;
@@ -272,14 +280,19 @@
     }
 
     @keyframes scrollUp {
-      15%, 25%  { transform: translateY(-20%); }
-      40%, 50%  { transform: translateY(-40%); }
-      65%, 75%  { transform: translateY(-60%); }
-      90%, 100% { transform: translateY(-80%); }
-    }
-    @media (prefers-reduced-motion: no-preference) {
-      .scrolling-words__box ul { animation: scrollUp 10s infinite; }
-    }
+  0%, 12%    { transform: translateY(0); }
+  14%, 26%   { transform: translateY(calc(-1 * var(--row))); }
+  28%, 40%   { transform: translateY(calc(-2 * var(--row))); }
+  42%, 54%   { transform: translateY(calc(-3 * var(--row))); }
+  56%, 68%   { transform: translateY(calc(-4 * var(--row))); }
+  70%, 82%   { transform: translateY(calc(-5 * var(--row))); }
+  84%, 96%   { transform: translateY(calc(-6 * var(--row))); }
+  100%       { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .scrolling-words__box ul { animation: scrollUp 24s cubic-bezier(.45,0,.55,1) infinite; }
+}
 
     .pills {
       display: flex;
