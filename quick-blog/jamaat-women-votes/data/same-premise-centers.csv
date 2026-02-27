@@ -1,0 +1,99 @@
+polling_station,type,constituency,constituency_winner,district,registeredVoters,totalVotes_cast,top1_vote,top1_name,top1_party,top2_vote,top2_name,top2_party
+আলাদীপুর দারুল হুদা সালাফিয়্যাহ্ মাদরাসা,FEMALE,naogaon-1,bnp,naogaon,3117,2312,1141,Md. Mostafizur Rahman,bnp,1080,Mohd. Mahbubul Alam,jamaat
+আলাদীপুর দারুল হুদা সালাফিয়্যাহ্ মাদরাসা,MALE,naogaon-1,bnp,naogaon,3153,2445,1215,Mohd. Mahbubul Alam,jamaat,1101,Md. Mostafizur Rahman,bnp
+আহম্মেদপুর এম.এইচ উচ্চ বিদ্যালয়,FEMALE,natore-4,bnp,natore,2199,1451,758,Md. Abdul Hakim,jamaat,657,Mohammad Abdul Aziz,bnp
+আহম্মেদপুর এম.এইচ উচ্চ বিদ্যালয়,MALE,natore-4,bnp,natore,2075,1537,746,Mohammad Abdul Aziz,bnp,722,Md. Abdul Hakim,jamaat
+এম আহমদ পাবলিক উচ্চ বিদ্যালয়,MALE,sylhet-4,bnp,sylhet,2543,1368,1051,Ariful Haque Choudhury,bnp,273,Md. Zainal Abedin,jamaat
+এম আহমদ পাবলিক উচ্চ বিদ্যালয়,FEMALE,sylhet-4,bnp,sylhet,2405,897,640,Ariful Haque Choudhury,bnp,241,Md. Zainal Abedin,jamaat
+কাজী আজহার আলী সরকারি মডেল উচ্চ বিদ্যালয়,MALE,gaibandha-5,jamaat,gaibandha,3254,1813,668,Md. Faruk Alam Sarkar,bnp,598,Md. Abdul Wares,jamaat
+কাজী আজহার আলী সরকারি মডেল উচ্চ বিদ্যালয়,FEMALE,gaibandha-5,jamaat,gaibandha,3507,1779,659,Md. Abdul Wares,jamaat,655,Md. Faruk Alam Sarkar,bnp
+কারিগরি প্রশিক্ষণ কেন্দ্র,MALE,rajshahi-2,bnp,rajshahi,2343,1545,921,Md. Mizanur Rahman Minu,bnp,604,Mohammad Jahangir,jamaat
+কারিগরি প্রশিক্ষণ কেন্দ্র,FEMALE,rajshahi-2,bnp,rajshahi,2639,1516,945,Md. Mizanur Rahman Minu,bnp,557,Mohammad Jahangir,jamaat
+কালেক্টরেট স্কুল এন্ড কলেজ,MALE,natore-2,bnp,natore,2297,1645,814,M. Ruhul Quddus Talukder Dulu,bnp,784,Md. Yunus Ali,jamaat
+কালেক্টরেট স্কুল এন্ড কলেজ,FEMALE,natore-2,bnp,natore,2540,1678,867,M. Ruhul Quddus Talukder Dulu,bnp,766,Md. Yunus Ali,jamaat
+খুলনা আলিয়া মাদ্রাসা,MALE,khulna-2,jamaat,khulna,2005,1123,666,Nazrul Islam Manju,bnp,434,Sheikh Jahangir Hossain Helal,jamaat
+খুলনা আলিয়া মাদ্রাসা,FEMALE,khulna-2,jamaat,khulna,2185,1059,536,Nazrul Islam Manju,bnp,503,Sheikh Jahangir Hossain Helal,jamaat
+খুলনা টেক্সটাইল মিলস্ (কেটিএম) হাইস্কুল,MALE,khulna-2,jamaat,khulna,2794,1557,868,Nazrul Islam Manju,bnp,584,Sheikh Jahangir Hossain Helal,jamaat
+খুলনা টেক্সটাইল মিলস্ (কেটিএম) হাইস্কুল,FEMALE,khulna-2,jamaat,khulna,3187,1572,809,Nazrul Islam Manju,bnp,668,Sheikh Jahangir Hossain Helal,jamaat
+খুলনা নিউজ প্রিন্ট মিলস্ স্কুল এন্ড কলেজ,MALE,khulna-3,bnp,khulna,1992,1096,666,Rakibul Islam,bnp,387,Muhammad Mahfuzur Rahman,jamaat
+খুলনা নিউজ প্রিন্ট মিলস্ স্কুল এন্ড কলেজ,FEMALE,khulna-3,bnp,khulna,1901,1007,625,Rakibul Islam,bnp,345,Muhammad Mahfuzur Rahman,jamaat
+খুলনা সরকারি মহিলা কলেজ,MALE,khulna-3,bnp,khulna,1884,1189,596,Rakibul Islam,bnp,537,Muhammad Mahfuzur Rahman,jamaat
+খুলনা সরকারি মহিলা কলেজ,FEMALE,khulna-3,bnp,khulna,1944,1119,554,Rakibul Islam,bnp,499,Muhammad Mahfuzur Rahman,jamaat
+চৌড়হাস সরকারি প্রাথমিক বিদ্যালয়,MALE,kushtia-3,jamaat,kushtia,2232,1489,880,Mohammad Amir Hamza,jamaat,560,Md. Zakir Hossain Sarkar,bnp
+চৌড়হাস সরকারি প্রাথমিক বিদ্যালয়,FEMALE,kushtia-3,jamaat,kushtia,2448,1422,877,Mohammad Amir Hamza,jamaat,511,Md. Zakir Hossain Sarkar,bnp
+জগতপুর এ.ডি.এইচ ফাজিল মাদ্রাসা,MALE,cumilla-5,bnp,cumilla,3269,1741,900,Md. Jashim Uddin,bnp,829,Mobarak Hossain,jamaat
+জগতপুর এ.ডি.এইচ ফাজিল মাদ্রাসা,FEMALE,cumilla-5,bnp,cumilla,2967,1802,925,Mobarak Hossain,jamaat,860,Md. Jashim Uddin,bnp
+জয়ন্তীপুর সরকারি প্রাথমিক বিদ্যালয়,MALE,natore-1,bnp,natore,3369,2528,1038,Farjana Sharmin,bnp,888,Md. Abul Kalam Azad,jamaat
+জয়ন্তীপুর সরকারি প্রাথমিক বিদ্যালয়,FEMALE,natore-1,bnp,natore,3454,2473,1071,Farjana Sharmin,bnp,933,Md. Abul Kalam Azad,jamaat
+জামিয়া মিল্লিয়া আহমদিয়া কামিল মাদ্রাসা,MALE,chattogram-2,bnp,chattogram,3843,1900,1361,Md Sarowar Alamgir,bnp,440,Mohammad Nurul Amin,jamaat
+জামিয়া মিল্লিয়া আহমদিয়া কামিল মাদ্রাসা,FEMALE,chattogram-2,bnp,chattogram,3349,1420,1069,Md Sarowar Alamgir,bnp,323,Mohammad Nurul Amin,jamaat
+জৈন্তাপুর সরকারী উচ্চ বিদ্যালয়,MALE,sylhet-4,bnp,sylhet,2617,1573,1085,Ariful Haque Choudhury,bnp,466,Md. Zainal Abedin,jamaat
+জৈন্তাপুর সরকারী উচ্চ বিদ্যালয়,FEMALE,sylhet-4,bnp,sylhet,2788,1269,910,Ariful Haque Choudhury,bnp,339,Md. Zainal Abedin,jamaat
+জোয়াড়ী উচ্চ বিদ্যালয়,MALE,natore-4,bnp,natore,2225,1743,872,Mohammad Abdul Aziz,bnp,772,Md. Abdul Hakim,jamaat
+জোয়াড়ী উচ্চ বিদ্যালয়,FEMALE,natore-4,bnp,natore,2288,1629,849,Mohammad Abdul Aziz,bnp,726,Md. Abdul Hakim,jamaat
+ডিবি আনোয়ারা সরকারি প্রাথমিক বিদ্যালয়,MALE,rajshahi-2,bnp,rajshahi,2416,1657,910,Md. Mizanur Rahman Minu,bnp,732,Mohammad Jahangir,jamaat
+ডিবি আনোয়ারা সরকারি প্রাথমিক বিদ্যালয়,FEMALE,rajshahi-2,bnp,rajshahi,2697,1723,971,Md. Mizanur Rahman Minu,bnp,735,Mohammad Jahangir,jamaat
+তিলকপুর উচ্চ বিদ্যালয়,MALE,joypurhat-2,bnp,joypurhat,2503,1612,840,SM Rashedul Alam,jamaat,766,Md. Abdul Bari,bnp
+তিলকপুর উচ্চ বিদ্যালয়,FEMALE,joypurhat-2,bnp,joypurhat,2618,1641,824,Md. Abdul Bari,bnp,811,SM Rashedul Alam,jamaat
+দক্ষিণ দেবনগর সরকারি প্রাথমিক বিদ্যালয়,MALE,satkhira-2,jamaat,satkhira,2524,1902,1431,Muhammad Abdul Khalek,jamaat,449,Mohammad Abdur Rouf,bnp
+দক্ষিণ দেবনগর সরকারি প্রাথমিক বিদ্যালয়,FEMALE,satkhira-2,jamaat,satkhira,2661,1995,1649,Muhammad Abdul Khalek,jamaat,335,Mohammad Abdur Rouf,bnp
+দলুয়া মাধ্যমিক বিদ্যালয়,MALE,satkhira-1,jamaat,satkhira,2549,1927,1168,Md. Habibull Islam Habib,bnp,729,Md. Izzat Ullah,jamaat
+দলুয়া মাধ্যমিক বিদ্যালয়,FEMALE,satkhira-1,jamaat,satkhira,2465,1801,948,Md. Habibull Islam Habib,bnp,837,Md. Izzat Ullah,jamaat
+দৌলতখান বালক সরকারী উচ্চ বিদ্যালয়,MALE,bhola-2,bnp,bhola,2845,1331,999,Md. Hafez Ibrahim,bnp,326,Mohammad Fazlul Karim,jamaat
+দৌলতখান বালক সরকারী উচ্চ বিদ্যালয়,FEMALE,bhola-2,bnp,bhola,2546,1328,999,Md. Hafez Ibrahim,bnp,326,Mohammad Fazlul Karim,jamaat
+নিজপাট সরকারী প্রাঃ বিদ্যালয়,MALE,sylhet-4,bnp,sylhet,2683,1475,864,Ariful Haque Choudhury,bnp,560,Md. Zainal Abedin,jamaat
+নিজপাট সরকারী প্রাঃ বিদ্যালয়,FEMALE,sylhet-4,bnp,sylhet,2665,842,487,Ariful Haque Choudhury,bnp,327,Md. Zainal Abedin,jamaat
+নিরালা আদর্শ মাধ্যমিক বিদ্যালয়,MALE,khulna-2,jamaat,khulna,2952,1545,784,Nazrul Islam Manju,bnp,697,Sheikh Jahangir Hossain Helal,jamaat
+নিরালা আদর্শ মাধ্যমিক বিদ্যালয়,FEMALE,khulna-2,jamaat,khulna,3001,1439,704,Nazrul Islam Manju,bnp,696,Sheikh Jahangir Hossain Helal,jamaat
+পাইওনিয়ার মাধ্যমিক বালিকা বিদ্যালয়,FEMALE,khulna-2,jamaat,khulna,1716,725,417,Nazrul Islam Manju,bnp,299,Sheikh Jahangir Hossain Helal,jamaat
+পাইওনিয়ার মাধ্যমিক বালিকা বিদ্যালয়,MALE,khulna-2,jamaat,khulna,1551,825,499,Nazrul Islam Manju,bnp,314,Sheikh Jahangir Hossain Helal,jamaat
+পাঁচুপুর দ্বি-মুখী উচ্চ বিদ্যালয়,MALE,naogaon-6,bnp,naogaon,2584,1700,793,Sheikh Mohammad Rezaul Karim,bnp,763,Md. Khabirul Islam,jamaat
+পাঁচুপুর দ্বি-মুখী উচ্চ বিদ্যালয়,FEMALE,naogaon-6,bnp,naogaon,2693,1778,858,Sheikh Mohammad Rezaul Karim,bnp,810,Md. Khabirul Islam,jamaat
+পাটকেলঘাটা হারুন অর রশিদ ডিগ্রী কলেজ,MALE,satkhira-1,jamaat,satkhira,2719,1990,1047,Md. Habibull Islam Habib,bnp,885,Md. Izzat Ullah,jamaat
+পাটকেলঘাটা হারুন অর রশিদ ডিগ্রী কলেজ,FEMALE,satkhira-1,jamaat,satkhira,2845,1937,997,Md. Izzat Ullah,jamaat,907,Md. Habibull Islam Habib,bnp
+পাবনা জেলা স্কুল,MALE,pabna-5,bnp,pabna,2443,1300,907,Md. Shamsur Rahman Shimul Biswas,bnp,384,Md. Iqbal Hossain,jamaat
+পাবনা জেলা স্কুল,FEMALE,pabna-5,bnp,pabna,2505,1175,741,Md. Shamsur Rahman Shimul Biswas,bnp,426,Md. Iqbal Hossain,jamaat
+পুঠিয়া পরেশ নারায়ন সরকারী উচ্চ বিদ্যালয়,MALE,rajshahi-5,bnp,rajshahi,1965,1345,760,Professor Nazrul Islam,bnp,455,Manjur Rahman,jamaat
+পুঠিয়া পরেশ নারায়ন সরকারী উচ্চ বিদ্যালয়,FEMALE,rajshahi-5,bnp,rajshahi,2078,1249,695,Professor Nazrul Islam,bnp,433,Manjur Rahman,jamaat
+পোড়াদহ মাধ্যমিক বিদ্যালয়,MALE,kushtia-2,bnp,kushtia,2417,1777,876,Md. Abdul Gafur,jamaat,868,Raghib Rauf Chowdhury,bnp
+পোড়াদহ মাধ্যমিক বিদ্যালয়,FEMALE,kushtia-2,bnp,kushtia,2656,1830,983,Md. Abdul Gafur,jamaat,822,Raghib Rauf Chowdhury,bnp
+ফরক্কাবাদ নুরুল ইসলাম স্কুল এন্ড কলেজ,MALE,dinajpur-2,bnp,dinajpur,2557,1926,1134,A. K. M. Afzalul Anam,jamaat,700,Md. Sadiq Riaz,bnp
+ফরক্কাবাদ নুরুল ইসলাম স্কুল এন্ড কলেজ,FEMALE,dinajpur-2,bnp,dinajpur,2590,1771,1055,A. K. M. Afzalul Anam,jamaat,628,Md. Sadiq Riaz,bnp
+বহেরা আজিজুল তছিমুদ্দীন মাধ্যমিক বিদ্যালয়,MALE,satkhira-2,jamaat,satkhira,2704,1926,1177,Muhammad Abdul Khalek,jamaat,725,Mohammad Abdur Rouf,bnp
+বহেরা আজিজুল তছিমুদ্দীন মাধ্যমিক বিদ্যালয়,FEMALE,satkhira-2,jamaat,satkhira,2824,2046,1434,Muhammad Abdul Khalek,jamaat,596,Mohammad Abdur Rouf,bnp
+বান্ডেল সরকারি,MALE,chattogram-9,bnp,chattogram,1799,694,568,Mohammad Abu Sufiyan,bnp,94,Dr. A K M Fazlul Haque,jamaat
+বান্ডেল সরকারি,FEMALE,chattogram-9,bnp,chattogram,1820,849,713,Mohammad Abu Sufiyan,bnp,115,Dr. A K M Fazlul Haque,jamaat
+বালাজাননেসা বালিকা উচ্চ বিদ্যালয়,MALE,rajshahi-2,bnp,rajshahi,2330,1671,917,Mohammad Jahangir,jamaat,737,Md. Mizanur Rahman Minu,bnp
+বালাজাননেসা বালিকা উচ্চ বিদ্যালয়,FEMALE,rajshahi-2,bnp,rajshahi,2552,1625,877,Mohammad Jahangir,jamaat,730,Md. Mizanur Rahman Minu,bnp
+মনিয়ারী সরকারি প্রাথমিক বিদ্যালয়,MALE,naogaon-6,bnp,naogaon,2254,1421,687,Sheikh Mohammad Rezaul Karim,bnp,578,Md. Khabirul Islam,jamaat
+মনিয়ারী সরকারি প্রাথমিক বিদ্যালয়,FEMALE,naogaon-6,bnp,naogaon,2212,1361,683,Sheikh Mohammad Rezaul Karim,bnp,565,Md. Khabirul Islam,jamaat
+মহাদিঘী সরকারি প্রাথমিক বিদ্যালয়,MALE,naogaon-6,bnp,naogaon,2663,1751,943,Md. Khabirul Islam,jamaat,693,Sheikh Mohammad Rezaul Karim,bnp
+মহাদিঘী সরকারি প্রাথমিক বিদ্যালয়,FEMALE,naogaon-6,bnp,naogaon,2698,1791,957,Md. Khabirul Islam,jamaat,744,Sheikh Mohammad Rezaul Karim,bnp
+মাওলানা ভাসানী বিদ্যাপীঠ,MALE,khulna-3,bnp,khulna,1697,855,463,Rakibul Islam,bnp,336,Muhammad Mahfuzur Rahman,jamaat
+মাওলানা ভাসানী বিদ্যাপীঠ,FEMALE,khulna-3,bnp,khulna,1710,879,425,Muhammad Mahfuzur Rahman,jamaat,411,Rakibul Islam,bnp
+মোখলেসপুর উচ্চ বিদ্যালয়,MALE,dinajpur-2,bnp,dinajpur,2683,1984,994,A. K. M. Afzalul Anam,jamaat,855,Md. Sadiq Riaz,bnp
+মোখলেসপুর উচ্চ বিদ্যালয়,FEMALE,dinajpur-2,bnp,dinajpur,2585,1806,859,A. K. M. Afzalul Anam,jamaat,753,Md. Sadiq Riaz,bnp
+রাজশাহী আর্দশ উচ্চ বিদ্যালয়,FEMALE,rajshahi-2,bnp,rajshahi,4341,2061,1018,Md. Mizanur Rahman Minu,bnp,1016,Mohammad Jahangir,jamaat
+রাজশাহী আর্দশ উচ্চ বিদ্যালয়,MALE,rajshahi-2,bnp,rajshahi,2650,1453,830,Md. Mizanur Rahman Minu,bnp,591,Mohammad Jahangir,jamaat
+রাজশাহী মুসলিম উচ্চ বিদ্যালয়,MALE,rajshahi-2,bnp,rajshahi,2018,1302,732,Md. Mizanur Rahman Minu,bnp,558,Mohammad Jahangir,jamaat
+রাজশাহী মুসলিম উচ্চ বিদ্যালয়,FEMALE,rajshahi-2,bnp,rajshahi,2197,1288,680,Md. Mizanur Rahman Minu,bnp,597,Mohammad Jahangir,jamaat
+রামচন্দ্র বহরপুর সরকারী প্রাথমিক বিদ্যালয়,MALE,pabna-4,jamaat,pabna,2756,2151,1052,Md. Abu Taleb Mondal,jamaat,865,Md. Habibur Rahman (Habib),bnp
+রামচন্দ্র বহরপুর সরকারী প্রাথমিক বিদ্যালয়,FEMALE,pabna-4,jamaat,pabna,2655,1886,974,Md. Abu Taleb Mondal,jamaat,747,Md. Habibur Rahman (Habib),bnp
+রায়ের মহল সরকারি প্রাথমিক বিদ্যালয়,MALE,khulna-3,bnp,khulna,2208,1273,749,Rakibul Islam,bnp,440,Muhammad Mahfuzur Rahman,jamaat
+রায়ের মহল সরকারি প্রাথমিক বিদ্যালয়,FEMALE,khulna-3,bnp,khulna,1818,1140,578,Rakibul Islam,bnp,521,Muhammad Mahfuzur Rahman,jamaat
+রূপসা বহুমুখী উচ্চ বিদ্যালয়,FEMALE,khulna-2,jamaat,khulna,1996,1005,504,Sheikh Jahangir Hossain Helal,jamaat,481,Nazrul Islam Manju,bnp
+রূপসা বহুমুখী উচ্চ বিদ্যালয়,MALE,khulna-2,jamaat,khulna,1784,1086,580,Sheikh Jahangir Hossain Helal,jamaat,480,Nazrul Islam Manju,bnp
+শিমুলিয়া সরকারী প্রাথমিক বিদ্যালয়,FEMALE,satkhira-2,jamaat,satkhira,2145,1667,1241,Muhammad Abdul Khalek,jamaat,411,Mohammad Abdur Rouf,bnp
+শিমুলিয়া সরকারী প্রাথমিক বিদ্যালয়,MALE,satkhira-2,jamaat,satkhira,2152,1611,1133,Muhammad Abdul Khalek,jamaat,461,Mohammad Abdur Rouf,bnp
+সরকারি বসির উদ্দিন মেমোরিয়াল কো-অপারেটিভ (বি এম সি) মহিলা কলেজ,MALE,naogaon-5,bnp,naogaon,2280,1389,711,Md. Zahidul Islam Dhulu,bnp,612,Abu Sadat Md Sayem,jamaat
+সরকারি বসির উদ্দিন মেমোরিয়াল কো-অপারেটিভ (বি এম সি) মহিলা কলেজ,FEMALE,naogaon-5,bnp,naogaon,2559,1404,801,Md. Zahidul Islam Dhulu,bnp,562,Abu Sadat Md Sayem,jamaat
+সারাংগাই পলাশবাড়ী উচ্চ বিদ্যালয়,MALE,dinajpur-2,bnp,dinajpur,3048,2302,1217,A. K. M. Afzalul Anam,jamaat,983,Md. Sadiq Riaz,bnp
+সারাংগাই পলাশবাড়ী উচ্চ বিদ্যালয়,FEMALE,dinajpur-2,bnp,dinajpur,2870,2045,1129,A. K. M. Afzalul Anam,jamaat,818,Md. Sadiq Riaz,bnp
+সালাহউদ্দিন ইউসুফ সরকারি মাধ্যমিক বিদ্যালয়,FEMALE,khulna-2,jamaat,khulna,2356,1324,781,Sheikh Jahangir Hossain Helal,jamaat,497,Nazrul Islam Manju,bnp
+সালাহউদ্দিন ইউসুফ সরকারি মাধ্যমিক বিদ্যালয়,MALE,khulna-2,jamaat,khulna,2300,1399,793,Sheikh Jahangir Hossain Helal,jamaat,547,Nazrul Islam Manju,bnp
+সৈয়দ শাহ মোস্তফা কলেজ,MALE,moulvibazar-3,bnp,moulvibazar,3051,1359,961,Naser Rahman,bnp,347,Md. Abdul Mannan,jamaat
+সৈয়দ শাহ মোস্তফা কলেজ,FEMALE,moulvibazar-3,bnp,moulvibazar,3167,979,664,Naser Rahman,bnp,302,Md. Abdul Mannan,jamaat
+হাজী ফয়েজ উদ্দিন উচ্চ বালিকা বিদ্যালয়,FEMALE,khulna-2,jamaat,khulna,2311,1361,738,Sheikh Jahangir Hossain Helal,jamaat,554,Nazrul Islam Manju,bnp
+হাজী ফয়েজ উদ্দিন উচ্চ বালিকা বিদ্যালয়,MALE,khulna-2,jamaat,khulna,2100,1371,688,Sheikh Jahangir Hossain Helal,jamaat,615,Nazrul Islam Manju,bnp
+হাজী মালেক ছালেহীয়া দারুসুন্নাত দাখিল মাদ্রাসা,MALE,khulna-2,jamaat,khulna,2264,1410,747,Sheikh Jahangir Hossain Helal,jamaat,584,Nazrul Islam Manju,bnp
+হাজী মালেক ছালেহীয়া দারুসুন্নাত দাখিল মাদ্রাসা,FEMALE,khulna-2,jamaat,khulna,2334,1347,773,Sheikh Jahangir Hossain Helal,jamaat,506,Nazrul Islam Manju,bnp
