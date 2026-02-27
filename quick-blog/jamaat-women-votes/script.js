@@ -8,6 +8,9 @@ const TYPE_ORDER = ["FEMALE", "MALE"];
 const PAGE_SIZE = 10;
 const CANONICAL_URL = "https://nazmulahasan.com/quick-blog/jamaat-women-votes/";
 const SHARE_TITLE = "Data tidbit shows Jamaat's showing among women voters";
+const NUMBER_FORMATTER = new Intl.NumberFormat("en-US");
+const PARTY_SET = new Set(PARTY_ORDER);
+const TYPE_SET = new Set(TYPE_ORDER);
 
 const state = {
   compareMode: "votes",
@@ -30,11 +33,6 @@ const rawTableHeadEl = document.getElementById("rawTableHead");
 const rawTableBodyEl = document.getElementById("rawTableBody");
 const rawTablePaginationEl = document.getElementById("rawTablePagination");
 const rawTableSummaryEl = document.getElementById("rawTableSummary");
-const shareXEl = document.getElementById("shareX");
-const shareFacebookEl = document.getElementById("shareFacebook");
-const shareLinkedInEl = document.getElementById("shareLinkedIn");
-const shareCopyBtnEl = document.getElementById("shareCopyBtn");
-const shareFeedbackEl = document.getElementById("shareFeedback");
 const topbarShareToggleEl = document.getElementById("topbarShareToggle");
 const topbarShareMenuEl = document.getElementById("topbarShareMenu");
 const topbarShareXEl = document.getElementById("topbarShareX");
@@ -68,7 +66,7 @@ const distributionScopes = {
 };
 
 function formatNumber(value) {
-  return new Intl.NumberFormat("en-US").format(Math.round(value));
+  return NUMBER_FORMATTER.format(Math.round(value));
 }
 
 function formatPercent(value) {
@@ -189,17 +187,17 @@ function summarize(rows) {
     ].forEach(([partyKey, voteKey]) => {
       const party = normalizeParty(row[partyKey]);
 
-      if (!PARTY_ORDER.includes(party)) {
+      if (!PARTY_SET.has(party)) {
         return;
       }
 
       const vote = parseNumber(row[voteKey]);
       totals[party] += vote;
 
-      if (TYPE_ORDER.includes(rowType)) {
+      if (TYPE_SET.has(rowType)) {
         byType[rowType][party] += vote;
 
-        if (PARTY_ORDER.includes(winner)) {
+        if (PARTY_SET.has(winner)) {
           byWinner[winner].byType[rowType][party] += vote;
         }
       }
@@ -213,7 +211,7 @@ function summarize(rows) {
 
     matchedRows += 1;
 
-    if (PARTY_ORDER.includes(winner)) {
+    if (PARTY_SET.has(winner)) {
       byWinner[winner].matchedRows += 1;
     }
   });
@@ -598,23 +596,7 @@ function wireShare() {
   const encodedUrl = encodeURIComponent(CANONICAL_URL);
   const encodedTitle = encodeURIComponent(SHARE_TITLE);
 
-  setShareLinks(shareXEl, shareFacebookEl, shareLinkedInEl, encodedUrl, encodedTitle);
   setShareLinks(topbarShareXEl, topbarShareFacebookEl, topbarShareLinkedInEl, encodedUrl, encodedTitle);
-
-  if (shareCopyBtnEl) {
-    shareCopyBtnEl.addEventListener("click", async () => {
-      const copied = await copyCanonicalUrl();
-
-      if (!shareFeedbackEl) {
-        return;
-      }
-
-      shareFeedbackEl.textContent = copied ? "Copied" : "Failed";
-      window.setTimeout(() => {
-        shareFeedbackEl.textContent = "";
-      }, 1400);
-    });
-  }
 
   if (topbarCopyBtnEl) {
     topbarCopyBtnEl.addEventListener("click", async () => {
@@ -666,7 +648,11 @@ function wireScrollProgress() {
     return;
   }
 
+  let rafId = 0;
+
   const updateProgress = () => {
+    rafId = 0;
+
     const doc = document.documentElement;
     const maxScroll = doc.scrollHeight - window.innerHeight;
     const ratio = maxScroll > 0 ? window.scrollY / maxScroll : 0;
@@ -674,9 +660,17 @@ function wireScrollProgress() {
     scrollProgressBarEl.style.width = width.toFixed(2) + "%";
   };
 
+  const queueUpdate = () => {
+    if (rafId) {
+      return;
+    }
+
+    rafId = window.requestAnimationFrame(updateProgress);
+  };
+
   updateProgress();
-  window.addEventListener("scroll", updateProgress, { passive: true });
-  window.addEventListener("resize", updateProgress);
+  window.addEventListener("scroll", queueUpdate, { passive: true });
+  window.addEventListener("resize", queueUpdate);
 }
 
 function renderAll() {

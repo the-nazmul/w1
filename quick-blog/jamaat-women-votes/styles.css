@@ -184,8 +184,7 @@ h1 {
 
 .kicker,
 h1,
-.feature-art,
-.feature-art__image {
+.feature-art {
   max-width: 1000px;
 }
 
@@ -679,6 +678,7 @@ h2 {
   }
 }
 
+.article > p,
 .article > .meta,
 .article > .dek,
 .article > .byline {
@@ -687,16 +687,9 @@ h2 {
   margin-right: 0;
 }
 
-.article > p {
-  max-width: 68ch;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .article > .kicker,
 .article > h1,
-.article > .feature-art,
-.article > .share {
+.article > .feature-art {
   margin-left: 0;
   margin-right: 0;
 }
@@ -719,51 +712,6 @@ h2 {
 .byline strong {
   color: var(--text);
   font-weight: 400;
-}
-
-.share {
-  margin: 0 0 12px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 7px;
-}
-
-.share__label {
-  color: var(--muted);
-  font: 400 10px/1 var(--mono);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-right: 2px;
-}
-
-.share__link,
-.share__btn {
-  border: 1px solid var(--rule-mid);
-  background: #f2eee7;
-  color: var(--muted);
-  font: 400 10px/1 var(--mono);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 7px 9px;
-}
-
-.share__btn {
-  cursor: pointer;
-}
-
-.share__link:hover,
-.share__btn:hover {
-  color: var(--text);
-}
-
-.share__feedback {
-  min-width: 56px;
-  color: var(--muted);
-  font: 400 10px/1 var(--mono);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
 }
 
 .text-link {
