@@ -56,7 +56,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="./styles.css">
 </head>
@@ -108,36 +108,20 @@
     <p>Another way to see it: women made up 47.8% of BNP&rsquo;s total votes in this sample. For Jamaat, women made up 50.4% of its total support. So women formed a somewhat larger share of Jamaat&rsquo;s own voter base.</p>
 
     <section class="viz-card" aria-labelledby="compare-title">
-      <div class="viz-head">
-        <h2 id="compare-title">1) Combined vote totals by party</h2>
-        <div class="control-group" role="group" aria-label="Comparison scale">
-          <button class="control-btn is-active" data-compare-mode="votes" type="button">Votes</button>
-          <button class="control-btn" data-compare-mode="share" type="button">Share</button>
-        </div>
-      </div>
-      <p class="method">
-        BNP and Jamaat’s total votes in centres they won or lost
-      </p>
-      <div id="compareChart" class="chart compare-chart" aria-live="polite"></div>
+      <h2 id="compare-title">1) Overall two-party vote totals</h2>
+      <p class="method">Total BNP and Jamaat votes across all 98 matched centres.</p>
+      <div id="compareChart" aria-live="polite"></div>
       <p id="compareCaption" class="caption"></p>
     </section>
 
     <section class="viz-card" aria-labelledby="distribution-title">
-      <div class="viz-head">
-        <h2 id="distribution-title">2) How each party's votes distribute across male- and female-only centres</h2>
-        <div class="control-group" role="group" aria-label="Distribution focus: all centers">
-          <button class="control-btn is-active" data-distribution-scope="overall" data-distribution-view="ALL" type="button">All</button>
-          <button class="control-btn" data-distribution-scope="overall" data-distribution-view="FEMALE" type="button">Female only</button>
-          <button class="control-btn" data-distribution-scope="overall" data-distribution-view="MALE" type="button">Male only</button>
-        </div>
-      </div>
-
+      <h2 id="distribution-title">2) Within-gender two-party share — all centres</h2>
+      <p class="method">Each dot shows one party's share of the two-party vote within that gender type. Female and male centres counted separately.</p>
       <div class="legend" aria-hidden="true">
-        <span class="legend__item"><span class="swatch swatch--female"></span>Female</span>
-        <span class="legend__item"><span class="swatch swatch--male"></span>Male</span>
+        <span class="legend__item"><span class="swatch swatch--female"></span>Female centres</span>
+        <span class="legend__item"><span class="swatch swatch--male"></span>Male centres</span>
       </div>
-
-      <div id="distributionChart" class="chart distribution-chart" aria-live="polite"></div>
+      <div id="distributionChart" aria-live="polite"></div>
       <p id="distributionCaption" class="caption"></p>
     </section>
 
@@ -148,41 +132,32 @@
     <p>In constituencies Jamaat won, the pattern becomes sharper. Women accounted for 51.7% of Jamaat&rsquo;s total votes, while they made up 46.7% of BNP&rsquo;s. Where Jamaat succeeded, women were often central.</p>
 
     <section class="viz-card" aria-labelledby="winner-bnp-title">
-      <div class="viz-head">
-        <h2 id="winner-bnp-title">3) Distribution where BNP won the constituency</h2>
-        <div class="control-group" role="group" aria-label="Distribution focus: BNP-winning constituencies">
-          <button class="control-btn is-active" data-distribution-scope="winner-bnp" data-distribution-view="ALL" type="button">All</button>
-          <button class="control-btn" data-distribution-scope="winner-bnp" data-distribution-view="FEMALE" type="button">Female only</button>
-          <button class="control-btn" data-distribution-scope="winner-bnp" data-distribution-view="MALE" type="button">Male only</button>
-        </div>
-      </div>
-
+      <h2 id="winner-bnp-title">3) Within-gender two-party share — BNP-won constituencies</h2>
+      <p class="method">Same as above, restricted to the 66 centres in constituencies BNP carried.</p>
       <div class="legend" aria-hidden="true">
-        <span class="legend__item"><span class="swatch swatch--female"></span>Female</span>
-        <span class="legend__item"><span class="swatch swatch--male"></span>Male</span>
+        <span class="legend__item"><span class="swatch swatch--female"></span>Female centres</span>
+        <span class="legend__item"><span class="swatch swatch--male"></span>Male centres</span>
       </div>
-
-      <div id="winnerBnpChart" class="chart distribution-chart" aria-live="polite"></div>
+      <div id="winnerBnpChart" aria-live="polite"></div>
       <p id="winnerBnpCaption" class="caption"></p>
     </section>
 
     <section class="viz-card" aria-labelledby="winner-jamaat-title">
-      <div class="viz-head">
-        <h2 id="winner-jamaat-title">4) Distribution where Jamaat won the constituency</h2>
-        <div class="control-group" role="group" aria-label="Distribution focus: Jamaat-winning constituencies">
-          <button class="control-btn is-active" data-distribution-scope="winner-jamaat" data-distribution-view="ALL" type="button">All</button>
-          <button class="control-btn" data-distribution-scope="winner-jamaat" data-distribution-view="FEMALE" type="button">Female only</button>
-          <button class="control-btn" data-distribution-scope="winner-jamaat" data-distribution-view="MALE" type="button">Male only</button>
-        </div>
-      </div>
-
+      <h2 id="winner-jamaat-title">4) Within-gender two-party share — Jamaat-won constituencies</h2>
+      <p class="method">Restricted to the 32 centres in constituencies Jamaat carried. The pattern sharpens most here.</p>
       <div class="legend" aria-hidden="true">
-        <span class="legend__item"><span class="swatch swatch--female"></span>Female</span>
-        <span class="legend__item"><span class="swatch swatch--male"></span>Male</span>
+        <span class="legend__item"><span class="swatch swatch--female"></span>Female centres</span>
+        <span class="legend__item"><span class="swatch swatch--male"></span>Male centres</span>
       </div>
-
-      <div id="winnerJamaatChart" class="chart distribution-chart" aria-live="polite"></div>
+      <div id="winnerJamaatChart" aria-live="polite"></div>
       <p id="winnerJamaatCaption" class="caption"></p>
+    </section>
+
+    <section class="viz-card" aria-labelledby="slope-title">
+      <h2 id="slope-title">5) How the gender gap shifts across contexts</h2>
+      <p class="method">Filled dots and solid lines = female centres. Hollow dots and dashed lines = male centres. Each line traces one party&rsquo;s within-gender two-party share from the full sample to BNP-won to Jamaat-won constituencies.</p>
+      <div id="slopeChart" aria-live="polite"></div>
+      <p id="slopeCaption" class="caption"></p>
     </section>
 
     <p>What makes this dataset analytically useful is that it&rsquo;s geographically controlled. We&rsquo;re not mixing different constituencies of wildly different sizes. These are matched male and female centres within the same polling complex. The gender balance in registration is also tight. The median share of female registered voters was 50.8%, and the average was 50.9%. In total, 125,804 women were registered in the female-only centres, compared to 121,344 men in the male-only ones.</p>

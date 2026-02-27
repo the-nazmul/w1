@@ -257,189 +257,215 @@ function setButtonGroupActive(button) {
 }
 
 function renderCompare() {
-  if (!state.data) {
-    return;
-  }
+  if (!state.data) return;
 
   const { totals, combinedTotal } = state.data;
-  const maxVotes = Math.max(...PARTY_ORDER.map((party) => totals[party]), 1);
 
-  compareChartEl.innerHTML = PARTY_ORDER.map((party) => {
+  compareChartEl.innerHTML = `<div class="stat-pair">${PARTY_ORDER.map((party) => {
     const votes = totals[party];
     const share = combinedTotal ? (votes / combinedTotal) * 100 : 0;
-    const width = state.compareMode === "votes" ? (votes / maxVotes) * 100 : share;
-
-    const primaryValue = state.compareMode === "votes" ? formatNumber(votes) : formatPercent(share);
-    const secondaryValue = state.compareMode === "votes" ? `${formatPercent(share)} share` : `${formatNumber(votes)} votes`;
-
-    return `
-      <div class="compare-row">
-        <div class="compare-party">${PARTY_LABELS[party]}</div>
-        <div class="compare-track">
-          <div class="compare-fill compare-fill--${party}" data-width="${width.toFixed(2)}" title="${PARTY_LABELS[party]}: ${formatNumber(votes)} votes (${formatPercent(share)})"></div>
-        </div>
-        <div class="compare-value">
-          <strong>${primaryValue}</strong>
-          <span>${secondaryValue}</span>
-        </div>
-      </div>
-    `;
-  }).join("");
-
-  animateWidths(compareChartEl, ".compare-fill");
+    return `<div class="stat-block stat-block--${party}">
+        <div class="stat-share">${formatPercent(share)}</div>
+        <div class="stat-label">of two-party vote</div>
+        <div class="stat-votes">${formatNumber(votes)} votes</div>
+        <div class="stat-party">${PARTY_LABELS[party]}</div>
+      </div>`;
+  }).join("")}</div>`;
 
   const leadParty = totals.bnp >= totals.jamaat ? "bnp" : "jamaat";
-  const trailingParty = leadParty === "bnp" ? "jamaat" : "bnp";
   const voteGap = Math.abs(totals.bnp - totals.jamaat);
   const gapShare = combinedTotal ? (voteGap / combinedTotal) * 100 : 0;
-
-  if (state.compareMode === "votes") {
-    compareCaptionEl.innerHTML = `<span class="accent">${PARTY_LABELS[leadParty]}</span> leads by <strong>${formatNumber(voteGap)}</strong> votes.`;
-  } else {
-    compareCaptionEl.innerHTML = `<span class="accent">${PARTY_LABELS[leadParty]}</span> is ahead by <strong>${formatPercent(gapShare)}</strong> of the two-party total over ${PARTY_LABELS[trailingParty]}.`;
-  }
+  compareCaptionEl.innerHTML = `<span class="accent">${PARTY_LABELS[leadParty]}</span> leads by <strong>${formatNumber(voteGap)}</strong> votes — a margin of ${formatPercent(gapShare)} of the two-party total across all 98 centres.`;
 }
 
-function buildDistributionRowAll(
-  party,
-  femaleVotes,
-  maleVotes,
-  partyTotal,
-  maxPartyTotal,
-  femaleShareOfTwoParty,
-  maleShareOfTwoParty
-) {
-  const femaleShare = partyTotal ? (femaleVotes / partyTotal) * 100 : 0;
-  const maleShare = partyTotal ? (maleVotes / partyTotal) * 100 : 0;
-  const rowWidth = partyTotal ? (partyTotal / maxPartyTotal) * 100 : 0;
-
-  return `
-    <div class="dist-row">
-      <div class="dist-party">${PARTY_LABELS[party]}</div>
-      <div class="dist-track">
-        <div class="dist-bar" data-width="${rowWidth.toFixed(2)}" title="${PARTY_LABELS[party]} total: ${formatNumber(partyTotal)} votes (Female ${formatNumber(femaleVotes)}, Male ${formatNumber(maleVotes)})">
-          <div class="dist-segment dist-segment--female" data-width="${femaleShare.toFixed(2)}" title="Female: ${formatNumber(femaleVotes)} (${formatPercent(femaleShare)} of party; ${formatPercent(femaleShareOfTwoParty)} of two-party)"></div>
-          <div class="dist-segment dist-segment--male" data-width="${maleShare.toFixed(2)}" title="Male: ${formatNumber(maleVotes)} (${formatPercent(maleShare)} of party; ${formatPercent(maleShareOfTwoParty)} of two-party)"></div>
-        </div>
-      </div>
-      <div class="dist-value">
-        <strong>${formatNumber(partyTotal)}</strong>
-        <span>total votes</span>
-      </div>
-      <div class="dist-meta">
-        <span class="dist-chip"><em>F</em> ${formatNumber(femaleVotes)} (${formatPercent(femaleShare)} party · ${formatPercent(femaleShareOfTwoParty)} two-party)</span>
-        <span class="dist-chip"><em>M</em> ${formatNumber(maleVotes)} (${formatPercent(maleShare)} party · ${formatPercent(maleShareOfTwoParty)} two-party)</span>
-      </div>
-    </div>
-  `;
-}
-
-function buildDistributionRowSingleType(
-  party,
-  type,
-  selectedVotes,
-  partyTotal,
-  maxSelectedVotes,
-  selectedShareOfTwoParty
-) {
-  const shareWithinParty = partyTotal ? (selectedVotes / partyTotal) * 100 : 0;
-  const rowWidth = selectedVotes ? (selectedVotes / maxSelectedVotes) * 100 : 0;
-  const segmentClass = type === "FEMALE" ? "dist-segment--female" : "dist-segment--male";
-  const typeShort = type === "FEMALE" ? "F" : "M";
-
-  return `
-    <div class="dist-row">
-      <div class="dist-party">${PARTY_LABELS[party]}</div>
-      <div class="dist-track">
-        <div class="dist-bar" data-width="${rowWidth.toFixed(2)}">
-          <div class="dist-segment ${segmentClass}" data-width="100" title="${type}: ${formatNumber(selectedVotes)} votes (${formatPercent(shareWithinParty)} of party; ${formatPercent(selectedShareOfTwoParty)} of two-party)"></div>
-        </div>
-      </div>
-      <div class="dist-value">
-        <strong>${formatNumber(selectedVotes)}</strong>
-        <span>${type.toLowerCase()} votes</span>
-      </div>
-      <div class="dist-meta">
-        <span class="dist-chip"><em>${typeShort}</em> ${formatPercent(shareWithinParty)} of party · ${formatPercent(selectedShareOfTwoParty)} of two-party</span>
-      </div>
-    </div>
-  `;
-}
-
-function renderDistributionScope(scopeKey) {
-  if (!state.data || !distributionScopes[scopeKey]) {
-    return;
-  }
+function renderDumbbellScope(scopeKey) {
+  if (!state.data || !distributionScopes[scopeKey]) return;
 
   const scope = distributionScopes[scopeKey];
-  const view = state.distributionViewByScope[scopeKey];
   const byType = scope.getByType(state.data);
   const matchedRows = scope.getMatchedRows(state.data);
-  const totals = totalsByParty(byType);
 
-  const scopeTwoPartyTotal = PARTY_ORDER.reduce((sum, party) => sum + totals[party], 0);
+  const twoPartyF = byType.FEMALE.bnp + byType.FEMALE.jamaat;
+  const twoPartyM = byType.MALE.bnp + byType.MALE.jamaat;
 
-  if (scopeTwoPartyTotal === 0) {
+  if (!twoPartyF && !twoPartyM) {
     scope.chartEl.innerHTML = `<p class="chart-empty">No BNP/Jamaat vote totals found for ${scope.label}.</p>`;
     scope.captionEl.textContent = "";
     return;
   }
 
-  if (view === "ALL") {
-    const maxPartyTotal = Math.max(...PARTY_ORDER.map((party) => totals[party]), 1);
+  const partyData = PARTY_ORDER.map((party) => ({
+    party,
+    f: twoPartyF ? (byType.FEMALE[party] / twoPartyF) * 100 : 0,
+    m: twoPartyM ? (byType.MALE[party] / twoPartyM) * 100 : 0
+  }));
 
-    scope.chartEl.innerHTML = PARTY_ORDER.map((party) => {
-      const femaleVotes = byType.FEMALE[party];
-      const maleVotes = byType.MALE[party];
-      const femaleShareOfTwoParty = scopeTwoPartyTotal ? (femaleVotes / scopeTwoPartyTotal) * 100 : 0;
-      const maleShareOfTwoParty = scopeTwoPartyTotal ? (maleVotes / scopeTwoPartyTotal) * 100 : 0;
+  const allVals = partyData.flatMap((d) => [d.f, d.m]);
+  const minV = Math.floor(Math.min(...allVals)) - 2;
+  const maxV = Math.ceil(Math.max(...allVals)) + 2;
+  const toLeftPct = (v) => ((v - minV) / (maxV - minV) * 100).toFixed(2) + "%";
+  const toLeftNum = (v) => (v - minV) / (maxV - minV) * 100;
 
-      return buildDistributionRowAll(
-        party,
-        femaleVotes,
-        maleVotes,
-        totals[party],
-        maxPartyTotal,
-        femaleShareOfTwoParty,
-        maleShareOfTwoParty
-      );
-    }).join("");
+  // axis
+  let axisHtml = `<div class="dumbbell-axis-row"><div></div><div class="dumbbell-axis">`;
+  for (let v = Math.ceil(minV); v <= Math.floor(maxV); v++) {
+    if (v % 2 !== 0) continue;
+    axisHtml += `<div class="dumbbell-tick" style="left:${((v - minV) / (maxV - minV) * 100).toFixed(2)}%">${v}%</div>`;
+  }
+  axisHtml += `</div></div>`;
 
-    const femaleLeader = byType.FEMALE.bnp >= byType.FEMALE.jamaat ? "bnp" : "jamaat";
-    const maleLeader = byType.MALE.bnp >= byType.MALE.jamaat ? "bnp" : "jamaat";
-    const bnpTwoPartyShare = scopeTwoPartyTotal ? (totals.bnp / scopeTwoPartyTotal) * 100 : 0;
-    const jamaatTwoPartyShare = scopeTwoPartyTotal ? (totals.jamaat / scopeTwoPartyTotal) * 100 : 0;
+  const rowsHtml = partyData.map(({ party, f, m }) => {
+    const fLeft = toLeftNum(f);
+    const mLeft = toLeftNum(m);
+    const connLeft = Math.min(fLeft, mLeft);
+    const connWidth = Math.abs(fLeft - mLeft);
+    const gap = Math.abs(f - m).toFixed(1);
+    const midLeft = ((fLeft + mLeft) / 2).toFixed(2);
+    const showGap = connWidth > 2;
 
-    scope.captionEl.innerHTML = `${formatNumber(matchedRows)} rows. Female lead: <span class="accent">${PARTY_LABELS[femaleLeader]}</span>. Male lead: <span class="accent">${PARTY_LABELS[maleLeader]}</span>. Of two-party votes: BNP ${formatPercent(bnpTwoPartyShare)}, Jamaat ${formatPercent(jamaatTwoPartyShare)}.`;
-  } else {
-    const maxSelectedVotes = Math.max(...PARTY_ORDER.map((party) => byType[view][party]), 1);
-    const selectedTypeTwoPartyTotal = PARTY_ORDER.reduce((sum, party) => sum + byType[view][party], 0);
+    return `<div class="dumbbell-row">
+      <div class="dumbbell-party dumbbell-party--${party}">${PARTY_LABELS[party]}</div>
+      <div class="dumbbell-track">
+        <div class="dumbbell-connector dumbbell-connector--${party}" style="left:${connLeft.toFixed(2)}%;width:${connWidth.toFixed(2)}%"></div>
+        ${showGap ? `<div class="dumbbell-gap-label" style="left:${midLeft}%">${gap}pp</div>` : ""}
+        <div class="dumbbell-dot dumbbell-dot--female" style="left:${fLeft.toFixed(2)}%" title="Female centres: ${formatPercent(f)}"></div>
+        <div class="dumbbell-label dumbbell-label--below" style="left:${fLeft.toFixed(2)}%">${formatPercent(f)}</div>
+        <div class="dumbbell-dot dumbbell-dot--male" style="left:${mLeft.toFixed(2)}%" title="Male centres: ${formatPercent(m)}"></div>
+        <div class="dumbbell-label dumbbell-label--above" style="left:${mLeft.toFixed(2)}%">${formatPercent(m)}</div>
+      </div>
+    </div>`;
+  }).join("");
 
-    scope.chartEl.innerHTML = PARTY_ORDER.map((party) => {
-      const selectedVotes = byType[view][party];
-      const selectedShareOfTwoParty = selectedTypeTwoPartyTotal ? (selectedVotes / selectedTypeTwoPartyTotal) * 100 : 0;
+  scope.chartEl.innerHTML = axisHtml + rowsHtml;
 
-      return buildDistributionRowSingleType(
-        party,
-        view,
-        selectedVotes,
-        totals[party],
-        maxSelectedVotes,
-        selectedShareOfTwoParty
-      );
-    }).join("");
+  const jd = partyData.find((d) => d.party === "jamaat");
+  const jamaatGap = jd.f - jd.m;
+  const sign = jamaatGap >= 0 ? "+" : "";
+  scope.captionEl.innerHTML = `${formatNumber(matchedRows)} centres. Within-gender two-party shares. Jamaat female: <strong>${formatPercent(jd.f)}</strong> vs male: <strong>${formatPercent(jd.m)}</strong> (${sign}${jamaatGap.toFixed(1)}pp female advantage).`;
+}
 
-    const selectedLeader = byType[view].bnp >= byType[view].jamaat ? "bnp" : "jamaat";
-    const trailingParty = selectedLeader === "bnp" ? "jamaat" : "bnp";
-    const leadGap = Math.abs(byType[view].bnp - byType[view].jamaat);
-    const bnpTwoPartyShare = selectedTypeTwoPartyTotal ? (byType[view].bnp / selectedTypeTwoPartyTotal) * 100 : 0;
-    const jamaatTwoPartyShare = selectedTypeTwoPartyTotal ? (byType[view].jamaat / selectedTypeTwoPartyTotal) * 100 : 0;
+function renderSlopeChart() {
+  const slopeEl = document.getElementById("slopeChart");
+  if (!slopeEl || !state.data) return;
 
-    scope.captionEl.innerHTML = `${formatNumber(matchedRows)} rows in ${scope.label}. In <span class="accent">${view}</span> centers, ${PARTY_LABELS[selectedLeader]} leads ${PARTY_LABELS[trailingParty]} by <strong>${formatNumber(leadGap)}</strong> votes. Of two-party votes: BNP ${formatPercent(bnpTwoPartyShare)}, Jamaat ${formatPercent(jamaatTwoPartyShare)}.`;
+  const contexts = [
+    { label: "All",         byType: state.data.byType },
+    { label: "BNP-won",     byType: state.data.byWinner.bnp.byType },
+    { label: "Jamaat-won",  byType: state.data.byWinner.jamaat.byType }
+  ];
+
+  function withinGenderShare(byType, gender, party) {
+    const total = byType[gender].bnp + byType[gender].jamaat;
+    return total ? (byType[gender][party] / total) * 100 : 0;
   }
 
-  animateWidths(scope.chartEl, ".dist-bar, .dist-segment");
+  const series = [
+    { id: "bnp-f",    party: "bnp",    gender: "FEMALE", color: "#1e3a6e", label: "BNP \u00b7 Female",    filled: true  },
+    { id: "bnp-m",    party: "bnp",    gender: "MALE",   color: "#1e3a6e", label: "BNP \u00b7 Male",      filled: false },
+    { id: "jamaat-f", party: "jamaat", gender: "FEMALE", color: "#8b1a1a", label: "Jamaat \u00b7 Female", filled: true  },
+    { id: "jamaat-m", party: "jamaat", gender: "MALE",   color: "#8b1a1a", label: "Jamaat \u00b7 Male",   filled: false }
+  ];
+
+  series.forEach((s) => {
+    s.values = contexts.map((ctx) => withinGenderShare(ctx.byType, s.gender, s.party));
+  });
+
+  const allVals = series.flatMap((s) => s.values);
+  const rawMin = Math.min(...allVals);
+  const rawMax = Math.max(...allVals);
+  const minV = Math.floor(rawMin / 5) * 5;
+  const maxV = Math.ceil(rawMax / 5) * 5;
+
+  const W = 500, H = 210;
+  const PAD = { top: 20, right: 86, bottom: 30, left: 42 };
+  const cW = W - PAD.left - PAD.right;
+  const cH = H - PAD.top - PAD.bottom;
+  const xs = contexts.map((_, i) => PAD.left + (i / (contexts.length - 1)) * cW);
+  const toY = (v) => PAD.top + ((maxV - v) / (maxV - minV)) * cH;
+
+  let svg = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;overflow:visible" role="img" aria-label="Slope chart">`;
+
+  // Gridlines + Y labels
+  for (let v = minV; v <= maxV; v += 5) {
+    const y = toY(v).toFixed(1);
+    svg += `<line x1="${PAD.left}" x2="${W - PAD.right}" y1="${y}" y2="${y}" stroke="rgba(196,184,154,0.55)" stroke-width="1"/>`;
+    svg += `<text x="${PAD.left - 5}" y="${y}" text-anchor="end" dominant-baseline="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#6b5e4e">${v}%</text>`;
+  }
+
+  // Column lines + X labels
+  xs.forEach((x, i) => {
+    svg += `<line x1="${x.toFixed(1)}" x2="${x.toFixed(1)}" y1="${PAD.top}" y2="${H - PAD.bottom}" stroke="rgba(196,184,154,0.9)" stroke-width="1"/>`;
+    svg += `<text x="${x.toFixed(1)}" y="${H - 6}" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#6b5e4e">${contexts[i].label.toUpperCase()}</text>`;
+  });
+
+  // Compute final y positions for label nudging
+  const endYs = series.map((s) => toY(s.values[2]));
+  // Sort by y position (ascending = higher on chart) and assign nudges
+  const nudges = {};
+  series.forEach((s, si) => {
+    nudges[s.id] = 0;
+    series.forEach((s2, sj) => {
+      if (si !== sj && s.color === s2.color) {
+        const dy = endYs[si] - endYs[sj];
+        if (Math.abs(dy) < 14) nudges[s.id] = dy < 0 ? -6 : 6;
+      }
+    });
+  });
+
+  // Lines
+  series.forEach((s) => {
+    const opacity = s.filled ? "1" : "0.48";
+    const dash = s.filled ? "none" : "5 3";
+    const pts = s.values.map((v, i) => `${xs[i].toFixed(1)},${toY(v).toFixed(1)}`).join(" ");
+    svg += `<polyline points="${pts}" fill="none" stroke="${s.color}" stroke-width="1.8" stroke-opacity="${opacity}" stroke-dasharray="${dash}"/>`;
+  });
+
+  // Dots + end labels
+  series.forEach((s) => {
+    const opacity = s.filled ? "1" : "0.48";
+    s.values.forEach((v, i) => {
+      const x = xs[i].toFixed(1);
+      const y = toY(v).toFixed(1);
+      if (s.filled) {
+        svg += `<circle cx="${x}" cy="${y}" r="5" fill="${s.color}" opacity="${opacity}"/>`;
+      } else {
+        svg += `<circle cx="${x}" cy="${y}" r="4" fill="#f5f0e8" stroke="${s.color}" stroke-width="1.8" stroke-opacity="${opacity}"/>`;
+      }
+      if (i === 2) {
+        const labelY = (toY(v) + (nudges[s.id] || 0)).toFixed(1);
+        svg += `<text x="${(xs[i] + 9).toFixed(1)}" y="${labelY}" dominant-baseline="middle" font-family="IBM Plex Mono,monospace" font-size="9.5" fill="${s.color}" opacity="${opacity}">${v.toFixed(1)}%</text>`;
+      }
+    });
+  });
+
+  svg += `</svg>`;
+
+  const legendHtml = `<div class="slope-legend">${series.map((s) => {
+    const opacity = s.filled ? "1" : "0.48";
+    const dash = s.filled ? "none" : "5 3";
+    return `<span class="slope-legend-item" style="color:${s.color};opacity:${opacity}">
+      <svg width="20" height="10" viewBox="0 0 20 10" style="flex-shrink:0;vertical-align:middle">
+        <line x1="0" y1="5" x2="20" y2="5" stroke="${s.color}" stroke-width="1.8" stroke-dasharray="${dash}"/>
+        ${s.filled ? `<circle cx="10" cy="5" r="3.5" fill="${s.color}"/>` : `<circle cx="10" cy="5" r="3" fill="#f5f0e8" stroke="${s.color}" stroke-width="1.5"/>`}
+      </svg>
+      ${s.label}
+    </span>`;
+  }).join("")}</div>`;
+
+  slopeEl.innerHTML = legendHtml + svg;
+
+  const slopeCapEl = document.getElementById("slopeCaption");
+  if (slopeCapEl) {
+    const jF = series.find((s) => s.id === "jamaat-f");
+    const jM = series.find((s) => s.id === "jamaat-m");
+    const jFwon = jF.values[2].toFixed(1);
+    const jMwon = jM.values[2].toFixed(1);
+    const delta = (jF.values[2] - jM.values[2]).toFixed(1);
+    const sign = delta >= 0 ? "+" : "";
+    slopeCapEl.innerHTML = `In Jamaat-won constituencies Jamaat's female share reaches <strong>${jFwon}%</strong> vs <strong>${jMwon}%</strong> male (${sign}${delta}pp). The crossover is visible as the filled and hollow lines converge then diverge right.`;
+  }
 }
+
 
 function buildPageButtons(totalPages, currentPage) {
   const parts = [];
@@ -675,57 +701,17 @@ function wireScrollProgress() {
 
 function renderAll() {
   renderCompare();
-  Object.keys(distributionScopes).forEach((scopeKey) => renderDistributionScope(scopeKey));
+  renderSlopeChart();
+  Object.keys(distributionScopes).forEach((scopeKey) => renderDumbbellScope(scopeKey));
   renderRawTable();
 }
 
 function wireControls() {
-  document.querySelectorAll("[data-compare-mode]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const nextMode = button.dataset.compareMode;
-
-      if (!nextMode || nextMode === state.compareMode) {
-        return;
-      }
-
-      state.compareMode = nextMode;
-      setButtonGroupActive(button);
-      renderCompare();
-    });
-  });
-
-  document.querySelectorAll("[data-distribution-scope][data-distribution-view]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const scope = button.dataset.distributionScope;
-      const nextView = button.dataset.distributionView;
-
-      if (!scope || !nextView || !distributionScopes[scope]) {
-        return;
-      }
-
-      if (state.distributionViewByScope[scope] === nextView) {
-        return;
-      }
-
-      state.distributionViewByScope[scope] = nextView;
-      setButtonGroupActive(button);
-      renderDistributionScope(scope);
-    });
-  });
-
   rawTablePaginationEl.addEventListener("click", (event) => {
     const button = event.target.closest("button[data-page]");
-
-    if (!button) {
-      return;
-    }
-
+    if (!button) return;
     const nextPage = Number(button.dataset.page);
-
-    if (!Number.isInteger(nextPage) || nextPage < 1 || nextPage === state.tablePage) {
-      return;
-    }
-
+    if (!Number.isInteger(nextPage) || nextPage < 1 || nextPage === state.tablePage) return;
     state.tablePage = nextPage;
     renderRawTable();
   });
@@ -734,6 +720,10 @@ function wireControls() {
 function clearAllCharts() {
   compareChartEl.innerHTML = "";
   compareCaptionEl.textContent = "";
+  const slopeEl = document.getElementById("slopeChart");
+  if (slopeEl) slopeEl.innerHTML = "";
+  const slopeCap = document.getElementById("slopeCaption");
+  if (slopeCap) slopeCap.textContent = "";
 
   Object.values(distributionScopes).forEach((scope) => {
     scope.chartEl.innerHTML = "";
