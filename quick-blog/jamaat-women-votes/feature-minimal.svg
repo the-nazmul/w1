@@ -1,0 +1,18 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Minimal illustration of party vote distribution by gender.">
+  <rect width="1200" height="630" fill="#F8F6F2"/>
+  <rect x="120" y="84" width="960" height="462" rx="10" stroke="#CFC8BA" stroke-width="2"/>
+  <line x1="210" y1="486" x2="990" y2="486" stroke="#BDB5A6" stroke-width="2"/>
+
+  <rect x="360" y="234" width="140" height="252" rx="10" fill="#ECE7DD" stroke="#CEC6B7"/>
+  <rect x="360" y="366" width="140" height="120" rx="0" fill="#A44A3D"/>
+  <rect x="360" y="234" width="140" height="132" rx="0" fill="#35557F"/>
+  <circle cx="430" cy="188" r="18" fill="#35557F"/>
+
+  <rect x="700" y="214" width="140" height="272" rx="10" fill="#ECE7DD" stroke="#CEC6B7"/>
+  <rect x="700" y="349" width="140" height="137" rx="0" fill="#A44A3D"/>
+  <rect x="700" y="214" width="140" height="135" rx="0" fill="#35557F"/>
+  <circle cx="770" cy="168" r="18" fill="#8B1A0E"/>
+
+  <line x1="570" y1="270" x2="630" y2="270" stroke="#C3BBAC" stroke-width="2"/>
+  <line x1="570" y1="350" x2="630" y2="350" stroke="#C3BBAC" stroke-width="2"/>
+</svg>

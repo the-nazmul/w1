@@ -540,7 +540,7 @@ function wireFootnotes() {
 
   const refCountByNumber = {};
 
-  document.querySelectorAll("main.article p").forEach((paragraph) => {
+  document.querySelectorAll("article.article p").forEach((paragraph) => {
     if (paragraph.closest(".footnotes")) {
       return;
     }

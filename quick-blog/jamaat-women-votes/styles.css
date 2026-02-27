@@ -182,12 +182,39 @@ h1 {
   letter-spacing: 0.01em;
 }
 
+.kicker,
+h1,
+.feature-art,
+.feature-art__image {
+  max-width: 1000px;
+}
+
 .dek {
   margin: 14px 0 0;
   max-width: 66ch;
   color: var(--muted);
   font-size: 15px;
   line-height: 1.65;
+}
+
+.feature-art {
+  margin: 16px 0 12px;
+}
+
+.feature-art__image {
+  display: block;
+  width: 100%;
+  max-width: 1000px;
+  border: 1px solid var(--rule-mid);
+  background: var(--paper);
+}
+
+.feature-art__caption {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font: 400 10px/1.5 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .meta {
@@ -652,8 +679,15 @@ h2 {
   }
 }
 
-.article > p,
-.article > .meta {
+.article > .meta,
+.article > .dek,
+.article > .byline {
+  max-width: 68ch;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.article > p {
   max-width: 68ch;
   margin-left: auto;
   margin-right: auto;
@@ -661,12 +695,17 @@ h2 {
 
 .article > .kicker,
 .article > h1,
-.article > .dek,
-.article > .byline,
+.article > .feature-art,
 .article > .share {
-  max-width: 68ch;
   margin-left: 0;
   margin-right: 0;
+}
+
+.lead-paragraph::first-letter {
+  font-family: var(--serif);
+  font-size: 1.6em;
+  line-height: 1;
+  font-weight: 500;
 }
 
 .byline {
