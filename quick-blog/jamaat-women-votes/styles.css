@@ -13,7 +13,7 @@
   --male:         #4a7ca0;
   --wrap:         580px;
   --pad:          clamp(18px, 5vw, 36px);
-  --serif:  "Playfair Display", "Palatino Linotype", Georgia, serif;
+  --serif:  "Cormorant Garamond", "Palatino Linotype", Georgia, serif;
   --body:   "IBM Plex Sans", system-ui, sans-serif;
   --mono:   "IBM Plex Mono", "Courier New", monospace;
   --topbar-h:   46px;
@@ -156,12 +156,13 @@ body {
 }
 
 h1 {
-  margin: 10px 0 0;
+  margin: 8px 0 0;
   font-family: var(--serif);
-  font-size: clamp(2.2rem, 5.5vw, 3.5rem);
-  font-style: normal;
-  font-weight: 700;
-  line-height: 1.15;
+  font-size: clamp(2.2rem, 5.4vw, 3.6rem);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: 0.01em;
 }
 
 .dek {

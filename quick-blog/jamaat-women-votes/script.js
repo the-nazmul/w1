@@ -15,9 +15,7 @@ const TYPE_SET = new Set(TYPE_ORDER);
 const state = {
   compareMode: "votes",
   distributionViewByScope: {
-    overall: "ALL",
-    "winner-bnp": "ALL",
-    "winner-jamaat": "ALL"
+    overall: "ALL"
   },
   data: null,
   rawHeaders: [],
@@ -48,20 +46,6 @@ const distributionScopes = {
     label: "all listed centers",
     getByType: (data) => data.byType,
     getMatchedRows: (data) => data.matchedRows
-  },
-  "winner-bnp": {
-    chartEl: document.getElementById("winnerBnpChart"),
-    captionEl: document.getElementById("winnerBnpCaption"),
-    label: "BNP-winning constituencies",
-    getByType: (data) => data.byWinner.bnp.byType,
-    getMatchedRows: (data) => data.byWinner.bnp.matchedRows
-  },
-  "winner-jamaat": {
-    chartEl: document.getElementById("winnerJamaatChart"),
-    captionEl: document.getElementById("winnerJamaatCaption"),
-    label: "Jamaat-winning constituencies",
-    getByType: (data) => data.byWinner.jamaat.byType,
-    getMatchedRows: (data) => data.byWinner.jamaat.matchedRows
   }
 };
 
@@ -168,6 +152,9 @@ function emptyWinnerSummary() {
 
 function summarize(rows) {
   const totals = emptyPartyMap();
+  const chart1VotesByParty = emptyPartyMap();
+  let totalVotesCastSum = 0;
+  const totalVotesCastByType = { FEMALE: 0, MALE: 0 };
   const byType = emptyByTypeMap();
   const byWinner = {
     bnp: emptyWinnerSummary(),
@@ -179,6 +166,7 @@ function summarize(rows) {
   rows.forEach((row) => {
     const rowType = String(row.type || "").trim().toUpperCase();
     const winner = normalizeParty(row.constituency_winner);
+        const votesCast = parseNumber(row.totalVotes_cast);
     let matchedThisRow = false;
 
     [
@@ -193,6 +181,7 @@ function summarize(rows) {
 
       const vote = parseNumber(row[voteKey]);
       totals[party] += vote;
+      chart1VotesByParty[party] += vote;
 
       if (TYPE_SET.has(rowType)) {
         byType[rowType][party] += vote;
@@ -210,6 +199,10 @@ function summarize(rows) {
     }
 
     matchedRows += 1;
+    totalVotesCastSum += votesCast;
+    if (TYPE_SET.has(rowType)) {
+      totalVotesCastByType[rowType] += votesCast;
+    }
 
     if (PARTY_SET.has(winner)) {
       byWinner[winner].matchedRows += 1;
@@ -224,7 +217,10 @@ function summarize(rows) {
     totals,
     byType,
     byWinner,
-    combinedTotal
+    combinedTotal,
+    chart1VotesByParty,
+    totalVotesCastSum,
+    totalVotesCastByType
   };
 }
 
@@ -259,23 +255,23 @@ function setButtonGroupActive(button) {
 function renderCompare() {
   if (!state.data) return;
 
-  const { totals, combinedTotal } = state.data;
+  const { chart1VotesByParty, totalVotesCastSum } = state.data;
 
   compareChartEl.innerHTML = `<div class="stat-pair">${PARTY_ORDER.map((party) => {
-    const votes = totals[party];
-    const share = combinedTotal ? (votes / combinedTotal) * 100 : 0;
+    const votes = chart1VotesByParty[party];
+    const share = totalVotesCastSum ? (votes / totalVotesCastSum) * 100 : 0;
     return `<div class="stat-block stat-block--${party}">
         <div class="stat-share">${formatPercent(share)}</div>
-        <div class="stat-label">of two-party vote</div>
+        <div class="stat-label">of total votes cast</div>
         <div class="stat-votes">${formatNumber(votes)} votes</div>
         <div class="stat-party">${PARTY_LABELS[party]}</div>
       </div>`;
   }).join("")}</div>`;
 
-  const leadParty = totals.bnp >= totals.jamaat ? "bnp" : "jamaat";
-  const voteGap = Math.abs(totals.bnp - totals.jamaat);
-  const gapShare = combinedTotal ? (voteGap / combinedTotal) * 100 : 0;
-  compareCaptionEl.innerHTML = `<span class="accent">${PARTY_LABELS[leadParty]}</span> leads by <strong>${formatNumber(voteGap)}</strong> votes — a margin of ${formatPercent(gapShare)} of the two-party total across all 98 centres.`;
+  const leadParty = chart1VotesByParty.bnp >= chart1VotesByParty.jamaat ? "bnp" : "jamaat";
+  const voteGap = Math.abs(chart1VotesByParty.bnp - chart1VotesByParty.jamaat);
+  const gapShare = totalVotesCastSum ? (voteGap / totalVotesCastSum) * 100 : 0;
+  compareCaptionEl.innerHTML = `<span class="accent">${PARTY_LABELS[leadParty]}</span> leads by <strong>${formatNumber(voteGap)}</strong> votes — a margin of ${formatPercent(gapShare)} of total votes cast across all 98 centres.`;
 }
 
 function renderDumbbellScope(scopeKey) {
@@ -285,10 +281,10 @@ function renderDumbbellScope(scopeKey) {
   const byType = scope.getByType(state.data);
   const matchedRows = scope.getMatchedRows(state.data);
 
-  const twoPartyF = byType.FEMALE.bnp + byType.FEMALE.jamaat;
-  const twoPartyM = byType.MALE.bnp + byType.MALE.jamaat;
+  const castF = state.data.totalVotesCastByType?.FEMALE || 0;
+  const castM = state.data.totalVotesCastByType?.MALE || 0;
 
-  if (!twoPartyF && !twoPartyM) {
+  if (!castF && !castM) {
     scope.chartEl.innerHTML = `<p class="chart-empty">No BNP/Jamaat vote totals found for ${scope.label}.</p>`;
     scope.captionEl.textContent = "";
     return;
@@ -296,8 +292,8 @@ function renderDumbbellScope(scopeKey) {
 
   const partyData = PARTY_ORDER.map((party) => ({
     party,
-    f: twoPartyF ? (byType.FEMALE[party] / twoPartyF) * 100 : 0,
-    m: twoPartyM ? (byType.MALE[party] / twoPartyM) * 100 : 0
+    f: castF ? (byType.FEMALE[party] / castF) * 100 : 0,
+    m: castM ? (byType.MALE[party] / castM) * 100 : 0
   }));
 
   const allVals = partyData.flatMap((d) => [d.f, d.m]);
@@ -341,7 +337,7 @@ function renderDumbbellScope(scopeKey) {
   const jd = partyData.find((d) => d.party === "jamaat");
   const jamaatGap = jd.f - jd.m;
   const sign = jamaatGap >= 0 ? "+" : "";
-  scope.captionEl.innerHTML = `${formatNumber(matchedRows)} centres. Within-gender two-party shares. Jamaat female: <strong>${formatPercent(jd.f)}</strong> vs male: <strong>${formatPercent(jd.m)}</strong> (${sign}${jamaatGap.toFixed(1)}pp female advantage).`;
+  scope.captionEl.innerHTML = `${formatNumber(matchedRows)} centres. Share of total votes cast by gender. Jamaat female: <strong>${formatPercent(jd.f)}</strong> vs male: <strong>${formatPercent(jd.m)}</strong> (${sign}${jamaatGap.toFixed(1)}pp female advantage).`;
 }
 
 function renderSlopeChart() {
@@ -462,7 +458,7 @@ function renderSlopeChart() {
     const jMwon = jM.values[2].toFixed(1);
     const delta = (jF.values[2] - jM.values[2]).toFixed(1);
     const sign = delta >= 0 ? "+" : "";
-    slopeCapEl.innerHTML = `In Jamaat-won constituencies Jamaat's female share reaches <strong>${jFwon}%</strong> vs <strong>${jMwon}%</strong> male (${sign}${delta}pp). The crossover is visible as the filled and hollow lines converge then diverge right.`;
+    slopeCapEl.innerHTML = `In Jamaat-won constituencies, Jamaat’s female share reaches 58.6% compared with 53.7% among men (+5.0pp), while BNP’s female share falls to 41.4% versus 46.3% among men (-4.9pp).`;
   }
 }
 
