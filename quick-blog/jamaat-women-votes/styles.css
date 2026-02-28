@@ -58,7 +58,7 @@ body {
 }
 
 .topbar__name, .topbar__link { text-decoration: none; }
-.topbar__actions { position: relative; display: flex; align-items: center; }
+.topbar__actions { position: relative; display: flex; align-items: center; gap: 10px; }
 
 .topbar__name {
   color: var(--text);
