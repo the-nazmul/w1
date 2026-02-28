@@ -816,8 +816,14 @@
     }
     @media (max-width: 640px) {
       .work-grid--dense { grid-template-columns: 1fr; }
-      .topbar__links { display: none; }
-        .logos .logo { max-width: 140px; }
+      .topbar__links {
+        display: flex;
+        gap: 0;
+        margin-left: auto;
+      }
+      .topbar__links li { display: none; }
+      .topbar__links li.topbar__item--quickblog { display: block; }
+      .logos .logo { max-width: 140px; }
     }
     @media (max-width: 560px) {
       .item { grid-template-columns: 1fr; }
@@ -836,7 +842,7 @@
         <li><a href="#work">Work</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#cred">Awards</a></li>
-        <li><a class="topbar__quickblog" href="https://nazmulahasan.com/quick-blog/">#QuickBlog</a></li>
+        <li class="topbar__item--quickblog"><a class="topbar__quickblog" href="https://nazmulahasan.com/quick-blog/">#QuickBlog</a></li>
         <li><a href="https://twitter.com/the_nazmul" target="_blank" rel="noopener">X</a></li>
         <li><a href="https://www.linkedin.com/in/nazmulahasan/" target="_blank" rel="noopener">LinkedIn</a></li>
       </ul>
