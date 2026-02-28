@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quick Blog | Nazmul Ahasan</title>
+  <meta name="description" content="Automatically generated index of Nazmul Ahasan quick blog posts.">
+  <meta name="author" content="Nazmul Ahasan">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://nazmulahasan.com/quick-blog/">
+
+  <meta property="og:site_name" content="Nazmul Ahasan">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Quick Blog">
+  <meta property="og:description" content="Automatically generated index of quick blog posts.">
+  <meta property="og:url" content="https://nazmulahasan.com/quick-blog/">
+  <meta property="og:locale" content="en_US">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Quick Blog">
+  <meta name="twitter:description" content="Automatically generated index of quick blog posts.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f5f0e8;
+      --paper: #f9f5ef;
+      --paper-raised: #faf7f2;
+      --text: #1a1410;
+      --muted: #6b5e4e;
+      --faint: #c4b89a;
+      --rule: rgba(196, 184, 154, 0.55);
+      --rule-mid: rgba(196, 184, 154, 0.9);
+      --accent: #8b1a1a;
+      --wrap: 720px;
+      --pad: clamp(18px, 5vw, 36px);
+      --serif: "Cormorant Garamond", "Palatino Linotype", Georgia, serif;
+      --body: "IBM Plex Sans", system-ui, sans-serif;
+      --mono: "IBM Plex Mono", "Courier New", monospace;
+      --topbar-h: 46px;
+      --progress-h: 2px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding-top: calc(var(--topbar-h) + var(--progress-h));
+      color: var(--text);
+      background: var(--bg);
+      font: 400 15px/1.72 var(--body);
+    }
+
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: color-mix(in srgb, var(--paper) 96%, transparent);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .topbar__inner {
+      max-width: calc(var(--wrap) + (var(--pad) * 2));
+      margin: 0 auto;
+      height: var(--topbar-h);
+      padding: 0 var(--pad);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .topbar__name,
+    .topbar__link {
+      text-decoration: none;
+    }
+
+    .topbar__name {
+      color: var(--text);
+      font: 700 0.95rem/1.1 var(--serif);
+      letter-spacing: 0.04em;
+    }
+
+    .topbar__link {
+      color: var(--muted);
+      font: 400 10px/1 var(--mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .topbar__link:hover {
+      color: var(--text);
+    }
+
+    .scroll-progress {
+      position: fixed;
+      top: var(--topbar-h);
+      left: 0;
+      right: 0;
+      z-index: 999;
+      height: var(--progress-h);
+    }
+
+    .scroll-progress__bar {
+      width: 0;
+      height: 100%;
+      background: var(--accent);
+      transition: width 60ms linear;
+    }
+
+    .page {
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: 52px var(--pad) 96px;
+    }
+
+    .kicker {
+      margin: 0;
+      color: var(--muted);
+      font: 400 9.5px/1.3 var(--mono);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 8px 0 0;
+      font-family: var(--serif);
+      font-size: clamp(2.1rem, 5.4vw, 3.4rem);
+      font-style: italic;
+      font-weight: 500;
+      line-height: 1.08;
+      letter-spacing: 0.01em;
+    }
+
+    .dek {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+      max-width: 58ch;
+    }
+
+    .meta {
+      margin: 10px 0 24px;
+      color: var(--muted);
+      font: 400 10px/1.5 var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    code {
+      font-family: var(--mono);
+      font-size: 0.84em;
+      color: color-mix(in srgb, var(--text) 72%, var(--muted));
+      background: color-mix(in srgb, var(--faint) 18%, transparent);
+      padding: 1px 4px;
+    }
+
+    .list-card {
+      margin: 10px 0 32px;
+      padding: 20px 22px 18px;
+      border-left: 3px solid var(--rule-mid);
+      background: var(--paper-raised);
+      transition: border-left-color 220ms ease;
+    }
+
+    .list-card:hover {
+      border-left-color: color-mix(in srgb, var(--accent) 45%, transparent);
+    }
+
+    .status {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .status--error {
+      color: #7d2e24;
+    }
+
+    .post-list {
+      list-style: decimal;
+      margin: 0;
+      padding-left: 24px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .post-item {
+      display: grid;
+      gap: 4px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .post-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .post-title {
+      width: fit-content;
+      color: var(--text);
+      text-decoration: none;
+      font: 500 1.05rem/1.25 var(--serif);
+      letter-spacing: 0.01em;
+    }
+
+    .post-title:hover {
+      color: var(--accent);
+    }
+
+    .post-url {
+      margin: 0;
+      color: var(--muted);
+      font: 400 11px/1.45 var(--mono);
+      letter-spacing: 0.02em;
+      overflow-wrap: anywhere;
+    }
+
+    .post-url-link {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-color: color-mix(in srgb, var(--rule-mid) 70%, transparent);
+      transition: color 120ms ease, text-decoration-color 120ms ease;
+    }
+
+    .post-url-link:hover {
+      color: var(--accent);
+      text-decoration-color: var(--accent);
+    }
+    .foot {
+      margin-top: 26px;
+      color: var(--muted);
+      font: 400 10px/1.55 var(--mono);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .btn-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 8px;
+    }
+
+    .btn-refresh {
+      border: 1px solid var(--rule-mid);
+      background: transparent;
+      color: var(--muted);
+      font: 400 10px/1 var(--mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 7px 10px;
+      transition: color 120ms ease, border-color 120ms ease, background 120ms ease;
+    }
+
+    .btn-refresh:hover {
+      color: var(--text);
+      border-color: var(--text);
+      background: color-mix(in srgb, var(--faint) 10%, transparent);
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding-top: 42px;
+      }
+
+      .post-list {
+        padding-left: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a class="topbar__name" href="https://nazmulahasan.com/quick-blog/">Nazmul's Quick Blog</a>
+      <a class="topbar__link" href="https://nazmulahasan.com/">Home</a>
+    </div>
+  </header>
+
+  <div class="scroll-progress" aria-hidden="true">
+    <div class="scroll-progress__bar" id="scrollProgressBar"></div>
+  </div>
+
+  <main class="page">
+    <p class="kicker">Quick Blog</p>
+    <h1>All Quick Blog URLs</h1>
+    <p class="dek">Find all quick blogs by Nazmul Ahasan.</p>
+
+    <section class="list-card" aria-labelledby="listHeading">
+      <div class="btn-row">
+        <button type="button" class="btn-refresh" id="refreshBtn">Refresh</button>
+      </div>
+      <h2 id="listHeading" style="display:none;">Published quick-blog pages</h2>
+      <p id="status" class="status">Loading URLs...</p>
+      <ol id="postList" class="post-list" hidden></ol>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const progressEl = document.getElementById('scrollProgressBar');
+      function updateProgress() {
+        const doc = document.documentElement;
+        const max = doc.scrollHeight - window.innerHeight;
+        const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+        progressEl.style.width = Math.min(100, Math.max(0, pct)) + '%';
+      }
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      window.addEventListener('resize', updateProgress);
+      updateProgress();
+    })();
+
+    (function () {
+      const CONFIG = {
+        owner: 'the-nazmul',
+        repo: 'w1',
+        branch: 'main',
+        root: 'quick-blog/'
+      };
+      const CACHE_KEY = 'quick_blog_index_cache_v3';
+      const CACHE_MS = 5 * 60 * 1000;
+
+      const statusEl = document.getElementById('status');
+      const listEl = document.getElementById('postList');
+      const refreshBtnEl = document.getElementById('refreshBtn');
+
+      function slugToTitle(slug) {
+        const leaf = slug.split('/').filter(Boolean).pop() || slug;
+        return leaf
+          .replace(/[-_]+/g, ' ')
+          .trim()
+          .replace(/\b\w/g, (ch) => ch.toUpperCase());
+      }
+
+      function pathToPublicUrl(path) {
+        if (!path.startsWith(CONFIG.root)) {
+          return null;
+        }
+
+        if (path === 'quick-blog/index.html') {
+          return null;
+        }
+
+        if (path.endsWith('/index.html')) {
+          const relDir = path.slice(CONFIG.root.length, -'index.html'.length);
+          return '/quick-blog/' + relDir;
+        }
+
+        if (path.endsWith('.html')) {
+          return '/' + path;
+        }
+
+        return null;
+      }
+
+      function isPublishablePath(path) {
+        if (!path || !path.startsWith(CONFIG.root)) {
+          return false;
+        }
+        if (path === 'quick-blog/index.html') {
+          return false;
+        }
+        if (path.includes('/data/') || path.includes('/assets/') || path.includes('/partials/')) {
+          return false;
+        }
+        if (/(^|\/)\./.test(path)) {
+          return false;
+        }
+        return path.endsWith('/index.html') || path.endsWith('.html');
+      }
+
+      function parseEntry(path) {
+        const urlPath = pathToPublicUrl(path);
+        if (!urlPath) {
+          return null;
+        }
+
+        const slug = path
+          .replace(/^quick-blog\//, '')
+          .replace(/index\.html$/, '')
+          .replace(/\.html$/, '')
+          .replace(/\/$/, '');
+
+        const href = new URL(urlPath, window.location.origin).href;
+        const fetchHref = new URL('/' + path, window.location.origin).href;
+        return {
+          title: slugToTitle(slug),
+          href,
+          fetchHref
+        };
+      }
+
+      async function fetchH1Title(entry) {
+        try {
+          const response = await fetch(entry.fetchHref || entry.href, { cache: 'no-store' });
+          if (!response.ok) {
+            return entry.title;
+          }
+
+          const html = await response.text();
+          const doc = new DOMParser().parseFromString(html, 'text/html');
+          const h1 = doc.querySelector('h1');
+          const text = h1 ? h1.textContent.replace(/\s+/g, ' ').trim() : '';
+          return text || entry.title;
+        } catch (err) {
+          return entry.title;
+        }
+      }
+
+      function render(entries) {
+        listEl.innerHTML = '';
+
+        if (!entries.length) {
+          statusEl.textContent = 'No published HTML pages found under /quick-blog/ yet.';
+          listEl.hidden = true;
+          return;
+        }
+
+        const frag = document.createDocumentFragment();
+        entries.forEach((entry) => {
+          const li = document.createElement('li');
+          li.className = 'post-item';
+
+          const a = document.createElement('a');
+          a.className = 'post-title';
+          a.href = entry.href;
+          a.textContent = entry.title;
+
+          const code = document.createElement('code');
+          code.className = 'post-url';
+
+          const urlLink = document.createElement('a');
+          urlLink.className = 'post-url-link';
+          urlLink.href = entry.href;
+          urlLink.textContent = entry.href;
+          code.appendChild(urlLink);
+          li.appendChild(a);
+          li.appendChild(code);
+          frag.appendChild(li);
+        });
+
+        listEl.appendChild(frag);
+        listEl.hidden = false;
+        statusEl.textContent = entries.length + ' page' + (entries.length === 1 ? '' : 's') + ' found.';
+      }
+
+      async function fetchRepoTree() {
+        const endpoint = 'https://api.github.com/repos/' + CONFIG.owner + '/' + CONFIG.repo + '/git/trees/' + CONFIG.branch + '?recursive=1';
+        const response = await fetch(endpoint, {
+          headers: {
+            'Accept': 'application/vnd.github+json'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('GitHub API request failed: ' + response.status);
+        }
+
+        const payload = await response.json();
+        return Array.isArray(payload.tree) ? payload.tree : [];
+      }
+
+      async function getEntries(forceRefresh) {
+        if (!forceRefresh) {
+          try {
+            const raw = localStorage.getItem(CACHE_KEY);
+            if (raw) {
+              const parsed = JSON.parse(raw);
+              if (parsed && Array.isArray(parsed.entries) && typeof parsed.savedAt === 'number') {
+                if (Date.now() - parsed.savedAt < CACHE_MS) {
+                  return parsed.entries;
+                }
+              }
+            }
+          } catch (err) {
+            // Ignore cache parse errors.
+          }
+        }
+
+        const tree = await fetchRepoTree();
+        const seen = new Set();
+        const entries = [];
+
+        tree.forEach((node) => {
+          if (!node || node.type !== 'blob' || typeof node.path !== 'string') {
+            return;
+          }
+
+          const path = node.path;
+          if (!isPublishablePath(path)) {
+            return;
+          }
+
+          const entry = parseEntry(path);
+          if (!entry) {
+            return;
+          }
+
+          if (seen.has(entry.href)) {
+            return;
+          }
+
+          seen.add(entry.href);
+          entries.push(entry);
+        });
+
+        entries.sort((a, b) => a.href.localeCompare(b.href));
+
+        const entriesWithH1 = await Promise.all(entries.map(async (entry) => {
+          const h1Title = await fetchH1Title(entry);
+          return {
+            ...entry,
+            title: h1Title
+          };
+        }));
+
+        try {
+          localStorage.setItem(CACHE_KEY, JSON.stringify({
+            savedAt: Date.now(),
+            entries: entriesWithH1
+          }));
+        } catch (err) {
+          // Ignore localStorage write failures.
+        }
+
+        return entriesWithH1;
+      }
+
+      async function load(forceRefresh) {
+        statusEl.className = 'status';
+        statusEl.textContent = 'Loading URLs...';
+        listEl.hidden = true;
+
+        try {
+          const entries = await getEntries(forceRefresh);
+          render(entries);
+        } catch (err) {
+          statusEl.className = 'status status--error';
+          statusEl.textContent = 'Could not auto-load URLs from GitHub API. Please try Refresh.';
+          listEl.hidden = true;
+        }
+      }
+
+      refreshBtnEl.addEventListener('click', function () {
+        try {
+          localStorage.removeItem(CACHE_KEY);
+        } catch (err) {
+          // Ignore cache delete failures.
+        }
+        load(true);
+      });
+
+      load(false);
+    })();
+  </script>
+</body>
+
+</html>
