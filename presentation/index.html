@@ -1,0 +1,1159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>data journalism — MRDI 2026 — companion</title>
+<meta name="description" content="Companion page for Nazmul Ahasan's MRDI 2026 talk.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Noto+Sans+Bengali:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5E9D8;
+    --black: #1A1A1A;
+    --blue:  #2B62E8;
+    --blue-soft: #B8D1FF;
+    --mono: 'JetBrains Mono', Menlo, 'Courier New', monospace;
+    --bn:   'Noto Sans Bengali', sans-serif;
+    --ctrl-h: 56px;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background: var(--cream);
+    color: var(--black);
+    font-family: var(--mono);
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  /* language switching */
+  body.lang-bn { font-family: var(--bn); font-size: 15.5px; }
+  body.lang-en .lang-bn { display: none !important; }
+  body.lang-bn .lang-en { display: none !important; }
+  /* Code/formulas always mono */
+  pre, code, .copy-btn { font-family: var(--mono) !important; }
+
+  .deck {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: calc(100vh - var(--ctrl-h));
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+  }
+  .deck::-webkit-scrollbar { display: none; }
+
+  .slide {
+    flex: 0 0 100vw;
+    height: 100%;
+    scroll-snap-align: start;
+    overflow-y: auto;
+    padding: 1.5rem 1.5rem 2.5rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .stage {
+    max-width: 920px;
+    margin: 0 auto;
+    background: var(--cream);
+    border: 3px solid var(--black);
+    box-shadow: 7px 7px 0 var(--black);
+    overflow: hidden;
+  }
+  .stage-head {
+    border-bottom: 3px solid var(--black);
+    padding: 0.9rem 1.4rem;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .stage-head .kicker {
+    color: var(--blue);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  body.lang-bn .kicker { letter-spacing: 0.04em; text-transform: none; }
+  .stage-head h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+  .stage-body { padding: 1.4rem 1.6rem 1.6rem; }
+
+  .hero { padding: 2rem 1.6rem 1.6rem; text-align: left; }
+  .hero h1 {
+    font-size: clamp(2.4rem, 7vw, 4rem);
+    font-weight: 700;
+    margin: 0;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .hero .bn-script {
+    font-family: var(--bn);
+    color: var(--blue);
+    margin-top: 0.6rem;
+    font-size: 1.15rem;
+  }
+  .hero .lead { margin: 1.2rem 0 0; }
+
+  /* Language picker on hero */
+  .lang-picker {
+    margin-top: 1.6rem;
+    padding-top: 1.4rem;
+    border-top: 2px dashed var(--black);
+  }
+  .lang-picker .pick-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue);
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+  .lang-pick-row {
+    display: flex;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+  }
+  .lang-pick-btn {
+    flex: 1 1 180px;
+    padding: 0.9rem 1.1rem;
+    border: 2px solid var(--black);
+    box-shadow: 4px 4px 0 var(--black);
+    background: var(--cream);
+    color: var(--black);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  .lang-pick-btn:hover { background: var(--blue); color: var(--cream); }
+  .lang-pick-btn.bn { font-family: var(--bn); }
+  .lang-pick-btn .arrow { font-weight: 700; }
+
+  h3 { font-size: 1rem; font-weight: 700; margin: 1.4rem 0 0.5rem; }
+  h3:first-child { margin-top: 0; }
+  p { margin: 0.4rem 0 0.8rem; }
+  .num { color: var(--blue); font-weight: 700; }
+  a { color: var(--blue); }
+  em { color: var(--black); }
+
+  .btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.7rem 1rem;
+    border: 2px solid var(--black);
+    box-shadow: 4px 4px 0 var(--black);
+    background: var(--cream);
+    color: var(--black);
+    text-decoration: none;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+  }
+  .btn:hover { background: var(--blue); color: var(--cream); }
+  .btn .arrow { font-weight: 700; flex-shrink: 0; }
+  .btn-label { font-weight: 700; }
+  .btn-meta { font-size: 0.75rem; opacity: 0.7; display: block; margin-top: 0.15rem; font-weight: 400; }
+  .btn:hover .btn-meta { opacity: 0.9; }
+
+  .code-wrap { position: relative; margin: 0.7rem 0 1rem; }
+  pre {
+    margin: 0;
+    padding: 1rem 5rem 1rem 1rem;
+    background: var(--black);
+    color: var(--cream);
+    box-shadow: 4px 4px 0 var(--blue);
+    overflow-x: auto;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  code {
+    background: var(--black);
+    color: var(--cream);
+    padding: 1px 5px;
+    font-size: 0.92em;
+  }
+  .copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.25rem 0.6rem;
+    background: var(--blue);
+    color: var(--cream);
+    border: 2px solid var(--cream);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+  }
+  .copy-btn:hover { background: var(--cream); color: var(--blue); border-color: var(--blue); }
+
+  .photo {
+    display: block;
+    max-width: 100%;
+    max-height: 50vh;
+    margin: 0.5rem auto 1rem;
+    border: 2px solid var(--black);
+    box-shadow: 5px 5px 0 var(--black);
+    background: white;
+  }
+
+  .callout {
+    background: var(--black);
+    color: var(--cream);
+    padding: 1rem 1.2rem;
+    box-shadow: 4px 4px 0 var(--blue);
+    margin: 1rem 0;
+  }
+  .callout strong { color: var(--blue-soft); }
+
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 0.6rem 0 1rem;
+    counter-reset: step;
+  }
+  .steps li {
+    counter-increment: step;
+    padding: 0.6rem 0.8rem 0.6rem 3rem;
+    border: 2px solid var(--black);
+    box-shadow: 3px 3px 0 var(--black);
+    background: var(--cream);
+    margin: 0.5rem 0;
+    position: relative;
+    font-size: 0.9rem;
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2.4rem;
+    background: var(--blue);
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-right: 2px solid var(--black);
+    font-family: var(--mono);
+  }
+
+  .reveal-box {
+    border: 2px dashed var(--black);
+    padding: 1rem;
+    margin: 1rem 0;
+    text-align: center;
+  }
+  .reveal-box .hint { font-size: 0.8rem; opacity: 0.75; margin-bottom: 0.7rem; }
+  .reveal-btn {
+    display: inline-block;
+    padding: 0.7rem 1.4rem;
+    border: 2px solid var(--black);
+    box-shadow: 4px 4px 0 var(--black);
+    background: var(--blue);
+    color: var(--cream);
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  .reveal-btn:hover { background: var(--cream); color: var(--blue); }
+
+  /* modal */
+  .modal {
+    position: fixed; inset: 0; z-index: 1000;
+    display: none; padding: 2rem;
+    align-items: stretch; justify-content: center;
+  }
+  .modal.open { display: flex; }
+  .modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.7); }
+  .modal-window {
+    position: relative;
+    width: min(1180px, 100%);
+    max-height: 100%;
+    background: var(--cream);
+    border: 3px solid var(--black);
+    box-shadow: 8px 8px 0 var(--black);
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .modal-bar {
+    background: var(--black); color: var(--cream);
+    padding: 0.5rem 0.9rem;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 3px solid var(--black);
+    flex-shrink: 0;
+  }
+  .modal-title { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; }
+  .modal-close {
+    background: var(--cream); color: var(--black);
+    border: 2px solid var(--cream);
+    padding: 0.3rem 0.7rem;
+    font-family: var(--mono);
+    font-weight: 700; font-size: 0.8rem;
+    cursor: pointer;
+  }
+  .modal-close:hover { background: var(--blue); color: var(--cream); border-color: var(--blue); }
+  .modal-iframe { flex: 1 1 auto; width: 100%; border: 0; background: white; min-height: 0; }
+  @media (max-width: 600px) { .modal { padding: 0.5rem; } }
+
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.7rem;
+  }
+  .toc-grid a {
+    display: block;
+    padding: 0.85rem 1rem;
+    border: 2px solid var(--black);
+    box-shadow: 4px 4px 0 var(--black);
+    background: var(--cream);
+    text-decoration: none;
+    color: var(--black);
+  }
+  .toc-grid a:hover { background: var(--blue); color: var(--cream); }
+  .toc-grid .num { color: var(--blue); font-size: 0.7rem; display: block; margin-bottom: 0.2rem; letter-spacing: 0.1em; font-family: var(--mono); }
+  .toc-grid a:hover .num { color: var(--cream); }
+  .toc-grid .ttl { font-weight: 700; }
+
+  .contact { list-style: none; padding: 0; margin: 0.4rem 0; }
+  .contact li { padding: 0.4rem 0; border-bottom: 1px dashed var(--black); }
+  .contact li:last-child { border-bottom: 0; }
+  .contact strong { color: var(--blue); display: inline-block; min-width: 7rem; }
+
+  .ctrl {
+    height: var(--ctrl-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.8rem;
+    background: var(--black);
+    color: var(--cream);
+    border-top: 3px solid var(--black);
+    gap: 0.5rem;
+  }
+  .ctrl-btn {
+    background: var(--cream); color: var(--black);
+    border: 2px solid var(--cream);
+    padding: 0.45rem 0.9rem;
+    font-family: var(--mono);
+    font-size: 0.95rem; font-weight: 700;
+    cursor: pointer;
+    min-width: 80px;
+  }
+  .ctrl-btn:hover:not(:disabled) { background: var(--blue); color: var(--cream); border-color: var(--blue); }
+  .ctrl-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .ctrl-center { display: flex; align-items: center; gap: 0.8rem; }
+  .indicator { font-size: 0.85rem; letter-spacing: 0.08em; font-family: var(--mono); }
+  .indicator .cur { color: var(--blue); font-weight: 700; }
+
+  .lang-toggle {
+    background: transparent; color: var(--cream);
+    border: 1.5px solid var(--cream);
+    padding: 0.3rem 0.6rem;
+    font-family: var(--mono);
+    font-size: 0.75rem; font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+  }
+  .lang-toggle:hover { background: var(--blue); border-color: var(--blue); }
+
+  .dots { display: flex; gap: 0.35rem; }
+  .dot {
+    width: 9px; height: 9px;
+    border: 1.5px solid var(--cream);
+    border-radius: 50%;
+    background: transparent; cursor: pointer; padding: 0;
+  }
+  .dot.active { background: var(--cream); }
+  @media (max-width: 600px) { .dots { display: none; } }
+
+  @media (max-width: 600px) {
+    .slide { padding: 1rem 0.6rem 1.5rem; }
+    .stage { box-shadow: 5px 5px 0 var(--black); }
+    .stage-body { padding: 1rem; }
+    .hero { padding: 1.4rem 1.1rem 1.1rem; }
+    pre { padding-right: 1rem; padding-bottom: 3rem; }
+    .copy-btn { top: auto; bottom: 0.5rem; right: 0.5rem; }
+    .ctrl-btn { min-width: 60px; padding: 0.4rem 0.6rem; }
+    .photo { max-height: 38vh; }
+  }
+
+  .swipe-hint {
+    font-size: 0.7rem;
+    opacity: 0.6;
+    text-align: center;
+    margin-top: 1.4rem;
+    letter-spacing: 0.05em;
+    font-family: var(--mono);
+  }
+</style>
+</head>
+<body class="lang-en">
+
+<div class="deck" id="deck">
+
+  <!-- ── 0. HERO + LANG PICKER ───────────────────────── -->
+  <section class="slide" data-title-en="Hero" data-title-bn="শুরু">
+    <div class="stage">
+      <div class="hero">
+        <h1>data<br>journalism</h1>
+        <div class="bn-script">[ ডেটা সাংবাদিকতা ]</div>
+
+        <div class="lang lang-en">
+          <p class="lead">Companion page for <strong>Nazmul Ahasan</strong>'s MRDI 2026 talk — the links, the formulas, and the actual webpages used in the deck.</p>
+          <p class="lead" style="font-size: 0.85rem; opacity: 0.75;">Bookmark this page. Open links as the talk goes by.</p>
+        </div>
+        <div class="lang lang-bn">
+          <p class="lead"><strong>নাজমুল আহসানের</strong> MRDI ২০২৬ আলোচনার সহায়ক পাতা — স্লাইডের লিঙ্ক, ফর্মুলা আর দরকারি ওয়েবপেজগুলো এক জায়গায়।</p>
+          <p class="lead" style="font-size: 0.9rem; opacity: 0.75;">পাতাটা বুকমার্ক করে রাখুন। আলোচনার সময় প্রয়োজনমতো খুলে নিন।</p>
+        </div>
+
+        <div class="lang-picker">
+          <div class="pick-label lang lang-en">Choose a language</div>
+          <div class="pick-label lang lang-bn">কোন ভাষায় দেখতে চান?</div>
+          <div class="lang-pick-row">
+            <button class="lang-pick-btn" data-set-lang="en">
+              <span>English</span><span class="arrow">→</span>
+            </button>
+            <button class="lang-pick-btn bn" data-set-lang="bn">
+              <span>বাংলা</span><span class="arrow">→</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="swipe-hint lang lang-en">↔ swipe / arrow keys / use the buttons below ↔</div>
+        <div class="swipe-hint lang lang-bn">↔ সোয়াইপ করুন, অ্যারো কী চাপুন, অথবা নিচের বোতাম ব্যবহার করুন ↔</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 1. CONTENTS ─────────────────────────────────── -->
+  <section class="slide" data-title-en="Contents" data-title-bn="সূচি">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">contents</span>
+        <span class="kicker lang lang-bn">সূচি</span>
+        <h2 class="lang lang-en">Where we're going</h2>
+        <h2 class="lang lang-bn">এই পাতায় যা আছে</h2>
+      </div>
+      <div class="stage-body">
+        <div class="toc-grid">
+          <a href="#" data-go="2">
+            <span class="num">01.</span>
+            <span class="ttl lang lang-en">Intro</span>
+            <span class="ttl lang lang-bn">ভূমিকা</span>
+          </a>
+          <a href="#" data-go="4">
+            <span class="num">02.</span>
+            <span class="ttl">Body Count</span>
+          </a>
+          <a href="#" data-go="6">
+            <span class="num">03.</span>
+            <span class="ttl lang lang-en">Sheets toolkit</span>
+            <span class="ttl lang lang-bn">Sheets টুলকিট</span>
+          </a>
+          <a href="#" data-go="9">
+            <span class="num">04.</span>
+            <span class="ttl lang lang-en">The Prize</span>
+            <span class="ttl lang lang-bn">অনুশীলন</span>
+          </a>
+          <a href="#" data-go="12">
+            <span class="num">05.</span>
+            <span class="ttl lang lang-en">Location + Scraping</span>
+            <span class="ttl lang lang-bn">লোকেশন ও স্ক্র্যাপিং</span>
+          </a>
+          <a href="#" data-go="15">
+            <span class="num">06.</span>
+            <span class="ttl lang lang-en">Get in touch</span>
+            <span class="ttl lang lang-bn">যোগাযোগ</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 2. INTRO — BEFORE ───────────────────────────── -->
+  <section class="slide" data-title-en="01 / Intro — Before" data-title-bn="০১ / ভূমিকা — আগে">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">01 / Intro — Before</span>
+        <span class="kicker lang lang-bn">০১ / ভূমিকা — আগে</span>
+        <h2 class="lang lang-en">Statistics ≠ data journalism</h2>
+        <h2 class="lang lang-bn">পরিসংখ্যান মানেই ডেটা সাংবাদিকতা নয়</h2>
+      </div>
+      <div class="stage-body">
+        <img class="photo" src="img/railway_table.png" alt="Bangla PDF table — Bangladesh Railway Police unnatural-death statistics, 2015–2025.">
+        <div class="lang lang-en">
+          <div class="callout">
+            <strong>Many often conflate pieces of statistics with data journalism.</strong>
+            A finished number — like the totals in this Bangla PDF — is data, sure.
+            But the raw file is liberating: you can ask new questions of it that the summary already closed.
+          </div>
+        </div>
+        <div class="lang lang-bn">
+          <div class="callout">
+            <strong>শুধু কয়েকটি পরিসংখ্যান দেখানো মানেই ডেটা সাংবাদিকতা নয়।</strong>
+            এই PDF-এ যে মোট সংখ্যাগুলো দেখছেন — সেগুলোও অবশ্যই ডেটা।
+            কিন্তু মূল ডেটা হাতে থাকলে আপনি নিজেই নতুন প্রশ্ন তুলতে পারেন।
+            সারসংক্ষেপে সেই সুযোগ থাকে না।
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 3. INTRO — AFTER ────────────────────────────── -->
+  <section class="slide" data-title-en="01 / Intro — After" data-title-bn="০১ / ভূমিকা — পরে">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">01 / Intro — After</span>
+        <span class="kicker lang lang-bn">০১ / ভূমিকা — পরে</span>
+        <h2 class="lang lang-en">At Bangladesh's railway crossings, nearly a death a day</h2>
+        <h2 class="lang lang-bn">বাংলাদেশের রেল ক্রসিংয়ে প্রায় প্রতিদিনই একটি মৃত্যু</h2>
+      </div>
+      <div class="stage-body">
+        <p class="lang lang-en">The same Railway Police data, cleaned and republished as an interactive piece on Netra News — clickable, filterable, year-by-year.</p>
+        <p class="lang lang-bn">রেলওয়ে পুলিশের একই ডেটা গুছিয়ে Netra News-এ ইন্টার‌্যাক্টিভভাবে প্রকাশ করা হয়েছে। এতে ক্লিক করা যায়, ফিল্টার করা যায়, বছরভিত্তিক ডেটা দেখা যায়।</p>
+
+        <a class="btn" href="https://netra.news/2026/bangladeshs-railway-crossings-and-deaths/" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="btn-label lang lang-en">Read the story on Netra News</span>
+            <span class="btn-label lang lang-bn">Netra News-এ প্রতিবেদনটি পড়ুন</span>
+            <span class="btn-meta">netra.news</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+
+        <div class="reveal-box">
+          <div class="hint lang lang-en">↓ The original interactive chart ↓</div>
+          <div class="hint lang lang-bn">↓ মূল ইন্টার‌্যাক্টিভ চার্ট ↓</div>
+          <button class="reveal-btn" id="revealRailway"
+                  data-label-en="Open the chart →"
+                  data-label-bn="চার্ট খুলুন →">Open the chart →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 4. BODY COUNT ───────────────────────────────── -->
+  <!-- ── 4. BODY COUNT — read it ─────────────────────── -->
+  <section class="slide" data-title-en="02 / Body Count" data-title-bn="০২ / Body Count">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">02 / Case study 1</span>
+        <span class="kicker lang lang-bn">০২ / কেস স্টাডি ১</span>
+        <h2>Body Count</h2>
+      </div>
+      <div class="stage-body">
+        <p class="lang lang-en">An investigation into <span class="num">2,600+</span> people killed by Bangladesh's security forces, 2009–2022 — searchable, filterable, every row sourced.</p>
+        <p class="lang lang-bn">২০০৯ থেকে ২০২২ সালের মধ্যে বাংলাদেশের নিরাপত্তা বাহিনীর হাতে নিহত <span class="num">২,৬০০-এর বেশি</span> মানুষের তথ্য নিয়ে তৈরি এই ডেটাবেজ। এতে খুঁজে দেখা যায়, ফিল্টার করা যায়, প্রতিটি সারির উৎসও দেওয়া আছে।</p>
+
+        <a class="btn" href="https://interactive.netra.news/extrajudicial-killings-bangladesh/" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="btn-label lang lang-en">Body Count — the interactive database</span>
+            <span class="btn-label lang lang-bn">Body Count — ইন্টার‌্যাক্টিভ ডেটাবেজ</span>
+            <span class="btn-meta">interactive.netra.news</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 5. BODY COUNT — behind it (raw data) ────────── -->
+  <section class="slide" data-title-en="02 / Body Count — behind it" data-title-bn="০২ / Body Count — মূল ফাইল">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">02 / Case study 1</span>
+        <span class="kicker lang lang-bn">০২ / কেস স্টাডি ১</span>
+        <h2 class="lang lang-en">What the source data actually looked like</h2>
+        <h2 class="lang lang-bn">মূল ফাইলটি দেখতে কেমন ছিল</h2>
+      </div>
+      <div class="stage-body">
+        <p class="lang lang-en">Multiple mini-tables stacked in one sheet, inconsistent columns, totals mid-data — across 261 monthly tabs.</p>
+        <p class="lang lang-bn">মূল ফাইলটি ছিল একেবারেই অগোছালো: ২৬১টি মাসিক ট্যাব, একই শিটে গাদাগাদি করে থাকা ছোট ছোট টেবিল, একেক ট্যাবে একেক রকম কলাম, আর মাঝেমধ্যে ডেটার ভেতরেই ঢুকে থাকা মোট হিসাব।</p>
+        <img class="photo" src="img/raw_messy.gif" alt="Animated screen recording of one of the messy raw monthly tabs." loading="lazy">
+
+        <h3 class="lang lang-en">The cleanup, in numbers</h3>
+        <p class="lang lang-en">
+          <span class="num">261</span> raw monthly tabs →
+          <span class="num">−93</span> duplicates &amp; summaries dropped →
+          <span class="num">168</span> usable tabs → flatten, normalise, append, de-duplicate →
+          <span class="num">4,723</span> rows in the final long-format table.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 5. PIVOT TABLES ─────────────────────────────── -->
+  <section class="slide" data-title-en="03 / Pivot tables" data-title-bn="০৩ / Pivot table">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">03 / Sheets toolkit</span>
+        <span class="kicker lang lang-bn">০৩ / Sheets টুলকিট</span>
+        <h2 class="lang lang-en">Pivot tables — count by location</h2>
+        <h2 class="lang lang-bn">Pivot table — এলাকাভিত্তিক গণনা</h2>
+      </div>
+      <div class="stage-body">
+        <p class="lang lang-en">Open the demo sheet, then walk these six steps:</p>
+        <p class="lang lang-bn">নিচের ডেমো শিটটি খুলুন। এরপর ছয় ধাপে এগোন:</p>
+
+        <a class="btn" href="https://docs.google.com/spreadsheets/d/1rqrE6LSDkALNKa11pAZ5QtmifhGEKeDFH7f-Yqw9xV8/edit?gid=148280082#gid=148280082" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="btn-label lang lang-en">Demo Google Sheet — Body Count tab</span>
+            <span class="btn-label lang lang-bn">ডেমো শিট খুলুন — Body Count ট্যাব</span>
+            <span class="btn-meta">docs.google.com</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+
+        <ol class="steps lang lang-en">
+          <li>Select the range of the data.</li>
+          <li>Go to <strong>Insert</strong> → <strong>Pivot table</strong> (place it in a new sheet).</li>
+          <li>In the editor, drag <code>location</code> into <strong>Rows</strong> and <code>victim_id</code> into <strong>Values</strong>.</li>
+          <li>Under Values, change <strong>Summarise by</strong> from <code>SUM</code> to <code>COUNTA</code>.</li>
+          <li>In <strong>Rows</strong>, set <strong>Order</strong> to <strong>Descending</strong> and <strong>Sort by</strong> the <code>COUNTA of victim_id</code> column.</li>
+          <li>Now drag <code>year</code> into <strong>Columns</strong> — the same totals broken out year by year.</li>
+        </ol>
+        <ol class="steps lang lang-bn">
+          <li>পুরো ডেটা রেঞ্জটি নির্বাচন করুন।</li>
+          <li><strong>Insert</strong> মেনু থেকে <strong>Pivot table</strong> বেছে নিন (নতুন শিটে রাখুন)।</li>
+          <li>ডান পাশে যে এডিটর খুলবে, সেখানে <code>location</code> <strong>Rows</strong>-এ দিন, আর <code>victim_id</code> <strong>Values</strong>-এ দিন।</li>
+          <li><strong>Values</strong>-এ ডিফল্ট <code>SUM</code> থাকে — সেটি পাল্টে <code>COUNTA</code> করুন।</li>
+          <li><strong>Rows</strong>-এ <strong>Order</strong> দিন <strong>Descending</strong>, আর <strong>Sort by</strong> বেছে নিন <code>COUNTA of victim_id</code> — সবচেয়ে বেশি সংখ্যা উপরে চলে আসবে।</li>
+          <li>এবার <code>year</code>-কে টেনে <strong>Columns</strong>-এ ফেলুন — একই হিসাব এবার বছর ধরে ভাঙা।</li>
+        </ol>
+
+        <p class="lang lang-en">The result: <span class="num">211</span> killings concentrated in a single upazila (Teknaf, Cox's Bazar) — invisible until you pivot. Add the year column and you can see exactly when each upazila spiked.</p>
+        <p class="lang lang-bn">ফলাফল: শুধু টেকনাফ উপজেলাতেই <span class="num">২১১</span>টি হত্যাকাণ্ড — pivot না করলে বিষয়টি চোখেই পড়ত না। বছরের কলাম যোগ করলে দেখা যায় — কোন উপজেলায় কোন বছর সংখ্যাটা হঠাৎ লাফিয়ে বাড়ে।</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 6. PIVOT → MAP ──────────────────────────────── -->
+  <section class="slide" data-title-en="03 / Pivot → map" data-title-bn="০৩ / Pivot → মানচিত্র">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">03 / Sheets toolkit</span>
+        <span class="kicker lang lang-bn">০৩ / Sheets টুলকিট</span>
+        <h2 class="lang lang-en">From numbers to a map</h2>
+        <h2 class="lang lang-bn">সংখ্যা থেকে মানচিত্রে</h2>
+      </div>
+      <div class="stage-body">
+        <p class="lang lang-en">The same pivot data — but plotted on a map of Bangladesh. Geography says what columns of numbers can't.</p>
+        <p class="lang lang-bn">একই pivot ডেটা — এবার বাংলাদেশের মানচিত্রে। সংখ্যার কলাম যা বলতে পারে না, ভৌগোলিক ছবি সেটা চোখে আঙুল দিয়ে দেখায়।</p>
+        <img class="photo" src="img/map_viz.gif" alt="Animated visualisation: Bangladesh district map showing extrajudicial killings, 2019." loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 7. VLOOKUP — primer ─────────────────────────── -->
+  <section class="slide" data-title-en="03 / VLOOKUP" data-title-bn="০৩ / VLOOKUP">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">03 / Sheets toolkit</span>
+        <span class="kicker lang lang-bn">০৩ / Sheets টুলকিট</span>
+        <h2 class="lang lang-en">VLOOKUP — what it does</h2>
+        <h2 class="lang lang-bn">VLOOKUP — কী কাজে লাগে</h2>
+      </div>
+      <div class="stage-body">
+        <p class="lang lang-en">VLOOKUP looks up a key (e.g. a district name) in the first column of another range, and returns the value from a chosen column.</p>
+        <p class="lang lang-bn">VLOOKUP মিল খুঁজে দেখে — যেমন জেলার নাম। অন্য টেবিলের প্রথম কলামে সেই নাম পেলে একই সারির নির্দিষ্ট কলাম থেকে তথ্য এনে দেয়।</p>
+
+        <div class="code-wrap">
+<pre><code>=VLOOKUP(search_key, range, column_index, [is_sorted])</code></pre>
+        </div>
+
+        <p class="lang lang-en" style="font-size: 0.9rem;">
+          <code>search_key</code> — the value you want to look up<br>
+          <code>range</code> — the table to search in (key column first)<br>
+          <code>column_index</code> — which column of the range to return (1, 2, …)<br>
+          <code>is_sorted</code> — almost always <code>FALSE</code> (exact match)
+        </p>
+        <p class="lang lang-bn" style="font-size: 0.95rem;">
+          <code>search_key</code> — যে মানটি মিলিয়ে দেখতে হবে<br>
+          <code>range</code> — যে টেবিলে খুঁজবে (মেলানোর কলামটি প্রথমে থাকতে হবে)<br>
+          <code>column_index</code> — মিল পাওয়ার পর কোন কলাম থেকে তথ্য আনবে (১, ২, …)<br>
+          <code>is_sorted</code> — প্রায় সব ক্ষেত্রেই <code>FALSE</code> রাখুন (হুবহু মিল)
+        </p>
+
+        <p class="lang lang-en" style="font-size: 0.85rem; opacity: 0.75;">We'll apply this to real demo data in the next section.</p>
+        <p class="lang lang-bn" style="font-size: 0.9rem; opacity: 0.75;">পরের অংশে ডেমো ডেটায় এটি হাতেকলমে ব্যবহার করব।</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 7. PRIZE — DEMO DATA ────────────────────────── -->
+  <section class="slide" data-title-en="04 / The Prize — demo data" data-title-bn="০৪ / অনুশীলন — ডেমো ডেটা">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">04 / The prize</span>
+        <span class="kicker lang lang-bn">০৪ / অনুশীলন</span>
+        <h2 class="lang lang-en">Female dropout × child marriage — the demo data</h2>
+        <h2 class="lang lang-bn">মেয়েদের স্কুল ছাড়ার হার × বাল্যবিবাহ — ডেমো ডেটা</h2>
+      </div>
+      <div class="stage-body">
+        <p class="lang lang-en">The talk uses <em>fake demo data</em>, district-level — to demonstrate the principle, not to make a real-world claim. The sheet has three tabs:</p>
+        <p class="lang lang-bn">এটি <em>প্রশিক্ষণের জন্য বানানো জেলাভিত্তিক ডেটা</em>। পদ্ধতি বোঝানোর জন্য, বাস্তব কোনো দাবি নয়। শিটে তিনটি ট্যাব আছে:</p>
+
+        <ol class="steps lang lang-en">
+          <li><strong>Education</strong> — district + female dropout rate (this is where you'll work)</li>
+          <li><strong>Social</strong> — district + child marriage rate</li>
+          <li><strong>Population</strong> — district + population</li>
+        </ol>
+        <ol class="steps lang lang-bn">
+          <li><strong>Education</strong> — জেলা + মেয়েদের স্কুল ছাড়ার হার (কাজ হবে এই ট্যাবেই)</li>
+          <li><strong>Social</strong> — জেলা + বাল্যবিবাহের হার</li>
+          <li><strong>Population</strong> — জেলা + জনসংখ্যা</li>
+        </ol>
+
+        <p class="lang lang-en">Open the sheet, make a copy, then move to the next slide:</p>
+        <p class="lang lang-bn">শিটটি খুলুন, নিজের জন্য একটি কপি করে নিন, তারপর পরের স্লাইডে যান:</p>
+
+        <a class="btn" href="https://docs.google.com/spreadsheets/d/1rqrE6LSDkALNKa11pAZ5QtmifhGEKeDFH7f-Yqw9xV8/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="btn-label lang lang-en">Demo Google Sheet — Education tab</span>
+            <span class="btn-label lang lang-bn">ডেমো শিট — Education ট্যাব</span>
+            <span class="btn-meta">docs.google.com</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 8. PRIZE — APPLY VLOOKUPS ───────────────────── -->
+  <section class="slide" data-title-en="04 / The Prize — apply VLOOKUPs" data-title-bn="০৪ / অনুশীলন — VLOOKUP চালান">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">04 / The prize</span>
+        <span class="kicker lang lang-bn">০৪ / অনুশীলন</span>
+        <h2 class="lang lang-en">Apply the VLOOKUPs</h2>
+        <h2 class="lang lang-bn">এবার VLOOKUP চালান</h2>
+      </div>
+      <div class="stage-body">
+        <p class="lang lang-en">In the Education tab, paste each formula in the cell next to a district name, then drag down to fill the column.</p>
+        <p class="lang lang-bn">Education ট্যাবে জেলার নামের পাশের সেলে নিচের ফর্মুলাগুলো পেস্ট করুন। তারপর একই ফর্মুলা নিচের সারিগুলোতে কপি করুন — পুরো কলাম ভরে যাবে।</p>
+
+        <h3 class="lang lang-en">Pull child marriage from the Social tab</h3>
+        <h3 class="lang lang-bn">বাল্যবিবাহের হার যোগ করুন</h3>
+        <div class="code-wrap">
+          <button class="copy-btn" data-copy='=VLOOKUP(A2, Social!$A:$B, 2, FALSE)'>COPY</button>
+<pre><code>=VLOOKUP(A2, Social!$A:$B, 2, FALSE)</code></pre>
+        </div>
+
+        <h3 class="lang lang-en">Pull population from the Population tab</h3>
+        <h3 class="lang lang-bn">জনসংখ্যা যোগ করুন</h3>
+        <div class="code-wrap">
+          <button class="copy-btn" data-copy='=VLOOKUP(A2, Population!$A:$B, 2, FALSE)'>COPY</button>
+<pre><code>=VLOOKUP(A2, Population!$A:$B, 2, FALSE)</code></pre>
+        </div>
+
+        <p class="lang lang-en" style="font-size: 0.85rem; opacity: 0.75;">You should now have three columns side by side: <strong>dropout</strong>, <strong>child marriage</strong>, <strong>population</strong>.</p>
+        <p class="lang lang-bn" style="font-size: 0.9rem; opacity: 0.75;">এখন Education ট্যাবেই পাশাপাশি তিনটি কলাম থাকবে — <strong>dropout</strong>, <strong>child marriage</strong>, <strong>population</strong>। এখান থেকেই চার্ট বানাবেন।</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 9. PRIZE — PLOT + REVEAL ────────────────────── -->
+  <section class="slide" data-title-en="04 / The Prize — plot it" data-title-bn="০৪ / অনুশীলন — চার্ট বানান">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">04 / The prize</span>
+        <span class="kicker lang lang-bn">০৪ / অনুশীলন</span>
+        <h2 class="lang lang-en">Plot it — then reveal the chart</h2>
+        <h2 class="lang lang-bn">চার্ট বানান — তারপর নমুনাটি দেখুন</h2>
+      </div>
+      <div class="stage-body">
+        <p class="lang lang-en">Take your joined table to Datawrapper. Plot dropout (x) vs. child marriage (y), with population sizing the bubbles.</p>
+        <p class="lang lang-bn">যে টেবিলে dropout, child marriage আর population একসঙ্গে আছে, সেটি Datawrapper-এ দিন। X-অক্ষে dropout, Y-অক্ষে child marriage দিন। bubble-এর আকার হবে population অনুযায়ী।</p>
+
+        <a class="btn" href="https://www.datawrapper.de" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="btn-label lang lang-en">Datawrapper — make the chart</span>
+            <span class="btn-label lang lang-bn">Datawrapper — চার্ট তৈরি করুন</span>
+            <span class="btn-meta">datawrapper.de</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+
+        <p class="lang lang-en" style="margin-top: 1.4rem;"><strong>Try it yourself first.</strong> When you're done — reveal the chart I made:</p>
+        <p class="lang lang-bn" style="margin-top: 1.4rem;"><strong>আগে নিজে চেষ্টা করুন।</strong> হয়ে গেলে আমার বানানো নমুনা চার্টটি দেখুন:</p>
+
+        <div class="reveal-box">
+          <div class="hint lang lang-en">↓ Spoiler — try it yourself before clicking ↓</div>
+          <div class="hint lang lang-bn">↓ আগে নিজে চেষ্টা করুন, তারপর খুলুন ↓</div>
+          <button class="reveal-btn" id="revealChart"
+                  data-label-en="Open the chart →"
+                  data-label-bn="চার্ট খুলুন →">Open the chart →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 10. 7-ELEVEN & CIRCLE K ─────────────────────── -->
+  <section class="slide" data-title-en="05 / 7-Eleven &amp; Circle K" data-title-bn="০৫ / 7-Eleven ও Circle K">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">05 / Case study 3</span>
+        <span class="kicker lang lang-bn">০৫ / কেস স্টাডি ৩</span>
+        <h2 class="lang lang-en">7-Eleven &amp; Circle K — store-overlap analysis</h2>
+        <h2 class="lang lang-bn">7-Eleven ও Circle K — কাছাকাছি দোকান খুঁজে দেখা</h2>
+      </div>
+      <div class="stage-body">
+        <p class="lang lang-en">The two source store-locator pages that were scraped, and the Bloomberg story they powered.</p>
+        <p class="lang lang-bn">এই দুই দোকান খোঁজার পেজ থেকে অবস্থান-সংক্রান্ত তথ্য সংগ্রহ করা হয়েছিল। সেই ডেটাই Bloomberg প্রতিবেদনটির ভিত্তি।</p>
+
+        <a class="btn" href="https://www.7-eleven.com/locator" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="btn-label lang lang-en">7-Eleven store locator</span>
+            <span class="btn-label lang lang-bn">7-Eleven store locator</span>
+            <span class="btn-meta">7-eleven.com/locator</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+        <a class="btn" href="https://www.circlek.com/list-united-states-stores" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="btn-label lang lang-en">Circle K — list of US stores</span>
+            <span class="btn-label lang lang-bn">Circle K — যুক্তরাষ্ট্রে দোকানের তালিকা</span>
+            <span class="btn-meta">circlek.com</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+        <a class="btn" href="https://www.bloomberg.com/news/articles/2024-10-17/couche-tard-s-7-eleven-overlaps-to-face-skeptical-us-ftc-review?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc3ODIxOTk0MSwiZXhwIjoxNzc4ODI0NzQxLCJhcnRpY2xlSWQiOiJTTDczM0hUMVVNMFcwMCIsImJjb25uZWN0SWQiOiIzQTcxNTg1NTk4RTQ0MjUxQjk4NUIxODg5MkI3RTVBRCJ9.i0eRUBxJg3-N_qL9MRJppUCOByIwuMQ8s5syqyI0qGQ" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="btn-label lang lang-en">Bloomberg — Couche-Tard's 7-Eleven Overlaps Face Skeptical US FTC Review</span>
+            <span class="btn-label lang lang-bn">Bloomberg — 7-Eleven অধিগ্রহণ নিয়ে FTC-র সংশয়</span>
+            <span class="btn-meta">bloomberg.com — gift link</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 11. IMPORTHTML ──────────────────────────────── -->
+  <section class="slide" data-title-en="05 / IMPORTHTML demo" data-title-bn="০৫ / IMPORTHTML">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">05 / How does scraping work?</span>
+        <span class="kicker lang lang-bn">০৫ / স্ক্র্যাপিং কীভাবে কাজ করে?</span>
+        <h2 class="lang lang-en">IMPORTHTML — one formula, the whole table</h2>
+        <h2 class="lang lang-bn">IMPORTHTML — এক ফর্মুলাতেই টেবিল চলে আসে</h2>
+      </div>
+      <div class="stage-body">
+        <p class="lang lang-en">Open a fresh Google Sheet. Paste this into <code>A1</code>:</p>
+        <p class="lang lang-bn">নতুন একটি Google Sheet খুলুন। নিচের ফর্মুলাটি <code>A1</code>-এ পেস্ট করুন:</p>
+
+        <div class="code-wrap">
+          <button class="copy-btn" data-copy='=IMPORTHTML("https://en.wikipedia.org/wiki/List_of_United_States_counties_and_county_equivalents", "table", 2)'>COPY</button>
+<pre><code>=IMPORTHTML("https://en.wikipedia.org/wiki/List_of_United_States_counties_and_county_equivalents", "table", 2)</code></pre>
+        </div>
+
+        <p class="lang lang-en" style="font-size: 0.85rem; opacity: 0.75;">Change the last argument (<code>2</code>) to grab a different table from the page.</p>
+        <p class="lang lang-bn" style="font-size: 0.9rem; opacity: 0.75;">একই পেজ থেকে অন্য টেবিল আনতে চাইলে শেষের সংখ্যাটি (<code>2</code>) বদলে দিন।</p>
+
+        <a class="btn" href="https://en.wikipedia.org/wiki/List_of_United_States_counties_and_county_equivalents" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="btn-label lang lang-en">Wikipedia — List of US counties (the demo source)</span>
+            <span class="btn-label lang lang-bn">Wikipedia — যুক্তরাষ্ট্রের কাউন্টির তালিকা (ডেমো উৎস)</span>
+            <span class="btn-meta">en.wikipedia.org</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 12. HONG KONG ───────────────────────────────── -->
+  <section class="slide" data-title-en="05 / Hong Kong" data-title-bn="০৫ / হংকং">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">05 / Case study 4</span>
+        <span class="kicker lang lang-bn">০৫ / কেস স্টাডি ৪</span>
+        <h2 class="lang lang-en">Hong Kong — license registry → Bloomberg</h2>
+        <h2 class="lang lang-bn">হংকং — লাইসেন্স রেজিস্ট্রি → Bloomberg</h2>
+      </div>
+      <div class="stage-body">
+        <p class="lang lang-en">Not every site is as simple as a clean HTML table. Some pages are larger, messier, and more rewarding: the data loads through search forms and background requests. The browser's Network tab can reveal those requests; a scraper can then collect each page and license type into a CSV for reporting.</p>
+        <p class="lang lang-bn">সব ওয়েবসাইট এত সহজ নয় যে এক ফর্মুলাতেই টেবিল চলে আসবে। কিছু পেজ অনেক বড় ও জটিল — তবে সেখানেই ভালো গল্পের সম্ভাবনাও বেশি। সার্চ ফর্ম আর পেছনে চলা request-এর মাধ্যমে ডেটা আসে। ব্রাউজারের Network tab দেখলে সেই request খুঁজে বের করা যায়; তারপর স্ক্র্যাপার দিয়ে প্রতিটি পেজ ও লাইসেন্স টাইপ থেকে তথ্য নিয়ে CSV বানানো যায়।</p>
+
+        <a class="btn" href="https://apps.sfc.hk/publicregWeb/searchByRa?locale=en" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="btn-label">SFC Public Register</span>
+            <span class="btn-meta">apps.sfc.hk</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+        <a class="btn" href="https://www.bloomberg.com/news/articles/2024-11-11/hong-kong-has-a-record-number-of-jobs-in-finance-as-city-recovers-from-slump?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc3ODMyNzk2NywiZXhwIjoxNzc4OTMyNzY3LCJhcnRpY2xlSWQiOiJTTDRLNE5EV1JHRzAwMCIsImJjb25uZWN0SWQiOiIzQTcxNTg1NTk4RTQ0MjUxQjk4NUIxODg5MkI3RTVBRCJ9.E5cjVFLotAfW8TSrQEzqQSeJ1Ekgz7Rna1L2kv2jUtE" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="btn-label lang lang-en">Bloomberg — Hong Kong Finance Jobs Rebound to Record After Talent Drain</span>
+            <span class="btn-label lang lang-bn">Bloomberg — হংকংয়ের ফিন্যান্স খাতে চাকরি ফের রেকর্ডে</span>
+            <span class="btn-meta">bloomberg.com — gift link · Nov 11, 2024</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 13. CONTACT ─────────────────────────────────── -->
+  <section class="slide" data-title-en="06 / Q&amp;A" data-title-bn="০৬ / প্রশ্নোত্তর">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">06 / Q&amp;A</span>
+        <span class="kicker lang lang-bn">০৬ / প্রশ্নোত্তর</span>
+        <h2 class="lang lang-en">Get in touch</h2>
+        <h2 class="lang lang-bn">যোগাযোগ</h2>
+      </div>
+      <div class="stage-body">
+        <ul class="contact lang lang-en">
+          <li><strong>Affiliation:</strong> Netra News</li>
+          <li><strong>Website:</strong> <a href="https://nazmulahasan.com" target="_blank" rel="noopener noreferrer">nazmulahasan.com</a></li>
+          <li><strong>Email:</strong> <a href="mailto:nazmul@netra.news">nazmul@netra.news</a></li>
+          <li><strong>X:</strong> <a href="https://x.com/the_nazmul" target="_blank" rel="noopener noreferrer">@the_nazmul</a></li>
+        </ul>
+        <ul class="contact lang lang-bn">
+          <li><strong>সংস্থা:</strong> Netra News</li>
+          <li><strong>ওয়েবসাইট:</strong> <a href="https://nazmulahasan.com" target="_blank" rel="noopener noreferrer">nazmulahasan.com</a></li>
+          <li><strong>ইমেইল:</strong> <a href="mailto:nazmul@netra.news">nazmul@netra.news</a></li>
+          <li><strong>X:</strong> <a href="https://x.com/the_nazmul" target="_blank" rel="noopener noreferrer">@the_nazmul</a></li>
+        </ul>
+        <p class="lang lang-en" style="margin-top: 2rem; font-size: 0.8rem; opacity: 0.7;">MRDI 2026  |  data journalism  |  thank you for following along.</p>
+        <p class="lang lang-bn" style="margin-top: 2rem; font-size: 0.85rem; opacity: 0.7;">MRDI ২০২৬  |  ডেটা সাংবাদিকতা  |  সঙ্গে থাকার জন্য ধন্যবাদ</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ── chart modal ──────────────────────────────── -->
+<div class="modal" id="chartModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-window">
+    <div class="modal-bar">
+      <span class="modal-title" id="modalTitle">Chart</span>
+      <button class="modal-close" data-close type="button">close ×</button>
+    </div>
+    <iframe class="modal-iframe" id="modalIframe" title="chart"></iframe>
+  </div>
+</div>
+
+<nav class="ctrl">
+  <button class="ctrl-btn" id="prevBtn">← prev</button>
+  <div class="ctrl-center">
+    <div class="indicator"><span class="cur" id="curNum">01</span> / <span id="totNum">16</span></div>
+    <div class="dots" id="dots"></div>
+    <button class="lang-toggle" id="langToggle" title="Switch language">বাংলা</button>
+  </div>
+  <button class="ctrl-btn" id="nextBtn">next →</button>
+</nav>
+
+<script>
+  const deck = document.getElementById('deck');
+  const slides = Array.from(deck.querySelectorAll('.slide'));
+  const total = slides.length;
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const curNum = document.getElementById('curNum');
+  const totNum = document.getElementById('totNum');
+  const dotsEl = document.getElementById('dots');
+  const langToggle = document.getElementById('langToggle');
+
+  totNum.textContent = String(total).padStart(2, '0');
+
+  // ── language ────────────────────────────────────
+  const STORE_KEY = 'mrdi-companion-lang';
+  function applyLang(lang) {
+    document.body.classList.remove('lang-en', 'lang-bn');
+    document.body.classList.add('lang-' + lang);
+    document.documentElement.lang = (lang === 'bn') ? 'bn' : 'en';
+    // toggle button shows the OTHER language (i.e., what you'll switch to)
+    langToggle.textContent = (lang === 'en') ? 'বাংলা' : 'EN';
+    langToggle.title = (lang === 'en') ? 'Switch to Bangla' : 'ইংরেজিতে দেখুন';
+    prevBtn.textContent = (lang === 'bn') ? '← আগের' : '← prev';
+    nextBtn.textContent = (lang === 'bn') ? 'পরের →' : 'next →';
+    const modalClose = document.querySelector('.modal-close');
+    if (modalClose) modalClose.textContent = (lang === 'bn') ? 'বন্ধ ×' : 'close ×';
+    langToggle.style.fontFamily = (lang === 'en')
+      ? "'Noto Sans Bengali', sans-serif"
+      : "'JetBrains Mono', monospace";
+    // update reveal-button labels
+    document.querySelectorAll('.reveal-btn[data-label-en]').forEach(b => {
+      b.textContent = b.getAttribute('data-label-' + lang);
+    });
+    // refresh control-bar indicator title (uses data-title-en/bn)
+    setActive(cur);
+    try { localStorage.setItem(STORE_KEY, lang); } catch (e) {}
+  }
+  function getInitialLang() {
+    try {
+      const stored = localStorage.getItem(STORE_KEY);
+      if (stored === 'en' || stored === 'bn') return stored;
+    } catch (e) {}
+    return 'en';
+  }
+  langToggle.addEventListener('click', () => {
+    const next = document.body.classList.contains('lang-en') ? 'bn' : 'en';
+    applyLang(next);
+  });
+  document.querySelectorAll('[data-set-lang]').forEach(b => {
+    b.addEventListener('click', () => {
+      applyLang(b.getAttribute('data-set-lang'));
+      goTo(1); // jump to Contents after picking
+    });
+  });
+
+  // ── nav ──────────────────────────────────────────
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'dot';
+    d.setAttribute('aria-label', 'Go to slide ' + (i+1));
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+  });
+  const dots = Array.from(dotsEl.children);
+
+  let cur = 0;
+  function goTo(i) {
+    i = Math.max(0, Math.min(total - 1, i));
+    deck.scrollTo({ left: i * deck.clientWidth, behavior: 'smooth' });
+  }
+  function setActive(i) {
+    cur = i;
+    curNum.textContent = String(i + 1).padStart(2, '0');
+    const lang = document.body.classList.contains('lang-bn') ? 'bn' : 'en';
+    dots.forEach((d, j) => d.classList.toggle('active', j === i));
+    prevBtn.disabled = (i === 0);
+    nextBtn.disabled = (i === total - 1);
+  }
+
+  let scrollTimer;
+  deck.addEventListener('scroll', () => {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => {
+      const i = Math.round(deck.scrollLeft / deck.clientWidth);
+      if (i !== cur) setActive(i);
+    }, 80);
+  });
+
+  prevBtn.addEventListener('click', () => goTo(cur - 1));
+  nextBtn.addEventListener('click', () => goTo(cur + 1));
+
+  window.addEventListener('keydown', e => {
+    if (e.target.matches('input, textarea, button')) return;
+    switch (e.key) {
+      case 'ArrowRight':
+      case 'PageDown':
+      case ' ':
+        e.preventDefault(); goTo(cur + 1); break;
+      case 'ArrowLeft':
+      case 'PageUp':
+        e.preventDefault(); goTo(cur - 1); break;
+      case 'Home':
+        e.preventDefault(); goTo(0); break;
+      case 'End':
+        e.preventDefault(); goTo(total - 1); break;
+    }
+  });
+
+  window.addEventListener('resize', () => goTo(cur));
+
+  document.querySelectorAll('[data-go]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      goTo(parseInt(el.dataset.go, 10));
+    });
+  });
+
+  // ── copy buttons ─────────────────────────────────
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    const enLabel = 'COPY';
+    const bnLabel = 'কপি';
+    function setLabel() {
+      const lang = document.body.classList.contains('lang-bn') ? 'bn' : 'en';
+      btn.textContent = (lang === 'bn') ? bnLabel : enLabel;
+    }
+    setLabel();
+    btn.addEventListener('click', async () => {
+      const text = btn.getAttribute('data-copy');
+      try { await navigator.clipboard.writeText(text); }
+      catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+      }
+      const lang = document.body.classList.contains('lang-bn') ? 'bn' : 'en';
+      btn.textContent = (lang === 'bn') ? 'কপি হয়েছে' : 'COPIED';
+      setTimeout(setLabel, 1400);
+    });
+    // Re-apply label after language change
+    new MutationObserver(setLabel).observe(document.body, {attributes: true, attributeFilter: ['class']});
+  });
+
+  // ── chart modal ──────────────────────────────────
+  const modal = document.getElementById('chartModal');
+  const modalIframe = document.getElementById('modalIframe');
+  const modalTitle = document.getElementById('modalTitle');
+  function openModal(src, title) {
+    modalTitle.textContent = title || 'Chart';
+    modalIframe.src = src;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    modal.classList.remove('open');
+    modalIframe.src = 'about:blank';
+    document.body.style.overflow = '';
+  }
+  modal.addEventListener('click', e => {
+    if (e.target.hasAttribute('data-close')) closeModal();
+  });
+  window.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+  function bindReveal(buttonId, src, titleEn, titleBn) {
+    const b = document.getElementById(buttonId);
+    if (!b) return;
+    b.addEventListener('click', () => {
+      const lang = document.body.classList.contains('lang-bn') ? 'bn' : 'en';
+      openModal(src, (lang === 'bn') ? titleBn : titleEn);
+    });
+  }
+  bindReveal('revealRailway', 'chart/railway.html',
+             "At Bangladesh's railway crossings, nearly a death a day",
+             "বাংলাদেশের রেল ক্রসিংয়ে প্রায় প্রতিদিনই একটি মৃত্যু");
+  bindReveal('revealChart', 'chart/scatter.html',
+             'Female dropout × child marriage — demo',
+             'মেয়েদের স্কুল ছাড়ার হার × বাল্যবিবাহ — ডেমো');
+
+  // ── boot ─────────────────────────────────────────
+  applyLang(getInitialLang());
+  setActive(0);
+</script>
+</body>
+</html>
