@@ -1,1799 +1,1159 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nazmul Ahasan | Journalist</title>
-  <meta name="description" content="Nazmul Ahasan is a Bangladeshi journalist specialising in data and investigative reporting." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-
-  <style>
-    /* ─── Tokens ─────────────────────────────────── */
-    :root {
-      --bg:       #f8f6f2;
-      --paper:    #faf9f6;
-      --text:     #18160e;
-      --muted:    #7a7568;
-      --faint:    #c8c4b8;
-      --rule:     rgba(24,22,14,.10);
-      --rule-mid: rgba(24,22,14,.16);
-      --accent:   #8b1a0e;   /* one accent only — restrained, sombre */
-      --blue:     #1e3458;   /* links */
-      --wrap:     1060px;
-      --pad:      clamp(18px, 4vw, 36px);
-      --bg-tint:   #f4f6ff;
-      --serif:    'Cormorant Garamond', 'Palatino Linotype', Georgia, serif;
-      --body:     'Source Serif 4',    Georgia, 'Times New Roman', serif;
-      --mono:     'JetBrains Mono',    'Courier New', monospace;
-    }
-
-    /* ─── Reset ──────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font: 400 17px/1.65 var(--body);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    img { display: block; max-width: 100%; }
-    button { font-family: inherit; }
-
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; text-underline-offset: 3px; }
-
-    .muted   { color: var(--muted); }
-    .accent  { color: var(--accent); }
-
-    .container {
-      max-width: var(--wrap);
-      margin: 0 auto;
-      padding: 0 var(--pad);
-    }
-
-    /* ─── Site-wide rule ─────────────────────────── */
-    hr, .rule {
-      border: none;
-      border-top: 1px solid var(--rule);
-      margin: 0;
-    }
-
-    /* ─── Top bar ────────────────────────────────── */
-    .topbar {
-      border-bottom: 1px solid var(--rule-mid);
-      padding: 11px 0;
-    }
-    .topbar__inner {
-      max-width: var(--wrap);
-      margin: 0 auto;
-      padding: 0 var(--pad);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .topbar__name {
-      font-family: var(--serif);
-      font-size: 1rem;
-      font-weight: 500;
-      letter-spacing: .04em;
-      color: var(--text);
-      text-decoration: none;
-    }
-    .topbar__links {
-      list-style: none;
-      display: flex;
-      gap: 1.75rem;
-    }
-    .topbar__links a,
-    .topbar__links button {
-      font-family: var(--mono);
-      font-size: 10.5px;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      transition: color .15s;
-    }
-    .topbar__links a:hover,
-    .topbar__links button:hover { color: var(--text); }
-
-    .topbar__links a.topbar__quickblog {
-      border: 1px solid var(--accent);
-      color: var(--text);
-      padding: 4px 9px;
-      border-radius: 999px;
-      text-transform: none;
-      letter-spacing: .06em;
-    }
-    .topbar__links a.topbar__quickblog:hover {
-      color: var(--text);
-      text-decoration: none;
-    }
-
-    /* ─── Header / Hero ──────────────────────────── */
-    .site-header {
-      padding: 52px 0 40px;
-      border-bottom: 1px solid var(--rule-mid);
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr 340px;
-      gap: 48px;
-      align-items: start;
-    }
-
-    .hero__id {
-      display: grid;
-      grid-template-columns: 82px 1fr;
-      gap: 24px;
-      align-items: start;
-    }
-
-    .portrait {
-      width: 82px;
-      height: 82px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 1px solid var(--rule-mid);
-      filter: grayscale(12%);
-    }
-
-    .hero__text { display: flex; flex-direction: column; gap: 10px; }
-
-    .site-title {
-      font-family: var(--serif);
-      font-size: clamp(2.4rem, 5vw, 3.4rem);
-      font-weight: 300;
-      font-style: italic;
-      line-height: 1.0;
-      letter-spacing: .01em;
-      color: var(--text);
-    }
-    .site-title a { color: inherit; text-decoration: none; }
-
-    .lede {
-      font-size: 15px;
-      line-height: 1.6;
-      color: var(--muted);
-      max-width: 52ch;
-    }
-    .lede .ink { color: var(--text); font-style: italic; }
-
-    .bio-toggle {
-      margin-left: 5px;
-      padding: 0;
-      background: none;
-      border: none;
-      font-family: var(--mono);
-      font-size: 9.5px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      cursor: pointer;
-      vertical-align: baseline;
-      transition: color .15s;
-    }
-    .bio-toggle:hover { color: var(--muted); }
-    .bio-toggle::after { content: " ↓"; }
-    .bio-toggle[aria-expanded="true"]::after { content: " ↑"; }
-
-    .bio-more {
-      padding-top: 14px;
-      border-top: 1px solid var(--rule);
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
-      max-width: 58ch;
-    }
-    .bio-more p {
-      font-size: 14px;
-      line-height: 1.65;
-      color: var(--muted);
-    }
-
-    .bio-more[hidden] { 
-  display: none !important;
-}
-
-    /* Links row */
-    .links {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-      padding-top: 4px;
-    }
-    .links li { display: flex; align-items: center; gap: 6px; }
-    .links a, .link-toggle {
-      font-family: var(--mono);
-      font-size: 10.5px;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      background: none;
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      transition: color .15s;
-    }
-    .links a:hover, .link-toggle:hover { color: var(--text); }
-    .link-reveal {
-      font-family: var(--mono);
-      font-size: 10.5px;
-      color: var(--muted);
-      letter-spacing: .04em;
-    }
-    /* separator dots */
-    .links li:not(:last-child)::after {
-      content: "·";
-      color: var(--faint);
-      font-size: 14px;
-      line-height: 1;
-      margin-left: 1.5rem;
-    }
-
-    /* ─── Hero right: tagline ──────────────────── */
-    .hero__tagline {
-      padding-top: 6px;
-      border-left: 1px solid var(--rule);
-      padding-left: 36px;
-    }
-
-.scrolling-words {
-  --row: 2.2rem;           /* single source of truth */
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  font-family: var(--serif);
-  font-size: 1.75rem;
-  font-weight: 300;
-  line-height: 1;          /* ok once rows are controlled */
-  color: var(--muted);
-}
-
-.scrolling-words__box {
-  height: var(--row);
-  overflow: hidden;
-}
-
-.scrolling-words__box ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  will-change: transform;
-}
-
-.scrolling-words__box li {
-  height: var(--row);
-  line-height: var(--row);   /* baseline consistency */
-  font-style: italic;
-  font-weight: 500;
-  color: var(--accent);
-  white-space: nowrap;
-}
-    
-    .scrolling-words .and { color: var(--faint); font-size: 1.1rem; }
-    .scrolling-words .bold {
-      font-style: italic;
-      font-weight: 500;
-      color: var(--text);
-    }
-
-    @keyframes scrollUp {
-  0%, 12%    { transform: translateY(0); }
-  14%, 26%   { transform: translateY(calc(-1 * var(--row))); }
-  28%, 40%   { transform: translateY(calc(-2 * var(--row))); }
-  42%, 54%   { transform: translateY(calc(-3 * var(--row))); }
-  56%, 68%   { transform: translateY(calc(-4 * var(--row))); }
-  70%, 82%   { transform: translateY(calc(-5 * var(--row))); }
-  84%, 96%   { transform: translateY(calc(-6 * var(--row))); }
-  100%       { transform: translateY(0); }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .scrolling-words__box ul { animation: scrollUp 24s cubic-bezier(.45,0,.55,1) infinite; }
-}
-
-    .pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 20px;
-    }
-    .pill {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      border: 1px solid var(--rule-mid);
-      background: none;
-      padding: 4px 9px;
-      transition: border-color .15s, color .15s;
-    }
-    .pill:hover { border-color: var(--accent); color: var(--text); }
-
-    /* ─── Main content ───────────────────────────── */
-    .page-content { flex: 1; padding: 0 0 72px; }
-
-    /* ─── Section ────────────────────────────────── */
-    .section {
-      padding: 44px 0;
-      border-bottom: 1px solid var(--rule);
-    }
-    .section:last-child { border-bottom: none; }
-
-    .section__head {
-      display: flex;
-      align-items: baseline;
-      gap: 16px;
-      margin-bottom: 22px;
-    }
-    .section__head h2 {
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      font-weight: 400;
-      font-style: italic;
-      letter-spacing: .04em;
-      color: var(--muted);
-    }
-    .section__rule {
-      flex: 1;
-      height: 1px;
-      background: var(--rule);
-    }
-    .section__sub {
-      font-family: var(--accent);
-      font-size: 11px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--faint);
-    }
-
-    /* ─── Work filters ───────────────────────────── */
-    .work-filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0;
-      margin-bottom: 28px;
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      padding: 1px 0;
-    }
-    .filter {
-      position: relative;
-      padding: 8px 14px;
-      border: none;
-      background: none;
-      font-family: var(--mono);
-      font-size: 13px;
-      color: var(--faint);
-      cursor: pointer;
-      transition: color .15s, background .15s;
-    }
-    .filter:hover,
-    .filter:focus-visible { color: var(--text); outline: none; }
-    .filter[aria-pressed="true"] {
-      color: var(--accent);
-    }
-    .filter[data-label]::after {
-      content: attr(data-label);
-      position: absolute;
-      top: calc(100% + 4px);
-      left: 50%;
-      transform: translateX(-50%);
-      white-space: nowrap;
-      font-family: var(--mono);
-      font-size: 9.5px;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      background: var(--paper);
-      padding: 2px 6px;
-      border: 1px solid var(--rule);
-      opacity: 0;
-      pointer-events: none;
-      z-index: 10;
-      transition: opacity .1s;
-    }
-    .filter:hover::after,
-    .filter:focus-visible::after { opacity: 1; }
-
-    /* ─── Work grid ──────────────────────────────── */
-   /* ─── Work grid (FULL REPLACE) ─────────────────── */
-.work-grid--dense {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  border-top: 1px solid var(--rule);
-  border-left: 1px solid var(--rule);
-}
-
-.work {
-  border-right: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-}
-
-.work a {
-  display: block;
-  color: inherit;
-  text-decoration: none;
-  padding: 18px;
-  height: 100%;
-  position: relative;
-  overflow: hidden; /* clip the image zoom */
-  transition: background .2s;
-}
-
-.work a:hover {
-  background: rgba(24,22,14,.02);
-}
-
-/* Image: default b&w, then reveal original colour on hover */
-.work__img {
-  width: 100%;
-  aspect-ratio: 16/9;
-  object-fit: cover;
-  display: block;
-
-  /* default look */
-  filter: grayscale(100%);
-  opacity: .82;
-  transform: scale(1);
-
-  transition:
-    filter .7s ease-out,
-    opacity .7s ease-out,
-    transform .7s ease-out;
-}
-
-.work a:hover .work__img {
-  filter: grayscale(0%);
-  opacity: 1;
-  transform: scale(1.05);
-}
-
-/* Dark overlay like your React version (only over the image area) */
-.work a::after {
-  content: "";
-  position: absolute;
-
-  /* match card padding so overlay aligns with image */
-  left: 18px;
-  right: 18px;
-  top: 18px;
-
-  /* same geometry as .work__img */
-  aspect-ratio: 16/9;
-
-  background: rgba(0,0,0,.15);
-  pointer-events: none;
-  transition: background .4s ease;
-  z-index: 2;
-}
-
-.work a:hover::after {
-  background: transparent;
-}
-
-/* Meta row */
-.work__meta {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-  margin-top: 11px;
-  font-family: var(--mono);
-  font-size: 10.5px;
-  letter-spacing: .06em;
-  color: var(--faint);
-  position: relative;
-  z-index: 3;
-}
-
-.work__pub {
-  color: var(--muted);
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-}
-
-.work__dot { color: var(--faint); }
-
-.work__tags {
-  margin-left: auto;
-  display: inline-flex;
-  gap: 5px;
-}
-
-.tag {
-  padding: 0;
-  border: none;
-  background: none;
-  font-size: 12px;
-  color: var(--faint);
-  cursor: pointer;
-  line-height: 1;
-  transition: color .15s;
-}
-
-.tag:hover { color: var(--accent); }
-
-/* Title */
-.work__title {
-  margin-top: 8px;
-  font-family: var(--body);
-  font-size: .975rem;
-  font-weight: 400;
-  line-height: 1.35;
-  color: var(--text);
-  position: relative;
-  z-index: 3;
-}
-
-/* Optional: ensure body text stays above overlay */
-.work__body {
-  position: relative;
-  z-index: 3;
-}
-
-/* View more button */
-.work-more {
-  display: block;
-  margin: 0 auto;
-  margin-top: 24px;
-  padding: 9px 22px;
-  background: none;
-  border: 1px solid var(--rule-mid);
-  font-family: var(--mono);
-  font-size: 10.5px;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  cursor: pointer;
-  transition: border-color .15s, color .15s;
-}
-
-.work-more:hover {
-  border-color: var(--muted);
-  color: var(--text);
-}
-
-.work[hidden] { display: none !important; }
-
-/* ─── Responsive grid ──────────────────────────── */
-@media (max-width: 980px) {
-  .work-grid--dense { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 640px) {
-  .work-grid--dense { grid-template-columns: 1fr; }
-}
-
-    /* ─── Tint section (logos) ───────────────────── */
-       .bloomberg, .bloomberg:hover { filter: brightness(0) ! important; }
-
-        .section--tint { background: var(--bg-tint); padding: 44px 15px;}
-    .section--tint + .section { border-top: none; }
-    .logo-groups { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: start; }
-    .logo-group__title { font: 300 0.68rem/1 var(--mono); letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
-    /* Keep logo row consistent even if image sources change */
-.logos .logo {
-  height: 18px;          /* keep your current visual height */
-  width: auto;
-  max-width: 180px;      /* prevents extra-wide wordmarks from stretching */
-  object-fit: contain;   /* makes odd aspect ratios behave */
-  opacity: 0.45;
-  filter: saturate(0%) contrast(100%);
-  transition: opacity 0.22s;
-}
-
-.logos .logo--light {
-  opacity: 0.65;
-  filter: saturate(0%) contrast(80%);
-}
-    .logos { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 22px; }
-    .logos svg.logo { color: var(--text); }
-    .logos .logo:hover { opacity: 1; filter: none; transition: none;}
-
-
-    /* ─── Timeline ───────────────────────────────── */
-    .timeline { display: flex; flex-direction: column; gap: 0; }
-
-    .item {
-      display: grid;
-      grid-template-columns: 210px 1fr;
-      gap: 0;
-      border-top: 1px solid var(--rule);
-      padding: 22px 0;
-    }
-    .item:last-child { border-bottom: 1px solid var(--rule); }
-
-    .item__meta {
-      padding-right: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-    .item__kicker {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text);
-      line-height: 1.3;
-    }
-    .item__date, .item__location {
-      font-family: var(--mono);
-      font-size: 10.5px;
-      letter-spacing: .04em;
-      color: var(--faint);
-      line-height: 1.6;
-    }
-
-    .item__body { padding-left: 28px; border-left: 1px solid var(--rule); }
-    .item__title {
-      font-family: var(--serif);
-      font-size: 1.15rem;
-      font-weight: 500;
-      font-style: italic;
-      line-height: 1.2;
-      margin-bottom: 8px;
-      color: var(--text);
-    }
-    .bullets {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .bullets li {
-      font-size: 14px;
-      line-height: 1.6;
-      color: var(--muted);
-      padding-left: 14px;
-      position: relative;
-    }
-    .bullets li::before {
-      content: "—";
-      position: absolute;
-      left: 0;
-      color: var(--faint);
-      font-size: 11px;
-      top: 3px;
-    }
-
-    /* Toggle btns */
-    .exp-toggle, .item-toggle {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      background: none;
-      border: 1px solid var(--rule);
-      padding: 5px 11px;
-      cursor: pointer;
-      transition: color .15s, border-color .15s;
-    }
-    .exp-toggle:hover, .item-toggle:hover { color: var(--muted); border-color: var(--rule-mid); }
-    .exp-toggle[aria-expanded="true"] { color: var(--muted); border-color: var(--rule-mid); }
-    .exp-toggle::after { content: " ↘"; font-size: 10px; }
-    .exp-toggle[aria-expanded="true"]::after { content: " ↗"; }
-
-    /* ─── Split section ──────────────────────────── */
-    .section--split {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 0;
-      align-items: start;
-    }
-    .section--split > div {
-      padding: 44px var(--pad);
-    }
-    .section--split > div + div {
-      border-left: 1px solid var(--rule);
-    }
-    .section--split > div:first-child { padding-left: 0; }
-    .section--split > div:last-child  { padding-right: 0; }
-
-    .section--split h2 {
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      font-weight: 400;
-      font-style: italic;
-      color: var(--muted);
-      margin-bottom: 18px;
-      letter-spacing: .04em;
-    }
-    .section--split h2 + h2 { margin-top: 32px; }
-
-    .stack { display: flex; flex-direction: column; }
-
-    .row {
-      padding: 12px 0;
-      border-top: 1px solid var(--rule);
-    }
-    .stack .row:last-child { border-bottom: 1px solid var(--rule); }
-
-    .row__title {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      gap: 4px 6px;
-      font-size: 14px;
-      font-weight: 600;
-      line-height: 1.4;
-      color: var(--text);
-    }
-    .row__title a {
-      color: inherit;
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-    }
-    .row__title a:hover { border-bottom-color: var(--text); }
-    .row__meta {
-      margin-top: 3px;
-      font-family: var(--mono);
-      font-size: 10.5px;
-      color: var(--faint);
-      letter-spacing: .04em;
-    }
-    .row__desc {
-      margin-top: 4px;
-      font-size: 13px;
-      color: var(--muted);
-      font-style: italic;
-    }
-
-    /* Honours labels */
-    .label {
-      font-family: var(--mono);
-      font-size: 9px;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--faint);
-      border: 1px solid var(--rule);
-      padding: 2px 5px;
-      line-height: 1.4;
-      white-space: nowrap;
-    }
-
-    /* ─── Footer ─────────────────────────────────── */
-    .site-footer {
-      border-top: 1px solid var(--rule-mid);
-      padding: 16px 0;
-      margin-top: auto;
-    }
-    .footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .to-top {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--faint);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: color .15s;
-    }
-    .to-top:hover { color: var(--muted); text-decoration: none; }
-    .to-top .icon { width: 1em; height: 1em; fill: currentColor; }
-    .footer .muted {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: .08em;
-      color: var(--faint);
-    }
-
-    /* ─── Responsive ─────────────────────────────── */
-    @media (max-width: 980px) {
-      .work-grid--dense { grid-template-columns: repeat(2, 1fr); }
-      .logo-groups { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 820px) {
-      .hero { grid-template-columns: 1fr; gap: 32px; }
-      .hero__tagline { border-left: none; padding-left: 0; padding-top: 0; border-top: 1px solid var(--rule); padding-top: 20px; }
-      .section--split { grid-template-columns: 1fr; }
-      .section--split > div { padding: 28px 0; }
-      .section--split > div + div { border-left: none; border-top: 1px solid var(--rule); }
-      .section--split > div:first-child { padding-top: 0; }
-    }
-    @media (max-width: 640px) {
-      .work-grid--dense { grid-template-columns: 1fr; }
-      .topbar__links {
-        display: flex;
-        gap: 0;
-        margin-left: auto;
-      }
-      .topbar__links li { display: none; }
-      .topbar__links li.topbar__item--quickblog { display: block; }
-      .logos .logo { max-width: 140px; }
-    }
-    @media (max-width: 560px) {
-      .item { grid-template-columns: 1fr; }
-      .item__body { padding-left: 0; border-left: none; margin-top: 10px; }
-    }
-    
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>data journalism — MRDI 2026 — companion</title>
+<meta name="description" content="Companion page for Nazmul Ahasan's MRDI 2026 talk.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Noto+Sans+Bengali:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5E9D8;
+    --black: #1A1A1A;
+    --blue:  #2B62E8;
+    --blue-soft: #B8D1FF;
+    --mono: 'JetBrains Mono', Menlo, 'Courier New', monospace;
+    --bn:   'Noto Sans Bengali', sans-serif;
+    --ctrl-h: 56px;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background: var(--cream);
+    color: var(--black);
+    font-family: var(--mono);
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  /* language switching */
+  body.lang-bn { font-family: var(--bn); font-size: 15.5px; }
+  body.lang-en .lang-bn { display: none !important; }
+  body.lang-bn .lang-en { display: none !important; }
+  /* Code/formulas always mono */
+  pre, code, .copy-btn { font-family: var(--mono) !important; }
+
+  .deck {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: calc(100vh - var(--ctrl-h));
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+  }
+  .deck::-webkit-scrollbar { display: none; }
+
+  .slide {
+    flex: 0 0 100vw;
+    height: 100%;
+    scroll-snap-align: start;
+    overflow-y: auto;
+    padding: 1.5rem 1.5rem 2.5rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .stage {
+    max-width: 920px;
+    margin: 0 auto;
+    background: var(--cream);
+    border: 3px solid var(--black);
+    box-shadow: 7px 7px 0 var(--black);
+    overflow: hidden;
+  }
+  .stage-head {
+    border-bottom: 3px solid var(--black);
+    padding: 0.9rem 1.4rem;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .stage-head .kicker {
+    color: var(--blue);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  body.lang-bn .kicker { letter-spacing: 0.04em; text-transform: none; }
+  .stage-head h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+  .stage-body { padding: 1.4rem 1.6rem 1.6rem; }
+
+  .hero { padding: 2rem 1.6rem 1.6rem; text-align: left; }
+  .hero h1 {
+    font-size: clamp(2.4rem, 7vw, 4rem);
+    font-weight: 700;
+    margin: 0;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .hero .bn-script {
+    font-family: var(--bn);
+    color: var(--blue);
+    margin-top: 0.6rem;
+    font-size: 1.15rem;
+  }
+  .hero .lead { margin: 1.2rem 0 0; }
+
+  /* Language picker on hero */
+  .lang-picker {
+    margin-top: 1.6rem;
+    padding-top: 1.4rem;
+    border-top: 2px dashed var(--black);
+  }
+  .lang-picker .pick-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue);
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+  .lang-pick-row {
+    display: flex;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+  }
+  .lang-pick-btn {
+    flex: 1 1 180px;
+    padding: 0.9rem 1.1rem;
+    border: 2px solid var(--black);
+    box-shadow: 4px 4px 0 var(--black);
+    background: var(--cream);
+    color: var(--black);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  .lang-pick-btn:hover { background: var(--blue); color: var(--cream); }
+  .lang-pick-btn.bn { font-family: var(--bn); }
+  .lang-pick-btn .arrow { font-weight: 700; }
+
+  h3 { font-size: 1rem; font-weight: 700; margin: 1.4rem 0 0.5rem; }
+  h3:first-child { margin-top: 0; }
+  p { margin: 0.4rem 0 0.8rem; }
+  .num { color: var(--blue); font-weight: 700; }
+  a { color: var(--blue); }
+  em { color: var(--black); }
+
+  .btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.7rem 1rem;
+    border: 2px solid var(--black);
+    box-shadow: 4px 4px 0 var(--black);
+    background: var(--cream);
+    color: var(--black);
+    text-decoration: none;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+  }
+  .btn:hover { background: var(--blue); color: var(--cream); }
+  .btn .arrow { font-weight: 700; flex-shrink: 0; }
+  .btn-label { font-weight: 700; }
+  .btn-meta { font-size: 0.75rem; opacity: 0.7; display: block; margin-top: 0.15rem; font-weight: 400; }
+  .btn:hover .btn-meta { opacity: 0.9; }
+
+  .code-wrap { position: relative; margin: 0.7rem 0 1rem; }
+  pre {
+    margin: 0;
+    padding: 1rem 5rem 1rem 1rem;
+    background: var(--black);
+    color: var(--cream);
+    box-shadow: 4px 4px 0 var(--blue);
+    overflow-x: auto;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  code {
+    background: var(--black);
+    color: var(--cream);
+    padding: 1px 5px;
+    font-size: 0.92em;
+  }
+  .copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.25rem 0.6rem;
+    background: var(--blue);
+    color: var(--cream);
+    border: 2px solid var(--cream);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+  }
+  .copy-btn:hover { background: var(--cream); color: var(--blue); border-color: var(--blue); }
+
+  .photo {
+    display: block;
+    max-width: 100%;
+    max-height: 50vh;
+    margin: 0.5rem auto 1rem;
+    border: 2px solid var(--black);
+    box-shadow: 5px 5px 0 var(--black);
+    background: white;
+  }
+
+  .callout {
+    background: var(--black);
+    color: var(--cream);
+    padding: 1rem 1.2rem;
+    box-shadow: 4px 4px 0 var(--blue);
+    margin: 1rem 0;
+  }
+  .callout strong { color: var(--blue-soft); }
+
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 0.6rem 0 1rem;
+    counter-reset: step;
+  }
+  .steps li {
+    counter-increment: step;
+    padding: 0.6rem 0.8rem 0.6rem 3rem;
+    border: 2px solid var(--black);
+    box-shadow: 3px 3px 0 var(--black);
+    background: var(--cream);
+    margin: 0.5rem 0;
+    position: relative;
+    font-size: 0.9rem;
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2.4rem;
+    background: var(--blue);
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-right: 2px solid var(--black);
+    font-family: var(--mono);
+  }
+
+  .reveal-box {
+    border: 2px dashed var(--black);
+    padding: 1rem;
+    margin: 1rem 0;
+    text-align: center;
+  }
+  .reveal-box .hint { font-size: 0.8rem; opacity: 0.75; margin-bottom: 0.7rem; }
+  .reveal-btn {
+    display: inline-block;
+    padding: 0.7rem 1.4rem;
+    border: 2px solid var(--black);
+    box-shadow: 4px 4px 0 var(--black);
+    background: var(--blue);
+    color: var(--cream);
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  .reveal-btn:hover { background: var(--cream); color: var(--blue); }
+
+  /* modal */
+  .modal {
+    position: fixed; inset: 0; z-index: 1000;
+    display: none; padding: 2rem;
+    align-items: stretch; justify-content: center;
+  }
+  .modal.open { display: flex; }
+  .modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.7); }
+  .modal-window {
+    position: relative;
+    width: min(1180px, 100%);
+    max-height: 100%;
+    background: var(--cream);
+    border: 3px solid var(--black);
+    box-shadow: 8px 8px 0 var(--black);
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .modal-bar {
+    background: var(--black); color: var(--cream);
+    padding: 0.5rem 0.9rem;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 3px solid var(--black);
+    flex-shrink: 0;
+  }
+  .modal-title { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; }
+  .modal-close {
+    background: var(--cream); color: var(--black);
+    border: 2px solid var(--cream);
+    padding: 0.3rem 0.7rem;
+    font-family: var(--mono);
+    font-weight: 700; font-size: 0.8rem;
+    cursor: pointer;
+  }
+  .modal-close:hover { background: var(--blue); color: var(--cream); border-color: var(--blue); }
+  .modal-iframe { flex: 1 1 auto; width: 100%; border: 0; background: white; min-height: 0; }
+  @media (max-width: 600px) { .modal { padding: 0.5rem; } }
+
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.7rem;
+  }
+  .toc-grid a {
+    display: block;
+    padding: 0.85rem 1rem;
+    border: 2px solid var(--black);
+    box-shadow: 4px 4px 0 var(--black);
+    background: var(--cream);
+    text-decoration: none;
+    color: var(--black);
+  }
+  .toc-grid a:hover { background: var(--blue); color: var(--cream); }
+  .toc-grid .num { color: var(--blue); font-size: 0.7rem; display: block; margin-bottom: 0.2rem; letter-spacing: 0.1em; font-family: var(--mono); }
+  .toc-grid a:hover .num { color: var(--cream); }
+  .toc-grid .ttl { font-weight: 700; }
+
+  .contact { list-style: none; padding: 0; margin: 0.4rem 0; }
+  .contact li { padding: 0.4rem 0; border-bottom: 1px dashed var(--black); }
+  .contact li:last-child { border-bottom: 0; }
+  .contact strong { color: var(--blue); display: inline-block; min-width: 7rem; }
+
+  .ctrl {
+    height: var(--ctrl-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.8rem;
+    background: var(--black);
+    color: var(--cream);
+    border-top: 3px solid var(--black);
+    gap: 0.5rem;
+  }
+  .ctrl-btn {
+    background: var(--cream); color: var(--black);
+    border: 2px solid var(--cream);
+    padding: 0.45rem 0.9rem;
+    font-family: var(--mono);
+    font-size: 0.95rem; font-weight: 700;
+    cursor: pointer;
+    min-width: 80px;
+  }
+  .ctrl-btn:hover:not(:disabled) { background: var(--blue); color: var(--cream); border-color: var(--blue); }
+  .ctrl-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .ctrl-center { display: flex; align-items: center; gap: 0.8rem; }
+  .indicator { font-size: 0.85rem; letter-spacing: 0.08em; font-family: var(--mono); }
+  .indicator .cur { color: var(--blue); font-weight: 700; }
+
+  .lang-toggle {
+    background: transparent; color: var(--cream);
+    border: 1.5px solid var(--cream);
+    padding: 0.3rem 0.6rem;
+    font-family: var(--mono);
+    font-size: 0.75rem; font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+  }
+  .lang-toggle:hover { background: var(--blue); border-color: var(--blue); }
+
+  .dots { display: flex; gap: 0.35rem; }
+  .dot {
+    width: 9px; height: 9px;
+    border: 1.5px solid var(--cream);
+    border-radius: 50%;
+    background: transparent; cursor: pointer; padding: 0;
+  }
+  .dot.active { background: var(--cream); }
+  @media (max-width: 600px) { .dots { display: none; } }
+
+  @media (max-width: 600px) {
+    .slide { padding: 1rem 0.6rem 1.5rem; }
+    .stage { box-shadow: 5px 5px 0 var(--black); }
+    .stage-body { padding: 1rem; }
+    .hero { padding: 1.4rem 1.1rem 1.1rem; }
+    pre { padding-right: 1rem; padding-bottom: 3rem; }
+    .copy-btn { top: auto; bottom: 0.5rem; right: 0.5rem; }
+    .ctrl-btn { min-width: 60px; padding: 0.4rem 0.6rem; }
+    .photo { max-height: 38vh; }
+  }
+
+  .swipe-hint {
+    font-size: 0.7rem;
+    opacity: 0.6;
+    text-align: center;
+    margin-top: 1.4rem;
+    letter-spacing: 0.05em;
+    font-family: var(--mono);
+  }
+</style>
 </head>
-<body>
+<body class="lang-en">
 
-  <!-- ── Top bar ───────────────────────────────────── -->
-  <div class="topbar">
-    <div class="topbar__inner">
-      <a class="topbar__name" href="#top">Nazmul Ahasan</a>
-      <ul class="topbar__links">
-        <li><a href="#work">Work</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#cred">Awards</a></li>
-        <li class="topbar__item--quickblog"><a class="topbar__quickblog" href="https://nazmulahasan.com/quick-blog/">#QuickBlog</a></li>
-        <li><a href="https://twitter.com/the_nazmul" target="_blank" rel="noopener">X</a></li>
-        <li><a href="https://www.linkedin.com/in/nazmulahasan/" target="_blank" rel="noopener">LinkedIn</a></li>
-      </ul>
+<div class="deck" id="deck">
+
+  <!-- ── 0. HERO + LANG PICKER ───────────────────────── -->
+  <section class="slide" data-title-en="Hero" data-title-bn="শুরু">
+    <div class="stage">
+      <div class="hero">
+        <h1>data<br>journalism</h1>
+        <div class="bn-script">[ ডেটা সাংবাদিকতা ]</div>
+
+        <div class="lang lang-en">
+          <p class="lead">Companion page for <strong>Nazmul Ahasan</strong>'s MRDI 2026 talk — the links, the formulas, and the actual webpages used in the deck.</p>
+          <p class="lead" style="font-size: 0.85rem; opacity: 0.75;">Bookmark this page. Open links as the talk goes by.</p>
+        </div>
+        <div class="lang lang-bn">
+          <p class="lead"><strong>নাজমুল আহসানের</strong> MRDI ২০২৬ আলোচনার সহায়ক পাতা — স্লাইডের লিঙ্ক, ফর্মুলা আর দরকারি ওয়েবপেজগুলো এক জায়গায়।</p>
+          <p class="lead" style="font-size: 0.9rem; opacity: 0.75;">পাতাটা বুকমার্ক করে রাখুন। আলোচনার সময় প্রয়োজনমতো খুলে নিন।</p>
+        </div>
+
+        <div class="lang-picker">
+          <div class="pick-label lang lang-en">Choose a language</div>
+          <div class="pick-label lang lang-bn">কোন ভাষায় দেখতে চান?</div>
+          <div class="lang-pick-row">
+            <button class="lang-pick-btn" data-set-lang="en">
+              <span>English</span><span class="arrow">→</span>
+            </button>
+            <button class="lang-pick-btn bn" data-set-lang="bn">
+              <span>বাংলা</span><span class="arrow">→</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="swipe-hint lang lang-en">↔ swipe / arrow keys / use the buttons below ↔</div>
+        <div class="swipe-hint lang lang-bn">↔ সোয়াইপ করুন, অ্যারো কী চাপুন, অথবা নিচের বোতাম ব্যবহার করুন ↔</div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ── Header ────────────────────────────────────── -->
-  <header id="top" class="site-header">
-  <div class="container hero">
-    <div class="hero__id">
-      <img class="portrait" src="https://nazmulahasan.com/assets/images/nazmul-ahasan-portrait.webp" alt="A portrait of Nazmul Ahasan" />
-      <div>
-        <h1 class="site-title"><a href="/">Nazmul<br>Ahasan</a></h1>
-        <p class="lede">
-          Bangladeshi journalist working at the intersection of
-          <span class="ink">data</span>, <span class="ink">investigations</span>,
-          and <span class="ink">political economy</span>.
-          <button type="button" class="bio-toggle" aria-expanded="false" aria-controls="bio-more">More</button>
+  <!-- ── 1. CONTENTS ─────────────────────────────────── -->
+  <section class="slide" data-title-en="Contents" data-title-bn="সূচি">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">contents</span>
+        <span class="kicker lang lang-bn">সূচি</span>
+        <h2 class="lang lang-en">Where we're going</h2>
+        <h2 class="lang lang-bn">এই পাতায় যা আছে</h2>
+      </div>
+      <div class="stage-body">
+        <div class="toc-grid">
+          <a href="#" data-go="2">
+            <span class="num">01.</span>
+            <span class="ttl lang lang-en">Intro</span>
+            <span class="ttl lang lang-bn">ভূমিকা</span>
+          </a>
+          <a href="#" data-go="4">
+            <span class="num">02.</span>
+            <span class="ttl">Body Count</span>
+          </a>
+          <a href="#" data-go="6">
+            <span class="num">03.</span>
+            <span class="ttl lang lang-en">Sheets toolkit</span>
+            <span class="ttl lang lang-bn">Sheets টুলকিট</span>
+          </a>
+          <a href="#" data-go="9">
+            <span class="num">04.</span>
+            <span class="ttl lang lang-en">The Prize</span>
+            <span class="ttl lang lang-bn">অনুশীলন</span>
+          </a>
+          <a href="#" data-go="12">
+            <span class="num">05.</span>
+            <span class="ttl lang lang-en">Location + Scraping</span>
+            <span class="ttl lang lang-bn">লোকেশন ও স্ক্র্যাপিং</span>
+          </a>
+          <a href="#" data-go="15">
+            <span class="num">06.</span>
+            <span class="ttl lang lang-en">Get in touch</span>
+            <span class="ttl lang lang-bn">যোগাযোগ</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 2. INTRO — BEFORE ───────────────────────────── -->
+  <section class="slide" data-title-en="01 / Intro — Before" data-title-bn="০১ / ভূমিকা — আগে">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">01 / Intro — Before</span>
+        <span class="kicker lang lang-bn">০১ / ভূমিকা — আগে</span>
+        <h2 class="lang lang-en">Statistics ≠ data journalism</h2>
+        <h2 class="lang lang-bn">পরিসংখ্যান মানেই ডেটা সাংবাদিকতা নয়</h2>
+      </div>
+      <div class="stage-body">
+        <img class="photo" src="img/railway_table.png" alt="Bangla PDF table — Bangladesh Railway Police unnatural-death statistics, 2015–2025.">
+        <div class="lang lang-en">
+          <div class="callout">
+            <strong>Many often conflate pieces of statistics with data journalism.</strong>
+            A finished number — like the totals in this Bangla PDF — is data, sure.
+            But the raw file is liberating: you can ask new questions of it that the summary already closed.
+          </div>
+        </div>
+        <div class="lang lang-bn">
+          <div class="callout">
+            <strong>শুধু কয়েকটি পরিসংখ্যান দেখানো মানেই ডেটা সাংবাদিকতা নয়।</strong>
+            এই PDF-এ যে মোট সংখ্যাগুলো দেখছেন — সেগুলোও অবশ্যই ডেটা।
+            কিন্তু মূল ডেটা হাতে থাকলে আপনি নিজেই নতুন প্রশ্ন তুলতে পারেন।
+            সারসংক্ষেপে সেই সুযোগ থাকে না।
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 3. INTRO — AFTER ────────────────────────────── -->
+  <section class="slide" data-title-en="01 / Intro — After" data-title-bn="০১ / ভূমিকা — পরে">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">01 / Intro — After</span>
+        <span class="kicker lang lang-bn">০১ / ভূমিকা — পরে</span>
+        <h2 class="lang lang-en">At Bangladesh's railway crossings, nearly a death a day</h2>
+        <h2 class="lang lang-bn">বাংলাদেশের রেল ক্রসিংয়ে প্রায় প্রতিদিনই একটি মৃত্যু</h2>
+      </div>
+      <div class="stage-body">
+        <p class="lang lang-en">The same Railway Police data, cleaned and republished as an interactive piece on Netra News — clickable, filterable, year-by-year.</p>
+        <p class="lang lang-bn">রেলওয়ে পুলিশের একই ডেটা গুছিয়ে Netra News-এ ইন্টার‌্যাক্টিভভাবে প্রকাশ করা হয়েছে। এতে ক্লিক করা যায়, ফিল্টার করা যায়, বছরভিত্তিক ডেটা দেখা যায়।</p>
+
+        <a class="btn" href="https://netra.news/2026/bangladeshs-railway-crossings-and-deaths/" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="btn-label lang lang-en">Read the story on Netra News</span>
+            <span class="btn-label lang lang-bn">Netra News-এ প্রতিবেদনটি পড়ুন</span>
+            <span class="btn-meta">netra.news</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+
+        <div class="reveal-box">
+          <div class="hint lang lang-en">↓ The original interactive chart ↓</div>
+          <div class="hint lang lang-bn">↓ মূল ইন্টার‌্যাক্টিভ চার্ট ↓</div>
+          <button class="reveal-btn" id="revealRailway"
+                  data-label-en="Open the chart →"
+                  data-label-bn="চার্ট খুলুন →">Open the chart →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 4. BODY COUNT ───────────────────────────────── -->
+  <!-- ── 4. BODY COUNT — read it ─────────────────────── -->
+  <section class="slide" data-title-en="02 / Body Count" data-title-bn="০২ / Body Count">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">02 / Case study 1</span>
+        <span class="kicker lang lang-bn">০২ / কেস স্টাডি ১</span>
+        <h2>Body Count</h2>
+      </div>
+      <div class="stage-body">
+        <p class="lang lang-en">An investigation into <span class="num">2,600+</span> people killed by Bangladesh's security forces, 2009–2022 — searchable, filterable, every row sourced.</p>
+        <p class="lang lang-bn">২০০৯ থেকে ২০২২ সালের মধ্যে বাংলাদেশের নিরাপত্তা বাহিনীর হাতে নিহত <span class="num">২,৬০০-এর বেশি</span> মানুষের তথ্য নিয়ে তৈরি এই ডেটাবেজ। এতে খুঁজে দেখা যায়, ফিল্টার করা যায়, প্রতিটি সারির উৎসও দেওয়া আছে।</p>
+
+        <a class="btn" href="https://interactive.netra.news/extrajudicial-killings-bangladesh/" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="btn-label lang lang-en">Body Count — the interactive database</span>
+            <span class="btn-label lang lang-bn">Body Count — ইন্টার‌্যাক্টিভ ডেটাবেজ</span>
+            <span class="btn-meta">interactive.netra.news</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 5. BODY COUNT — behind it (raw data) ────────── -->
+  <section class="slide" data-title-en="02 / Body Count — behind it" data-title-bn="০২ / Body Count — মূল ফাইল">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">02 / Case study 1</span>
+        <span class="kicker lang lang-bn">০২ / কেস স্টাডি ১</span>
+        <h2 class="lang lang-en">What the source data actually looked like</h2>
+        <h2 class="lang lang-bn">মূল ফাইলটি দেখতে কেমন ছিল</h2>
+      </div>
+      <div class="stage-body">
+        <p class="lang lang-en">Multiple mini-tables stacked in one sheet, inconsistent columns, totals mid-data — across 261 monthly tabs.</p>
+        <p class="lang lang-bn">মূল ফাইলটি ছিল একেবারেই অগোছালো: ২৬১টি মাসিক ট্যাব, একই শিটে গাদাগাদি করে থাকা ছোট ছোট টেবিল, একেক ট্যাবে একেক রকম কলাম, আর মাঝেমধ্যে ডেটার ভেতরেই ঢুকে থাকা মোট হিসাব।</p>
+        <img class="photo" src="img/raw_messy.gif" alt="Animated screen recording of one of the messy raw monthly tabs." loading="lazy">
+
+        <h3 class="lang lang-en">The cleanup, in numbers</h3>
+        <p class="lang lang-en">
+          <span class="num">261</span> raw monthly tabs →
+          <span class="num">−93</span> duplicates &amp; summaries dropped →
+          <span class="num">168</span> usable tabs → flatten, normalise, append, de-duplicate →
+          <span class="num">4,723</span> rows in the final long-format table.
         </p>
-        <div class="bio-more" id="bio-more" hidden>
-          <p>Nazmul Ahasan is Executive Editor at <a href="https://netra.news/about/" target="_blank" rel="noopener noreferrer">Netra News</a>, a public-interest journalism platform in Bangladesh.</p>
-          <p>Previously, he was a US economy reporter at <a href="https://www.bloomberg.com/authors/AWWNyCBthbk/nazmul-ahasan" target="_blank" rel="noopener noreferrer">Bloomberg News</a> in Washington, DC, and earlier an editor at Radio Free Asia's BenarNews, shaping coverage from South and Southeast Asia. Before moving to the United States, he worked at <i>The Daily Star</i> and Netra News in Dhaka.</p>
-          <p>He graduated from the UC Berkeley Graduate School of Journalism in 2023. His work has appeared in <i><a href="https://foreignpolicy.com/author/nazmul-ahasan/" target="_blank" rel="noopener noreferrer">Foreign Policy</a></i>, <i>The Economist</i>, <i><a href="https://www.telegraph.co.uk/authors/n/na-ne/nazmul-ahasan/" target="_blank" rel="noopener noreferrer">The Telegraph</a></i>, <i><a href="https://www.haaretz.com/ty-WRITER/0000017f-da59-d42c-afff-dffbc0150000" target="_blank" rel="noopener noreferrer">Haaretz</a></i>, Columbia Journalism Review, and the <i><a href="https://www.sfchronicle.com/bayarea/article/Facebook-GearLaunch-17024417.php" target="_blank" rel="noopener noreferrer">San Francisco Chronicle</a></i>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 5. PIVOT TABLES ─────────────────────────────── -->
+  <section class="slide" data-title-en="03 / Pivot tables" data-title-bn="০৩ / Pivot table">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">03 / Sheets toolkit</span>
+        <span class="kicker lang lang-bn">০৩ / Sheets টুলকিট</span>
+        <h2 class="lang lang-en">Pivot tables — count by location</h2>
+        <h2 class="lang lang-bn">Pivot table — এলাকাভিত্তিক গণনা</h2>
+      </div>
+      <div class="stage-body">
+        <p class="lang lang-en">Open the demo sheet, then walk these six steps:</p>
+        <p class="lang lang-bn">নিচের ডেমো শিটটি খুলুন। এরপর ছয় ধাপে এগোন:</p>
+
+        <a class="btn" href="https://docs.google.com/spreadsheets/d/1rqrE6LSDkALNKa11pAZ5QtmifhGEKeDFH7f-Yqw9xV8/edit?gid=148280082#gid=148280082" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="btn-label lang lang-en">Demo Google Sheet — Body Count tab</span>
+            <span class="btn-label lang lang-bn">ডেমো শিট খুলুন — Body Count ট্যাব</span>
+            <span class="btn-meta">docs.google.com</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+
+        <ol class="steps lang lang-en">
+          <li>Select the range of the data.</li>
+          <li>Go to <strong>Insert</strong> → <strong>Pivot table</strong> (place it in a new sheet).</li>
+          <li>In the editor, drag <code>location</code> into <strong>Rows</strong> and <code>victim_id</code> into <strong>Values</strong>.</li>
+          <li>Under Values, change <strong>Summarise by</strong> from <code>SUM</code> to <code>COUNTA</code>.</li>
+          <li>In <strong>Rows</strong>, set <strong>Order</strong> to <strong>Descending</strong> and <strong>Sort by</strong> the <code>COUNTA of victim_id</code> column.</li>
+          <li>Now drag <code>year</code> into <strong>Columns</strong> — the same totals broken out year by year.</li>
+        </ol>
+        <ol class="steps lang lang-bn">
+          <li>পুরো ডেটা রেঞ্জটি নির্বাচন করুন।</li>
+          <li><strong>Insert</strong> মেনু থেকে <strong>Pivot table</strong> বেছে নিন (নতুন শিটে রাখুন)।</li>
+          <li>ডান পাশে যে এডিটর খুলবে, সেখানে <code>location</code> <strong>Rows</strong>-এ দিন, আর <code>victim_id</code> <strong>Values</strong>-এ দিন।</li>
+          <li><strong>Values</strong>-এ ডিফল্ট <code>SUM</code> থাকে — সেটি পাল্টে <code>COUNTA</code> করুন।</li>
+          <li><strong>Rows</strong>-এ <strong>Order</strong> দিন <strong>Descending</strong>, আর <strong>Sort by</strong> বেছে নিন <code>COUNTA of victim_id</code> — সবচেয়ে বেশি সংখ্যা উপরে চলে আসবে।</li>
+          <li>এবার <code>year</code>-কে টেনে <strong>Columns</strong>-এ ফেলুন — একই হিসাব এবার বছর ধরে ভাঙা।</li>
+        </ol>
+
+        <p class="lang lang-en">The result: <span class="num">211</span> killings concentrated in a single upazila (Teknaf, Cox's Bazar) — invisible until you pivot. Add the year column and you can see exactly when each upazila spiked.</p>
+        <p class="lang lang-bn">ফলাফল: শুধু টেকনাফ উপজেলাতেই <span class="num">২১১</span>টি হত্যাকাণ্ড — pivot না করলে বিষয়টি চোখেই পড়ত না। বছরের কলাম যোগ করলে দেখা যায় — কোন উপজেলায় কোন বছর সংখ্যাটা হঠাৎ লাফিয়ে বাড়ে।</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 6. PIVOT → MAP ──────────────────────────────── -->
+  <section class="slide" data-title-en="03 / Pivot → map" data-title-bn="০৩ / Pivot → মানচিত্র">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">03 / Sheets toolkit</span>
+        <span class="kicker lang lang-bn">০৩ / Sheets টুলকিট</span>
+        <h2 class="lang lang-en">From numbers to a map</h2>
+        <h2 class="lang lang-bn">সংখ্যা থেকে মানচিত্রে</h2>
+      </div>
+      <div class="stage-body">
+        <p class="lang lang-en">The same pivot data — but plotted on a map of Bangladesh. Geography says what columns of numbers can't.</p>
+        <p class="lang lang-bn">একই pivot ডেটা — এবার বাংলাদেশের মানচিত্রে। সংখ্যার কলাম যা বলতে পারে না, ভৌগোলিক ছবি সেটা চোখে আঙুল দিয়ে দেখায়।</p>
+        <img class="photo" src="img/map_viz.gif" alt="Animated visualisation: Bangladesh district map showing extrajudicial killings, 2019." loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 7. VLOOKUP — primer ─────────────────────────── -->
+  <section class="slide" data-title-en="03 / VLOOKUP" data-title-bn="০৩ / VLOOKUP">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">03 / Sheets toolkit</span>
+        <span class="kicker lang lang-bn">০৩ / Sheets টুলকিট</span>
+        <h2 class="lang lang-en">VLOOKUP — what it does</h2>
+        <h2 class="lang lang-bn">VLOOKUP — কী কাজে লাগে</h2>
+      </div>
+      <div class="stage-body">
+        <p class="lang lang-en">VLOOKUP looks up a key (e.g. a district name) in the first column of another range, and returns the value from a chosen column.</p>
+        <p class="lang lang-bn">VLOOKUP মিল খুঁজে দেখে — যেমন জেলার নাম। অন্য টেবিলের প্রথম কলামে সেই নাম পেলে একই সারির নির্দিষ্ট কলাম থেকে তথ্য এনে দেয়।</p>
+
+        <div class="code-wrap">
+<pre><code>=VLOOKUP(search_key, range, column_index, [is_sorted])</code></pre>
         </div>
-        <ul class="links">
-          <li>
-            <button class="link-toggle" data-target="email" aria-expanded="false">Email</button>
-            <span class="link-reveal" id="email" hidden>nazmul[at]berkeley[dot]edu</span>
-          </li>
-          <li><a href="https://twitter.com/the_nazmul" rel="me">X</a></li>
-          <li><a href="https://www.linkedin.com/in/nazmulahasan/" rel="me">LinkedIn</a></li>
-          <li>
-            <button class="link-toggle" data-target="cv" aria-expanded="false">CV</button>
-            <span class="link-reveal" id="cv" hidden>Full CV available upon request</span>
-          </li>
+
+        <p class="lang lang-en" style="font-size: 0.9rem;">
+          <code>search_key</code> — the value you want to look up<br>
+          <code>range</code> — the table to search in (key column first)<br>
+          <code>column_index</code> — which column of the range to return (1, 2, …)<br>
+          <code>is_sorted</code> — almost always <code>FALSE</code> (exact match)
+        </p>
+        <p class="lang lang-bn" style="font-size: 0.95rem;">
+          <code>search_key</code> — যে মানটি মিলিয়ে দেখতে হবে<br>
+          <code>range</code> — যে টেবিলে খুঁজবে (মেলানোর কলামটি প্রথমে থাকতে হবে)<br>
+          <code>column_index</code> — মিল পাওয়ার পর কোন কলাম থেকে তথ্য আনবে (১, ২, …)<br>
+          <code>is_sorted</code> — প্রায় সব ক্ষেত্রেই <code>FALSE</code> রাখুন (হুবহু মিল)
+        </p>
+
+        <p class="lang lang-en" style="font-size: 0.85rem; opacity: 0.75;">We'll apply this to real demo data in the next section.</p>
+        <p class="lang lang-bn" style="font-size: 0.9rem; opacity: 0.75;">পরের অংশে ডেমো ডেটায় এটি হাতেকলমে ব্যবহার করব।</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 7. PRIZE — DEMO DATA ────────────────────────── -->
+  <section class="slide" data-title-en="04 / The Prize — demo data" data-title-bn="০৪ / অনুশীলন — ডেমো ডেটা">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">04 / The prize</span>
+        <span class="kicker lang lang-bn">০৪ / অনুশীলন</span>
+        <h2 class="lang lang-en">Female dropout × child marriage — the demo data</h2>
+        <h2 class="lang lang-bn">মেয়েদের স্কুল ছাড়ার হার × বাল্যবিবাহ — ডেমো ডেটা</h2>
+      </div>
+      <div class="stage-body">
+        <p class="lang lang-en">The talk uses <em>fake demo data</em>, district-level — to demonstrate the principle, not to make a real-world claim. The sheet has three tabs:</p>
+        <p class="lang lang-bn">এটি <em>প্রশিক্ষণের জন্য বানানো জেলাভিত্তিক ডেটা</em>। পদ্ধতি বোঝানোর জন্য, বাস্তব কোনো দাবি নয়। শিটে তিনটি ট্যাব আছে:</p>
+
+        <ol class="steps lang lang-en">
+          <li><strong>Education</strong> — district + female dropout rate (this is where you'll work)</li>
+          <li><strong>Social</strong> — district + child marriage rate</li>
+          <li><strong>Population</strong> — district + population</li>
+        </ol>
+        <ol class="steps lang lang-bn">
+          <li><strong>Education</strong> — জেলা + মেয়েদের স্কুল ছাড়ার হার (কাজ হবে এই ট্যাবেই)</li>
+          <li><strong>Social</strong> — জেলা + বাল্যবিবাহের হার</li>
+          <li><strong>Population</strong> — জেলা + জনসংখ্যা</li>
+        </ol>
+
+        <p class="lang lang-en">Open the sheet, make a copy, then move to the next slide:</p>
+        <p class="lang lang-bn">শিটটি খুলুন, নিজের জন্য একটি কপি করে নিন, তারপর পরের স্লাইডে যান:</p>
+
+        <a class="btn" href="https://docs.google.com/spreadsheets/d/1rqrE6LSDkALNKa11pAZ5QtmifhGEKeDFH7f-Yqw9xV8/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="btn-label lang lang-en">Demo Google Sheet — Education tab</span>
+            <span class="btn-label lang lang-bn">ডেমো শিট — Education ট্যাব</span>
+            <span class="btn-meta">docs.google.com</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 8. PRIZE — APPLY VLOOKUPS ───────────────────── -->
+  <section class="slide" data-title-en="04 / The Prize — apply VLOOKUPs" data-title-bn="০৪ / অনুশীলন — VLOOKUP চালান">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">04 / The prize</span>
+        <span class="kicker lang lang-bn">০৪ / অনুশীলন</span>
+        <h2 class="lang lang-en">Apply the VLOOKUPs</h2>
+        <h2 class="lang lang-bn">এবার VLOOKUP চালান</h2>
+      </div>
+      <div class="stage-body">
+        <p class="lang lang-en">In the Education tab, paste each formula in the cell next to a district name, then drag down to fill the column.</p>
+        <p class="lang lang-bn">Education ট্যাবে জেলার নামের পাশের সেলে নিচের ফর্মুলাগুলো পেস্ট করুন। তারপর একই ফর্মুলা নিচের সারিগুলোতে কপি করুন — পুরো কলাম ভরে যাবে।</p>
+
+        <h3 class="lang lang-en">Pull child marriage from the Social tab</h3>
+        <h3 class="lang lang-bn">বাল্যবিবাহের হার যোগ করুন</h3>
+        <div class="code-wrap">
+          <button class="copy-btn" data-copy='=VLOOKUP(A2, Social!$A:$B, 2, FALSE)'>COPY</button>
+<pre><code>=VLOOKUP(A2, Social!$A:$B, 2, FALSE)</code></pre>
+        </div>
+
+        <h3 class="lang lang-en">Pull population from the Population tab</h3>
+        <h3 class="lang lang-bn">জনসংখ্যা যোগ করুন</h3>
+        <div class="code-wrap">
+          <button class="copy-btn" data-copy='=VLOOKUP(A2, Population!$A:$B, 2, FALSE)'>COPY</button>
+<pre><code>=VLOOKUP(A2, Population!$A:$B, 2, FALSE)</code></pre>
+        </div>
+
+        <p class="lang lang-en" style="font-size: 0.85rem; opacity: 0.75;">You should now have three columns side by side: <strong>dropout</strong>, <strong>child marriage</strong>, <strong>population</strong>.</p>
+        <p class="lang lang-bn" style="font-size: 0.9rem; opacity: 0.75;">এখন Education ট্যাবেই পাশাপাশি তিনটি কলাম থাকবে — <strong>dropout</strong>, <strong>child marriage</strong>, <strong>population</strong>। এখান থেকেই চার্ট বানাবেন।</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 9. PRIZE — PLOT + REVEAL ────────────────────── -->
+  <section class="slide" data-title-en="04 / The Prize — plot it" data-title-bn="০৪ / অনুশীলন — চার্ট বানান">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">04 / The prize</span>
+        <span class="kicker lang lang-bn">০৪ / অনুশীলন</span>
+        <h2 class="lang lang-en">Plot it — then reveal the chart</h2>
+        <h2 class="lang lang-bn">চার্ট বানান — তারপর নমুনাটি দেখুন</h2>
+      </div>
+      <div class="stage-body">
+        <p class="lang lang-en">Take your joined table to Datawrapper. Plot dropout (x) vs. child marriage (y), with population sizing the bubbles.</p>
+        <p class="lang lang-bn">যে টেবিলে dropout, child marriage আর population একসঙ্গে আছে, সেটি Datawrapper-এ দিন। X-অক্ষে dropout, Y-অক্ষে child marriage দিন। bubble-এর আকার হবে population অনুযায়ী।</p>
+
+        <a class="btn" href="https://www.datawrapper.de" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="btn-label lang lang-en">Datawrapper — make the chart</span>
+            <span class="btn-label lang lang-bn">Datawrapper — চার্ট তৈরি করুন</span>
+            <span class="btn-meta">datawrapper.de</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+
+        <p class="lang lang-en" style="margin-top: 1.4rem;"><strong>Try it yourself first.</strong> When you're done — reveal the chart I made:</p>
+        <p class="lang lang-bn" style="margin-top: 1.4rem;"><strong>আগে নিজে চেষ্টা করুন।</strong> হয়ে গেলে আমার বানানো নমুনা চার্টটি দেখুন:</p>
+
+        <div class="reveal-box">
+          <div class="hint lang lang-en">↓ Spoiler — try it yourself before clicking ↓</div>
+          <div class="hint lang lang-bn">↓ আগে নিজে চেষ্টা করুন, তারপর খুলুন ↓</div>
+          <button class="reveal-btn" id="revealChart"
+                  data-label-en="Open the chart →"
+                  data-label-bn="চার্ট খুলুন →">Open the chart →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 10. 7-ELEVEN & CIRCLE K ─────────────────────── -->
+  <section class="slide" data-title-en="05 / 7-Eleven &amp; Circle K" data-title-bn="০৫ / 7-Eleven ও Circle K">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">05 / Case study 3</span>
+        <span class="kicker lang lang-bn">০৫ / কেস স্টাডি ৩</span>
+        <h2 class="lang lang-en">7-Eleven &amp; Circle K — store-overlap analysis</h2>
+        <h2 class="lang lang-bn">7-Eleven ও Circle K — কাছাকাছি দোকান খুঁজে দেখা</h2>
+      </div>
+      <div class="stage-body">
+        <p class="lang lang-en">The two source store-locator pages that were scraped, and the Bloomberg story they powered.</p>
+        <p class="lang lang-bn">এই দুই দোকান খোঁজার পেজ থেকে অবস্থান-সংক্রান্ত তথ্য সংগ্রহ করা হয়েছিল। সেই ডেটাই Bloomberg প্রতিবেদনটির ভিত্তি।</p>
+
+        <a class="btn" href="https://www.7-eleven.com/locator" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="btn-label lang lang-en">7-Eleven store locator</span>
+            <span class="btn-label lang lang-bn">7-Eleven store locator</span>
+            <span class="btn-meta">7-eleven.com/locator</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+        <a class="btn" href="https://www.circlek.com/list-united-states-stores" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="btn-label lang lang-en">Circle K — list of US stores</span>
+            <span class="btn-label lang lang-bn">Circle K — যুক্তরাষ্ট্রে দোকানের তালিকা</span>
+            <span class="btn-meta">circlek.com</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+        <a class="btn" href="https://www.bloomberg.com/news/articles/2024-10-17/couche-tard-s-7-eleven-overlaps-to-face-skeptical-us-ftc-review?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc3ODIxOTk0MSwiZXhwIjoxNzc4ODI0NzQxLCJhcnRpY2xlSWQiOiJTTDczM0hUMVVNMFcwMCIsImJjb25uZWN0SWQiOiIzQTcxNTg1NTk4RTQ0MjUxQjk4NUIxODg5MkI3RTVBRCJ9.i0eRUBxJg3-N_qL9MRJppUCOByIwuMQ8s5syqyI0qGQ" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="btn-label lang lang-en">Bloomberg — Couche-Tard's 7-Eleven Overlaps Face Skeptical US FTC Review</span>
+            <span class="btn-label lang lang-bn">Bloomberg — 7-Eleven অধিগ্রহণ নিয়ে FTC-র সংশয়</span>
+            <span class="btn-meta">bloomberg.com — gift link</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 11. IMPORTHTML ──────────────────────────────── -->
+  <section class="slide" data-title-en="05 / IMPORTHTML demo" data-title-bn="০৫ / IMPORTHTML">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">05 / How does scraping work?</span>
+        <span class="kicker lang lang-bn">০৫ / স্ক্র্যাপিং কীভাবে কাজ করে?</span>
+        <h2 class="lang lang-en">IMPORTHTML — one formula, the whole table</h2>
+        <h2 class="lang lang-bn">IMPORTHTML — এক ফর্মুলাতেই টেবিল চলে আসে</h2>
+      </div>
+      <div class="stage-body">
+        <p class="lang lang-en">Open a fresh Google Sheet. Paste this into <code>A1</code>:</p>
+        <p class="lang lang-bn">নতুন একটি Google Sheet খুলুন। নিচের ফর্মুলাটি <code>A1</code>-এ পেস্ট করুন:</p>
+
+        <div class="code-wrap">
+          <button class="copy-btn" data-copy='=IMPORTHTML("https://en.wikipedia.org/wiki/List_of_United_States_counties_and_county_equivalents", "table", 2)'>COPY</button>
+<pre><code>=IMPORTHTML("https://en.wikipedia.org/wiki/List_of_United_States_counties_and_county_equivalents", "table", 2)</code></pre>
+        </div>
+
+        <p class="lang lang-en" style="font-size: 0.85rem; opacity: 0.75;">Change the last argument (<code>2</code>) to grab a different table from the page.</p>
+        <p class="lang lang-bn" style="font-size: 0.9rem; opacity: 0.75;">একই পেজ থেকে অন্য টেবিল আনতে চাইলে শেষের সংখ্যাটি (<code>2</code>) বদলে দিন।</p>
+
+        <a class="btn" href="https://en.wikipedia.org/wiki/List_of_United_States_counties_and_county_equivalents" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="btn-label lang lang-en">Wikipedia — List of US counties (the demo source)</span>
+            <span class="btn-label lang lang-bn">Wikipedia — যুক্তরাষ্ট্রের কাউন্টির তালিকা (ডেমো উৎস)</span>
+            <span class="btn-meta">en.wikipedia.org</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 12. HONG KONG ───────────────────────────────── -->
+  <section class="slide" data-title-en="05 / Hong Kong" data-title-bn="০৫ / হংকং">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">05 / Case study 4</span>
+        <span class="kicker lang lang-bn">০৫ / কেস স্টাডি ৪</span>
+        <h2 class="lang lang-en">Hong Kong — license registry → Bloomberg</h2>
+        <h2 class="lang lang-bn">হংকং — লাইসেন্স রেজিস্ট্রি → Bloomberg</h2>
+      </div>
+      <div class="stage-body">
+        <p class="lang lang-en">Not every site is as simple as a clean HTML table. Some pages are larger, messier, and more rewarding: the data loads through search forms and background requests. The browser's Network tab can reveal those requests; a scraper can then collect each page and license type into a CSV for reporting.</p>
+        <p class="lang lang-bn">সব ওয়েবসাইট এত সহজ নয় যে এক ফর্মুলাতেই টেবিল চলে আসবে। কিছু পেজ অনেক বড় ও জটিল — তবে সেখানেই ভালো গল্পের সম্ভাবনাও বেশি। সার্চ ফর্ম আর পেছনে চলা request-এর মাধ্যমে ডেটা আসে। ব্রাউজারের Network tab দেখলে সেই request খুঁজে বের করা যায়; তারপর স্ক্র্যাপার দিয়ে প্রতিটি পেজ ও লাইসেন্স টাইপ থেকে তথ্য নিয়ে CSV বানানো যায়।</p>
+
+        <a class="btn" href="https://apps.sfc.hk/publicregWeb/searchByRa?locale=en" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="btn-label">SFC Public Register</span>
+            <span class="btn-meta">apps.sfc.hk</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+        <a class="btn" href="https://www.bloomberg.com/news/articles/2024-11-11/hong-kong-has-a-record-number-of-jobs-in-finance-as-city-recovers-from-slump?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb3VyY2UiOiJTdWJzY3JpYmVyR2lmdGVkQXJ0aWNsZSIsImlhdCI6MTc3ODMyNzk2NywiZXhwIjoxNzc4OTMyNzY3LCJhcnRpY2xlSWQiOiJTTDRLNE5EV1JHRzAwMCIsImJjb25uZWN0SWQiOiIzQTcxNTg1NTk4RTQ0MjUxQjk4NUIxODg5MkI3RTVBRCJ9.E5cjVFLotAfW8TSrQEzqQSeJ1Ekgz7Rna1L2kv2jUtE" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="btn-label lang lang-en">Bloomberg — Hong Kong Finance Jobs Rebound to Record After Talent Drain</span>
+            <span class="btn-label lang lang-bn">Bloomberg — হংকংয়ের ফিন্যান্স খাতে চাকরি ফের রেকর্ডে</span>
+            <span class="btn-meta">bloomberg.com — gift link · Nov 11, 2024</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 13. CONTACT ─────────────────────────────────── -->
+  <section class="slide" data-title-en="06 / Q&amp;A" data-title-bn="০৬ / প্রশ্নোত্তর">
+    <div class="stage">
+      <div class="stage-head">
+        <span class="kicker lang lang-en">06 / Q&amp;A</span>
+        <span class="kicker lang lang-bn">০৬ / প্রশ্নোত্তর</span>
+        <h2 class="lang lang-en">Get in touch</h2>
+        <h2 class="lang lang-bn">যোগাযোগ</h2>
+      </div>
+      <div class="stage-body">
+        <ul class="contact lang lang-en">
+          <li><strong>Affiliation:</strong> Netra News</li>
+          <li><strong>Website:</strong> <a href="https://nazmulahasan.com" target="_blank" rel="noopener noreferrer">nazmulahasan.com</a></li>
+          <li><strong>Email:</strong> <a href="mailto:nazmul@netra.news">nazmul@netra.news</a></li>
+          <li><strong>X:</strong> <a href="https://x.com/the_nazmul" target="_blank" rel="noopener noreferrer">@the_nazmul</a></li>
         </ul>
+        <ul class="contact lang lang-bn">
+          <li><strong>সংস্থা:</strong> Netra News</li>
+          <li><strong>ওয়েবসাইট:</strong> <a href="https://nazmulahasan.com" target="_blank" rel="noopener noreferrer">nazmulahasan.com</a></li>
+          <li><strong>ইমেইল:</strong> <a href="mailto:nazmul@netra.news">nazmul@netra.news</a></li>
+          <li><strong>X:</strong> <a href="https://x.com/the_nazmul" target="_blank" rel="noopener noreferrer">@the_nazmul</a></li>
+        </ul>
+        <p class="lang lang-en" style="margin-top: 2rem; font-size: 0.8rem; opacity: 0.7;">MRDI 2026  |  data journalism  |  thank you for following along.</p>
+        <p class="lang lang-bn" style="margin-top: 2rem; font-size: 0.85rem; opacity: 0.7;">MRDI ২০২৬  |  ডেটা সাংবাদিকতা  |  সঙ্গে থাকার জন্য ধন্যবাদ</p>
       </div>
     </div>
-    <div class="hero__tagline">
-      <div class="scrolling-words" aria-label="Focus areas">
-        <div class="scrolling-words__box" aria-hidden="true">
-          <ul>
-            <li>code</li>
-            <li>data analysis</li>
-            <li>investigations</li>
-            <li>mapping</li>
-            <li>data viz</li>
-            <li>interactives</li>
-            <li>pol + econ</li>
-            
-          </ul>
-        </div>
-        <span>and</span>
-        <span class="bold ink">journalism</span>
-      </div>
-      <div class="pills" aria-label="Tools">
-        <span class="pill">Python</span>
-        <span class="pill">R</span>
-        <span class="pill">D3.js</span>
-        <span class="pill">HTML/CSS</span>
-        <span class="pill">OpenRefine</span>
-      </div>
+  </section>
+</div>
+
+<!-- ── chart modal ──────────────────────────────── -->
+<div class="modal" id="chartModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-window">
+    <div class="modal-bar">
+      <span class="modal-title" id="modalTitle">Chart</span>
+      <button class="modal-close" data-close type="button">close ×</button>
     </div>
+    <iframe class="modal-iframe" id="modalIframe" title="chart"></iframe>
   </div>
-</header>
+</div>
 
-  <!-- ── Main ──────────────────────────────────────── -->
-  <main class="page-content">
-    <div class="container">
-
-      <!-- Selected work -->
-      <section class="section" aria-labelledby="work">
-        <div class="section__head">
-          <h2 id="work">Selected work</h2>
-          <div class="section__rule"></div>
-          <span class="section__sub">Filter by role, method, or type</span>
-        </div>
-
-        <div class="work-filters" aria-label="Filter">
-          <button class="filter" data-filter="all" aria-pressed="true">All</button>
-          <button class="filter" data-filter="award"       title="Award-winning"        data-label="Award-winning"        aria-label="Award-winning">★</button>
-          <button class="filter" data-filter="editing"     title="Editing"              data-label="Editing"              aria-label="Editing">✎</button>
-          <button class="filter" data-filter="data"        title="Data work"            data-label="Data work"            aria-label="Data work">⌁</button>
-          <button class="filter" data-filter="interactive" title="Interactive"          data-label="Interactive"          aria-label="Interactive">↗</button>
-          <button class="filter" data-filter="investigation" title="Investigative"      data-label="Investigative"        aria-label="Investigative">⊕</button>
-          <button class="filter" data-filter="analysis"   title="Analysis"             data-label="Analysis"             aria-label="Analysis">≡</button>
-          <button class="filter" data-filter="osint"      title="OSINT / verification" data-label="OSINT / verification" aria-label="OSINT">⌖</button>
-          <button class="filter" data-filter="reporting"  title="Reporting"            data-label="Reporting"            aria-label="Reporting">•</button>
-          <button class="filter" data-filter="assistance" title="Assistance"           data-label="Assistance"           aria-label="Assistance">◌</button>
-          <button class="filter" data-filter="opinion"    title="Opinion"              data-label="Opinion"              aria-label="Opinion">∼</button>
-        </div>
-
-        <div class="work-grid work-grid--dense" id="workGrid">
-
-          <article class="work" data-tags="reporting analysis">
-            <a href="https://www.haaretz.com/middle-east-news/2026-01-15/ty-article-magazine/.premium/bangladeshs-interest-in-joining-gaza-security-force-comes-with-conditions/0000019b-c20c-decf-a99f-cb7cff330000" target="_blank" rel="noopener noreferrer">
-              <img class="work__img" src="https://img.haarets.co.il/bs/0000019b-c20d-d641-a9bf-c39ddd210001/37/4c/8c6fdcab49cc92ce7e3c8491e2f6/404471.jpg" alt="Pro-Palestinian protesters in Bangladesh's capital Dhaka" loading="lazy">
-              <div class="work__body">
-                <div class="work__meta">
-                  <span class="work__pub">Haaretz</span>
-                  <span class="work__dot">·</span>
-                  <time class="work__date" datetime="2026-01-15">Jan 2026</time>
-                  <span class="work__tags">
-                    <button class="tag" data-filter="reporting" title="Reporting">•</button>
-                    <button class="tag" data-filter="analysis" title="Analysis">≡</button>
-                  </span>
-                </div>
-                <h3 class="work__title">Bangladesh's 'interest' in joining Gaza security force comes with conditions</h3>
-              </div>
-            </a>
-          </article>
-
-          <article class="work" data-tags="data">
-            <a href="https://www.bloomberg.com/news/features/2025-10-01/businesses-eager-to-beat-tariffs-turn-to-trump-connected-lobbyists" target="_blank" rel="noopener noreferrer">
-              <img class="work__img" src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ieqNZQZb47oc/v1/1334x2000.webp" alt="Brian Ballard, a top Trump-aligned lobbyist" loading="lazy">
-              <div class="work__body">
-                <div class="work__meta">
-                  <span class="work__pub">Bloomberg</span>
-                  <span class="work__dot">·</span>
-                  <time datetime="2025-10-01">Oct 2025</time>
-                  <span class="work__tags"><button class="tag" data-filter="data" title="Data work">⌁</button></span>
-                </div>
-                <h3 class="work__title">A Gunmaker's Lobbying Shows How Trump's Tariffs Changed the Game</h3>
-              </div>
-            </a>
-          </article>
-
-          <article class="work" data-tags="data">
-            <a href="https://www.bloomberg.com/news/features/2025-05-07/trump-budget-cut-threat-leaves-state-local-government-funding-uncertain" target="_blank" rel="noopener noreferrer">
-              <img class="work__img" src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ic_KamWZgeds/v2/2000x1334.webp" alt="Moorland Road in Waukesha County, Wisconsin" loading="lazy">
-              <div class="work__body">
-                <div class="work__meta">
-                  <span class="work__pub">Bloomberg</span><span class="work__dot">·</span>
-                  <time datetime="2025-05-07">May 2025</time>
-                  <span class="work__tags"><button class="tag" data-filter="data" title="Data work">⌁</button></span>
-                </div>
-                <h3 class="work__title">States, Cities Face Funding Collapse Threat With Trump Cuts</h3>
-              </div>
-            </a>
-          </article>
-
-          <article class="work" data-tags="data">
-            <a href="https://www.bloomberg.com/news/articles/2025-01-03/economy-in-counties-trump-won-points-to-governing-challenges" target="_blank" rel="noopener noreferrer">
-              <img class="work__img" src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ievdfrcsznEU/v0/1200x974.jpg" alt="Map of US by county economy size" loading="lazy">
-              <div class="work__body">
-                <div class="work__meta">
-                  <span class="work__pub">Bloomberg</span><span class="work__dot">·</span>
-                  <time datetime="2025-01-03">Jan 2025</time>
-                  <span class="work__tags"><button class="tag" data-filter="data" title="Data work">⌁</button></span>
-                </div>
-                <h3 class="work__title">Economy in Counties Trump Won Points to Governing Challenges</h3>
-              </div>
-            </a>
-          </article>
-
-          <article class="work" data-tags="data">
-            <a href="https://www.bloomberg.com/news/articles/2024-11-11/hong-kong-has-a-record-number-of-jobs-in-finance-as-city-recovers-from-slump" target="_blank" rel="noopener noreferrer">
-              <img class="work__img" src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iiZrYuBfizSw/v0/1200x800.jpg" alt="Hong Kong financial center" loading="lazy">
-              <div class="work__body">
-                <div class="work__meta">
-                  <span class="work__pub">Bloomberg</span><span class="work__dot">·</span>
-                  <time datetime="2024-11-11">Nov 2024</time>
-                  <span class="work__tags"><button class="tag" data-filter="data" title="Data work">⌁</button></span>
-                </div>
-                <h3 class="work__title">Hong Kong Finance Jobs Rebound to Record After Talent Push</h3>
-              </div>
-            </a>
-          </article>
-
-          <article class="work" data-tags="data">
-            <a href="https://www.bloomberg.com/news/articles/2024-10-17/couche-tard-s-7-eleven-overlaps-to-face-skeptical-us-ftc-review" target="_blank" rel="noopener noreferrer">
-              <img class="work__img" src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iA20JXuTKD20/v0/-1x-1.webp" alt="US states by Circle-K and 7-Eleven overlaps" loading="lazy">
-              <div class="work__body">
-                <div class="work__meta">
-                  <span class="work__pub">Bloomberg</span><span class="work__dot">·</span>
-                  <time datetime="2024-10-17">Oct 2024</time>
-                  <span class="work__tags"><button class="tag" data-filter="data" title="Data work">⌁</button></span>
-                </div>
-                <h3 class="work__title">Couche-Tard's 7-Eleven Overlaps to Face Skeptical US FTC Review</h3>
-              </div>
-            </a>
-          </article>
-
-          <article class="work" data-tags="data interactive">
-            <a href="https://www.bloomberg.com/graphics/2024-election-swing-state-economy/" target="_blank" rel="noopener noreferrer">
-              <img class="work__img" src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iTF_GXIvegeU/v0/-1x-1.jpg" alt="Swing state economic realities" loading="lazy">
-              <div class="work__body">
-                <div class="work__meta">
-                  <span class="work__pub">Bloomberg</span><span class="work__dot">·</span>
-                  <time datetime="2024-08-08">Aug 2024</time>
-                  <span class="work__tags">
-                    <button class="tag" data-filter="data" title="Data work">⌁</button>
-                    <button class="tag" data-filter="interactive" title="Interactive">↗</button>
-                  </span>
-                </div>
-                <h3 class="work__title">The Swing-State Economic Realities Shaping the US Election</h3>
-              </div>
-            </a>
-          </article>
-
-          <article class="work" data-tags="investigation data">
-            <a href="https://www.bloomberg.com/graphics/2024-bangladesh-land-minister-uk-property/" target="_blank" rel="noopener noreferrer">
-              <img class="work__img" src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iM.LXV1CyFUQ/v0/-1x-1.jpg" alt="Illustration of Bangladesh minister" loading="lazy">
-              <div class="work__body">
-                <div class="work__meta">
-                  <span class="work__pub">Bloomberg</span><span class="work__dot">·</span>
-                  <time datetime="2024-02-18">Feb 2024</time>
-                  <span class="work__tags">
-                    <button class="tag" data-filter="investigation" title="Investigative">⊕</button>
-                    <button class="tag" data-filter="data" title="Data work">⌁</button>
-                  </span>
-                </div>
-                <h3 class="work__title">Bangladeshi Politician's UK Property Empire Under Scrutiny</h3>
-              </div>
-            </a>
-          </article>
-
-          <article class="work" data-tags="award data interactive">
-            <a href="https://interactive.netra.news/extrajudicial-killings-bangladesh/" target="_blank" rel="noopener noreferrer">
-              <img class="work__img" src="https://interactive.netra.news/extrajudicial-killings-bangladesh/assets/img/extrajudicial-killings-bangladesh-cover.webp" alt="Body Count chart" loading="lazy">
-              <div class="work__body">
-                <div class="work__meta">
-                  <span class="work__pub">Netra News</span><span class="work__dot">·</span>
-                  <time datetime="2023-11">Nov 2023</time>
-                  <span class="work__tags">
-                    <button class="tag" data-filter="award" title="Award-winning">★</button>
-                    <button class="tag" data-filter="data" title="Data work">⌁</button>
-                    <button class="tag" data-filter="interactive" title="Interactive">↗</button>
-                  </span>
-                </div>
-                <h3 class="work__title">BODY COUNT: Extrajudicial Executions in Bangladesh</h3>
-              </div>
-            </a>
-          </article>
-
-          <article class="work" data-tags="data reporting">
-            <a href="https://www.bloomberg.com/news/articles/2023-09-11/pandemic-population-boom-in-rural-hotspots-sparks-resentment" target="_blank" rel="noopener noreferrer">
-              <img class="work__img" src="https://nazmulahasan.com/assets/images/bloomberg-story-1.webp" alt="Map showing US county-level population change" loading="lazy">
-              <div class="work__body">
-                <div class="work__meta">
-                  <span class="work__pub">Bloomberg</span><span class="work__dot">·</span>
-                  <time datetime="2023-09">Sep 2023</time>
-                  <span class="work__tags">
-                    <button class="tag" data-filter="reporting" title="Reporting">•</button>
-                    <button class="tag" data-filter="data" title="Data work">⌁</button>
-                  </span>
-                </div>
-                <h3 class="work__title">Pandemic Population Boom in Rural Hotspots Sparks Resentment</h3>
-              </div>
-            </a>
-          </article>
-
-          <article class="work" data-tags="data award osint">
-            <a href="https://grist.org/health/in-a-small-french-town-where-houston-based-lyondellbasell-is-a-fixture-residents-complain-of-unending-pollution/" target="_blank" rel="noopener noreferrer">
-              <img class="work__img" src="https://grist.org/wp-content/uploads/2023/08/LyondellBasellHouston.jpg" alt="LyondellBasell HQ building" loading="lazy">
-              <div class="work__body">
-                <div class="work__meta">
-                  <span class="work__pub">Public Health Watch / Grist</span><span class="work__dot">·</span>
-                  <time datetime="2023-09-05">Sep 2023</time>
-                  <span class="work__tags">
-                    <button class="tag" data-filter="award" title="Award-winning">★</button>
-                    <button class="tag" data-filter="osint" title="OSINT">⌖</button>
-                    <button class="tag" data-filter="data" title="Data work">⌁</button>
-                  </span>
-                </div>
-                <h3 class="work__title">In a small French town where LyondellBasell is a fixture, residents complain of unending pollution</h3>
-              </div>
-            </a>
-          </article>
-
-          <article class="work" data-tags="reporting analysis">
-            <a href="https://www.rfa.org/english/news/myanmar/bangladeshborderrohingya-02022023153254.html" target="_blank" rel="noopener noreferrer">
-              <img class="work__img" src="https://www.rfa.org/resizer/v2/ISREPY3XIHNGUP2QR4F7M6VOPQ.jpg?auth=2f18b06ef9ec559e2488aed5c78d6172bd1ac4ea59a3aee48e968499b4f69c48&width=1440&height=811" alt="Smoke from fire at Rohingya settlement" loading="lazy">
-              <div class="work__body">
-                <div class="work__meta">
-                  <span class="work__pub">BenarNews / RFA</span><span class="work__dot">·</span>
-                  <time datetime="2023-02-02">Feb 2023</time>
-                  <span class="work__tags">
-                    <button class="tag" data-filter="reporting" title="Reporting">•</button>
-                    <button class="tag" data-filter="analysis" title="Analysis">≡</button>
-                  </span>
-                </div>
-                <h3 class="work__title">In Bangladesh's border with Myanmar, 2 Rohingya militant groups fight for dominance</h3>
-              </div>
-            </a>
-          </article>
-
-          <article class="work" data-tags="editing osint award">
-            <a href="https://netra.news/2022/secret-prisoners-of-dhaka/" target="_blank" rel="noopener noreferrer">
-              <img class="work__img" src="https://netra.news/content/images/size/w2000/2022/08/header-en.png" alt="Illustration of secret detention centre location" loading="lazy">
-              <div class="work__body">
-                <div class="work__meta">
-                  <span class="work__pub">Netra News</span><span class="work__dot">·</span>
-                  <time datetime="2022-08-14">Aug 2022</time>
-                  <span class="work__tags">
-                    <button class="tag" data-filter="editing" title="Editing">✎</button>
-                    <button class="tag" data-filter="award" title="Award-winning">★</button>
-                    <button class="tag" data-filter="osint" title="OSINT">⌖</button>
-                  </span>
-                </div>
-                <h3 class="work__title">Secret prisoners of Dhaka</h3>
-              </div>
-            </a>
-          </article>
-
-          <article class="work" data-tags="analysis reporting">
-            <a href="https://www.devex.com/news/5-years-on-rohingyas-in-bangladesh-face-hostility-and-dwindling-aid-103860" target="_blank" rel="noopener noreferrer">
-              <img class="work__img" src="https://res.cloudinary.com/devex/image/fetch/c_scale,f_auto,q_auto,w_834/https://lh4.googleusercontent.com/tgCvfCdjPO2VThFZFNsYdq24688uYEjU_Sb2E0Ww0UGlOeZ6to3-gqdYDO5w4eX4VcJEF_UxMhaZbe91r8ewqquIZz97JwyQ6htzYstEgjL0BxPOFQglpBerWKyD-wlEVcOYDjbn3ExxcTcDGzr89z8" alt="Mother and child at IOM center, Cox's Bazar" loading="lazy">
-              <div class="work__body">
-                <div class="work__meta">
-                  <span class="work__pub">Devex</span><span class="work__dot">·</span>
-                  <time datetime="2022-08-25">Aug 2022</time>
-                  <span class="work__tags">
-                    <button class="tag" data-filter="reporting" title="Reporting">•</button>
-                    <button class="tag" data-filter="analysis" title="Analysis">≡</button>
-                  </span>
-                </div>
-                <h3 class="work__title">5 years on, Rohingyas in Bangladesh face hostility and dwindling aid</h3>
-              </div>
-            </a>
-          </article>
-
-          <article class="work" data-tags="osint assistance">
-            <a href="https://www.washingtonpost.com/politics/2022/08/15/election-deniers-march-toward-power-key-2024-battlegrounds/" target="_blank" rel="noopener noreferrer">
-              <img class="work__img" src="https://www.washingtonpost.com/wp-apps/imrs.php?src=https%3A%2F%2Fd1i4t8bqe7zgj6.cloudfront.net%2F08-12-2022%2Ft_094c146804044e7191183772732d2670_name_20220701_TRUMP_ELECTION_V10.jpg&w=960" alt="Republicans running for office" loading="lazy">
-              <div class="work__body">
-                <div class="work__meta">
-                  <span class="work__pub">The Washington Post</span><span class="work__dot">·</span>
-                  <time datetime="2022-08-15">Aug 2022</time>
-                  <span class="work__tags">
-                    <button class="tag" data-filter="osint" title="OSINT">⌖</button>
-                    <button class="tag" data-filter="assistance" title="Assistance">◌</button>
-                  </span>
-                </div>
-                <h3 class="work__title">Election deniers march toward power in key 2024 battlegrounds</h3>
-              </div>
-            </a>
-          </article>
-
-          <article class="work" data-tags="investigation osint">
-            <a href="https://www.sfchronicle.com/bayarea/article/Facebook-GearLaunch-17024417.php" target="_blank" rel="noopener noreferrer">
-              <img class="work__img" src="https://s.hdnux.com/photos/01/24/63/12/22229665/16/ratio3x2_960.webp" alt="Illustration of a storefront" loading="lazy">
-              <div class="work__body">
-                <div class="work__meta">
-                  <span class="work__pub">San Francisco Chronicle</span><span class="work__dot">·</span>
-                  <time datetime="2022-03-26">Mar 2022</time>
-                  <span class="work__tags">
-                    <button class="tag" data-filter="osint" title="OSINT">⌖</button>
-                    <button class="tag" data-filter="investigation" title="Investigative">⊕</button>
-                  </span>
-                </div>
-                <h3 class="work__title">Internet entrepreneurs far from the U.S. are inflaming political division on Facebook to sell T-shirts and coffee mugs</h3>
-              </div>
-            </a>
-          </article>
-
-          <article class="work" data-tags="analysis opinion">
-            <a href="https://foreignpolicy.com/2022/01/04/bangladesh-police-brutality-crossfires-gunfights-killings-rab-corruption/" target="_blank" rel="noopener noreferrer">
-              <img class="work__img" src="https://foreignpolicy.com/wp-content/uploads/2022/01/bangladesh-GettyImages-158901700.jpg?quality=90" alt="Bangladeshi Rapid Action Battalion" loading="lazy">
-              <div class="work__body">
-                <div class="work__meta">
-                  <span class="work__pub">Foreign Policy</span><span class="work__dot">·</span>
-                  <time datetime="2022-01">Jan 2022</time>
-                  <span class="work__tags">
-                    <button class="tag" data-filter="analysis" title="Analysis">≡</button>
-                    <button class="tag" data-filter="opinion" title="Opinion">∼</button>
-                  </span>
-                </div>
-                <h3 class="work__title">The U.S. Has a Police Brutality Problem. So Does Bangladesh.</h3>
-              </div>
-            </a>
-          </article>
-
-          <article class="work" data-tags="investigation osint">
-            <a href="https://netra.news/2021/power-corruption-all-the-state-ministers-men/" target="_blank" rel="noopener noreferrer">
-              <img class="work__img" src="https://netra.news/content/images/size/w2000/wordpress/2021/08/netra-grfx_43362186-3-1.png" alt="Illustration featuring Nasrul Hamid Bipu" loading="lazy">
-              <div class="work__body">
-                <div class="work__meta">
-                  <span class="work__pub">Netra News</span><span class="work__dot">·</span>
-                  <time datetime="2021-08-13">Aug 2021</time>
-                  <span class="work__tags">
-                    <button class="tag" data-filter="investigation" title="Investigative">⊕</button>
-                    <button class="tag" data-filter="osint" title="OSINT">⌖</button>
-                  </span>
-                </div>
-                <h3 class="work__title">Power corruption: All the state minister's men</h3>
-              </div>
-            </a>
-          </article>
-
-          <article class="work" data-tags="assistance">
-            <a href="https://www.cjr.org/widescreen/journalism-and-covid-map-me.php/" target="_blank" rel="noopener noreferrer">
-              <img class="work__img" src="https://www.cjr.org/wp-content/uploads/2020/09/Screen-Shot-2020-09-10-at-8.53.44-AM-e1599751671435.jpg" alt="World map" loading="lazy">
-              <div class="work__body">
-                <div class="work__meta">
-                  <span class="work__pub">Columbia Journalism Review</span><span class="work__dot">·</span>
-                  <time datetime="2020-09-10">Sep 2020</time>
-                  <span class="work__tags">
-                    <button class="tag" data-filter="assistance" title="Assistance">◌</button>
-                  </span>
-                </div>
-                <h3 class="work__title">Infection and Repression</h3>
-              </div>
-            </a>
-          </article>
-
-          <article class="work" data-tags="reporting">
-            <a href="https://www.telegraph.co.uk/global-health/climate-and-people/coronavirus-exposes-deep-divide-bangladeshi-society/" target="_blank" rel="noopener noreferrer">
-              <img class="work__img" src="https://www.telegraph.co.uk/content/dam/global-health/2020/06/10/1350462053324994719_IMG_1445-3_trans_NvBQzQNjv4BqvEGOs1QWCDBlYMwZQkSShJ4tl0g9dtRDeYbLMRD-ezU.JPG?imwidth=1920" alt="Bangladesh people" loading="lazy">
-              <div class="work__body">
-                <div class="work__meta">
-                  <span class="work__pub">The Telegraph</span><span class="work__dot">·</span>
-                  <time datetime="2020-06-10">Jun 2020</time>
-                  <span class="work__tags">
-                    <button class="tag" data-filter="reporting" title="Reporting">•</button>
-                  </span>
-                </div>
-                <h3 class="work__title">Coronavirus exposes the deep divide in Bangladeshi society</h3>
-              </div>
-            </a>
-          </article>
-
-          <article class="work" data-tags="analysis reporting">
-            <a href="https://www.economist.com/asia/2020/06/06/covid-19-infections-are-rising-fast-in-bangladesh-india-and-pakistan" target="_blank" rel="noopener noreferrer">
-              <img class="work__img" src="https://www.economist.com/cdn-cgi/image/width=1424,quality=80,format=auto/sites/default/files/images/print-edition/20200606_ASP007_0.jpg" alt="India hospital beds" loading="lazy">
-              <div class="work__body">
-                <div class="work__meta">
-                  <span class="work__pub">The Economist</span><span class="work__dot">·</span>
-                  <time datetime="2020-06-06">Jun 2020</time>
-                  <span class="work__tags">
-                    <button class="tag" data-filter="reporting" title="Reporting">•</button>
-                    <button class="tag" data-filter="analysis" title="Analysis">≡</button>
-                  </span>
-                </div>
-                <h3 class="work__title">Covid-19 infections are rising fast in Bangladesh, India and Pakistan</h3>
-              </div>
-            </a>
-          </article>
-
-          <article class="work" data-tags="opinion analysis">
-            <a href="https://www.haaretz.com/israel-news/2020-05-14/ty-article-opinion/.premium/for-bangladesh-not-recognizing-israel-is-a-moral-choice-above-all/0000017f-e8a4-df2c-a1ff-fef577cd0000" target="_blank" rel="noopener noreferrer">
-              <img class="work__img" src="https://img.haarets.co.il/bs/0000017f-e8a4-df2c-a1ff-fef56bac0000/61/b9/fddb2bd688123f4e10059e78886e/1430293488.jpg" alt="Yasser Arafat portrait on wall" loading="lazy">
-              <div class="work__body">
-                <div class="work__meta">
-                  <span class="work__pub">Haaretz</span><span class="work__dot">·</span>
-                  <time datetime="2020-05">May 2020</time>
-                  <span class="work__tags">
-                    <button class="tag" data-filter="analysis" title="Analysis">≡</button>
-                    <button class="tag" data-filter="opinion" title="Opinion">∼</button>
-                  </span>
-                </div>
-                <h3 class="work__title">For Bangladesh, Recognizing Israel Is an Immoral Choice</h3>
-              </div>
-            </a>
-          </article>
-
-        </div><!-- /workGrid -->
-
-        <button class="work-more" id="workMore" type="button">View more</button>
-      </section>
-
-      <!-- Publications -->
-    <section class="section section--tint" aria-labelledby="clients">
-  <div class="logo-groups">
-
-    <div class="logo-group">
-      <h3 class="logo-group__title">Works appeared in</h3>
-      <div class="logos" aria-label="Works appeared in">
-
-        <!-- Not in your assets list → keep Wikipedia -->
-        <img class="logo logo--light"
-             src="/assets/logos/wash-post.svg"
-             alt="The Washington Post">
-
-        <!-- Local -->
-        <img class="logo bloomberg" src="/assets/logos/bloomberg.svg" alt="Bloomberg">
-
-        <!-- Local -->
-        <img class="logo" src="/assets/logos/foreign-policy.webp" alt="Foreign Policy">
-
-        <!-- Local -->
-        <img class="logo logo--light" src="/assets/logos/economist.webp" alt="The Economist">
-
-        <!-- Local -->
-        <img class="logo" src="/assets/logos/The_Telegraph.svg" alt="The Telegraph">
-
-        <!-- Local -->
-        <img class="logo" src="/assets/logos/haaretz.svg" alt="Haaretz">
-
-        <!-- Local -->
-        <img class="logo" src="/assets/logos/thehindu.svg" alt="The Hindu">
-
-        <!-- Local -->
-        <img class="logo" src="/assets/logos/sfchronicle.svg" alt="San Francisco Chronicle">
-
-      </div>
-    </div>
-
-    <div class="logo-group">
-      <h3 class="logo-group__title">Interviewed by</h3>
-      <div class="logos" aria-label="Interviewed by">
-
-        <!-- Local -->
-        <img class="logo" src="/assets/logos/theguardian.webp" alt="The Guardian">
-
-        <!-- Local -->
-        <img class="logo" src="/assets/logos/Aljazeera_eng.svg" alt="Al Jazeera">
-
-        <!-- Local -->
-        <img class="logo" src="/assets/logos/bbc.webp" alt="BBC">
-
-      </div>
-    </div>
-
+<nav class="ctrl">
+  <button class="ctrl-btn" id="prevBtn">← prev</button>
+  <div class="ctrl-center">
+    <div class="indicator"><span class="cur" id="curNum">01</span> / <span id="totNum">16</span></div>
+    <div class="dots" id="dots"></div>
+    <button class="lang-toggle" id="langToggle" title="Switch language">বাংলা</button>
   </div>
-</section>
+  <button class="ctrl-btn" id="nextBtn">next →</button>
+</nav>
 
-      <!-- Experience -->
-      <section class="section" aria-labelledby="experience">
-        <div class="section__head">
-          <h2 id="experience">Experience</h2>
-          <div class="section__rule"></div>
-          <button type="button" class="exp-toggle item-toggle" aria-expanded="false" aria-controls="experience-details">Expanded View</button>
-        </div>
-        <div class="timeline" id="experience-details">
+<script>
+  const deck = document.getElementById('deck');
+  const slides = Array.from(deck.querySelectorAll('.slide'));
+  const total = slides.length;
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const curNum = document.getElementById('curNum');
+  const totNum = document.getElementById('totNum');
+  const dotsEl = document.getElementById('dots');
+  const langToggle = document.getElementById('langToggle');
 
-          <article class="item">
-            <div class="item__meta">
-              <div class="item__kicker">Netra News</div>
-              <div class="item__date">Jan 2026 — present</div>
-              <div class="item__location">Dhaka</div>
-            </div>
-            <div class="item__body">
-              <h3 class="item__title">Executive Editor</h3>
-              <ul class="bullets">
-                <li>Help lead news coverage and editorial strategy at an independent, public-interest newsroom in Bangladesh.</li>
-              </ul>
-              <div class="item-more" id="exp-netra-2026" hidden>
-                <ul class="bullets">
-                  <li>Oversee daily reporting, investigations, and long-form projects, with a focus on accountability, governance, and human rights.</li>
-                  <li>Manage editors and reporters, set editorial priorities, and ensure rigorous fact-checking and legal review.</li>
-                  <li>Guide data-driven and investigative work, including cross-border collaborations and multimedia storytelling.</li>
-                </ul>
-              </div>
-            </div>
-          </article>
+  totNum.textContent = String(total).padStart(2, '0');
 
-          <article class="item">
-            <div class="item__meta">
-              <div class="item__kicker">Bloomberg News</div>
-              <div class="item__date">Jan 2024 — Dec 2025</div>
-              <div class="item__location">Washington DC</div>
-            </div>
-            <div class="item__body">
-              <h3 class="item__title">US Economy Reporter</h3>
-              <ul class="bullets">
-                <li>Reported on the US economy with an emphasis on data-driven analysis of labour markets, public finance, and demographic change.</li>
-              </ul>
-              <div class="item-more" id="exp-bloomberg" hidden>
-                <ul class="bullets">
-                  <li>Produced enterprise stories linking economic trends to political and policy outcomes.</li>
-                  <li>Used geospatial, statistical, and large administrative datasets to surface regulatory and market dynamics.</li>
-                </ul>
-              </div>
-            </div>
-          </article>
-
-          <article class="item">
-            <div class="item__meta">
-              <div class="item__kicker">BenarNews / Radio Free Asia</div>
-              <div class="item__date">Aug 2023 — Jan 2024</div>
-              <div class="item__location">Washington DC</div>
-            </div>
-            <div class="item__body">
-              <h3 class="item__title">English-Language Editor</h3>
-              <ul class="bullets">
-                <li>Edited and shaped coverage of Bangladesh's 2024 election, political violence, and democratic backsliding.</li>
-              </ul>
-              <div class="item-more" id="exp-rfa" hidden>
-                <ul class="bullets">
-                  <li>Worked with correspondents across South and Southeast Asia to ensure accuracy, clarity, and policy relevance.</li>
-                  <li>Handled fast-moving breaking news alongside deeper analytical and enterprise pieces.</li>
-                </ul>
-              </div>
-            </div>
-          </article>
-
-          <article class="item">
-            <div class="item__meta">
-              <div class="item__kicker">Investigative Reporting Workshop</div>
-              <div class="item__date">2023 — 2024</div>
-              <div class="item__location">Washington DC</div>
-            </div>
-            <div class="item__body">
-              <h3 class="item__title">Reporting Fellow / Contributor</h3>
-              <ul class="bullets">
-                <li>Contributed to long-form investigative projects using data analysis, document review, and field reporting.</li>
-              </ul>
-              <div class="item-more" id="exp-irw" hidden>
-                <ul class="bullets">
-                  <li>Collaborated with editors and researchers on accountability reporting with national and international impact.</li>
-                </ul>
-              </div>
-            </div>
-          </article>
-
-          <article class="item">
-            <div class="item__meta">
-              <div class="item__kicker">Investigative Reporting Program</div>
-              <div class="item__date">2022 — 2023</div>
-              <div class="item__location">Berkeley</div>
-            </div>
-            <div class="item__body">
-              <h3 class="item__title">Reporting Fellow / Investigative Journalist</h3>
-              <ul class="bullets">
-                <li>Reported on investigative and data-driven projects under UC Berkeley's Investigative Reporting Program.</li>
-              </ul>
-              <div class="item-more" id="exp-irp" hidden>
-                <ul class="bullets">
-                  <li>Worked on accountability reporting using public records, large datasets, and document-heavy investigations.</li>
-                  <li>Applied verification, OSINT, and data analysis methods to stories on governance, public policy, and human rights.</li>
-                </ul>
-              </div>
-            </div>
-          </article>
-
-          <article class="item">
-            <div class="item__meta">
-              <div class="item__kicker">Netra News</div>
-              <div class="item__date">2019 — 2021; 2022 — 2023</div>
-              <div class="item__location">Dhaka &amp; Berkeley</div>
-            </div>
-            <div class="item__body">
-              <h3 class="item__title">Investigative Reporter &amp; Deputy Editor</h3>
-              <ul class="bullets">
-                <li>Investigated corruption, governance failures, and human rights abuses in Bangladesh.</li>
-              </ul>
-              <div class="item-more" id="exp-netra-old" hidden>
-                <ul class="bullets">
-                  <li>Led the <em>Body Count</em> project on extrajudicial killings and co-reported <em>Secret Prisoners of Dhaka</em>.</li>
-                  <li>Oversaw editorial workflows and upheld investigative and ethical standards.</li>
-                </ul>
-              </div>
-            </div>
-          </article>
-
-          <article class="item">
-            <div class="item__meta">
-              <div class="item__kicker">The Daily Star</div>
-              <div class="item__date">2018 — 2019</div>
-              <div class="item__location">Dhaka</div>
-            </div>
-            <div class="item__body">
-              <h3 class="item__title">Editorial Assistant</h3>
-              <ul class="bullets">
-                <li>Supported newsroom operations at Bangladesh's largest English-language daily.</li>
-              </ul>
-              <div class="item-more" id="exp-dailystar" hidden>
-                <ul class="bullets">
-                  <li>Assisted with editing, research, and coordination for national and international coverage.</li>
-                </ul>
-              </div>
-            </div>
-          </article>
-
-        </div>
-      </section>
-
-      <!-- Credentials: split 3-col -->
-      <section class="section section--split" aria-labelledby="cred" style="padding:0; border-top:1px solid var(--rule);">
-
-        <!-- Education + Books -->
-        <div>
-          <h2 id="cred">Education</h2>
-          <div class="stack">
-            <div class="row">
-              <div class="row__title"><a href="https://journalism.berkeley.edu/person/nazmul/" target="_blank" rel="noopener">UC Berkeley Graduate School of Journalism</a></div>
-              <div class="row__meta">2023</div>
-              <div class="row__desc">Master of Journalism — Investigative &amp; Data Journalism</div>
-            </div>
-            <div class="row">
-              <div class="row__title">Daffodil International University</div>
-              <div class="row__meta">2018</div>
-              <div class="row__desc">BSS — Journalism &amp; Mass Communication</div>
-            </div>
-          </div>
-
-          <h2 style="margin-top: 32px;">Books &amp; research</h2>
-          <div class="stack">
-            <div class="row">
-              <div class="row__title"><a href="https://www.taylorfrancis.com/chapters/oa-edit/10.4324/9781003306481-6/academic-freedom-bangladesh-mubashar-hasan-nazmul-ahasan" target="_blank" rel="noopener">Academic Freedom in Bangladesh</a></div>
-              <div class="row__meta">Routledge · 2022 · Co-author</div>
-            </div>
-            <div class="row">
-              <div class="row__title"><a href="https://link.springer.com/chapter/10.1007/978-981-16-4314-9_5" target="_blank" rel="noopener">The Win-Win Game in Politics?</a></div>
-              <div class="row__meta">Springer · 2021 · Co-author</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Honours -->
-        <div>
-          <h2>Honours</h2>
-          <div class="stack">
-            <div class="row">
-              <div class="row__title">
-                <span class="label">Winner</span>
-                <span class="label">Lead</span>
-                <a href="https://www.sigmaawards.org/meet-the-winners-of-the-sigmas-2024-for-data-journalism/" target="_blank" rel="noopener">Sigma Awards for Data Journalism</a>
-              </div>
-              <div class="row__meta">2024</div>
-            </div>
-            <div class="row">
-              <div class="row__title">
-                <span class="label">Finalist</span>
-                <span class="label">Shared</span>
-                <a href="https://www.prnewswire.com/news-releases/2024-loeb-award-finalists-career-honorees-and-awards-event-at-rainbow-room-in-new-york-city-announced-by-ucla-anderson-302228597.html" target="_blank" rel="noopener">Loeb Award</a>
-              </div>
-              <div class="row__meta">2024</div>
-            </div>
-            <div class="row">
-              <div class="row__title">
-                <span class="label">Second</span>
-                <span class="label">Shared</span>
-                <a href="https://www.jou.ufl.edu/collier-prize-for-state-government-accountability/collier-prize-winners-2024/" target="_blank" rel="noopener">Collier Prize for State Government Accountability</a>
-              </div>
-              <div class="row__meta">2024</div>
-            </div>
-            <div class="row">
-              <div class="row__title">
-                <span class="label">Certificate</span>
-                <span class="label">Shared</span>
-                <a href="https://gijn.org/stories/global-shining-light-award-investigative-journalism-winners-2023/" target="_blank" rel="noopener">Global Shining Light Award</a>
-              </div>
-              <div class="row__meta">2023</div>
-            </div>
-            <div class="row">
-              <div class="row__title">
-                <span class="label">Winner</span>
-                <span class="label">Shared</span>
-                <a href="https://nationalpress.org/award-winner/nazmul-ahasan/" target="_blank" rel="noopener">Thomas L. Stokes Award (Energy &amp; Environment)</a>
-              </div>
-              <div class="row__meta">2023</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Fellowships -->
-        <div>
-          <h2>Fellowships</h2>
-          <div class="stack">
-            <div class="row">
-              <div class="row__title"><a href="https://sabew.org/2025/02/goldschmidt-fellows-selected-for-2025-d-c-workshop/" target="_blank" rel="noopener">Goldschmidt Fellow</a></div>
-              <div class="row__meta">Society for Advancing Business Editing and Writing · 2025</div>
-            </div>
-            <div class="row">
-              <div class="row__title"><a href="https://dlab.berkeley.edu/people/nazmul-ahasan" target="_blank" rel="noopener">Data Science for Social Justice Fellow</a></div>
-              <div class="row__meta">UC Berkeley D-Lab · 2022</div>
-            </div>
-            <div class="row">
-              <div class="row__title"><a href="https://saja.org/page-935554/12893612" target="_blank" rel="noopener">SAJA Scholarship</a></div>
-              <div class="row__meta">South Asian Journalists Association · 2022</div>
-            </div>
-            <div class="row">
-              <div class="row__title">Berkeley Journalism Fellowship</div>
-              <div class="row__meta">UC Berkeley Graduate School of Journalism · 2021</div>
-            </div>
-            <div class="row">
-              <div class="row__title"><a href="https://chowdhurycenter.berkeley.edu/people/nazmul-ahasan" target="_blank" rel="noopener">Subir Chowdhury Fellow</a></div>
-              <div class="row__meta">Chowdhury Center for Bangladesh Studies, UC Berkeley · 2021</div>
-            </div>
-          </div>
-        </div>
-
-      </section>
-
-    </div><!-- /container -->
-  </main>
-
-  <!-- ── Footer ────────────────────────────────────── -->
-  <svg style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <symbol id="icon-arrow_upward" viewBox="0 0 24 24">
-        <path d="M3.984 12l8.016-8.016 8.016 8.016-1.453 1.406-5.578-5.578v12.188h-1.969v-12.188l-5.625 5.578z"/>
-      </symbol>
-    </defs>
-  </svg>
-  <footer class="site-footer">
-    <div class="container footer">
-      <a class="to-top" href="#top" aria-label="Back to top">
-        <svg class="icon"><use href="#icon-arrow_upward"></use></svg>
-        Back to top
-      </a>
-      <div class="muted">2026 © All rights reserved</div>
-    </div>
-  </footer>
-
-  <script>
-    /* ── Toggles ─────────────────────────────────── */
-function wireToggles() {
-  // Experience: show/hide the whole ".item-more" block
-  function setExperienceView(panel, expanded) {
-    panel.querySelectorAll('.item').forEach(item => {
-      const more = item.querySelector('.item-more');
-      if (!more) return;
-      more.hidden = !expanded;
+  // ── language ────────────────────────────────────
+  const STORE_KEY = 'mrdi-companion-lang';
+  function applyLang(lang) {
+    document.body.classList.remove('lang-en', 'lang-bn');
+    document.body.classList.add('lang-' + lang);
+    document.documentElement.lang = (lang === 'bn') ? 'bn' : 'en';
+    // toggle button shows the OTHER language (i.e., what you'll switch to)
+    langToggle.textContent = (lang === 'en') ? 'বাংলা' : 'EN';
+    langToggle.title = (lang === 'en') ? 'Switch to Bangla' : 'ইংরেজিতে দেখুন';
+    prevBtn.textContent = (lang === 'bn') ? '← আগের' : '← prev';
+    nextBtn.textContent = (lang === 'bn') ? 'পরের →' : 'next →';
+    const modalClose = document.querySelector('.modal-close');
+    if (modalClose) modalClose.textContent = (lang === 'bn') ? 'বন্ধ ×' : 'close ×';
+    langToggle.style.fontFamily = (lang === 'en')
+      ? "'Noto Sans Bengali', sans-serif"
+      : "'JetBrains Mono', monospace";
+    // update reveal-button labels
+    document.querySelectorAll('.reveal-btn[data-label-en]').forEach(b => {
+      b.textContent = b.getAttribute('data-label-' + lang);
     });
+    // refresh control-bar indicator title (uses data-title-en/bn)
+    setActive(cur);
+    try { localStorage.setItem(STORE_KEY, lang); } catch (e) {}
+  }
+  function getInitialLang() {
+    try {
+      const stored = localStorage.getItem(STORE_KEY);
+      if (stored === 'en' || stored === 'bn') return stored;
+    } catch (e) {}
+    return 'en';
+  }
+  langToggle.addEventListener('click', () => {
+    const next = document.body.classList.contains('lang-en') ? 'bn' : 'en';
+    applyLang(next);
+  });
+  document.querySelectorAll('[data-set-lang]').forEach(b => {
+    b.addEventListener('click', () => {
+      applyLang(b.getAttribute('data-set-lang'));
+      goTo(1); // jump to Contents after picking
+    });
+  });
+
+  // ── nav ──────────────────────────────────────────
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'dot';
+    d.setAttribute('aria-label', 'Go to slide ' + (i+1));
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+  });
+  const dots = Array.from(dotsEl.children);
+
+  let cur = 0;
+  function goTo(i) {
+    i = Math.max(0, Math.min(total - 1, i));
+    deck.scrollTo({ left: i * deck.clientWidth, behavior: 'smooth' });
+  }
+  function setActive(i) {
+    cur = i;
+    curNum.textContent = String(i + 1).padStart(2, '0');
+    const lang = document.body.classList.contains('lang-bn') ? 'bn' : 'en';
+    dots.forEach((d, j) => d.classList.toggle('active', j === i));
+    prevBtn.disabled = (i === 0);
+    nextBtn.disabled = (i === total - 1);
   }
 
-  // --- Bio toggle (bind directly) ---
-  const bioBtn = document.querySelector('.bio-toggle');
-  const bioPanelId = bioBtn?.getAttribute('aria-controls');
-  const bioPanel = bioPanelId ? document.getElementById(bioPanelId) : null;
+  let scrollTimer;
+  deck.addEventListener('scroll', () => {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => {
+      const i = Math.round(deck.scrollLeft / deck.clientWidth);
+      if (i !== cur) setActive(i);
+    }, 80);
+  });
 
-  if (bioBtn && bioPanel) {
-    // default state
-    bioPanel.hidden = true;
-    bioBtn.setAttribute('aria-expanded', 'false');
-    bioBtn.textContent = 'More';
+  prevBtn.addEventListener('click', () => goTo(cur - 1));
+  nextBtn.addEventListener('click', () => goTo(cur + 1));
 
-    bioBtn.addEventListener('click', () => {
-      const next = bioBtn.getAttribute('aria-expanded') !== 'true';
-      bioBtn.setAttribute('aria-expanded', String(next));
-      bioPanel.hidden = !next;
-      bioBtn.textContent = next ? 'Less' : 'More';
-    });
-  }
-
-  // --- Delegated toggles: Experience + link reveals ---
-  document.addEventListener('click', e => {
-    const btn = e.target.closest('.exp-toggle, .link-toggle');
-    if (!btn) return;
-
-    const id = btn.classList.contains('exp-toggle')
-      ? btn.getAttribute('aria-controls')
-      : btn.dataset.target;
-
-    if (!id) return;
-
-    const panel = document.getElementById(id);
-    if (!panel) return;
-
-    const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-    const next = !isExpanded;
-
-    btn.setAttribute('aria-expanded', String(next));
-
-    if (btn.classList.contains('link-toggle')) {
-      panel.hidden = !next;
-    } else {
-      setExperienceView(panel, next);
-      btn.textContent = next ? 'Collapsed View' : 'Expanded View';
+  window.addEventListener('keydown', e => {
+    if (e.target.matches('input, textarea, button')) return;
+    switch (e.key) {
+      case 'ArrowRight':
+      case 'PageDown':
+      case ' ':
+        e.preventDefault(); goTo(cur + 1); break;
+      case 'ArrowLeft':
+      case 'PageUp':
+        e.preventDefault(); goTo(cur - 1); break;
+      case 'Home':
+        e.preventDefault(); goTo(0); break;
+      case 'End':
+        e.preventDefault(); goTo(total - 1); break;
     }
   });
 
-  // --- Experience: init collapsed ---
-  const expBtn = document.querySelector('.exp-toggle');
-  const expPanelId = expBtn?.getAttribute('aria-controls');
-  const expPanel = expPanelId ? document.getElementById(expPanelId) : null;
+  window.addEventListener('resize', () => goTo(cur));
 
-  if (expBtn && expPanel) {
-    expBtn.setAttribute('aria-expanded', 'false');
-    expBtn.textContent = 'Expanded View';
-    setExperienceView(expPanel, false);
-  }
-}
-
-    /* ── Work filters ────────────────────────────── */
-    function wireWorkFilters() {
-      const grid = document.getElementById('workGrid');
-      const filterBar = document.querySelector('.work-filters');
-      if (!grid || !filterBar) return;
-      const filterButtons = filterBar.querySelectorAll('.filter');
-
-      function setActiveFilter(tag) {
-        filterButtons.forEach(btn => btn.setAttribute('aria-pressed', String(btn.dataset.filter === tag)));
-        grid.querySelectorAll('.work').forEach(card => {
-          const tags = (card.dataset.tags || '').split(/\s+/).filter(Boolean);
-          card.hidden = !(tag === 'all' || tags.includes(tag));
-        });
-        workMoreLogic();
-      }
-
-      setActiveFilter('all');
-      filterButtons.forEach(btn => btn.addEventListener('click', () => setActiveFilter(btn.dataset.filter)));
-      grid.addEventListener('click', e => {
-        const tagBtn = e.target.closest('.tag');
-        if (!tagBtn) return;
-        e.preventDefault();
-        setActiveFilter(tagBtn.dataset.filter);
-      });
-    }
-
-    /* ── View more ───────────────────────────────── */
-    let visibleCount = 0;
-    function workMoreLogic() {
-      const grid = document.getElementById('workGrid');
-      const btn  = document.getElementById('workMore');
-      if (!grid || !btn) return;
-      const visibleItems = [...grid.querySelectorAll('.work')].filter(el => !el.hidden);
-
-      function cols() {
-        if (window.matchMedia('(max-width:640px)').matches) return 1;
-        if (window.matchMedia('(max-width:980px)').matches) return 2;
-        return 3;
-      }
-
-      const show = Math.max(visibleCount, cols() * 2);
-      visibleItems.forEach((el, i) => el.style.display = i < show ? '' : 'none');
-
-      const remaining = visibleItems.length - show;
-      btn.hidden = remaining <= 0;
-      if (remaining > 0) btn.textContent = `View more (${remaining})`;
-    }
-
-    function wireWorkViewMore() {
-      const grid = document.getElementById('workGrid');
-      const btn  = document.getElementById('workMore');
-      if (!grid || !btn) return;
-
-      function cols() {
-        if (window.matchMedia('(max-width:640px)').matches) return 1;
-        if (window.matchMedia('(max-width:980px)').matches) return 2;
-        return 3;
-      }
-
-      visibleCount = cols() * 2;
-      workMoreLogic();
-
-      btn.addEventListener('click', () => {
-        visibleCount += cols();
-        workMoreLogic();
-      });
-
-      window.addEventListener('resize', workMoreLogic);
-    }
-
-    /* ── External links ──────────────────────────── */
-    function wireExternalLinks() {
-      document.querySelectorAll('a[href^="http"]').forEach(a => {
-        a.setAttribute('target', '_blank');
-        a.setAttribute('rel', 'noopener noreferrer');
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      wireToggles();
-      wireWorkFilters();
-      wireWorkViewMore();
-      wireExternalLinks();
+  document.querySelectorAll('[data-go]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      goTo(parseInt(el.dataset.go, 10));
     });
-  </script>
+  });
+
+  // ── copy buttons ─────────────────────────────────
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    const enLabel = 'COPY';
+    const bnLabel = 'কপি';
+    function setLabel() {
+      const lang = document.body.classList.contains('lang-bn') ? 'bn' : 'en';
+      btn.textContent = (lang === 'bn') ? bnLabel : enLabel;
+    }
+    setLabel();
+    btn.addEventListener('click', async () => {
+      const text = btn.getAttribute('data-copy');
+      try { await navigator.clipboard.writeText(text); }
+      catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+      }
+      const lang = document.body.classList.contains('lang-bn') ? 'bn' : 'en';
+      btn.textContent = (lang === 'bn') ? 'কপি হয়েছে' : 'COPIED';
+      setTimeout(setLabel, 1400);
+    });
+    // Re-apply label after language change
+    new MutationObserver(setLabel).observe(document.body, {attributes: true, attributeFilter: ['class']});
+  });
+
+  // ── chart modal ──────────────────────────────────
+  const modal = document.getElementById('chartModal');
+  const modalIframe = document.getElementById('modalIframe');
+  const modalTitle = document.getElementById('modalTitle');
+  function openModal(src, title) {
+    modalTitle.textContent = title || 'Chart';
+    modalIframe.src = src;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    modal.classList.remove('open');
+    modalIframe.src = 'about:blank';
+    document.body.style.overflow = '';
+  }
+  modal.addEventListener('click', e => {
+    if (e.target.hasAttribute('data-close')) closeModal();
+  });
+  window.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+  function bindReveal(buttonId, src, titleEn, titleBn) {
+    const b = document.getElementById(buttonId);
+    if (!b) return;
+    b.addEventListener('click', () => {
+      const lang = document.body.classList.contains('lang-bn') ? 'bn' : 'en';
+      openModal(src, (lang === 'bn') ? titleBn : titleEn);
+    });
+  }
+  bindReveal('revealRailway', 'chart/railway.html',
+             "At Bangladesh's railway crossings, nearly a death a day",
+             "বাংলাদেশের রেল ক্রসিংয়ে প্রায় প্রতিদিনই একটি মৃত্যু");
+  bindReveal('revealChart', 'chart/scatter.html',
+             'Female dropout × child marriage — demo',
+             'মেয়েদের স্কুল ছাড়ার হার × বাল্যবিবাহ — ডেমো');
+
+  // ── boot ─────────────────────────────────────────
+  applyLang(getInitialLang());
+  setActive(0);
+</script>
 </body>
 </html>

@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bangladesh District Scatter Plot</title>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #14212b;
+      --muted: #5f6f7a;
+      --panel: #ffffff;
+      --line: #d7e0e5;
+      --accent: #087f78;
+      --accent-dark: #055f59;
+      --accent-soft: #d9f0ed;
+      --trend: #d24d2f;
+      --bg: #f4f7f6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        linear-gradient(180deg, #eef5f2 0%, var(--bg) 240px, #f8faf9 100%);
+      color: var(--ink);
+    }
+
+    main {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 28px auto;
+    }
+
+    .top {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      max-width: 780px;
+      font-size: clamp(26px, 3vw, 40px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    p {
+      max-width: 780px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .controls label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 38px;
+      padding: 8px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 5px 16px rgba(20, 33, 43, 0.05);
+      white-space: nowrap;
+      transition: border-color 140ms ease, background 140ms ease, box-shadow 140ms ease;
+    }
+
+    .controls label:hover {
+      border-color: #a9c8c3;
+      background: #ffffff;
+      box-shadow: 0 8px 20px rgba(20, 33, 43, 0.08);
+    }
+
+    .controls input {
+      accent-color: var(--accent);
+    }
+
+    .chart-wrap {
+      position: relative;
+      min-height: 660px;
+      padding: 20px 22px 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        radial-gradient(circle at 0 0, rgba(8, 127, 120, 0.08), transparent 280px),
+        var(--panel);
+      box-shadow: 0 16px 44px rgba(20, 33, 43, 0.09);
+      overflow: hidden;
+    }
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 620px;
+    }
+
+    .axis path,
+    .axis line {
+      stroke: #98a2b3;
+      shape-rendering: crispEdges;
+    }
+
+    .axis text {
+      fill: #52616b;
+      font-size: 12px;
+    }
+
+    .grid line {
+      stroke: #edf2f4;
+      shape-rendering: crispEdges;
+    }
+
+    .grid path {
+      display: none;
+    }
+
+    .plot-bg {
+      fill: #fbfdfc;
+      stroke: #edf2f4;
+      stroke-width: 1;
+    }
+
+    .side-divider {
+      stroke: #e4ecef;
+      stroke-width: 1;
+    }
+
+    .axis-title {
+      fill: var(--ink);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .point {
+      fill: var(--accent);
+      stroke: #ffffff;
+      stroke-width: 1.7px;
+      cursor: pointer;
+      opacity: 0.7;
+      filter: drop-shadow(0 2px 3px rgba(20, 33, 43, 0.13));
+      transition: fill 140ms ease, opacity 140ms ease, stroke-width 140ms ease;
+    }
+
+    .point:hover,
+    .point.is-active {
+      fill: var(--accent-dark);
+      opacity: 1;
+      stroke-width: 2.2px;
+    }
+
+    .label {
+      fill: #26333d;
+      font-size: 11px;
+      pointer-events: none;
+      paint-order: stroke;
+      stroke: #ffffff;
+      stroke-width: 3.5px;
+      stroke-linejoin: round;
+      opacity: 0;
+      transition: opacity 140ms ease;
+    }
+
+    .show-labels .label {
+      opacity: 0.86;
+    }
+
+    .label.is-highlight {
+      opacity: 1;
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .trend {
+      stroke: var(--trend);
+      stroke-width: 4px;
+      stroke-dasharray: 0.5 9;
+      stroke-linecap: round;
+      fill: none;
+      opacity: 0.92;
+    }
+
+    .trend-label {
+      fill: var(--trend);
+      font-size: 13px;
+      font-weight: 700;
+      paint-order: stroke;
+      stroke: #ffffff;
+      stroke-width: 4px;
+      stroke-linejoin: round;
+    }
+
+    .legend-title {
+      fill: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .legend-text {
+      fill: var(--muted);
+      font-size: 12px;
+    }
+
+    .legend-note {
+      fill: #485762;
+      font-size: 12px;
+      font-weight: 600;
+      paint-order: stroke;
+      stroke: #ffffff;
+      stroke-width: 3px;
+      stroke-linejoin: round;
+    }
+
+    .tooltip {
+      position: absolute;
+      min-width: 230px;
+      padding: 11px 13px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 14px 34px rgba(20, 33, 43, 0.18);
+      pointer-events: none;
+      opacity: 0;
+      transform: translate(-50%, calc(-100% - 12px));
+      transition: opacity 120ms ease;
+    }
+
+    .tooltip strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .tooltip span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .note {
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 760px) {
+      main {
+        width: min(100vw - 20px, 1180px);
+        margin: 14px auto;
+      }
+
+      .top {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .controls {
+        justify-content: flex-start;
+      }
+
+      .chart-wrap {
+        min-height: 560px;
+        padding: 10px;
+      }
+
+      svg {
+        height: 520px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="top">
+      <div>
+        <h1>Female Dropout and Child Marriage by District</h1>
+        <p>Forty synthetic Bangladesh district records, merged by district name. Higher child marriage appears toward the right; higher female dropout sits higher on the chart. A few districts intentionally break the pattern.</p>
+      </div>
+      <div class="controls">
+        <label>
+          <input id="toggle-labels" type="checkbox" checked>
+          Notable labels
+        </label>
+        <label>
+          <input id="toggle-trend" type="checkbox" checked>
+          Trend line
+        </label>
+        <label>
+          <input id="toggle-population" type="checkbox" checked>
+          Population bubbles
+        </label>
+      </div>
+    </div>
+
+    <section class="chart-wrap">
+      <svg id="chart" role="img" aria-label="Scatter plot of female dropout rate and child marriage rate by Bangladesh district"></svg>
+      <div class="tooltip" id="tooltip"></div>
+    </section>
+    <div class="note">Data are synthetic and only intended for training/demo use.</div>
+  </main>
+
+  <script>
+    const data = [
+      { district: "Dhaka", female_secondary_completion_rate_pct: 76, female_dropout_rate_pct: 13, child_marriage_under_18_pct: 27, population_millions: 15.4 },
+      { district: "Gazipur", female_secondary_completion_rate_pct: 64, female_dropout_rate_pct: 25, child_marriage_under_18_pct: 42, population_millions: 5.3 },
+      { district: "Narayanganj", female_secondary_completion_rate_pct: 72, female_dropout_rate_pct: 18, child_marriage_under_18_pct: 39, population_millions: 3.8 },
+      { district: "Tangail", female_secondary_completion_rate_pct: 63, female_dropout_rate_pct: 27, child_marriage_under_18_pct: 45, population_millions: 4.1 },
+      { district: "Kishoreganj", female_secondary_completion_rate_pct: 57, female_dropout_rate_pct: 31, child_marriage_under_18_pct: 50, population_millions: 3.4 },
+      { district: "Faridpur", female_secondary_completion_rate_pct: 64, female_dropout_rate_pct: 28, child_marriage_under_18_pct: 47, population_millions: 2.2 },
+      { district: "Shariatpur", female_secondary_completion_rate_pct: 55, female_dropout_rate_pct: 34, child_marriage_under_18_pct: 48, population_millions: 1.4 },
+      { district: "Chattogram", female_secondary_completion_rate_pct: 70, female_dropout_rate_pct: 17, child_marriage_under_18_pct: 36, population_millions: 9.2 },
+      { district: "Cox's Bazar", female_secondary_completion_rate_pct: 57, female_dropout_rate_pct: 41, child_marriage_under_18_pct: 61, population_millions: 2.9 },
+      { district: "Cumilla", female_secondary_completion_rate_pct: 67, female_dropout_rate_pct: 22, child_marriage_under_18_pct: 43, population_millions: 6.2 },
+      { district: "Noakhali", female_secondary_completion_rate_pct: 59, female_dropout_rate_pct: 32, child_marriage_under_18_pct: 52, population_millions: 3.6 },
+      { district: "Brahmanbaria", female_secondary_completion_rate_pct: 62, female_dropout_rate_pct: 34, child_marriage_under_18_pct: 54, population_millions: 3.4 },
+      { district: "Rangamati", female_secondary_completion_rate_pct: 61, female_dropout_rate_pct: 30, child_marriage_under_18_pct: 57, population_millions: 0.7 },
+      { district: "Bandarban", female_secondary_completion_rate_pct: 53, female_dropout_rate_pct: 37, child_marriage_under_18_pct: 44, population_millions: 0.5 },
+      { district: "Sylhet", female_secondary_completion_rate_pct: 66, female_dropout_rate_pct: 26, child_marriage_under_18_pct: 55, population_millions: 4.0 },
+      { district: "Sunamganj", female_secondary_completion_rate_pct: 49, female_dropout_rate_pct: 43, child_marriage_under_18_pct: 63, population_millions: 2.9 },
+      { district: "Habiganj", female_secondary_completion_rate_pct: 58, female_dropout_rate_pct: 35, child_marriage_under_18_pct: 56, population_millions: 2.6 },
+      { district: "Rajshahi", female_secondary_completion_rate_pct: 74, female_dropout_rate_pct: 15, child_marriage_under_18_pct: 33, population_millions: 2.8 },
+      { district: "Naogaon", female_secondary_completion_rate_pct: 65, female_dropout_rate_pct: 24, child_marriage_under_18_pct: 46, population_millions: 2.9 },
+      { district: "Chapainawabganj", female_secondary_completion_rate_pct: 54, female_dropout_rate_pct: 36, child_marriage_under_18_pct: 49, population_millions: 1.9 },
+      { district: "Pabna", female_secondary_completion_rate_pct: 70, female_dropout_rate_pct: 19, child_marriage_under_18_pct: 44, population_millions: 2.9 },
+      { district: "Sirajganj", female_secondary_completion_rate_pct: 60, female_dropout_rate_pct: 39, child_marriage_under_18_pct: 58, population_millions: 3.3 },
+      { district: "Bogura", female_secondary_completion_rate_pct: 69, female_dropout_rate_pct: 20, child_marriage_under_18_pct: 38, population_millions: 3.8 },
+      { district: "Rangpur", female_secondary_completion_rate_pct: 61, female_dropout_rate_pct: 29, child_marriage_under_18_pct: 43, population_millions: 3.2 },
+      { district: "Dinajpur", female_secondary_completion_rate_pct: 67, female_dropout_rate_pct: 24, child_marriage_under_18_pct: 48, population_millions: 3.3 },
+      { district: "Gaibandha", female_secondary_completion_rate_pct: 55, female_dropout_rate_pct: 40, child_marriage_under_18_pct: 59, population_millions: 2.7 },
+      { district: "Kurigram", female_secondary_completion_rate_pct: 50, female_dropout_rate_pct: 45, child_marriage_under_18_pct: 65, population_millions: 2.4 },
+      { district: "Nilphamari", female_secondary_completion_rate_pct: 62, female_dropout_rate_pct: 30, child_marriage_under_18_pct: 53, population_millions: 2.1 },
+      { district: "Khulna", female_secondary_completion_rate_pct: 72, female_dropout_rate_pct: 16, child_marriage_under_18_pct: 35, population_millions: 2.6 },
+      { district: "Satkhira", female_secondary_completion_rate_pct: 63, female_dropout_rate_pct: 27, child_marriage_under_18_pct: 57, population_millions: 2.2 },
+      { district: "Jashore", female_secondary_completion_rate_pct: 68, female_dropout_rate_pct: 21, child_marriage_under_18_pct: 41, population_millions: 3.1 },
+      { district: "Kushtia", female_secondary_completion_rate_pct: 66, female_dropout_rate_pct: 25, child_marriage_under_18_pct: 52, population_millions: 2.1 },
+      { district: "Barishal", female_secondary_completion_rate_pct: 64, female_dropout_rate_pct: 29, child_marriage_under_18_pct: 37, population_millions: 2.6 },
+      { district: "Bhola", female_secondary_completion_rate_pct: 51, female_dropout_rate_pct: 38, child_marriage_under_18_pct: 55, population_millions: 2.0 },
+      { district: "Patuakhali", female_secondary_completion_rate_pct: 58, female_dropout_rate_pct: 36, child_marriage_under_18_pct: 60, population_millions: 1.8 },
+      { district: "Barguna", female_secondary_completion_rate_pct: 60, female_dropout_rate_pct: 33, child_marriage_under_18_pct: 50, population_millions: 1.0 },
+      { district: "Mymensingh", female_secondary_completion_rate_pct: 60, female_dropout_rate_pct: 30, child_marriage_under_18_pct: 46, population_millions: 5.4 },
+      { district: "Jamalpur", female_secondary_completion_rate_pct: 53, female_dropout_rate_pct: 42, child_marriage_under_18_pct: 62, population_millions: 2.5 },
+      { district: "Sherpur", female_secondary_completion_rate_pct: 56, female_dropout_rate_pct: 35, child_marriage_under_18_pct: 51, population_millions: 1.6 },
+      { district: "Netrokona", female_secondary_completion_rate_pct: 59, female_dropout_rate_pct: 37, child_marriage_under_18_pct: 61, population_millions: 2.4 }
+    ];
+
+    const notableDistricts = new Set([
+      "Dhaka",
+      "Chattogram",
+      "Cox's Bazar",
+      "Sunamganj",
+      "Rajshahi",
+      "Kurigram",
+      "Khulna",
+      "Barishal",
+      "Mymensingh"
+    ]);
+
+    const chartData = data;
+
+    const labelOffsets = new Map([
+      ["Dhaka", { dx: 24, dy: 16, anchor: "start" }],
+      ["Chattogram", { dx: 22, dy: -10, anchor: "start" }],
+      ["Cox's Bazar", { dx: -16, dy: -14, anchor: "end" }],
+      ["Sunamganj", { dx: -16, dy: 18, anchor: "end" }],
+      ["Rajshahi", { dx: 18, dy: -12, anchor: "start" }],
+      ["Kurigram", { dx: -16, dy: -16, anchor: "end" }],
+      ["Khulna", { dx: 18, dy: -10, anchor: "start" }],
+      ["Barishal", { dx: 14, dy: 18, anchor: "start" }],
+      ["Mymensingh", { dx: 12, dy: 16, anchor: "start" }]
+    ]);
+
+    const svg = d3.select("#chart");
+    const tooltip = d3.select("#tooltip");
+    const chartWrap = document.querySelector(".chart-wrap");
+    const toggleLabels = document.querySelector("#toggle-labels");
+    const toggleTrend = document.querySelector("#toggle-trend");
+    const togglePopulation = document.querySelector("#toggle-population");
+
+    const baseMargin = { top: 34, right: 178, bottom: 84, left: 82 };
+
+    function linearRegression(points, getX, getY) {
+      const n = points.length;
+      const sumX = d3.sum(points, getX);
+      const sumY = d3.sum(points, getY);
+      const sumXY = d3.sum(points, d => getX(d) * getY(d));
+      const sumXX = d3.sum(points, d => getX(d) * getX(d));
+      const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
+      const intercept = (sumY - slope * sumX) / n;
+      return { slope, intercept };
+    }
+
+    function render() {
+      const width = svg.node().clientWidth;
+      const height = svg.node().clientHeight;
+      const isCompact = width < 860;
+      const margin = isCompact ? { top: 30, right: 36, bottom: 84, left: 68 } : baseMargin;
+      const innerWidth = width - margin.left - margin.right;
+      const innerHeight = height - margin.top - margin.bottom;
+
+      svg.selectAll("*").remove();
+      svg.classed("show-labels", toggleLabels.checked);
+
+      const xValue = d => d.child_marriage_under_18_pct;
+      const yValue = d => d.female_dropout_rate_pct;
+
+      const x = d3.scaleLinear()
+        .domain(d3.extent(chartData, xValue))
+        .nice()
+        .range([0, innerWidth]);
+
+      const y = d3.scaleLinear()
+        .domain(d3.extent(chartData, yValue))
+        .nice()
+        .range([innerHeight, 0]);
+
+      const radius = d3.scaleSqrt()
+        .domain(d3.extent(chartData, d => d.population_millions))
+        .range([4, 20]);
+
+      const pointRadius = d => togglePopulation.checked ? radius(d.population_millions) : 6;
+
+      const g = svg.append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+      const plotClipId = "plot-clip";
+      g.append("clipPath")
+        .attr("id", plotClipId)
+        .append("rect")
+        .attr("x", 0)
+        .attr("y", 0)
+        .attr("width", innerWidth)
+        .attr("height", innerHeight);
+
+      g.append("rect")
+        .attr("class", "plot-bg")
+        .attr("x", 0)
+        .attr("y", 0)
+        .attr("width", innerWidth)
+        .attr("height", innerHeight);
+
+      if (!isCompact) {
+        g.append("line")
+          .attr("class", "side-divider")
+          .attr("x1", innerWidth + 24)
+          .attr("x2", innerWidth + 24)
+          .attr("y1", 0)
+          .attr("y2", innerHeight);
+      }
+
+      g.append("g")
+        .attr("class", "grid")
+        .attr("transform", `translate(0,${innerHeight})`)
+        .call(d3.axisBottom(x).ticks(8).tickSize(-innerHeight).tickFormat(""));
+
+      g.append("g")
+        .attr("class", "grid")
+        .call(d3.axisLeft(y).ticks(8).tickSize(-innerWidth).tickFormat(""));
+
+      g.append("g")
+        .attr("class", "axis")
+        .attr("transform", `translate(0,${innerHeight})`)
+        .call(d3.axisBottom(x).ticks(8).tickFormat(d => `${d}%`));
+
+      g.append("g")
+        .attr("class", "axis")
+        .call(d3.axisLeft(y).ticks(8).tickFormat(d => `${d}%`));
+
+      g.append("text")
+        .attr("class", "axis-title")
+        .attr("x", innerWidth / 2)
+        .attr("y", innerHeight + 56)
+        .attr("text-anchor", "middle")
+        .text("Child marriage under age 18 (%) - low to high");
+
+      g.append("text")
+        .attr("class", "axis-title")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -innerHeight / 2)
+        .attr("y", -54)
+        .attr("text-anchor", "middle")
+        .text("Female dropout rate (%) - higher on top");
+
+      const legendValues = [2, 5, 15];
+      const legendX = isCompact ? Math.max(126, innerWidth - 112) : innerWidth + 58;
+      const legendY = isCompact ? 18 : 70;
+      const legend = g.append("g")
+        .attr("class", "population-legend")
+        .attr("transform", `translate(${legendX}, ${legendY})`)
+        .style("display", togglePopulation.checked ? null : "none");
+
+      legend.append("text")
+        .attr("class", "legend-title")
+        .attr("x", 0)
+        .attr("y", -12)
+        .text("Population");
+
+      const legendItems = legend.selectAll("g")
+        .data(legendValues)
+        .join("g")
+        .attr("transform", (d, i) => isCompact ? `translate(${i * 42}, 20)` : `translate(22, ${i * 50 + 22})`);
+
+      legendItems.append("circle")
+        .attr("r", d => radius(d))
+        .attr("cx", 0)
+        .attr("cy", 0)
+        .attr("fill", "none")
+        .attr("stroke", "#98a2b3")
+        .attr("stroke-width", 1.2);
+
+      legendItems.append("text")
+        .attr("class", "legend-text")
+        .attr("x", isCompact ? 0 : 34)
+        .attr("y", isCompact ? 30 : 4)
+        .attr("text-anchor", isCompact ? "middle" : "start")
+        .text(d => `${d}m`);
+
+      if (!isCompact) {
+        legend.append("text")
+          .attr("class", "legend-note")
+          .attr("x", 0)
+          .attr("y", 190)
+          .text("Upper-right:");
+
+        legend.append("text")
+          .attr("class", "legend-text")
+          .attr("x", 0)
+          .attr("y", 210)
+          .text("higher dropout,");
+
+        legend.append("text")
+          .attr("class", "legend-text")
+          .attr("x", 0)
+          .attr("y", 228)
+          .text("higher child marriage");
+      }
+
+      const regression = linearRegression(chartData, xValue, yValue);
+      const trendX = x.domain();
+      const trendData = trendX.map(value => ({
+        x: value,
+        y: regression.slope * value + regression.intercept
+      }));
+
+      const trendGroup = g.append("g")
+        .attr("class", "trend-group")
+        .style("display", toggleTrend.checked ? null : "none");
+
+      trendGroup.append("g")
+        .attr("clip-path", `url(#${plotClipId})`)
+        .append("path")
+        .datum(trendData)
+        .attr("class", "trend")
+        .attr("d", d3.line()
+          .x(d => x(d.x))
+          .y(d => y(d.y))
+        );
+
+      trendGroup.append("text")
+        .attr("class", "trend-label")
+        .attr("x", x(trendData[1].x) - 8)
+        .attr("y", Math.max(18, y(trendData[1].y) + 18))
+        .attr("text-anchor", "end")
+        .text("Higher marriage, higher dropout");
+
+      const points = g.append("g")
+        .selectAll("circle")
+        .data(chartData)
+        .join("circle")
+        .attr("class", "point")
+        .attr("cx", d => x(xValue(d)))
+        .attr("cy", d => y(yValue(d)))
+        .attr("r", pointRadius)
+        .on("pointerenter", function(event, d) {
+          d3.select(this)
+            .classed("is-active", true)
+            .attr("r", pointRadius(d) + 3);
+          labels.filter(label => label.district === d.district).classed("is-highlight", true);
+
+          tooltip
+            .style("opacity", 1)
+            .html(`
+              <strong>${d.district}</strong>
+              <span>Child marriage under 18: ${d.child_marriage_under_18_pct}%</span>
+              <span>Female dropout rate: ${d.female_dropout_rate_pct}%</span>
+              <span>Female secondary completion: ${d.female_secondary_completion_rate_pct}%</span>
+              <span>Population: ${d.population_millions.toFixed(1)} million</span>
+            `);
+        })
+        .on("pointermove", function(event) {
+          const rect = chartWrap.getBoundingClientRect();
+          tooltip
+            .style("left", `${event.clientX - rect.left}px`)
+            .style("top", `${event.clientY - rect.top}px`);
+        })
+        .on("pointerleave", function() {
+          d3.select(this)
+            .classed("is-active", false)
+            .attr("r", pointRadius);
+          labels.classed("is-highlight", false);
+          tooltip.style("opacity", 0);
+        });
+
+      const labels = g.append("g")
+        .selectAll("text")
+        .data(chartData.filter(d => notableDistricts.has(d.district)))
+        .join("text")
+        .attr("class", "label")
+        .attr("x", d => {
+          const offset = labelOffsets.get(d.district) || { dx: pointRadius(d) + 5 };
+          return x(xValue(d)) + offset.dx;
+        })
+        .attr("y", d => {
+          const offset = labelOffsets.get(d.district) || { dy: 4 };
+          return y(yValue(d)) + offset.dy;
+        })
+        .attr("text-anchor", d => (labelOffsets.get(d.district) || { anchor: "start" }).anchor)
+        .text(d => d.district);
+
+    }
+
+    toggleLabels.addEventListener("change", () => {
+      svg.classed("show-labels", toggleLabels.checked);
+    });
+
+    toggleTrend.addEventListener("change", () => {
+      d3.select(".trend-group").style("display", toggleTrend.checked ? null : "none");
+    });
+
+    togglePopulation.addEventListener("change", render);
+
+    window.addEventListener("resize", render);
+    render();
+  </script>
+<script>
+(function () {
+  function postHeight() {
+    var h = Math.max(
+      document.body ? document.body.scrollHeight : 0,
+      document.documentElement.scrollHeight
+    );
+    try { parent.postMessage({type: 'iframe-resize', height: h}, '*'); } catch (e) {}
+  }
+  window.addEventListener('load', function () {
+    postHeight();
+    setTimeout(postHeight, 100);
+    setTimeout(postHeight, 400);
+    setTimeout(postHeight, 1200);
+    if (window.ResizeObserver && document.body) {
+      new ResizeObserver(postHeight).observe(document.body);
+    }
+    window.addEventListener('resize', postHeight);
+  });
+})();
+</script>
+</body>
+</html>
