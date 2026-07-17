@@ -126,7 +126,6 @@
       background: color-mix(in srgb, var(--paper) 92%, transparent);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--rule);
     }
 
     .topbar__inner {
@@ -237,10 +236,10 @@
     }
 
     .rule {
-      height: 1px;
-      background: var(--rule);
+      height: 0;
+      background: transparent;
       border: 0;
-      margin: 34px 0;
+      margin: 30px 0;
     }
 
     /* ======================= PROSE ======================= */
@@ -678,12 +677,12 @@
       background: var(--paper);      padding: 18px 20px 20px;
     }
 
-    .cav.show {
-      border-left: 3px solid var(--c-left);
+    .cav.show h3 {
+      color: var(--c-left);
     }
 
-    .cav.hide {
-      border-left: 3px solid var(--accent);
+    .cav.hide h3 {
+      color: var(--accent);
     }
 
     .cav ul {
@@ -730,11 +729,10 @@
       margin-top: 24px;
       padding: 20px 24px 22px;
       background: var(--paper);
-      border-left: 3px solid var(--accent);
     }
 
     .aside h3 {
-      color: var(--text);
+      color: var(--accent);
       font-size: 0.98rem;
       letter-spacing: 0.02em;
       text-transform: none;
@@ -763,15 +761,25 @@
     }
 
     .pull {
-      margin: 26px 0;
-      padding: 4px 0 4px 22px;
-      border-left: 3px solid var(--accent);
+      margin: 36px auto;
+      padding: 0;
+      max-width: 26ch;
+      text-align: center;
       font-family: var(--serif);
       font-style: italic;
       font-weight: 500;
-      font-size: clamp(1.4rem, 3.4vw, 1.9rem);
-      line-height: 1.28;
-      max-width: 24ch;
+      font-size: clamp(1.5rem, 3.6vw, 2.1rem);
+      line-height: 1.26;
+      color: var(--accent);
+    }
+
+    .pull::before {
+      content: "\201C";
+      display: block;
+      font-size: 2.4em;
+      line-height: 0.5;
+      margin-bottom: 0.06em;
+      color: color-mix(in srgb, var(--accent) 42%, transparent);
     }
 
     /* ======================= TABLE ======================= */
@@ -853,16 +861,28 @@
       background: color-mix(in srgb, var(--paper) 60%, transparent);
     }
 
-    tr.fam-left {
-      box-shadow: inset 3px 0 0 var(--c-left);
+    tr.fam-left .nm::before,
+    tr.fam-jihadist .nm::before,
+    tr.fam-opposition .nm::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      margin-right: 8px;
+      vertical-align: middle;
     }
 
-    tr.fam-jihadist {
-      box-shadow: inset 3px 0 0 var(--c-jihadist);
+    tr.fam-left .nm::before {
+      background: var(--c-left);
     }
 
-    tr.fam-opposition {
-      box-shadow: inset 3px 0 0 var(--c-opposition);
+    tr.fam-jihadist .nm::before {
+      background: var(--c-jihadist);
+    }
+
+    tr.fam-opposition .nm::before {
+      background: var(--c-opposition);
     }
 
     .name-btn {
