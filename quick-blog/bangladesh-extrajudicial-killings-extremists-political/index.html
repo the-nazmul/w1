@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Targeted Killings — Identity Breakdown</title>
+  <style>
+
+/* ====== DROP-IN LIGHT THEME (minimal, editorial, no rounded corners) ====== */
+
+:root{
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #fbfbfc;
+  --text: #111827;         /* near-black */
+  --muted: #4b5563;        /* slate */
+  --muted-2: #6b7280;
+  --rule: #e5e7eb;         /* light rule */
+  --rule-2: #d1d5db;
+
+  --focus: rgba(37, 99, 235, 0.35);
+
+  /* Connotation accents (subtle, print-friendly) */
+  --c-pos-bg: rgba(5, 150, 105, 0.08);
+  --c-pos-bd: rgba(5, 150, 105, 0.55);
+
+  --c-neg-bg: rgba(220, 38, 38, 0.08);
+  --c-neg-bd: rgba(220, 38, 38, 0.55);
+
+  --c-neu-bg: rgba(217, 119, 6, 0.10);
+  --c-neu-bd: rgba(217, 119, 6, 0.55);
+
+  --c-unk-bg: rgba(107, 114, 128, 0.08);
+  --c-unk-bd: rgba(107, 114, 128, 0.40);
+
+  --radius: 0px; /* hard edges */
+}
+
+*{ box-sizing: border-box; }
+html, body{ height: 100%; }
+
+body{
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", sans-serif;
+  letter-spacing: 0.1px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.wrap{
+  min-height: 100%;
+  padding: clamp(12px, 2vw, 22px);
+  display: flex;
+}
+
+.card{
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 28px rgba(17, 24, 39, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 2 * clamp(12px, 2vw, 22px));
+}
+
+/* Header / lede */
+.header{
+  padding: 18px 18px 14px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--surface);
+}
+
+.lede{
+  margin: 0;
+  color: var(--text);
+  max-width: 1100px;
+}
+.lede a{
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-2);
+}
+.lede a:hover{ border-bottom-color: var(--text); }
+
+/* Viz area */
+.viz{
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 14px;
+  padding: 18px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--surface-2);
+}
+
+.panel{
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 14px;
+  overflow: hidden;
+}
+
+.panel h2{
+  margin: 0 0 10px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.chart-wrap{
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 10px;
+  min-height: 260px;
+}
+
+.chart-area{
+  position: relative;
+  width: 100%;
+  min-height: 260px;
+}
+
+canvas{
+  width: 100% !important;
+  height: 260px !important;
+}
+
+/* Legend */
+.legend{
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legend li{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: var(--radius);
+  border: 1px solid var(--rule);
+  background: #fff;
+  color: var(--text);
+}
+
+.legend .left{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.swatch{
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius);
+  border: 1px solid var(--rule-2);
+  flex: 0 0 10px;
+}
+
+.legend .label{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 52ch;
+}
+
+.legend .nums{
+  color: var(--muted-2);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Toolbar + search */
+.toolbar{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 18px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--rule);
+}
+
+.toolbar h1{
+  margin: 0;
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.toolbar .spacer{ flex: 1; }
+
+.search{
+  width: min(520px, 70vw);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid var(--rule-2);
+  border-radius: 999px; /* keep as a pill? set to 0 if you want strict hard edges everywhere */
+  padding: 8px 12px;
+}
+
+.search input{
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.search input::placeholder{ color: #9ca3af; }
+
+/* Table */
+.table-wrap{
+  width: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+  background: var(--surface);
+}
+
+table{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 860px;
+}
+
+thead th{
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  text-align: left;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: #fff;
+  border-bottom: 1px solid var(--rule-2);
+  padding: 12px 12px;
+  white-space: nowrap;
+}
+
+tbody td{
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+  color: var(--text);
+}
+
+tbody tr.data-row{
+  background: #fff;
+}
+
+tbody tr.data-row:hover{
+  background: #fafafa;
+}
+
+/* Connotation markers */
+tr.c-pos{ box-shadow: inset 3px 0 0 var(--c-pos-bd); }
+tr.c-neg{ box-shadow: inset 3px 0 0 var(--c-neg-bd); }
+tr.c-neu{ box-shadow: inset 3px 0 0 var(--c-neu-bd); }
+tr.c-unk{ box-shadow: inset 3px 0 0 var(--c-unk-bd); }
+
+tr.c-pos td.name-cell .pill{ background: var(--c-pos-bg); border-color: rgba(5,150,105,0.25); }
+tr.c-neg td.name-cell .pill{ background: var(--c-neg-bg); border-color: rgba(220,38,38,0.25); }
+tr.c-neu td.name-cell .pill{ background: var(--c-neu-bg); border-color: rgba(217,119,6,0.25); }
+tr.c-unk td.name-cell .pill{ background: var(--c-unk-bg); border-color: rgba(107,114,128,0.20); }
+
+/* Name button */
+.name-btn{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  background: none;
+  border: 0;
+  color: inherit;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+.name-btn:focus-visible{
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: var(--radius);
+}
+
+.chev{
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: var(--radius);
+  background: #fff;
+  border: 1px solid var(--rule-2);
+}
+
+.chev svg{ transition: transform 160ms ease; }
+tr[data-open="true"] .chev svg{ transform: rotate(90deg); }
+
+.pill{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 9px;
+  border-radius: var(--radius);
+  border: 1px solid var(--rule);
+  background: #fff;
+  max-width: 100%;
+}
+
+.pill strong{
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 58ch;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.pill small{
+  color: var(--muted-2);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.muted{ color: var(--muted); }
+.nowrap{ white-space: nowrap; }
+
+/* Expanded row */
+tr.expand-row td{
+  padding: 0;
+  border-bottom: 1px solid var(--rule-2);
+  background: var(--surface-2);
+}
+
+.expand{
+  padding: 12px 12px 14px 42px;
+  display: grid;
+  gap: 10px;
+}
+
+.expand .desc{
+  color: var(--text);
+  white-space: pre-wrap;
+}
+
+.expand .meta{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.expand a{
+  color: #1d4ed8;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(29,78,216,0.25);
+}
+.expand a:hover{ border-bottom-color: rgba(29,78,216,0.60); }
+
+/* Responsive */
+@media (max-width: 980px){
+  .viz{ grid-template-columns: 1fr; }
+  canvas{ height: 300px !important; }
+}
+@media (max-width: 760px){
+  table{ min-width: 740px; }
+  .pill strong{ max-width: 34ch; }
+}
+
+/* If you want ZERO rounding everywhere, uncomment this:
+.search{ border-radius: 0; }
+*/
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+
+      <div class="header">
+        <p class="lede">
+  This mini-project draws on the dataset behind Netra News’s <a href="https://interactive.netra.news/extrajudicial-killings-bangladesh/" target="_blank" rel="noopener noreferrer"><strong>Body Count</strong></a> investigation (2023). It focuses on people killed in targeted, extrajudicial executions—distinct from protest-related shootings or deaths in custody—and asks how many of those victims were identified as having a political affiliation or an alleged link to extremist groups. The pie chart below shows the breakdown by group; the table that follows provides the underlying records, descriptions and sources.
+  <br><br>
+  From 2009 through April 2022, during Sheikh Hasina’s rule, Netra News identified roughly 2,600 deaths involving law enforcement across three categories: targeted killings, lethal force used during protests, and custodial torture. About 2,000 of those were classified as “crossfire” killings or other targeted, premeditated killings. Among that subset, roughly 260 victims were affiliated with political parties or political and religious extremist groups; the rest were largely crime- or drug-related executions—what many Bangladeshis recognise as the classic pattern of extrajudicial killings.
+  <br><br>
+  The findings suggest that, contrary to popular belief, alleged leftist extremists—people reportedly linked to groups such as the Purba Bangla Sarbahara Party—were more affected during Hasina’s regime than political Islamists such as Jamaat-e-Islami or jihadist groups such as JMB combined, when it came to targeted killings. This dataset does not include the hundreds of extrajudicial killings that occurred under Khaleda Zia’s government from 2001 to 2006. If those years were added, the imbalance between alleged leftist extremists and politically affiliated victims would likely appear even more heavily skewed towards leftist groups.
+</p>
+
+      </div>
+
+      <section class="viz" aria-label="Pie chart and legend">
+        <div class="panel">
+          <h2>Breakdown of identified affiliations (counts)</h2>
+          <div class="chart-wrap">
+            <div class="chart-area">
+              <canvas id="pie" aria-label="Pie chart" role="img"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Groups</h2>
+          <ul id="legend" class="legend" aria-label="Chart legend"></ul>
+        </div>
+      </section>
+
+      <div class="toolbar">
+        <h1>Victims</h1>
+        <div class="spacer"></div>
+        <div class="search" role="search">
+          <span class="muted" aria-hidden="true">⌕</span>
+          <input id="q" type="search" placeholder="Search name, identity, type, location…" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="table-wrap" aria-live="polite">
+        <table id="victimsTable" aria-label="Victims table">
+          <thead>
+            <tr>
+              <th style="width: 34%;">Name</th>
+              <th style="width: 14%;">Identity</th>
+              <th style="width: 14%;">Type</th>
+              <th style="width: 14%;">Operation by</th>
+              <th style="width: 12%;">Date</th>
+              <th style="width: 12%;">Location</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            <!-- rows injected by JS -->
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Chart.js (no fixed colours in CSS; JS builds palette dynamically) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <script>
+    // ====== CONFIG ======
+    const CSV_URL = "./ejk.csv"; // <-- your file
+
+    // Data for the pie chart (your provided counts)
+    const PIE_DATA = [
+      { label: "Ansarullah Bangla Team", value: 1 },
+      { label: "BNP or affiliates", value: 31 },
+      { label: "Harakat ul-Jihad-I-Islami/Bangladesh", value: 1 },
+      { label: "Hizb-ut Tahrir", value: 1 },
+      { label: "Jamaat or affiliates", value: 36 },
+      { label: "JMB", value: 23 },
+      { label: "Leftist extremist group", value: 163 },
+    ];
+
+    // ====== CSV PARSER (handles commas + quotes) ======
+    function parseCSV(text) {
+      const rows = [];
+      let row = [];
+      let field = "";
+      let inQuotes = false;
+
+      for (let i = 0; i < text.length; i++) {
+        const c = text[i];
+        const n = text[i + 1];
+
+        if (inQuotes) {
+          if (c === '"' && n === '"') { field += '"'; i++; continue; }
+          if (c === '"') { inQuotes = false; continue; }
+          field += c;
+          continue;
+        }
+
+        if (c === '"') { inQuotes = true; continue; }
+        if (c === ",") { row.push(field); field = ""; continue; }
+        if (c === "\r") { continue; }
+        if (c === "\n") {
+          row.push(field);
+          rows.push(row);
+          row = [];
+          field = "";
+          continue;
+        }
+        field += c;
+      }
+
+      if (field.length || row.length) {
+        row.push(field);
+        rows.push(row);
+      }
+
+      const header = rows.shift() || [];
+      const keys = header.map(h => (h || "").trim());
+      return rows
+        .filter(r => r.some(v => (v || "").trim() !== ""))
+        .map(r => {
+          const obj = {};
+          keys.forEach((k, idx) => obj[k] = (r[idx] ?? "").trim());
+          return obj;
+        });
+    }
+
+    // ====== CONNOTATION -> CLASS ======
+    function connotationClass(value) {
+      const v = (value || "").trim().toLowerCase();
+      // Adapt these to your actual connotation values
+      if (["positive","pos","+","supportive","favourable","favorable"].includes(v)) return "c-pos";
+      if (["negative","neg","-","hostile","derogatory","pejorative"].includes(v)) return "c-neg";
+      if (["neutral","neu","0","mixed"].includes(v)) return "c-neu";
+      return "c-unk";
+    }
+
+    // ====== HTML ESCAPE ======
+    function esc(s){
+      return String(s ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    // ====== TABLE RENDER ======
+    const tbody = document.getElementById("tbody");
+    const q = document.getElementById("q");
+    let data = [];
+
+    function rowSearchBlob(d){
+      return [
+        d.name, d.identity, d.type, d.operation_by, d.date, d.location,
+        d.description, d.source, d.newspaper
+      ].join(" ").toLowerCase();
+    }
+
+    function renderTable(filtered){
+      tbody.innerHTML = "";
+
+      if (!filtered.length){
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td colspan="6" class="muted" style="padding:14px 12px;">No matches.</td>`;
+        tbody.appendChild(tr);
+        return;
+      }
+
+      filtered.forEach((d, idx) => {
+        const cClass = connotationClass(d.connotation);
+
+        const tr = document.createElement("tr");
+        tr.className = `data-row ${cClass}`;
+        tr.dataset.key = `${d.victim_id || ""}-${d.incident_id || ""}-${idx}`;
+        tr.dataset.open = "false";
+
+        const name = esc(d.name || "");
+        const identity = esc(d.identity || "");
+        const type = esc(d.type || "");
+        const opBy = esc(d.operation_by || "");
+        const date = esc(d.date || "");
+        const loc = esc(d.location || "");
+
+        tr.innerHTML = `
+          <td class="name-cell">
+            <button class="name-btn" type="button" aria-expanded="false">
+              <span class="chev" aria-hidden="true">
+                <svg viewBox="0 0 20 20" width="14" height="14" fill="none">
+                  <path d="M7.5 4.5L13 10l-5.5 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="pill" title="${name}">
+                <strong>${name || "—"}</strong>
+                <small class="nowrap">${esc(d.connotation || "unknown")}</small>
+              </span>
+            </button>
+          </td>
+          <td>${identity || "—"}</td>
+          <td>${type || "—"}</td>
+          <td>${opBy || "—"}</td>
+          <td class="nowrap">${date || "—"}</td>
+          <td>${loc || "—"}</td>
+        `;
+
+        const expandTr = document.createElement("tr");
+        expandTr.className = "expand-row";
+        expandTr.hidden = true;
+
+        const desc = (d.description || "").trim();
+        const source = (d.source || "").trim();
+        const url = (d.s_url || "").trim();
+
+        const sourceHTML = (() => {
+          if (!source) return `<span class="muted">Source: —</span>`;
+          if (url) {
+            return `Source: <a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(source)}</a>`;
+          }
+          return `Source: <span>${esc(source)}</span>`;
+        })();
+
+        expandTr.innerHTML = `
+          <td colspan="6">
+            <div class="expand">
+              <div class="desc">${esc(desc || "—")}</div>
+              <div class="meta">
+                <span>${sourceHTML}</span>
+                ${d.newspaper ? `<span class="muted">•</span><span>Newspaper: ${esc(d.newspaper)}</span>` : ""}
+              </div>
+            </div>
+          </td>
+        `;
+
+        const btn = tr.querySelector(".name-btn");
+        btn.addEventListener("click", () => {
+          const open = tr.dataset.open === "true";
+          tr.dataset.open = open ? "false" : "true";
+          btn.setAttribute("aria-expanded", open ? "false" : "true");
+          expandTr.hidden = open;
+        });
+
+        tbody.appendChild(tr);
+        tbody.appendChild(expandTr);
+      });
+    }
+
+    function applyFilter(){
+      const needle = (q.value || "").trim().toLowerCase();
+      if (!needle) { renderTable(data); return; }
+      const filtered = data.filter(d => rowSearchBlob(d).includes(needle));
+      renderTable(filtered);
+    }
+
+    q.addEventListener("input", applyFilter);
+
+    // ====== PIE CHART ======
+    // Replace your makePalette(n) with this (muted, elegant, publication-style)
+function makePalette(n){
+  const base = [
+    "#1f2937", // slate-800
+    "#374151", // slate-700
+    "#4b5563", // slate-600
+    "#6b7280", // slate-500
+    "#9ca3af", // slate-400
+    "#111827", // gray-900
+    "#475569", // slate-600/700-ish
+  ];
+  // If more slices than base, extend with controlled lightness variants
+  const out = [];
+  for (let i = 0; i < n; i++){
+    out.push(base[i % base.length]);
+  }
+  return out;
+}
+
+
+    function renderLegend(items, colors){
+      const total = items.reduce((s, x) => s + x.value, 0);
+      const ul = document.getElementById("legend");
+      ul.innerHTML = "";
+      items.forEach((it, i) => {
+        const pct = total ? (it.value / total * 100) : 0;
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <span class="left">
+            <span class="swatch" style="background:${colors[i]};"></span>
+            <span class="label">${esc(it.label)}</span>
+          </span>
+          <span class="nums">${it.value} (${pct.toFixed(1)}%)</span>
+        `;
+        ul.appendChild(li);
+      });
+    }
+
+    function renderPie(){
+      const labels = PIE_DATA.map(d => d.label);
+      const values = PIE_DATA.map(d => d.value);
+      const colors = makePalette(PIE_DATA.length);
+      renderLegend(PIE_DATA, colors);
+
+      const ctx = document.getElementById("pie").getContext("2d");
+      new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels,
+          datasets: [{
+            data: values,
+            backgroundColor: colors,
+            borderColor: "rgba(255,255,255,0.18)",
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (tt) => {
+                  const v = tt.raw ?? 0;
+                  const total = values.reduce((s,x)=>s+x,0);
+                  const pct = total ? (v/total*100) : 0;
+                  return ` ${tt.label}: ${v} (${pct.toFixed(1)}%)`;
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // ====== LOAD CSV ======
+    (async function init(){
+      renderPie();
+
+      const res = await fetch(CSV_URL, { cache: "no-store" });
+      if (!res.ok) {
+        tbody.innerHTML = `<tr><td colspan="6" class="muted" style="padding:14px 12px;">
+          Failed to load CSV (${res.status}). Check CSV_URL and hosting (needs same-origin or CORS).
+        </td></tr>`;
+        return;
+      }
+      const text = await res.text();
+      data = parseCSV(text);
+
+      // Optional: sort by date desc then name
+      data.sort((a,b) => (b.date || "").localeCompare(a.date || "") || (a.name || "").localeCompare(b.name || ""));
+
+      renderTable(data);
+    })();
+  </script>
+</body>
+</html>
