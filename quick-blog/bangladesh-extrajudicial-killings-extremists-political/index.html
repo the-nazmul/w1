@@ -210,8 +210,16 @@
       line-height: 1.55;
     }
 
-    .author {
+    .byline-row {
       margin: 20px 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .author {
+      margin: 0;
       color: var(--muted);
       font-size: 1rem;
     }
@@ -225,6 +233,77 @@
 
     .author a:hover {
       border-bottom-color: var(--text);
+    }
+
+    .author .sep {
+      opacity: 0.5;
+      margin: 0 2px;
+    }
+
+    .author time {
+      white-space: nowrap;
+    }
+
+    .share-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 0 0 auto;
+    }
+
+    .share-msg {
+      font: 400 10px/1 var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--c-cht);
+      opacity: 0;
+      transition: opacity 160ms ease;
+      white-space: nowrap;
+    }
+
+    .share-msg.on {
+      opacity: 1;
+    }
+
+    .share-btn {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid var(--rule-2);
+      border-radius: 999px;
+      cursor: pointer;
+      transition: color 140ms ease, border-color 140ms ease, background 140ms ease;
+    }
+
+    .share-btn:hover {
+      color: var(--text);
+      border-color: var(--text);
+      background: color-mix(in srgb, var(--paper) 60%, transparent);
+    }
+
+    .dl-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      flex: 0 0 auto;
+      padding: 9px 14px;
+      color: var(--muted);
+      text-decoration: none;
+      font: 500 12px/1 var(--mono);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: transparent;
+      border: 1px solid var(--rule-2);
+      transition: color 140ms ease, border-color 140ms ease, background 140ms ease;
+    }
+
+    .dl-btn:hover {
+      color: var(--text);
+      border-color: var(--text);
+      background: color-mix(in srgb, var(--paper) 60%, transparent);
     }
 
     .byline {
@@ -1041,8 +1120,23 @@
       so-called “crossfire.” This page looks at the ones who were linked to a party or an armed group — and asks who the
       country still remembers.
     </p>
-    <p class="author">By <a href="https://nazmulahasan.com/" target="_blank" rel="noopener noreferrer">Nazmul
-        Ahasan</a></p>
+    <div class="byline-row">
+      <p class="author">By <a href="https://nazmulahasan.com/" target="_blank" rel="noopener noreferrer">Nazmul
+          Ahasan</a> <span class="sep">·</span> <time datetime="2025-12-22">22 December 2025</time></p>
+      <div class="share-wrap">
+        <span class="share-msg" id="shareMsg" aria-live="polite"></span>
+        <button class="share-btn" id="shareBtn" type="button" aria-label="Share this page" title="Share">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="18" cy="5" r="3" />
+            <circle cx="6" cy="12" r="3" />
+            <circle cx="18" cy="19" r="3" />
+            <line x1="8.6" y1="13.5" x2="15.4" y2="17.5" />
+            <line x1="15.4" y1="6.5" x2="8.6" y2="10.5" />
+          </svg>
+        </button>
+      </div>
+    </div>
     <hr class="rule" />
 
     <!-- ===================== LEDE ===================== -->
@@ -1083,14 +1177,14 @@
           <div class="head"><span class="sw" style="background:var(--c-left)"></span><b>Alleged leftist
               extremists</b><span class="n">163</span></div>
           <p>Secret, armed communist groups like the Purba Bangla Sarbahara Party. This is <em>not</em> the normal,
-            legal left. Parties like the Communist Party of Bangladesh (CPB) — which back then often sided with the
-            Awami League — are very different from the secret groups counted here.</p>
+            legal left. Parties like the Jatiya Samajtantrik Dal — allied with the Awami League — are very different
+            from the secret groups counted here.</p>
         </div>
         <div class="def">
           <div class="head"><span class="sw" style="background:var(--c-jihadist)"></span><b>Alleged jihadists</b><span
               class="n">26</span></div>
-          <p>Armed Islamist militant groups: Jamaat-ul-Mujahideen Bangladesh (JMB), Hizb-ut Tahrir, Ansarullah Bangla
-            Team, and HuJI-B.</p>
+          <p>Outlawed Islamist militant groups: Jamaat-ul-Mujahideen Bangladesh (JMB), Hizb-ut Tahrir, Ansarullah
+            Bangla Team, and HuJI-B.</p>
         </div>
         <div class="def">
           <div class="head"><span class="sw" style="background:var(--c-opposition)"></span><b>Mainstream
@@ -1106,13 +1200,7 @@
             parties either. They call themselves leftist, yet their main identity is as CHT-based regional groups (for
             the rights of the hill peoples). And unlike everyone else here, almost all of them were killed by the
             <b>army</b>, not the police or RAB.</p>
-        </div>
-        <div class="def">
-          <div class="head"><span class="sw hollow"></span><b>Not here: the mass Islamists</b><span
-              class="n">0</span></div>
-          <p>“Islamists” in the everyday sense — big movements like Hefazat-e-Islam — are not in this list at all.</p>
-        </div>
-        <div class="binary">
+        </div>        <div class="binary">
           The source sorts these into three: <b><span id="nExtremism">189</span></b> were called <em>“extremists”</em>
           (the leftist and jihadist groups), <b>67</b> were called <em>“political opposition”</em> (Jamaat and BNP), and
           <b><span id="nCht">13</span></b> fall under the separate <em>“Chittagong Hill Tracts conflict.”</em> Of
@@ -1146,8 +1234,6 @@
           <div class="lab"><b>CHT regional groups</b> — killed mostly by the army</div>
         </div>
       </div>
-      <p class="stats-cap">Killed by police, RAB, joint forces and — in the hills — the army · 2009–2020 in the records
-        · these are shares of this group only, not of all killings.</p>
     </section>
 
     <!-- ===================== HEADLINE STACKED BAR ===================== -->
@@ -1188,8 +1274,10 @@
     <section aria-label="Breakdown by specific affiliation">
       <h2>By the exact group</h2>
       <p class="sec-note">
-        The same people, split by their exact label and coloured by kind. The jihadist groups are orange; Jamaat and
-        BNP are the normal opposition (violet); UPDF and PCJSS/JSS are the CHT regional groups (green).
+        The same people, now split by the exact group each was tied to. The leftist bars (blue) break into the
+        parties named in the reports — the Purba Banglar Communist Party and its factions, the Sarbahara Party, and
+        others; many reports named no party, and those sit in the “unnamed” bar. Orange are the jihadist groups; violet
+        the opposition (Jamaat, BNP); green the CHT regional groups.
       </p>
       <div class="panel">
         <ul class="legend" id="legendBars"></ul>
@@ -1297,6 +1385,13 @@
           <input id="q" type="search" placeholder="Search name, group, force, place…" autocomplete="off" />
         </div>
         <span class="count" id="rowCount"></span>
+        <a class="dl-btn" href="./ejk.csv" download="bangladesh-crossfire-victims.csv" title="Download the dataset as CSV">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3v12M7 10l5 5 5-5M5 21h14" />
+          </svg>
+          Download CSV
+        </a>
       </div>
       <div class="table-wrap" aria-live="polite">
         <table id="victimsTable" aria-label="Victims table">
@@ -1342,6 +1437,15 @@
     // Family mapping (identity label -> family key)
     const FAMILY_OF = {
       "Leftist extremist group": "left",
+      "Purba Banglar Communist Party": "left",
+      "PBCP (Janajuddha)": "left",
+      "PBCP (Lal Pataka)": "left",
+      "PBCP (ML)": "left",
+      "Purba Bangla Sarbahara Party": "left",
+      "New Biplobi Communist Party": "left",
+      "Gono Mukti Fouj": "left",
+      "Other communist group": "left",
+      "Leftist group (unnamed)": "left",
       "JMB": "jihadist",
       "Hizb-ut Tahrir": "jihadist",
       "Ansarullah Bangla Team": "jihadist",
@@ -1694,6 +1798,44 @@
       }
       addEventListener("scroll", upd, { passive: true });
       addEventListener("resize", upd); upd();
+    })();
+
+    // ============================================================
+    // SHARE
+    // ============================================================
+    (function () {
+      const btn = $("shareBtn"), msg = $("shareMsg");
+      if (!btn) return;
+      const canon = document.querySelector('link[rel="canonical"]');
+      const url = (canon && canon.href) || location.href;
+      const title = document.title;
+      let timer = 0;
+      function flash(text) {
+        msg.textContent = text;
+        msg.classList.add("on");
+        clearTimeout(timer);
+        timer = setTimeout(() => msg.classList.remove("on"), 2200);
+      }
+      async function copyFallback() {
+        try {
+          await navigator.clipboard.writeText(url);
+          flash("Link copied");
+        } catch (e) {
+          const t = document.createElement("input");
+          t.value = url;
+          document.body.appendChild(t);
+          t.select();
+          try { document.execCommand("copy"); flash("Link copied"); } catch (_) { flash("Copy failed"); }
+          document.body.removeChild(t);
+        }
+      }
+      btn.addEventListener("click", async () => {
+        if (navigator.share) {
+          try { await navigator.share({ title, url }); } catch (e) { /* user cancelled */ }
+        } else {
+          copyFallback();
+        }
+      });
     })();
 
     // ============================================================
