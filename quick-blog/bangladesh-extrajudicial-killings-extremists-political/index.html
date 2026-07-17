@@ -50,6 +50,8 @@
       /* alleged jihadists */
       --c-opposition: #4a3aa7;
       /* mainstream opposition (BNP, Jamaat) */
+      --c-cht: #008300;
+      /* CHT regional groups (UPDF, PCJSS/JSS) */
 
       --wrap: 900px;
       --pad: clamp(16px, 4vw, 34px);
@@ -75,6 +77,7 @@
         --c-left: #3987e5;
         --c-jihadist: #d95926;
         --c-opposition: #9085e9;
+        --c-cht: #12a012;
       }
     }
 
@@ -93,6 +96,7 @@
       --c-left: #3987e5;
       --c-jihadist: #d95926;
       --c-opposition: #9085e9;
+      --c-cht: #12a012;
     }
 
     /* ======================= BASE ======================= */
@@ -377,7 +381,7 @@
     /* ======================= STAT TILES ======================= */
     .stats {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
       gap: 12px;
       margin: 22px 0 8px;
     }
@@ -482,15 +486,17 @@
 
     .stack-labels {
       display: flex;
-      gap: 2px;
-      margin-top: 8px;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      margin-top: 10px;
     }
 
     .stack-labels .sl {
+      flex: 0 1 auto;
+      min-width: 0;
       font-size: 0.78rem;
       color: var(--muted);
       line-height: 1.3;
-      padding-right: 10px;
     }
 
     .stack-labels .sl b {
@@ -594,6 +600,7 @@
 
     .tl-col {
       flex: 1;
+      min-width: 0;
       display: flex;
       flex-direction: column-reverse;
       gap: 2px;
@@ -622,14 +629,16 @@
     .tl-labels {
       display: flex;
       gap: clamp(4px, 1.4vw, 12px);
+      overflow: hidden;
     }
 
     .tl-labels span {
       flex: 1;
+      min-width: 0;
       text-align: center;
-      font: 400 10px/1.3 var(--mono);
+      font: 400 9px/1.3 var(--mono);
       color: var(--faint);
-      letter-spacing: 0.02em;
+      letter-spacing: 0;
     }
 
     /* ---------- Tooltip ---------- */
@@ -863,7 +872,8 @@
 
     tr.fam-left .nm::before,
     tr.fam-jihadist .nm::before,
-    tr.fam-opposition .nm::before {
+    tr.fam-opposition .nm::before,
+    tr.fam-cht .nm::before {
       content: "";
       display: inline-block;
       width: 8px;
@@ -883,6 +893,10 @@
 
     tr.fam-opposition .nm::before {
       background: var(--c-opposition);
+    }
+
+    tr.fam-cht .nm::before {
+      background: var(--c-cht);
     }
 
     .name-btn {
@@ -1050,8 +1064,10 @@
       <p>
         The result is surprising. Most of these victims were not Islamists or jihadists. They were alleged
         <strong>leftist extremists</strong> — people said to belong to secret, armed communist groups like the Purba
-        Bangla Sarbahara Party. They are the biggest group by far. And this data stops in 2022, so it leaves out the
-        killings of 2001–2006 under an earlier government — which would likely make the leftist share even bigger.
+        Bangla Sarbahara Party. They are the biggest group by far. A smaller group comes from the Chittagong Hill
+        Tracts, where it was the army — not the police — doing the killing. And this data stops in 2022, so it leaves
+        out the killings of 2001–2006 under an earlier government — which would likely make the leftist share even
+        bigger.
       </p>
     </div>
 
@@ -1083,14 +1099,24 @@
             a normal party, not an armed group.</p>
         </div>
         <div class="def">
+          <div class="head"><span class="sw" style="background:var(--c-cht)"></span><b>CHT regional groups</b><span
+              class="n">13</span></div>
+          <p>Parties from the Chittagong Hill Tracts: the United People’s Democratic Front (UPDF) and the Parbatya
+            Chattagram Jana Samhati Samiti (PCJSS/JSS). They are not banned — but they are not formal, registered
+            parties either. They call themselves leftist, yet their main identity is as CHT-based regional groups (for
+            the rights of the hill peoples). And unlike everyone else here, almost all of them were killed by the
+            <b>army</b>, not the police or RAB.</p>
+        </div>
+        <div class="def">
           <div class="head"><span class="sw hollow"></span><b>Not here: the mass Islamists</b><span
               class="n">0</span></div>
           <p>“Islamists” in the everyday sense — big movements like Hefazat-e-Islam — are not in this list at all.</p>
         </div>
         <div class="binary">
-          The source splits these into two: <b><span id="nExtremism">189</span></b> were called <em>“extremists”</em>
-          (the leftist and jihadist groups) and <b>67</b> were called <em>“political opposition”</em> (Jamaat and BNP).
-          Of everyone called an “extremist” and killed, <b><span id="pctLeftOfExtremism">86%</span></b> were alleged
+          The source sorts these into three: <b><span id="nExtremism">189</span></b> were called <em>“extremists”</em>
+          (the leftist and jihadist groups), <b>67</b> were called <em>“political opposition”</em> (Jamaat and BNP), and
+          <b><span id="nCht">13</span></b> fall under the separate <em>“Chittagong Hill Tracts conflict.”</em> Of
+          everyone called an “extremist” and killed, <b><span id="pctLeftOfExtremism">86%</span></b> were alleged
           leftists.
         </div>
       </div>
@@ -1100,37 +1126,41 @@
     <section aria-label="Key figures">
       <div class="stats" id="stats">
         <div class="stat" style="--st:var(--rule-2)">
-          <div class="big" id="kTotal">256</div>
+          <div class="big" id="kTotal">269</div>
           <div class="lab">people linked to a party or an armed group, all killed in “crossfire”</div>
         </div>
         <div class="stat" style="--st:var(--c-left)">
-          <div class="big"><span id="kLeft">163</span><span class="pct" id="kLeftPct">64%</span></div>
+          <div class="big"><span id="kLeft">163</span><span class="pct" id="kLeftPct">61%</span></div>
           <div class="lab">alleged <b>leftist extremists</b> — the biggest group</div>
         </div>
         <div class="stat" style="--st:var(--c-opposition)">
-          <div class="big"><span id="kOpp">67</span><span class="pct" id="kOppPct">26%</span></div>
+          <div class="big"><span id="kOpp">67</span><span class="pct" id="kOppPct">25%</span></div>
           <div class="lab"><b>normal opposition</b> — BNP and Jamaat</div>
         </div>
         <div class="stat" style="--st:var(--c-jihadist)">
           <div class="big"><span id="kJihad">26</span><span class="pct" id="kJihadPct">10%</span></div>
           <div class="lab">alleged <b>jihadists</b> — JMB and smaller armed groups</div>
         </div>
+        <div class="stat" style="--st:var(--c-cht)">
+          <div class="big"><span id="kCht">13</span><span class="pct" id="kChtPct">5%</span></div>
+          <div class="lab"><b>CHT regional groups</b> — killed mostly by the army</div>
+        </div>
       </div>
-      <p class="stats-cap">Killed by Police, RAB and joint forces · 2009–2019 in the records · these are shares of this
-        group only, not of all killings.</p>
+      <p class="stats-cap">Killed by police, RAB, joint forces and — in the hills — the army · 2009–2020 in the records
+        · these are shares of this group only, not of all killings.</p>
     </section>
 
     <!-- ===================== HEADLINE STACKED BAR ===================== -->
     <section aria-label="Overall breakdown by group family">
-      <h2>Three kinds of victims</h2>
+      <h2>Four kinds of victims</h2>
       <p class="sec-note">
-        The seven groups, put into three. The first two — leftist and jihadist — are the people the state called
-        “extremists” (189 of 256). The third is the normal opposition. The blue (leftist) block alone is bigger than
-        the other two together.
+        The nine groups, put into four. Leftist and jihadist together are the people the state called “extremists”
+        (189 of 269); then the normal opposition; then the CHT regional groups, killed mostly by the army. The blue
+        (leftist) block alone is bigger than the other three put together.
       </p>
       <div class="panel">
         <div class="stack" id="stackBar" role="img"
-          aria-label="Stacked bar: leftist extremists 64 percent, jihadists 10 percent, mainstream opposition 26 percent">
+          aria-label="Stacked bar: leftist extremists 61 percent, jihadists 10 percent, opposition 25 percent, CHT groups 5 percent">
         </div>
         <div class="stack-labels" id="stackLabels"></div>
       </div>
@@ -1140,7 +1170,7 @@
     <section aria-label="Each square is one person">
       <h2>Each square is one person</h2>
       <p class="sec-note">
-        Each of the <span id="gridN">256</span> squares is one real person from the data. The colour shows their group.
+        Each of the <span id="gridN">269</span> squares is one real person from the data. The colour shows their group.
         Move your mouse over a square to see who. The big blue block is not just a number — it is the group the country
         has remembered the least.
       </p>
@@ -1158,8 +1188,8 @@
     <section aria-label="Breakdown by specific affiliation">
       <h2>By the exact group</h2>
       <p class="sec-note">
-        The same people, split by their exact label and coloured by kind. Four of the seven are armed jihadist groups
-        (orange). Jamaat and BNP are counted as normal opposition (violet), not as fighters.
+        The same people, split by their exact label and coloured by kind. The jihadist groups are orange; Jamaat and
+        BNP are the normal opposition (violet); UPDF and PCJSS/JSS are the CHT regional groups (green).
       </p>
       <div class="panel">
         <ul class="legend" id="legendBars"></ul>
@@ -1171,8 +1201,8 @@
     <section aria-label="Killings over time">
       <h2>This went on for years</h2>
       <p class="sec-note">
-        These killings did not happen just once. They were high in 2009, dropped, and rose again in 2014–2016. Move
-        your mouse over a bar to see that year.
+        These killings did not happen just once. They were high in 2009, dropped, and rose again in 2014–2016, with
+        the hill-tract killings running on to 2020. Move your mouse over a bar to see that year.
       </p>
       <div class="panel">
         <ul class="legend" id="legendTl"></ul>
@@ -1187,7 +1217,7 @@
     <section aria-label="What the data does and does not show">
       <h2>What this shows — and what it does not</h2>
       <p class="sec-note">
-        It is easy to read this like a scoreboard. It is not one. Here is what these <span id="cavN">256</span> records
+        It is easy to read this like a scoreboard. It is not one. Here is what these <span id="cavN">269</span> records
         can and cannot tell us.
       </p>
       <div class="twocol">
@@ -1198,8 +1228,8 @@
               party or an armed group, which group they belonged to.</li>
             <li><b>A one-sided picture.</b> The leftist group is far bigger than the jihadists — and bigger than the
               whole opposition too. That is the opposite of what most people think.</li>
-            <li><b>A long habit.</b> The killings went on for over ten years, by three forces — Police, RAB, and joint
-              forces. Not one bad night.</li>
+            <li><b>A long habit.</b> The killings went on for over ten years, by several forces — police, RAB, joint
+              forces, and, in the hill tracts, the army. Not one bad night.</li>
           </ul>
         </div>
         <div class="cav hide">
@@ -1294,8 +1324,9 @@
       <p class="mono">
         Note: “group” and “called” are the source’s own words — what people were said to be, not proven in court.
         Kinds: leftist extremist (secret armed left, not the normal/legal left) · jihadist (JMB, Hizb-ut Tahrir,
-        Ansarullah Bangla Team, HuJI-B) · normal opposition (BNP, Jamaat-e-Islami). Colours only tell the groups apart;
-        they carry no other meaning.
+        Ansarullah Bangla Team, HuJI-B) · normal opposition (BNP, Jamaat-e-Islami) · CHT regional groups (UPDF,
+        PCJSS/JSS). The 13 Chittagong Hill Tracts cases were added from the same Body Count data; the source keeps them
+        in their own category. Colours only tell the groups apart; they carry no other meaning.
       </p>
     </footer>
   </main>
@@ -1316,15 +1347,19 @@
       "Ansarullah Bangla Team": "jihadist",
       "Harakat ul-Jihad-I-Islami/Bangladesh": "jihadist",
       "Jamaat or affiliates": "opposition",
-      "BNP or affiliates": "opposition"
+      "BNP or affiliates": "opposition",
+      "UPDF or affiliates": "cht",
+      "PCJSS (JSS) or affiliates": "cht",
+      "JSS (MN Larma faction)": "cht"
     };
     const FAMILY = {
       left: { label: "Alleged leftist extremists", color: "var(--c-left)" },
       jihadist: { label: "Alleged jihadists", color: "var(--c-jihadist)" },
-      opposition: { label: "Mainstream opposition (BNP, Jamaat)", color: "var(--c-opposition)" }
+      opposition: { label: "Mainstream opposition (BNP, Jamaat)", color: "var(--c-opposition)" },
+      cht: { label: "CHT regional groups (UPDF, JSS)", color: "var(--c-cht)" }
     };
-    // Order: the two "extremism" families first, then the political opposition.
-    const FAM_ORDER = ["left", "jihadist", "opposition"];
+    // Order: the two "extremism" families, then the political opposition, then the CHT groups.
+    const FAM_ORDER = ["left", "jihadist", "opposition", "cht"];
 
     // Fallback aggregates if the CSV can't be fetched (keeps the story intact).
     const FALLBACK_GROUPS = [
@@ -1334,7 +1369,9 @@
       { identity: "JMB", n: 23 },
       { identity: "Hizb-ut Tahrir", n: 1 },
       { identity: "Ansarullah Bangla Team", n: 1 },
-      { identity: "Harakat ul-Jihad-I-Islami/Bangladesh", n: 1 }
+      { identity: "Harakat ul-Jihad-I-Islami/Bangladesh", n: 1 },
+      { identity: "UPDF or affiliates", n: 11 },
+      { identity: "PCJSS (JSS) or affiliates", n: 2 }
     ];
 
     // ============================================================
@@ -1410,12 +1447,13 @@
 
     function renderNumbers(agg) {
       const T = agg.total;
-      const L = agg.byFamily.left || 0, J = agg.byFamily.jihadist || 0, O = agg.byFamily.opposition || 0;
+      const L = agg.byFamily.left || 0, J = agg.byFamily.jihadist || 0, O = agg.byFamily.opposition || 0, C = agg.byFamily.cht || 0;
       const r0 = (x) => Math.round(x) + "%";
       setText("byRecords", T); setText("kTotal", T); setText("gridN", T); setText("cavN", T);
       setText("kLeft", L); setText("kLeftPct", r0(pct(L, T)));
       setText("kOpp", O); setText("kOppPct", r0(pct(O, T)));
       setText("kJihad", J); setText("kJihadPct", r0(pct(J, T)));
+      setText("kCht", C); setText("kChtPct", r0(pct(C, T))); setText("nCht", C);
       setText("edLeft", L);
       const extremism = L + J;
       setText("nExtremism", extremism);
@@ -1441,7 +1479,6 @@
 
         const sl = document.createElement("div");
         sl.className = "sl";
-        sl.style.flex = n;
         sl.innerHTML = `<b>${FAMILY[f].label}</b>${n} · ${p.toFixed(1)}%`;
         labels.appendChild(sl);
       });
@@ -1598,7 +1635,7 @@
     // ============================================================
     // AGGREGATION
     // ============================================================
-    function newFamCounts() { return { left: 0, jihadist: 0, opposition: 0 }; }
+    function newFamCounts() { return { left: 0, jihadist: 0, opposition: 0, cht: 0 }; }
 
     function aggregateFromRows(rows) {
       const byGroup = {}, byFamily = newFamCounts(), byYear = {};
