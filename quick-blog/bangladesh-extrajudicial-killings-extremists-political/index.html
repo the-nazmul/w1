@@ -46,10 +46,10 @@
       /* Categorical data palette (validated: CVD ΔE ≈ 96) */
       --c-left: #2a78d6;
       /* alleged leftist extremists */
-      --c-islamist: #eb6834;
-      /* Islamists & jihadists */
-      --c-bnp: #4a3aa7;
-      /* BNP / mainstream opposition */
+      --c-jihadist: #eb6834;
+      /* alleged jihadists */
+      --c-opposition: #4a3aa7;
+      /* mainstream opposition (BNP, Jamaat) */
 
       --wrap: 900px;
       --pad: clamp(16px, 4vw, 34px);
@@ -73,8 +73,8 @@
         --rule-2: rgba(210, 190, 155, 0.28);
         --accent: #e0736b;
         --c-left: #3987e5;
-        --c-islamist: #d95926;
-        --c-bnp: #9085e9;
+        --c-jihadist: #d95926;
+        --c-opposition: #9085e9;
       }
     }
 
@@ -91,8 +91,8 @@
       --rule-2: rgba(210, 190, 155, 0.28);
       --accent: #e0736b;
       --c-left: #3987e5;
-      --c-islamist: #d95926;
-      --c-bnp: #9085e9;
+      --c-jihadist: #d95926;
+      --c-opposition: #9085e9;
     }
 
     /* ======================= BASE ======================= */
@@ -303,6 +303,65 @@
       font-size: 1rem;
     }
 
+    /* ======================= DEFINITIONS ======================= */
+    .defs {
+      display: grid;
+      gap: 16px;
+      margin-top: 6px;
+    }
+
+    .def {
+      padding-left: 16px;
+      border-left: 2px solid var(--rule-2);
+      max-width: 74ch;
+    }
+
+    .def .head {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 1.02rem;
+    }
+
+    .def .head b {
+      font-weight: 600;
+    }
+
+    .def .head .n {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .def .sw {
+      width: 12px;
+      height: 12px;
+      flex: 0 0 12px;
+      border-radius: 3px;
+    }
+
+    .def .sw.hollow {
+      background: transparent;
+      border: 1.5px dashed var(--faint);
+    }
+
+    .def p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .defs .binary {
+      margin-top: 4px;
+      padding: 12px 16px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      font-size: 0.92rem;
+      color: var(--muted);
+      max-width: 74ch;
+    }
+
     /* ======================= STAT TILES ======================= */
     .stats {
       display: grid;
@@ -431,6 +490,21 @@
       color: var(--text);
       font-weight: 600;
       font-size: 0.82rem;
+    }
+
+    .stack-meta {
+      display: flex;
+      gap: 2px;
+      margin-top: 12px;
+    }
+
+    .stack-meta .mg {
+      border-top: 1px solid var(--rule-2);
+      padding-top: 6px;
+      font: 400 10px/1.3 var(--mono);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--faint);
     }
 
     /* ---------- Ranked bars ---------- */
@@ -659,6 +733,36 @@
       font-weight: 600;
     }
 
+    /* ======================= ASIDE / CALLOUT ======================= */
+    .aside {
+      margin-top: 24px;
+      padding: 20px 24px 22px;
+      background: var(--paper);
+      border-left: 3px solid var(--accent);
+    }
+
+    .aside h3 {
+      color: var(--text);
+      font-size: 0.98rem;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      font-family: var(--serif);
+      font-weight: 600;
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    .aside p {
+      margin: 0;
+      max-width: 66ch;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .aside p + p {
+      margin-top: 12px;
+    }
+
     /* ======================= PULL / EDITORIAL ======================= */
     .editorial p {
       font-size: 1.08rem;
@@ -765,12 +869,12 @@
       box-shadow: inset 3px 0 0 var(--c-left);
     }
 
-    tr.fam-islamist {
-      box-shadow: inset 3px 0 0 var(--c-islamist);
+    tr.fam-jihadist {
+      box-shadow: inset 3px 0 0 var(--c-jihadist);
     }
 
-    tr.fam-bnp {
-      box-shadow: inset 3px 0 0 var(--c-bnp);
+    tr.fam-opposition {
+      box-shadow: inset 3px 0 0 var(--c-opposition);
     }
 
     .name-btn {
@@ -940,13 +1044,58 @@
         or drug-related. This page is about that political and extremist sliver.
       </p>
       <p>
-        The pattern it reveals runs against the popular assumption. Among these labelled victims, alleged
-        <strong>leftist extremists</strong> — people reportedly linked to underground outfits such as the Purba Bangla
-        Sarbahara Party — outnumber alleged political Islamists (Jamaat-e-Islami) and jihadists (JMB and others)
-        <em class="q">combined</em>. And because this dataset stops at Hasina’s tenure, it leaves out the extrajudicial
-        killings of 2001–2006 under a previous government, which would likely tilt the balance further toward the left.
+        The pattern it reveals runs against the popular assumption. These alleged <strong>leftist extremists</strong> —
+        reportedly tied to clandestine, armed outfits such as the Purba Bangla Sarbahara Party, and a world apart from
+        the mainstream, legal left — are the single largest group by far: they outnumber the alleged jihadists (JMB and
+        similar) many times over, and outnumber even the entire registered opposition, BNP and Jamaat-e-Islami, counted
+        together. Because the data stops at Hasina’s tenure, it also omits the extrajudicial killings of 2001–2006 under
+        a previous government, which would likely tilt the balance further toward the left.
       </p>
     </div>
+
+    <!-- ===================== HOW GROUPS ARE DEFINED ===================== -->
+    <section aria-label="How these groups are defined">
+      <p class="sec-kicker">Before the charts</p>
+      <h2>How these groups are defined</h2>
+      <p class="sec-note">
+        The labels below are the source’s, tidied into four buckets. The distinctions matter — they are the difference
+        between a banned armed cell and a registered political party.
+      </p>
+      <div class="defs">
+        <div class="def">
+          <div class="head"><span class="sw" style="background:var(--c-left)"></span><b>Alleged leftist
+              extremists</b><span class="n">163</span></div>
+          <p>Underground, typically armed communist outfits — the Purba Bangla Sarbahara Party and its offshoots. This
+            is <em>not</em> the mainstream, legal left: parties such as the Communist Party of Bangladesh (CPB), which
+            in this period were often aligned with the Awami League’s ideological ends, are a different world from the
+            clandestine cells counted here.</p>
+        </div>
+        <div class="def">
+          <div class="head"><span class="sw" style="background:var(--c-jihadist)"></span><b>Alleged jihadists</b><span
+              class="n">26</span></div>
+          <p>Armed Islamist militant groups: Jamaat-ul-Mujahideen Bangladesh (JMB), Hizb-ut Tahrir, Ansarullah Bangla
+            Team, and Harkatul Jihad-al Islami Bangladesh (HuJI-B).</p>
+        </div>
+        <div class="def">
+          <div class="head"><span class="sw" style="background:var(--c-opposition)"></span><b>Mainstream
+              opposition</b><span class="n">67</span></div>
+          <p>The registered opposition parties: BNP and Jamaat-e-Islami. Jamaat is an Islamist party, but it belongs
+            here as street-level political opposition — not among the armed underground.</p>
+        </div>
+        <div class="def">
+          <div class="head"><span class="sw hollow"></span><b>Not present here: the mass Islamists</b><span
+              class="n">0</span></div>
+          <p>“Islamists” in the everyday Bangladeshi sense — mass, movement groups such as Hefazat-e-Islam — do not
+            appear in this targeted-killing subset at all.</p>
+        </div>
+        <div class="binary">
+          The source draws its own binary line through these four buckets: <b><span id="nExtremism">189</span></b> of
+          the dead were cast as <em>“extremists”</em> (the leftist and jihadist rows) and <b>67</b> as <em>“political
+            opposition”</em> (Jamaat and BNP). Of everyone branded an extremist and shot in “crossfire,” <b><span
+              id="pctLeftOfExtremism">86%</span></b> were alleged leftists.
+        </div>
+      </div>
+    </section>
 
     <!-- ===================== KEY FIGURES ===================== -->
     <section aria-label="Key figures">
@@ -961,13 +1110,13 @@
           <div class="big"><span id="kLeft">163</span><span class="pct" id="kLeftPct">64%</span></div>
           <div class="lab">alleged <b>leftist extremists</b> — the single largest group</div>
         </div>
-        <div class="stat" style="--st:var(--c-islamist)">
-          <div class="big"><span id="kIsl">62</span><span class="pct" id="kIslPct">24%</span></div>
-          <div class="lab"><b>Islamists &amp; jihadists</b> combined (Jamaat, JMB, and smaller outfits)</div>
+        <div class="stat" style="--st:var(--c-opposition)">
+          <div class="big"><span id="kOpp">67</span><span class="pct" id="kOppPct">26%</span></div>
+          <div class="lab"><b>mainstream opposition</b> — BNP and Jamaat-e-Islami</div>
         </div>
-        <div class="stat" style="--st:var(--c-bnp)">
-          <div class="big"><span id="kBnp">31</span><span class="pct" id="kBnpPct">12%</span></div>
-          <div class="lab"><b>BNP</b> / mainstream opposition</div>
+        <div class="stat" style="--st:var(--c-jihadist)">
+          <div class="big"><span id="kJihad">26</span><span class="pct" id="kJihadPct">10%</span></div>
+          <div class="lab">alleged <b>jihadists</b> — JMB and smaller armed outfits</div>
         </div>
       </div>
       <p class="stats-cap">Police, RAB and joint forces · killings recur across 2009–2019 in the records ·
@@ -979,12 +1128,13 @@
       <p class="sec-kicker">At a glance</p>
       <h2>Three families of victims</h2>
       <p class="sec-note">
-        Collapsing the seven recorded affiliations into three families makes the core comparison plain. The leftist
-        block alone is wider than the Islamist, jihadist and BNP blocks put together.
+        The seven recorded affiliations, collapsed into three families. The first two blocks — leftist and jihadist —
+        are the people the state branded “extremists” (189 of 256); the third is the registered opposition. The leftist
+        block alone is wider than the other two put together.
       </p>
       <div class="panel">
         <div class="stack" id="stackBar" role="img"
-          aria-label="Stacked bar: leftist extremists 64 percent, Islamists and jihadists 24 percent, BNP 12 percent">
+          aria-label="Stacked bar: leftist extremists 64 percent, jihadists 10 percent, mainstream opposition 26 percent">
         </div>
         <div class="stack-labels" id="stackLabels"></div>
       </div>
@@ -1014,8 +1164,9 @@
       <p class="sec-kicker">The detail</p>
       <h2>By the specific affiliation on record</h2>
       <p class="sec-note">
-        The same victims, split by the exact label each was given. Bars are coloured by family; five of the seven
-        groups are Islamist or jihadist, yet together they still fall well short of the leftist total.
+        The same victims, split by the exact label each was given and coloured by family. Four of the seven groups are
+        armed jihadist outfits (orange); Jamaat and BNP are counted as mainstream opposition (violet), not as
+        militants.
       </p>
       <div class="panel">
         <ul class="legend" id="legendBars"></ul>
@@ -1029,7 +1180,7 @@
       <h2>Not one purge, but a decade of them</h2>
       <p class="sec-note">
         These killings were not a single episode. They peak in 2009, ebb, and surge again in 2014–2016 — sustained
-        across years and governments-within-a-government. Hover a column for that year’s breakdown.
+        across years and shifting targets. Hover a column for that year’s breakdown.
       </p>
       <div class="panel">
         <ul class="legend" id="legendTl"></ul>
@@ -1054,8 +1205,8 @@
           <ul>
             <li><b>A distribution, within a subset.</b> Among the targeted-killing victims of 2009–April 2022 whom
               Netra News could tie to a party or an alleged extremist group, how those affiliations break down.</li>
-            <li><b>A lopsided one.</b> People labelled leftist-extremist outnumber those labelled Islamist or jihadist
-              by a wide margin — the opposite of the common assumption.</li>
+            <li><b>A lopsided one.</b> People labelled leftist-extremist outnumber the alleged jihadists many times
+              over, and outnumber the whole registered opposition too — the opposite of the common assumption.</li>
             <li><b>A sustained practice.</b> The killings recur across more than a decade and three arms of law
               enforcement — Police, RAB, and joint forces — not a single rogue episode.</li>
           </ul>
@@ -1072,10 +1223,29 @@
             <li><b>Cause.</b> A label is not evidence that the label is <em>why</em> someone was killed.</li>
             <li><b>The whole timeline.</b> It omits the 2001–2006 killings under a different government; adding them
               would likely widen the leftist share.</li>
-            <li><b>Anything beyond “crossfire.”</b> Every record carries the same official gunfight script; custodial
-              deaths and protest shootings are separate categories, not shown here.</li>
+            <li><b>Protest and custodial deaths.</b> Every record here is the official “crossfire” script; deaths in
+              street protests or in custody are separate categories, not shown — and those would likely fall more
+              heavily on the political opposition.</li>
           </ul>
         </div>
+      </div>
+
+      <div class="aside">
+        <h3>Why “targeted” is the sharper test</h3>
+        <p>
+          One caveat cuts the other way. This dataset counts only <em>targeted</em> killings — “crossfire” and staged
+          “gunfights.” It leaves out deaths during street protests and in custody. Had those been included, the
+          political opposition — BNP and Jamaat, whose activists filled the streets — would almost certainly make up a
+          much larger share, because that is who was out there to be shot at.
+        </p>
+        <p>
+          But that is exactly why the targeted killings deserve their own reckoning. A protest death can be chaos — a
+          bullet in a crowd, a panicked line of police. A “crossfire” is planned: a person is picked up, driven out,
+          and shot, with the cover story written in advance. <b>Targeted implies premeditation, and premeditation
+          implies a higher order of state intent and complicity.</b> That the deliberate, pre-planned killings fell
+          most heavily on alleged leftists is not cancelled out by the protest numbers. It is a separate, and sharper,
+          fact.
+        </p>
       </div>
     </section>
 
@@ -1087,8 +1257,7 @@
         Whatever these <span id="edLeft">163</span> people were alleged to be — party cadres, extortionists, members of
         a banned underground outfit — almost none of it was ever proven. A “crossfire” is not a verdict; it is the
         absence of one. If the state believed it had a case, the lawful answer was arrest, charge, and trial: the very
-        due process that Bangladeshis today rightly demand for Jamaat leaders and other Islamist victims of the same
-        era.
+        due process that Bangladeshis today rightly demand for Jamaat leaders and other victims of the same era.
       </p>
       <blockquote class="pull">Due process is not a reward for the sympathetic.</blockquote>
       <p>
@@ -1097,12 +1266,11 @@
         alleged communist and you have already loosened it for everyone else.
       </p>
       <p>
-        And yet the two groups have not been mourned on the same terms. The public conversation in Bangladesh has
-        become intensely attentive to Islamist and Jamaat victims of the Hasina years — understandably so. The alleged
-        leftist extremists — the largest single group in this dataset, more numerous than the Islamist and jihadist
-        victims combined — have drawn little of that same attention. Their deaths were tallied, archived, and largely
-        forgotten. Counting them here is not a claim that they were innocent. It is a claim that innocence was never the
-        state’s to decide with a gun.
+        And yet the dead have not been mourned on the same terms. The public conversation in Bangladesh has become
+        intensely attentive to Islamist and Jamaat victims of the Hasina years — understandably so. The alleged leftist
+        extremists — the largest single group in this dataset by a wide margin — have drawn little of that same
+        attention. Their deaths were tallied, archived, and largely forgotten. Counting them here is not a claim that
+        they were innocent. It is a claim that innocence was never the state’s to decide with a gun.
       </p>
     </section>
 
@@ -1145,8 +1313,9 @@
       </p>
       <p class="mono">
         Method: “identity” and “framed as” reproduce the source’s own labels — alleged, not adjudicated. Family
-        grouping: leftist extremist · Islamist &amp; jihadist (Jamaat, JMB, Hizb-ut Tahrir, Ansarullah Bangla Team,
-        HuJI-B) · BNP / mainstream opposition. Colours distinguish groups only; they carry no ideological meaning.
+        grouping: leftist extremist (underground armed left, not the mainstream/legal left) · jihadist (JMB, Hizb-ut
+        Tahrir, Ansarullah Bangla Team, HuJI-B) · mainstream opposition (BNP, Jamaat-e-Islami). Colours distinguish
+        groups only; they carry no ideological meaning.
       </p>
     </footer>
   </main>
@@ -1162,19 +1331,20 @@
     // Family mapping (identity label -> family key)
     const FAMILY_OF = {
       "Leftist extremist group": "left",
-      "Jamaat or affiliates": "islamist",
-      "JMB": "islamist",
-      "Hizb-ut Tahrir": "islamist",
-      "Ansarullah Bangla Team": "islamist",
-      "Harakat ul-Jihad-I-Islami/Bangladesh": "islamist",
-      "BNP or affiliates": "bnp"
+      "JMB": "jihadist",
+      "Hizb-ut Tahrir": "jihadist",
+      "Ansarullah Bangla Team": "jihadist",
+      "Harakat ul-Jihad-I-Islami/Bangladesh": "jihadist",
+      "Jamaat or affiliates": "opposition",
+      "BNP or affiliates": "opposition"
     };
     const FAMILY = {
       left: { label: "Alleged leftist extremists", color: "var(--c-left)" },
-      islamist: { label: "Islamists & jihadists", color: "var(--c-islamist)" },
-      bnp: { label: "BNP / mainstream opposition", color: "var(--c-bnp)" }
+      jihadist: { label: "Alleged jihadists", color: "var(--c-jihadist)" },
+      opposition: { label: "Mainstream opposition (BNP, Jamaat)", color: "var(--c-opposition)" }
     };
-    const FAM_ORDER = ["left", "islamist", "bnp"];
+    // Order: the two "extremism" families first, then the political opposition.
+    const FAM_ORDER = ["left", "jihadist", "opposition"];
 
     // Fallback aggregates if the CSV can't be fetched (keeps the story intact).
     const FALLBACK_GROUPS = [
@@ -1194,8 +1364,6 @@
     const esc = (s) => String(s ?? "")
       .replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
       .replaceAll('"', "&quot;").replaceAll("'", "&#039;");
-    const famColor = (f) => getComputedStyle(document.documentElement).getPropertyValue(
-      { left: "--c-left", islamist: "--c-islamist", bnp: "--c-bnp" }[f]).trim();
     const pct = (v, t) => t ? (v / t * 100) : 0;
     const fam = (identity) => FAMILY_OF[(identity || "").trim()] || "left";
 
@@ -1262,13 +1430,16 @@
 
     function renderNumbers(agg) {
       const T = agg.total;
-      const L = agg.byFamily.left || 0, I = agg.byFamily.islamist || 0, B = agg.byFamily.bnp || 0;
+      const L = agg.byFamily.left || 0, J = agg.byFamily.jihadist || 0, O = agg.byFamily.opposition || 0;
       const r0 = (x) => Math.round(x) + "%";
       setText("byRecords", T); setText("kTotal", T); setText("gridN", T); setText("cavN", T);
       setText("kLeft", L); setText("kLeftPct", r0(pct(L, T)));
-      setText("kIsl", I); setText("kIslPct", r0(pct(I, T)));
-      setText("kBnp", B); setText("kBnpPct", r0(pct(B, T)));
+      setText("kOpp", O); setText("kOppPct", r0(pct(O, T)));
+      setText("kJihad", J); setText("kJihadPct", r0(pct(J, T)));
       setText("edLeft", L);
+      const extremism = L + J;
+      setText("nExtremism", extremism);
+      setText("pctLeftOfExtremism", r0(pct(L, extremism)));
     }
 
     function renderStack(agg) {
@@ -1401,7 +1572,7 @@
         return;
       }
       const frag = document.createDocumentFragment();
-      rows.forEach((d, idx) => {
+      rows.forEach((d) => {
         const f = fam(d.identity);
         const tr = document.createElement("tr");
         tr.className = `data-row fam-${f}`;
@@ -1447,8 +1618,10 @@
     // ============================================================
     // AGGREGATION
     // ============================================================
+    function newFamCounts() { return { left: 0, jihadist: 0, opposition: 0 }; }
+
     function aggregateFromRows(rows) {
-      const byGroup = {}, byFamily = { left: 0, islamist: 0, bnp: 0 }, byYear = {};
+      const byGroup = {}, byFamily = newFamCounts(), byYear = {};
       rows.forEach(d => {
         const id = (d.identity || "").trim();
         const f = fam(id);
@@ -1456,7 +1629,7 @@
         byFamily[f] = (byFamily[f] || 0) + 1;
         const yr = parseYear(d.date);
         if (yr) {
-          byYear[yr] = byYear[yr] || { year: yr, total: 0, fam: { left: 0, islamist: 0, bnp: 0 } };
+          byYear[yr] = byYear[yr] || { year: yr, total: 0, fam: newFamCounts() };
           byYear[yr].total++; byYear[yr].fam[f]++;
         }
       });
@@ -1475,11 +1648,10 @@
     }
 
     function aggregateFallback() {
-      const byFamily = { left: 0, islamist: 0, bnp: 0 };
+      const byFamily = newFamCounts();
       FALLBACK_GROUPS.forEach(g => byFamily[fam(g.identity)] += g.n);
       const total = FALLBACK_GROUPS.reduce((s, g) => s + g.n, 0);
       const groups = FALLBACK_GROUPS.map(g => ({ identity: g.identity, n: g.n }));
-      // synthesize anonymous cells
       const cells = [];
       groups.forEach(g => { for (let i = 0; i < g.n; i++) cells.push({ name: "", identity: g.identity, family: fam(g.identity), year: null, location: "", dk: "" }); });
       cells.sort((a, b) => FAM_ORDER.indexOf(a.family) - FAM_ORDER.indexOf(b.family));
