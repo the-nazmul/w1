@@ -1,752 +1,1532 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Targeted Killings — Identity Breakdown</title>
+  <meta name="description"
+    content="Who were the ~256 'crossfire' victims (2009–2022) that Netra News could tie to a political or extremist affiliation? A data breakdown — and the case that every one of them was owed a trial." />
+  <meta name="author" content="Nazmul Ahasan" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical"
+    href="https://nazmulahasan.com/quick-blog/bangladesh-extrajudicial-killings-extremists-political/" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Targeted Killings — Identity Breakdown" />
+  <meta property="og:description"
+    content="A data breakdown of the 'crossfire' victims Netra News could tie to a political or extremist affiliation — and the case that every one of them was owed a trial." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
   <style>
+    /* ======================= THEME TOKENS ======================= */
+    :root {
+      color-scheme: light;
 
-/* ====== DROP-IN LIGHT THEME (minimal, editorial, no rounded corners) ====== */
+      --bg: #f5f0e8;
+      --paper: #faf7f2;
+      --paper-2: #f1ebe0;
+      --surface-viz: #fcfcfb;
+      /* near-white so the validated palette holds */
 
-:root{
-  --bg: #ffffff;
-  --surface: #ffffff;
-  --surface-2: #fbfbfc;
-  --text: #111827;         /* near-black */
-  --muted: #4b5563;        /* slate */
-  --muted-2: #6b7280;
-  --rule: #e5e7eb;         /* light rule */
-  --rule-2: #d1d5db;
+      --text: #1a1410;
+      --muted: #6b5e4e;
+      --faint: #9b8c72;
+      --rule: rgba(120, 100, 70, 0.20);
+      --rule-2: rgba(120, 100, 70, 0.34);
 
-  --focus: rgba(37, 99, 235, 0.35);
+      --accent: #8b1a1a;
+      /* editorial red — chrome only, never a data mark */
 
-  /* Connotation accents (subtle, print-friendly) */
-  --c-pos-bg: rgba(5, 150, 105, 0.08);
-  --c-pos-bd: rgba(5, 150, 105, 0.55);
+      /* Categorical data palette (validated: CVD ΔE ≈ 96) */
+      --c-left: #2a78d6;
+      /* alleged leftist extremists */
+      --c-islamist: #eb6834;
+      /* Islamists & jihadists */
+      --c-bnp: #4a3aa7;
+      /* BNP / mainstream opposition */
 
-  --c-neg-bg: rgba(220, 38, 38, 0.08);
-  --c-neg-bd: rgba(220, 38, 38, 0.55);
+      --wrap: 900px;
+      --pad: clamp(16px, 4vw, 34px);
+      --serif: "Cormorant Garamond", "Palatino Linotype", Georgia, serif;
+      --body: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+      --mono: "IBM Plex Mono", "Courier New", monospace;
+      --topbar-h: 46px;
+    }
 
-  --c-neu-bg: rgba(217, 119, 6, 0.10);
-  --c-neu-bd: rgba(217, 119, 6, 0.55);
+    @media (prefers-color-scheme: dark) {
+      :root:where(:not([data-theme="light"])) {
+        color-scheme: dark;
+        --bg: #12100c;
+        --paper: #1b1710;
+        --paper-2: #221d15;
+        --surface-viz: #1a1a19;
+        --text: #f2ece1;
+        --muted: #b8ab93;
+        --faint: #8b7f68;
+        --rule: rgba(210, 190, 155, 0.15);
+        --rule-2: rgba(210, 190, 155, 0.28);
+        --accent: #e0736b;
+        --c-left: #3987e5;
+        --c-islamist: #d95926;
+        --c-bnp: #9085e9;
+      }
+    }
 
-  --c-unk-bg: rgba(107, 114, 128, 0.08);
-  --c-unk-bd: rgba(107, 114, 128, 0.40);
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #12100c;
+      --paper: #1b1710;
+      --paper-2: #221d15;
+      --surface-viz: #1a1a19;
+      --text: #f2ece1;
+      --muted: #b8ab93;
+      --faint: #8b7f68;
+      --rule: rgba(210, 190, 155, 0.15);
+      --rule-2: rgba(210, 190, 155, 0.28);
+      --accent: #e0736b;
+      --c-left: #3987e5;
+      --c-islamist: #d95926;
+      --c-bnp: #9085e9;
+    }
 
-  --radius: 0px; /* hard edges */
-}
+    /* ======================= BASE ======================= */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
 
-*{ box-sizing: border-box; }
-html, body{ height: 100%; }
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+    }
 
-body{
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font: 14px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", sans-serif;
-  letter-spacing: 0.1px;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+    body {
+      margin: 0;
+      padding-top: var(--topbar-h);
+      background: var(--bg);
+      color: var(--text);
+      font: 400 16px/1.7 var(--body);
+      text-rendering: optimizeLegibility;
+    }
 
-.wrap{
-  min-height: 100%;
-  padding: clamp(12px, 2vw, 22px);
-  display: flex;
-}
+    /* Topbar */
+    .topbar {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 1000;
+      height: var(--topbar-h);
+      background: color-mix(in srgb, var(--paper) 92%, transparent);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--rule);
+    }
 
-.card{
-  width: 100%;
-  background: var(--surface);
-  border: 1px solid var(--rule);
-  border-radius: var(--radius);
-  box-shadow: 0 12px 28px rgba(17, 24, 39, 0.08);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  min-height: calc(100vh - 2 * clamp(12px, 2vw, 22px));
-}
+    .topbar__inner {
+      max-width: calc(var(--wrap) + var(--pad) * 2);
+      height: 100%;
+      margin: 0 auto;
+      padding: 0 var(--pad);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-/* Header / lede */
-.header{
-  padding: 18px 18px 14px;
-  border-bottom: 1px solid var(--rule);
-  background: var(--surface);
-}
+    .topbar__name {
+      color: var(--text);
+      text-decoration: none;
+      font: 600 0.98rem/1 var(--serif);
+      letter-spacing: 0.03em;
+    }
 
-.lede{
-  margin: 0;
-  color: var(--text);
-  max-width: 1100px;
-}
-.lede a{
-  color: inherit;
-  text-decoration: none;
-  border-bottom: 1px solid var(--rule-2);
-}
-.lede a:hover{ border-bottom-color: var(--text); }
+    .topbar__link {
+      color: var(--muted);
+      text-decoration: none;
+      font: 400 10px/1 var(--mono);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
 
-/* Viz area */
-.viz{
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 14px;
-  padding: 18px;
-  border-bottom: 1px solid var(--rule);
-  background: var(--surface-2);
-}
+    .topbar__link:hover {
+      color: var(--text);
+    }
 
-.panel{
-  background: var(--surface);
-  border: 1px solid var(--rule);
-  border-radius: var(--radius);
-  padding: 14px;
-  overflow: hidden;
-}
+    .progress {
+      position: fixed;
+      top: var(--topbar-h);
+      left: 0;
+      right: 0;
+      height: 2px;
+      z-index: 999;
+    }
 
-.panel h2{
-  margin: 0 0 10px;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: var(--muted);
-}
+    .progress__bar {
+      height: 100%;
+      width: 0;
+      background: var(--accent);
+      transition: width 60ms linear;
+    }
 
-.chart-wrap{
-  display: grid;
-  grid-template-rows: auto 1fr;
-  gap: 10px;
-  min-height: 260px;
-}
+    .page {
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: clamp(28px, 6vw, 60px) var(--pad) 100px;
+    }
 
-.chart-area{
-  position: relative;
-  width: 100%;
-  min-height: 260px;
-}
+    /* ======================= MASTHEAD ======================= */
+    .kicker {
+      margin: 0;
+      color: var(--muted);
+      font: 400 10.5px/1.4 var(--mono);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
 
-canvas{
-  width: 100% !important;
-  height: 260px !important;
-}
+    h1 {
+      margin: 12px 0 0;
+      font-family: var(--serif);
+      font-weight: 600;
+      font-style: italic;
+      font-size: clamp(2.3rem, 6vw, 3.7rem);
+      line-height: 1.04;
+      letter-spacing: 0.005em;
+    }
 
-/* Legend */
-.legend{
-  display: grid;
-  gap: 8px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+    .dek {
+      margin: 18px 0 0;
+      max-width: 62ch;
+      color: var(--muted);
+      font-size: 1.12rem;
+      line-height: 1.55;
+    }
 
-.legend li{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 9px 10px;
-  border-radius: var(--radius);
-  border: 1px solid var(--rule);
-  background: #fff;
-  color: var(--text);
-}
+    .byline {
+      margin: 18px 0 0;
+      color: var(--faint);
+      font: 400 11px/1.6 var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
 
-.legend .left{
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  min-width: 0;
-}
+    .byline a {
+      color: inherit;
+    }
 
-.swatch{
-  width: 10px;
-  height: 10px;
-  border-radius: var(--radius);
-  border: 1px solid var(--rule-2);
-  flex: 0 0 10px;
-}
+    .rule {
+      height: 1px;
+      background: var(--rule);
+      border: 0;
+      margin: 34px 0;
+    }
 
-.legend .label{
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 52ch;
-}
+    /* ======================= PROSE ======================= */
+    .prose p {
+      margin: 0 0 18px;
+      max-width: 68ch;
+    }
 
-.legend .nums{
-  color: var(--muted-2);
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
+    .prose p:last-child {
+      margin-bottom: 0;
+    }
 
-/* Toolbar + search */
-.toolbar{
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  padding: 12px 18px;
-  background: var(--surface);
-  border-bottom: 1px solid var(--rule);
-}
+    .prose a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule-2);
+    }
 
-.toolbar h1{
-  margin: 0;
-  font-size: 12px;
-  font-weight: 750;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
+    .prose a:hover {
+      border-bottom-color: var(--text);
+    }
 
-.toolbar .spacer{ flex: 1; }
+    .lead-in::first-letter {
+      float: left;
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 3.4rem;
+      line-height: 0.8;
+      padding: 6px 10px 0 0;
+      color: var(--accent);
+    }
 
-.search{
-  width: min(520px, 70vw);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #fff;
-  border: 1px solid var(--rule-2);
-  border-radius: 999px; /* keep as a pill? set to 0 if you want strict hard edges everywhere */
-  padding: 8px 12px;
-}
+    strong {
+      font-weight: 600;
+    }
 
-.search input{
-  width: 100%;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  color: var(--text);
-  font-size: 14px;
-}
+    em.q {
+      font-style: italic;
+      color: var(--muted);
+    }
 
-.search input::placeholder{ color: #9ca3af; }
+    /* ======================= SECTION HEADINGS ======================= */
+    section {
+      margin: 52px 0 0;
+    }
 
-/* Table */
-.table-wrap{
-  width: 100%;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  flex: 1;
-  background: var(--surface);
-}
+    .sec-kicker {
+      margin: 0 0 6px;
+      color: var(--faint);
+      font: 400 10px/1.4 var(--mono);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
 
-table{
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  min-width: 860px;
-}
+    h2 {
+      margin: 0 0 6px;
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      line-height: 1.12;
+    }
 
-thead th{
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  text-align: left;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-  background: #fff;
-  border-bottom: 1px solid var(--rule-2);
-  padding: 12px 12px;
-  white-space: nowrap;
-}
+    h3 {
+      margin: 0 0 10px;
+      font-family: var(--body);
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
 
-tbody td{
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--rule);
-  vertical-align: top;
-  color: var(--text);
-}
+    .sec-note {
+      margin: 0 0 22px;
+      max-width: 66ch;
+      color: var(--muted);
+      font-size: 1rem;
+    }
 
-tbody tr.data-row{
-  background: #fff;
-}
+    /* ======================= STAT TILES ======================= */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 22px 0 8px;
+    }
 
-tbody tr.data-row:hover{
-  background: #fafafa;
-}
+    .stat {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-top: 3px solid var(--st, var(--rule-2));
+      padding: 16px 16px 14px;
+    }
 
-/* Connotation markers */
-tr.c-pos{ box-shadow: inset 3px 0 0 var(--c-pos-bd); }
-tr.c-neg{ box-shadow: inset 3px 0 0 var(--c-neg-bd); }
-tr.c-neu{ box-shadow: inset 3px 0 0 var(--c-neu-bd); }
-tr.c-unk{ box-shadow: inset 3px 0 0 var(--c-unk-bd); }
+    .stat .big {
+      font: 400 2.15rem/1 var(--body);
+      letter-spacing: -0.01em;
+    }
 
-tr.c-pos td.name-cell .pill{ background: var(--c-pos-bg); border-color: rgba(5,150,105,0.25); }
-tr.c-neg td.name-cell .pill{ background: var(--c-neg-bg); border-color: rgba(220,38,38,0.25); }
-tr.c-neu td.name-cell .pill{ background: var(--c-neu-bg); border-color: rgba(217,119,6,0.25); }
-tr.c-unk td.name-cell .pill{ background: var(--c-unk-bg); border-color: rgba(107,114,128,0.20); }
+    .stat .pct {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-left: 4px;
+    }
 
-/* Name button */
-.name-btn{
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-align: left;
-  background: none;
-  border: 0;
-  color: inherit;
-  padding: 0;
-  cursor: pointer;
-  font: inherit;
-}
+    .stat .lab {
+      margin-top: 8px;
+      font-size: 0.82rem;
+      line-height: 1.35;
+      color: var(--muted);
+    }
 
-.name-btn:focus-visible{
-  outline: 3px solid var(--focus);
-  outline-offset: 2px;
-  border-radius: var(--radius);
-}
+    .stats-cap {
+      margin: 6px 0 0;
+      color: var(--faint);
+      font: 400 11px/1.5 var(--mono);
+      letter-spacing: 0.04em;
+    }
 
-.chev{
-  width: 18px;
-  height: 18px;
-  flex: 0 0 18px;
-  display: inline-grid;
-  place-items: center;
-  border-radius: var(--radius);
-  background: #fff;
-  border: 1px solid var(--rule-2);
-}
+    /* ======================= PANEL ======================= */
+    .panel {
+      background: var(--surface-viz);
+      border: 1px solid var(--rule);
+      padding: clamp(16px, 3vw, 24px);
+      margin-top: 18px;
+    }
 
-.chev svg{ transition: transform 160ms ease; }
-tr[data-open="true"] .chev svg{ transform: rotate(90deg); }
+    /* Legend (shared) */
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      margin: 0 0 18px;
+      padding: 0;
+      list-style: none;
+    }
 
-.pill{
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 5px 9px;
-  border-radius: var(--radius);
-  border: 1px solid var(--rule);
-  background: #fff;
-  max-width: 100%;
-}
+    .legend li {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      color: var(--text);
+    }
 
-.pill strong{
-  font-weight: 700;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 58ch;
-  display: inline-block;
-  vertical-align: bottom;
-}
+    .legend .sw {
+      width: 12px;
+      height: 12px;
+      flex: 0 0 12px;
+      border-radius: 2px;
+    }
 
-.pill small{
-  color: var(--muted-2);
-  font-size: 12px;
-  white-space: nowrap;
-}
+    .legend .n {
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+    }
 
-.muted{ color: var(--muted); }
-.nowrap{ white-space: nowrap; }
+    /* ---------- Headline 100% stacked bar ---------- */
+    .stack {
+      display: flex;
+      width: 100%;
+      height: 46px;
+      gap: 2px;
+      /* 2px surface gap between fills */
+    }
 
-/* Expanded row */
-tr.expand-row td{
-  padding: 0;
-  border-bottom: 1px solid var(--rule-2);
-  background: var(--surface-2);
-}
+    .stack .seg {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font: 500 0.9rem/1 var(--mono);
+      min-width: 2px;
+      transition: filter 140ms ease;
+    }
 
-.expand{
-  padding: 12px 12px 14px 42px;
-  display: grid;
-  gap: 10px;
-}
+    .stack .seg:hover {
+      filter: brightness(1.08);
+    }
 
-.expand .desc{
-  color: var(--text);
-  white-space: pre-wrap;
-}
+    .stack .seg small {
+      opacity: 0.85;
+      font-weight: 400;
+      margin-left: 6px;
+    }
 
-.expand .meta{
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  align-items: center;
-  color: var(--muted);
-  font-size: 13px;
-}
+    .stack-labels {
+      display: flex;
+      gap: 2px;
+      margin-top: 8px;
+    }
 
-.expand a{
-  color: #1d4ed8;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(29,78,216,0.25);
-}
-.expand a:hover{ border-bottom-color: rgba(29,78,216,0.60); }
+    .stack-labels .sl {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.3;
+      padding-right: 10px;
+    }
 
-/* Responsive */
-@media (max-width: 980px){
-  .viz{ grid-template-columns: 1fr; }
-  canvas{ height: 300px !important; }
-}
-@media (max-width: 760px){
-  table{ min-width: 740px; }
-  .pill strong{ max-width: 34ch; }
-}
+    .stack-labels .sl b {
+      display: block;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 0.82rem;
+    }
 
-/* If you want ZERO rounding everywhere, uncomment this:
-.search{ border-radius: 0; }
-*/
+    /* ---------- Ranked bars ---------- */
+    .bars {
+      display: grid;
+      gap: 12px;
+    }
 
+    .bar-row {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .bar-row .name {
+      font-size: 0.88rem;
+      text-align: right;
+      color: var(--text);
+      line-height: 1.25;
+    }
+
+    .bar-track {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bar-fill {
+      height: 22px;
+      border-radius: 0 4px 4px 0;
+      /* rounded data-end, anchored to baseline */
+      min-width: 2px;
+    }
+
+    .bar-val {
+      font: 500 0.82rem/1 var(--mono);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* ---------- Unit grid ---------- */
+    .grid-wrap {
+      margin-top: 4px;
+    }
+
+    .unit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(15px, 1fr));
+      gap: 3px;
+    }
+
+    .cell {
+      aspect-ratio: 1 / 1;
+      border-radius: 2px;
+      opacity: 0.92;
+      cursor: default;
+      transition: transform 90ms ease, opacity 90ms ease, outline-color 90ms ease;
+      outline: 2px solid transparent;
+      outline-offset: 1px;
+    }
+
+    .cell:hover {
+      opacity: 1;
+      transform: scale(1.28);
+      outline-color: var(--text);
+      z-index: 3;
+      position: relative;
+    }
+
+    .grid-cap {
+      margin: 14px 0 0;
+      color: var(--faint);
+      font: 400 11px/1.5 var(--mono);
+      letter-spacing: 0.03em;
+    }
+
+    /* ---------- Timeline ---------- */
+    .timeline {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .tl-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: clamp(4px, 1.4vw, 12px);
+      height: 200px;
+      padding-top: 8px;
+      border-bottom: 1px solid var(--rule-2);
+    }
+
+    .tl-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 2px;
+      justify-content: flex-start;
+      height: 100%;
+      position: relative;
+    }
+
+    .tl-col .fill {
+      width: 100%;
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 2px;
+      transition: filter 140ms ease;
+    }
+
+    .tl-col:hover .fill {
+      filter: brightness(1.1);
+    }
+
+    .tl-seg {
+      width: 100%;
+      min-height: 0;
+    }
+
+    .tl-labels {
+      display: flex;
+      gap: clamp(4px, 1.4vw, 12px);
+    }
+
+    .tl-labels span {
+      flex: 1;
+      text-align: center;
+      font: 400 10px/1.3 var(--mono);
+      color: var(--faint);
+      letter-spacing: 0.02em;
+    }
+
+    /* ---------- Tooltip ---------- */
+    .tip {
+      position: fixed;
+      z-index: 2000;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 100ms ease, transform 100ms ease;
+      background: var(--text);
+      color: var(--bg);
+      padding: 8px 11px;
+      max-width: 260px;
+      font-size: 0.8rem;
+      line-height: 1.4;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+    }
+
+    .tip.on {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tip b {
+      font-weight: 600;
+    }
+
+    .tip .t-meta {
+      opacity: 0.72;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      margin-top: 3px;
+    }
+
+    /* ======================= CAVEAT COLUMNS ======================= */
+    .twocol {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 8px;
+    }
+
+    .cav {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 18px 20px 20px;
+    }
+
+    .cav.show {
+      border-left: 3px solid var(--c-left);
+    }
+
+    .cav.hide {
+      border-left: 3px solid var(--accent);
+    }
+
+    .cav ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .cav li {
+      position: relative;
+      padding-left: 20px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .cav li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.62em;
+      width: 8px;
+      height: 8px;
+      border: 1px solid currentColor;
+    }
+
+    .cav.show li::before {
+      background: var(--c-left);
+      border-color: var(--c-left);
+    }
+
+    .cav.hide li::before {
+      background: transparent;
+      border-color: var(--accent);
+    }
+
+    .cav li b {
+      font-weight: 600;
+    }
+
+    /* ======================= PULL / EDITORIAL ======================= */
+    .editorial p {
+      font-size: 1.08rem;
+      line-height: 1.66;
+      max-width: 66ch;
+    }
+
+    .pull {
+      margin: 26px 0;
+      padding: 4px 0 4px 22px;
+      border-left: 3px solid var(--accent);
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(1.4rem, 3.4vw, 1.9rem);
+      line-height: 1.28;
+      max-width: 24ch;
+    }
+
+    /* ======================= TABLE ======================= */
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 18px 0 0;
+    }
+
+    .search {
+      flex: 1;
+      min-width: 240px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface-viz);
+      border: 1px solid var(--rule-2);
+      padding: 9px 13px;
+    }
+
+    .search input {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--text);
+      font: 400 0.95rem var(--body);
+    }
+
+    .search input::placeholder {
+      color: var(--faint);
+    }
+
+    .count {
+      font: 400 11px/1 var(--mono);
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .table-wrap {
+      margin-top: 14px;
+      border: 1px solid var(--rule);
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      background: var(--surface-viz);
+      max-height: 640px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      min-width: 820px;
+    }
+
+    thead th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      text-align: left;
+      font: 600 10.5px/1 var(--mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--paper);
+      border-bottom: 1px solid var(--rule-2);
+      padding: 12px;
+      white-space: nowrap;
+    }
+
+    tbody td {
+      padding: 11px 12px;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+      font-size: 0.9rem;
+    }
+
+    tbody tr.data-row:hover {
+      background: color-mix(in srgb, var(--paper) 60%, transparent);
+    }
+
+    tr.fam-left {
+      box-shadow: inset 3px 0 0 var(--c-left);
+    }
+
+    tr.fam-islamist {
+      box-shadow: inset 3px 0 0 var(--c-islamist);
+    }
+
+    tr.fam-bnp {
+      box-shadow: inset 3px 0 0 var(--c-bnp);
+    }
+
+    .name-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-align: left;
+      background: none;
+      border: 0;
+      color: inherit;
+      padding: 0;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .chev {
+      flex: 0 0 16px;
+      width: 16px;
+      height: 16px;
+      display: inline-grid;
+      place-items: center;
+      color: var(--muted);
+    }
+
+    .chev svg {
+      transition: transform 160ms ease;
+    }
+
+    tr[data-open="true"] .chev svg {
+      transform: rotate(90deg);
+    }
+
+    .nm {
+      font-weight: 600;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-top: 3px;
+      font: 400 10px/1.4 var(--mono);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .nowrap {
+      white-space: nowrap;
+    }
+
+    tr.expand-row td {
+      padding: 0;
+      background: var(--paper);
+      border-bottom: 1px solid var(--rule-2);
+    }
+
+    .expand {
+      padding: 12px 12px 16px 40px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .expand .desc {
+      white-space: pre-wrap;
+      font-size: 0.92rem;
+    }
+
+    .expand .meta {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .expand a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    }
+
+    /* ======================= FOOTER ======================= */
+    .foot {
+      margin-top: 60px;
+      padding-top: 22px;
+      border-top: 1px solid var(--rule);
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .foot a {
+      color: inherit;
+    }
+
+    .foot .mono {
+      font: 400 11px/1.7 var(--mono);
+      letter-spacing: 0.04em;
+      color: var(--faint);
+      margin-top: 12px;
+    }
+
+    /* ======================= RESPONSIVE ======================= */
+    @media (max-width: 720px) {
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .twocol {
+        grid-template-columns: 1fr;
+      }
+
+      .bar-row {
+        grid-template-columns: 130px 1fr;
+        gap: 10px;
+      }
+
+      .bar-row .name {
+        font-size: 0.8rem;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <div class="card">
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a class="topbar__name" href="https://nazmulahasan.com/quick-blog/">Nazmul's Quick Blog</a>
+      <a class="topbar__link" href="https://nazmulahasan.com/">Home</a>
+    </div>
+  </header>
+  <div class="progress" aria-hidden="true">
+    <div class="progress__bar" id="progressBar"></div>
+  </div>
 
-      <div class="header">
-        <p class="lede">
-  This mini-project draws on the dataset behind Netra News’s <a href="https://interactive.netra.news/extrajudicial-killings-bangladesh/" target="_blank" rel="noopener noreferrer"><strong>Body Count</strong></a> investigation (2023). It focuses on people killed in targeted, extrajudicial executions—distinct from protest-related shootings or deaths in custody—and asks how many of those victims were identified as having a political affiliation or an alleged link to extremist groups. The pie chart below shows the breakdown by group; the table that follows provides the underlying records, descriptions and sources.
-  <br><br>
-  From 2009 through April 2022, during Sheikh Hasina’s rule, Netra News identified roughly 2,600 deaths involving law enforcement across three categories: targeted killings, lethal force used during protests, and custodial torture. About 2,000 of those were classified as “crossfire” killings or other targeted, premeditated killings. Among that subset, roughly 260 victims were affiliated with political parties or political and religious extremist groups; the rest were largely crime- or drug-related executions—what many Bangladeshis recognise as the classic pattern of extrajudicial killings.
-  <br><br>
-  The findings suggest that, contrary to popular belief, alleged leftist extremists—people reportedly linked to groups such as the Purba Bangla Sarbahara Party—were more affected during Hasina’s regime than political Islamists such as Jamaat-e-Islami or jihadist groups such as JMB combined, when it came to targeted killings. This dataset does not include the hundreds of extrajudicial killings that occurred under Khaleda Zia’s government from 2001 to 2006. If those years were added, the imbalance between alleged leftist extremists and politically affiliated victims would likely appear even more heavily skewed towards leftist groups.
-</p>
+  <main class="page">
+    <!-- ===================== MASTHEAD ===================== -->
+    <p class="kicker">Bangladesh · Extrajudicial killings · Data</p>
+    <h1>Targeted Killings — Identity Breakdown</h1>
+    <p class="dek">
+      Of the people killed in so-called “crossfire” during the Hasina years, who was tied to a political party
+      or an alleged extremist group — and who has the country actually remembered?
+    </p>
+    <p class="byline">
+      Data: Netra News, <a href="https://interactive.netra.news/extrajudicial-killings-bangladesh/" target="_blank"
+        rel="noopener noreferrer">Body Count</a> (2023) · 2009–April 2022 · <span id="byRecords">256</span> records
+    </p>
 
-      </div>
+    <hr class="rule" />
 
-      <section class="viz" aria-label="Pie chart and legend">
-        <div class="panel">
-          <h2>Breakdown of identified affiliations (counts)</h2>
-          <div class="chart-wrap">
-            <div class="chart-area">
-              <canvas id="pie" aria-label="Pie chart" role="img"></canvas>
-            </div>
+    <!-- ===================== LEDE ===================== -->
+    <div class="prose">
+      <p class="lead-in">
+        This mini-project draws on the dataset behind Netra News’s
+        <a href="https://interactive.netra.news/extrajudicial-killings-bangladesh/" target="_blank"
+          rel="noopener noreferrer"><strong>Body Count</strong></a> investigation (2023). It looks only at people
+        killed in targeted, extrajudicial executions — distinct from protest-related shootings or deaths in custody —
+        and asks a narrow question: of those victims, how many were identified as having a political affiliation or an
+        alleged link to an extremist group, and which groups?
+      </p>
+      <p>
+        From 2009 through April 2022, under Sheikh Hasina’s government, Netra News catalogued roughly
+        <strong>2,600</strong> deaths involving law enforcement across three categories: targeted killings, lethal
+        force during protests, and custodial torture. About <strong>2,000</strong> were classified as “crossfire” or
+        other premeditated, targeted killings. Within that subset, only around <strong>260</strong> victims could be
+        tied to a political party or a political or religious extremist group — the rest were largely framed as crime-
+        or drug-related. This page is about that political and extremist sliver.
+      </p>
+      <p>
+        The pattern it reveals runs against the popular assumption. Among these labelled victims, alleged
+        <strong>leftist extremists</strong> — people reportedly linked to underground outfits such as the Purba Bangla
+        Sarbahara Party — outnumber alleged political Islamists (Jamaat-e-Islami) and jihadists (JMB and others)
+        <em class="q">combined</em>. And because this dataset stops at Hasina’s tenure, it leaves out the extrajudicial
+        killings of 2001–2006 under a previous government, which would likely tilt the balance further toward the left.
+      </p>
+    </div>
+
+    <!-- ===================== KEY FIGURES ===================== -->
+    <section aria-label="Key figures">
+      <p class="sec-kicker">The subset, in numbers</p>
+      <div class="stats" id="stats">
+        <div class="stat" style="--st:var(--rule-2)">
+          <div class="big" id="kTotal">256</div>
+          <div class="lab">victims with an identified political or extremist affiliation, all recorded as “crossfire”
           </div>
         </div>
-
-        <div class="panel">
-          <h2>Groups</h2>
-          <ul id="legend" class="legend" aria-label="Chart legend"></ul>
+        <div class="stat" style="--st:var(--c-left)">
+          <div class="big"><span id="kLeft">163</span><span class="pct" id="kLeftPct">64%</span></div>
+          <div class="lab">alleged <b>leftist extremists</b> — the single largest group</div>
         </div>
-      </section>
-
-      <div class="toolbar">
-        <h1>Victims</h1>
-        <div class="spacer"></div>
-        <div class="search" role="search">
-          <span class="muted" aria-hidden="true">⌕</span>
-          <input id="q" type="search" placeholder="Search name, identity, type, location…" autocomplete="off" />
+        <div class="stat" style="--st:var(--c-islamist)">
+          <div class="big"><span id="kIsl">62</span><span class="pct" id="kIslPct">24%</span></div>
+          <div class="lab"><b>Islamists &amp; jihadists</b> combined (Jamaat, JMB, and smaller outfits)</div>
+        </div>
+        <div class="stat" style="--st:var(--c-bnp)">
+          <div class="big"><span id="kBnp">31</span><span class="pct" id="kBnpPct">12%</span></div>
+          <div class="lab"><b>BNP</b> / mainstream opposition</div>
         </div>
       </div>
+      <p class="stats-cap">Police, RAB and joint forces · killings recur across 2009–2019 in the records ·
+        percentages are of the labelled subset, not of all extrajudicial killings.</p>
+    </section>
 
+    <!-- ===================== HEADLINE STACKED BAR ===================== -->
+    <section aria-label="Overall breakdown by group family">
+      <p class="sec-kicker">At a glance</p>
+      <h2>Three families of victims</h2>
+      <p class="sec-note">
+        Collapsing the seven recorded affiliations into three families makes the core comparison plain. The leftist
+        block alone is wider than the Islamist, jihadist and BNP blocks put together.
+      </p>
+      <div class="panel">
+        <div class="stack" id="stackBar" role="img"
+          aria-label="Stacked bar: leftist extremists 64 percent, Islamists and jihadists 24 percent, BNP 12 percent">
+        </div>
+        <div class="stack-labels" id="stackLabels"></div>
+      </div>
+    </section>
+
+    <!-- ===================== UNIT GRID ===================== -->
+    <section aria-label="Each square is one person">
+      <p class="sec-kicker">Human scale</p>
+      <h2>Each square is one person</h2>
+      <p class="sec-note">
+        Every one of the <span id="gridN">256</span> squares below is a named individual in the dataset, coloured by
+        the affiliation attributed to them. Hover a square to see who. The blue field is not an abstraction — it is the
+        group that has drawn the least public grief.
+      </p>
+      <div class="panel">
+        <ul class="legend" id="legendGrid"></ul>
+        <div class="grid-wrap">
+          <div class="unit-grid" id="unitGrid" role="list" aria-label="One cell per victim"></div>
+        </div>
+        <p class="grid-cap">Squares are grouped by family, then ordered by date. Names, dates and sources for every
+          square appear in the full table below.</p>
+      </div>
+    </section>
+
+    <!-- ===================== RANKED BARS ===================== -->
+    <section aria-label="Breakdown by specific affiliation">
+      <p class="sec-kicker">The detail</p>
+      <h2>By the specific affiliation on record</h2>
+      <p class="sec-note">
+        The same victims, split by the exact label each was given. Bars are coloured by family; five of the seven
+        groups are Islamist or jihadist, yet together they still fall well short of the leftist total.
+      </p>
+      <div class="panel">
+        <ul class="legend" id="legendBars"></ul>
+        <div class="bars" id="bars"></div>
+      </div>
+    </section>
+
+    <!-- ===================== TIMELINE ===================== -->
+    <section aria-label="Killings over time">
+      <p class="sec-kicker">Over time</p>
+      <h2>Not one purge, but a decade of them</h2>
+      <p class="sec-note">
+        These killings were not a single episode. They peak in 2009, ebb, and surge again in 2014–2016 — sustained
+        across years and governments-within-a-government. Hover a column for that year’s breakdown.
+      </p>
+      <div class="panel">
+        <ul class="legend" id="legendTl"></ul>
+        <div class="timeline">
+          <div class="tl-chart" id="tlChart"></div>
+          <div class="tl-labels" id="tlLabels"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== WHAT IT SHOWS / DOES NOT ===================== -->
+    <section aria-label="What the data does and does not show">
+      <p class="sec-kicker">Read it carefully</p>
+      <h2>What this data does — and does not — show</h2>
+      <p class="sec-note">
+        A chart like this is easy to misread as a scoreboard. It is not one. Here is what these
+        <span id="cavN">256</span> records can and cannot support.
+      </p>
+      <div class="twocol">
+        <div class="cav show">
+          <h3>What it shows</h3>
+          <ul>
+            <li><b>A distribution, within a subset.</b> Among the targeted-killing victims of 2009–April 2022 whom
+              Netra News could tie to a party or an alleged extremist group, how those affiliations break down.</li>
+            <li><b>A lopsided one.</b> People labelled leftist-extremist outnumber those labelled Islamist or jihadist
+              by a wide margin — the opposite of the common assumption.</li>
+            <li><b>A sustained practice.</b> The killings recur across more than a decade and three arms of law
+              enforcement — Police, RAB, and joint forces — not a single rogue episode.</li>
+          </ul>
+        </div>
+        <div class="cav hide">
+          <h3>What it does <em>not</em> show</h3>
+          <ul>
+            <li><b>The full toll.</b> These are a labelled slice of ~2,000 targeted killings; most victims were tied to
+              crime or drugs, not politics. This is not a count of all extrajudicial killings.</li>
+            <li><b>Proven guilt — or even membership.</b> “Identity” is how each person was characterised in police
+              accounts and press reports: alleged, not adjudicated. No court ever tested the label, because the person
+              was already dead. In the source, <b>189</b> were cast as “extremists” and <b>67</b> as “political
+              opposition” — a line drawn by the state and the press, not a trial.</li>
+            <li><b>Cause.</b> A label is not evidence that the label is <em>why</em> someone was killed.</li>
+            <li><b>The whole timeline.</b> It omits the 2001–2006 killings under a different government; adding them
+              would likely widen the leftist share.</li>
+            <li><b>Anything beyond “crossfire.”</b> Every record carries the same official gunfight script; custodial
+              deaths and protest shootings are separate categories, not shown here.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== EDITORIAL ===================== -->
+    <section class="editorial" aria-label="Everyone here was owed a trial">
+      <p class="sec-kicker">The point</p>
+      <h2>Everyone here was owed a trial</h2>
+      <p>
+        Whatever these <span id="edLeft">163</span> people were alleged to be — party cadres, extortionists, members of
+        a banned underground outfit — almost none of it was ever proven. A “crossfire” is not a verdict; it is the
+        absence of one. If the state believed it had a case, the lawful answer was arrest, charge, and trial: the very
+        due process that Bangladeshis today rightly demand for Jamaat leaders and other Islamist victims of the same
+        era.
+      </p>
+      <blockquote class="pull">Due process is not a reward for the sympathetic.</blockquote>
+      <p>
+        The right to a fair trial is owed to the suspect precisely <em>because</em> nothing has yet been proven. It
+        does not depend on whether we like the accused, share their politics, or believe the charge. Strip it from the
+        alleged communist and you have already loosened it for everyone else.
+      </p>
+      <p>
+        And yet the two groups have not been mourned on the same terms. The public conversation in Bangladesh has
+        become intensely attentive to Islamist and Jamaat victims of the Hasina years — understandably so. The alleged
+        leftist extremists — the largest single group in this dataset, more numerous than the Islamist and jihadist
+        victims combined — have drawn little of that same attention. Their deaths were tallied, archived, and largely
+        forgotten. Counting them here is not a claim that they were innocent. It is a claim that innocence was never the
+        state’s to decide with a gun.
+      </p>
+    </section>
+
+    <!-- ===================== TABLE ===================== -->
+    <section aria-label="The records">
+      <p class="sec-kicker">Every square, named</p>
+      <h2>The records</h2>
+      <p class="sec-note">Search by name, affiliation, agency or location. Click a row to read the recorded account and
+        open its source.</p>
+      <div class="toolbar" role="search">
+        <div class="search">
+          <span class="muted" aria-hidden="true">⌕</span>
+          <input id="q" type="search" placeholder="Search name, identity, agency, location…" autocomplete="off" />
+        </div>
+        <span class="count" id="rowCount"></span>
+      </div>
       <div class="table-wrap" aria-live="polite">
         <table id="victimsTable" aria-label="Victims table">
           <thead>
             <tr>
-              <th style="width: 34%;">Name</th>
-              <th style="width: 14%;">Identity</th>
-              <th style="width: 14%;">Type</th>
-              <th style="width: 14%;">Operation by</th>
-              <th style="width: 12%;">Date</th>
-              <th style="width: 12%;">Location</th>
+              <th style="width:32%;">Name / affiliation</th>
+              <th style="width:16%;">Framed as</th>
+              <th style="width:14%;">Operation by</th>
+              <th style="width:12%;">Date</th>
+              <th style="width:16%;">Location</th>
             </tr>
           </thead>
-          <tbody id="tbody">
-            <!-- rows injected by JS -->
-          </tbody>
+          <tbody id="tbody"></tbody>
         </table>
       </div>
+    </section>
 
-    </div>
-  </div>
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="foot">
+      <p>
+        Source: Netra News, <a href="https://interactive.netra.news/extrajudicial-killings-bangladesh/" target="_blank"
+          rel="noopener noreferrer">Body Count</a> (2023). This page re-analyses the political and extremist subset of
+        that investigation; all counts are computed live from the underlying records
+        (<a href="./ejk.csv">ejk.csv</a>).
+      </p>
+      <p class="mono">
+        Method: “identity” and “framed as” reproduce the source’s own labels — alleged, not adjudicated. Family
+        grouping: leftist extremist · Islamist &amp; jihadist (Jamaat, JMB, Hizb-ut Tahrir, Ansarullah Bangla Team,
+        HuJI-B) · BNP / mainstream opposition. Colours distinguish groups only; they carry no ideological meaning.
+      </p>
+    </footer>
+  </main>
 
-  <!-- Chart.js (no fixed colours in CSS; JS builds palette dynamically) -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <div class="tip" id="tip" role="status" aria-live="polite"></div>
 
   <script>
-    // ====== CONFIG ======
-    const CSV_URL = "./ejk.csv"; // <-- your file
+    // ============================================================
+    // CONFIG
+    // ============================================================
+    const CSV_URL = "./ejk.csv";
 
-    // Data for the pie chart (your provided counts)
-    const PIE_DATA = [
-      { label: "Ansarullah Bangla Team", value: 1 },
-      { label: "BNP or affiliates", value: 31 },
-      { label: "Harakat ul-Jihad-I-Islami/Bangladesh", value: 1 },
-      { label: "Hizb-ut Tahrir", value: 1 },
-      { label: "Jamaat or affiliates", value: 36 },
-      { label: "JMB", value: 23 },
-      { label: "Leftist extremist group", value: 163 },
+    // Family mapping (identity label -> family key)
+    const FAMILY_OF = {
+      "Leftist extremist group": "left",
+      "Jamaat or affiliates": "islamist",
+      "JMB": "islamist",
+      "Hizb-ut Tahrir": "islamist",
+      "Ansarullah Bangla Team": "islamist",
+      "Harakat ul-Jihad-I-Islami/Bangladesh": "islamist",
+      "BNP or affiliates": "bnp"
+    };
+    const FAMILY = {
+      left: { label: "Alleged leftist extremists", color: "var(--c-left)" },
+      islamist: { label: "Islamists & jihadists", color: "var(--c-islamist)" },
+      bnp: { label: "BNP / mainstream opposition", color: "var(--c-bnp)" }
+    };
+    const FAM_ORDER = ["left", "islamist", "bnp"];
+
+    // Fallback aggregates if the CSV can't be fetched (keeps the story intact).
+    const FALLBACK_GROUPS = [
+      { identity: "Leftist extremist group", n: 163 },
+      { identity: "Jamaat or affiliates", n: 36 },
+      { identity: "BNP or affiliates", n: 31 },
+      { identity: "JMB", n: 23 },
+      { identity: "Hizb-ut Tahrir", n: 1 },
+      { identity: "Ansarullah Bangla Team", n: 1 },
+      { identity: "Harakat ul-Jihad-I-Islami/Bangladesh", n: 1 }
     ];
 
-    // ====== CSV PARSER (handles commas + quotes) ======
+    // ============================================================
+    // HELPERS
+    // ============================================================
+    const $ = (id) => document.getElementById(id);
+    const esc = (s) => String(s ?? "")
+      .replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;").replaceAll("'", "&#039;");
+    const famColor = (f) => getComputedStyle(document.documentElement).getPropertyValue(
+      { left: "--c-left", islamist: "--c-islamist", bnp: "--c-bnp" }[f]).trim();
+    const pct = (v, t) => t ? (v / t * 100) : 0;
+    const fam = (identity) => FAMILY_OF[(identity || "").trim()] || "left";
+
+    function parseYear(d) {
+      const m = String(d || "").match(/(19|20)\d{2}/);
+      return m ? +m[0] : null;
+    }
+    // dates are M/D/YYYY -> sortable key
+    function dateKey(d) {
+      const p = String(d || "").split("/");
+      if (p.length === 3) {
+        const mm = p[0].padStart(2, "0"), dd = p[1].padStart(2, "0"), yy = p[2];
+        return `${yy}-${mm}-${dd}`;
+      }
+      return "0000-00-00";
+    }
+
+    // CSV parser (quotes + commas)
     function parseCSV(text) {
-      const rows = [];
-      let row = [];
-      let field = "";
-      let inQuotes = false;
-
+      const rows = []; let row = [], field = "", q = false;
       for (let i = 0; i < text.length; i++) {
-        const c = text[i];
-        const n = text[i + 1];
-
-        if (inQuotes) {
+        const c = text[i], n = text[i + 1];
+        if (q) {
           if (c === '"' && n === '"') { field += '"'; i++; continue; }
-          if (c === '"') { inQuotes = false; continue; }
-          field += c;
-          continue;
+          if (c === '"') { q = false; continue; }
+          field += c; continue;
         }
-
-        if (c === '"') { inQuotes = true; continue; }
+        if (c === '"') { q = true; continue; }
         if (c === ",") { row.push(field); field = ""; continue; }
-        if (c === "\r") { continue; }
-        if (c === "\n") {
-          row.push(field);
-          rows.push(row);
-          row = [];
-          field = "";
-          continue;
-        }
+        if (c === "\r") continue;
+        if (c === "\n") { row.push(field); rows.push(row); row = []; field = ""; continue; }
         field += c;
       }
+      if (field.length || row.length) { row.push(field); rows.push(row); }
+      const header = (rows.shift() || []).map(h => (h || "").trim());
+      return rows.filter(r => r.some(v => (v || "").trim() !== "")).map(r => {
+        const o = {}; header.forEach((k, i) => o[k] = (r[i] ?? "").trim()); return o;
+      });
+    }
 
-      if (field.length || row.length) {
-        row.push(field);
-        rows.push(row);
-      }
+    // ============================================================
+    // TOOLTIP
+    // ============================================================
+    const tip = $("tip");
+    function showTip(html, ev) {
+      tip.innerHTML = html;
+      tip.classList.add("on");
+      moveTip(ev);
+    }
+    function moveTip(ev) {
+      const pad = 14, w = tip.offsetWidth, h = tip.offsetHeight;
+      let x = ev.clientX + pad, y = ev.clientY + pad;
+      if (x + w > innerWidth - 8) x = ev.clientX - w - pad;
+      if (y + h > innerHeight - 8) y = ev.clientY - h - pad;
+      tip.style.left = Math.max(8, x) + "px";
+      tip.style.top = Math.max(8, y) + "px";
+    }
+    function hideTip() { tip.classList.remove("on"); }
 
-      const header = rows.shift() || [];
-      const keys = header.map(h => (h || "").trim());
-      return rows
-        .filter(r => r.some(v => (v || "").trim() !== ""))
-        .map(r => {
-          const obj = {};
-          keys.forEach((k, idx) => obj[k] = (r[idx] ?? "").trim());
-          return obj;
+    // ============================================================
+    // RENDERERS
+    // ============================================================
+    function setText(id, v) { const el = $(id); if (el) el.textContent = v; }
+
+    function renderNumbers(agg) {
+      const T = agg.total;
+      const L = agg.byFamily.left || 0, I = agg.byFamily.islamist || 0, B = agg.byFamily.bnp || 0;
+      const r0 = (x) => Math.round(x) + "%";
+      setText("byRecords", T); setText("kTotal", T); setText("gridN", T); setText("cavN", T);
+      setText("kLeft", L); setText("kLeftPct", r0(pct(L, T)));
+      setText("kIsl", I); setText("kIslPct", r0(pct(I, T)));
+      setText("kBnp", B); setText("kBnpPct", r0(pct(B, T)));
+      setText("edLeft", L);
+    }
+
+    function renderStack(agg) {
+      const bar = $("stackBar"), labels = $("stackLabels");
+      bar.innerHTML = ""; labels.innerHTML = "";
+      const T = agg.total;
+      FAM_ORDER.forEach(f => {
+        const n = agg.byFamily[f] || 0;
+        const p = pct(n, T);
+        const seg = document.createElement("div");
+        seg.className = "seg";
+        seg.style.flex = n;
+        seg.style.background = FAMILY[f].color;
+        seg.innerHTML = `${Math.round(p)}%<small>${n}</small>`;
+        seg.addEventListener("mousemove", (e) => showTip(
+          `<b>${FAMILY[f].label}</b><div class="t-meta">${n} of ${T} · ${p.toFixed(1)}%</div>`, e));
+        seg.addEventListener("mouseleave", hideTip);
+        bar.appendChild(seg);
+
+        const sl = document.createElement("div");
+        sl.className = "sl";
+        sl.style.flex = n;
+        sl.innerHTML = `<b>${FAMILY[f].label}</b>${n} · ${p.toFixed(1)}%`;
+        labels.appendChild(sl);
+      });
+    }
+
+    function legendItems(el, entries) {
+      el.innerHTML = "";
+      entries.forEach(([label, color, n]) => {
+        const li = document.createElement("li");
+        li.innerHTML = `<span class="sw" style="background:${color}"></span>${esc(label)}` +
+          (n != null ? ` <span class="n">${n}</span>` : "");
+        el.appendChild(li);
+      });
+    }
+
+    function renderBars(agg) {
+      legendItems($("legendBars"), FAM_ORDER.map(f => [FAMILY[f].label, FAMILY[f].color, agg.byFamily[f] || 0]));
+      const wrap = $("bars"); wrap.innerHTML = "";
+      const max = Math.max(...agg.groups.map(g => g.n));
+      const T = agg.total;
+      agg.groups.forEach(g => {
+        const f = fam(g.identity);
+        const row = document.createElement("div");
+        row.className = "bar-row";
+        row.innerHTML = `
+          <div class="name">${esc(g.identity)}</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:${(g.n / max * 100)}%;background:${FAMILY[f].color}"></div>
+            <div class="bar-val">${g.n} · ${pct(g.n, T).toFixed(1)}%</div>
+          </div>`;
+        const fill = row.querySelector(".bar-fill");
+        fill.addEventListener("mousemove", (e) => showTip(
+          `<b>${esc(g.identity)}</b><div class="t-meta">${FAMILY[f].label} · ${g.n} of ${T} · ${pct(g.n, T).toFixed(1)}%</div>`, e));
+        fill.addEventListener("mouseleave", hideTip);
+        wrap.appendChild(row);
+      });
+    }
+
+    function renderGrid(agg) {
+      legendItems($("legendGrid"), FAM_ORDER.map(f => [FAMILY[f].label, FAMILY[f].color, agg.byFamily[f] || 0]));
+      const grid = $("unitGrid"); grid.innerHTML = "";
+      const frag = document.createDocumentFragment();
+      agg.cells.forEach(c => {
+        const cell = document.createElement("div");
+        cell.className = "cell";
+        cell.setAttribute("role", "listitem");
+        cell.style.background = FAMILY[c.family].color;
+        const metaBits = [c.identity, c.year, c.location].filter(Boolean).join(" · ");
+        cell.setAttribute("aria-label", `${c.name || "Unnamed"} — ${metaBits}`);
+        cell.addEventListener("mousemove", (e) => showTip(
+          `<b>${esc(c.name || "Unnamed")}</b><div class="t-meta">${esc(metaBits)}</div>`, e));
+        cell.addEventListener("mouseleave", hideTip);
+        frag.appendChild(cell);
+      });
+      grid.appendChild(frag);
+    }
+
+    function renderTimeline(agg) {
+      legendItems($("legendTl"), FAM_ORDER.map(f => [FAMILY[f].label, FAMILY[f].color, null]));
+      const chart = $("tlChart"), labels = $("tlLabels");
+      chart.innerHTML = ""; labels.innerHTML = "";
+      const years = agg.years;
+      const maxTotal = Math.max(...years.map(y => y.total), 1);
+      years.forEach(y => {
+        const col = document.createElement("div");
+        col.className = "tl-col";
+        const fill = document.createElement("div");
+        fill.className = "fill";
+        fill.style.height = (y.total / maxTotal * 100) + "%";
+        FAM_ORDER.forEach(f => {
+          const n = y.fam[f] || 0;
+          if (!n) return;
+          const seg = document.createElement("div");
+          seg.className = "tl-seg";
+          seg.style.height = (n / y.total * 100) + "%";
+          seg.style.background = FAMILY[f].color;
+          fill.appendChild(seg);
         });
+        col.appendChild(fill);
+        const breakdown = FAM_ORDER.filter(f => y.fam[f]).map(f => `${FAMILY[f].label}: ${y.fam[f]}`).join("<br>");
+        col.addEventListener("mousemove", (e) => showTip(
+          `<b>${y.year} — ${y.total} killed</b><div class="t-meta">${breakdown}</div>`, e));
+        col.addEventListener("mouseleave", hideTip);
+        chart.appendChild(col);
+
+        const lab = document.createElement("span");
+        lab.textContent = "’" + String(y.year).slice(2);
+        labels.appendChild(lab);
+      });
     }
 
-    // ====== CONNOTATION -> CLASS ======
-    function connotationClass(value) {
-      const v = (value || "").trim().toLowerCase();
-      // Adapt these to your actual connotation values
-      if (["positive","pos","+","supportive","favourable","favorable"].includes(v)) return "c-pos";
-      if (["negative","neg","-","hostile","derogatory","pejorative"].includes(v)) return "c-neg";
-      if (["neutral","neu","0","mixed"].includes(v)) return "c-neu";
-      return "c-unk";
+    // ============================================================
+    // TABLE
+    // ============================================================
+    let DATA = [];
+    const tbody = $("tbody"), q = $("q"), rowCount = $("rowCount");
+
+    function searchBlob(d) {
+      return [d.name, d.identity, d.connotation, d.operation_by, d.date, d.location, d.description]
+        .join(" ").toLowerCase();
     }
 
-    // ====== HTML ESCAPE ======
-    function esc(s){
-      return String(s ?? "")
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-    }
-
-    // ====== TABLE RENDER ======
-    const tbody = document.getElementById("tbody");
-    const q = document.getElementById("q");
-    let data = [];
-
-    function rowSearchBlob(d){
-      return [
-        d.name, d.identity, d.type, d.operation_by, d.date, d.location,
-        d.description, d.source, d.newspaper
-      ].join(" ").toLowerCase();
-    }
-
-    function renderTable(filtered){
+    function renderTable(rows) {
       tbody.innerHTML = "";
-
-      if (!filtered.length){
-        const tr = document.createElement("tr");
-        tr.innerHTML = `<td colspan="6" class="muted" style="padding:14px 12px;">No matches.</td>`;
-        tbody.appendChild(tr);
+      rowCount.textContent = rows.length + (rows.length === 1 ? " record" : " records");
+      if (!rows.length) {
+        tbody.innerHTML = `<tr><td colspan="5" class="muted" style="padding:16px 12px;">No matches.</td></tr>`;
         return;
       }
-
-      filtered.forEach((d, idx) => {
-        const cClass = connotationClass(d.connotation);
-
+      const frag = document.createDocumentFragment();
+      rows.forEach((d, idx) => {
+        const f = fam(d.identity);
         const tr = document.createElement("tr");
-        tr.className = `data-row ${cClass}`;
-        tr.dataset.key = `${d.victim_id || ""}-${d.incident_id || ""}-${idx}`;
+        tr.className = `data-row fam-${f}`;
         tr.dataset.open = "false";
-
-        const name = esc(d.name || "");
-        const identity = esc(d.identity || "");
-        const type = esc(d.type || "");
-        const opBy = esc(d.operation_by || "");
-        const date = esc(d.date || "");
-        const loc = esc(d.location || "");
-
         tr.innerHTML = `
-          <td class="name-cell">
+          <td>
             <button class="name-btn" type="button" aria-expanded="false">
-              <span class="chev" aria-hidden="true">
-                <svg viewBox="0 0 20 20" width="14" height="14" fill="none">
-                  <path d="M7.5 4.5L13 10l-5.5 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-              <span class="pill" title="${name}">
-                <strong>${name || "—"}</strong>
-                <small class="nowrap">${esc(d.connotation || "unknown")}</small>
-              </span>
+              <span class="chev" aria-hidden="true"><svg viewBox="0 0 20 20" width="13" height="13" fill="none"><path d="M7.5 4.5L13 10l-5.5 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span><span class="nm">${esc(d.name || "—")}</span><span class="tag">${esc(d.identity || "")}</span></span>
             </button>
           </td>
-          <td>${identity || "—"}</td>
-          <td>${type || "—"}</td>
-          <td>${opBy || "—"}</td>
-          <td class="nowrap">${date || "—"}</td>
-          <td>${loc || "—"}</td>
-        `;
-
-        const expandTr = document.createElement("tr");
-        expandTr.className = "expand-row";
-        expandTr.hidden = true;
-
-        const desc = (d.description || "").trim();
-        const source = (d.source || "").trim();
+          <td class="muted">${esc(d.connotation || "—")}</td>
+          <td>${esc(d.operation_by || "—")}</td>
+          <td class="nowrap">${esc(d.date || "—")}</td>
+          <td>${esc(d.location || "—")}</td>`;
+        const ex = document.createElement("tr");
+        ex.className = "expand-row"; ex.hidden = true;
         const url = (d.s_url || "").trim();
-
-        const sourceHTML = (() => {
-          if (!source) return `<span class="muted">Source: —</span>`;
-          if (url) {
-            return `Source: <a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(source)}</a>`;
-          }
-          return `Source: <span>${esc(source)}</span>`;
-        })();
-
-        expandTr.innerHTML = `
-          <td colspan="6">
-            <div class="expand">
-              <div class="desc">${esc(desc || "—")}</div>
-              <div class="meta">
-                <span>${sourceHTML}</span>
-                ${d.newspaper ? `<span class="muted">•</span><span>Newspaper: ${esc(d.newspaper)}</span>` : ""}
-              </div>
-            </div>
-          </td>
-        `;
-
+        const src = (d.source || "").trim();
+        const srcHTML = !src ? `<span class="muted">Source: —</span>`
+          : (url && url !== "#") ? `Source: <a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(src)}</a>`
+            : `Source: ${esc(src)}`;
+        ex.innerHTML = `<td colspan="5"><div class="expand">
+            <div class="desc">${esc((d.description || "—").trim())}</div>
+            <div class="meta">${srcHTML}</div></div></td>`;
         const btn = tr.querySelector(".name-btn");
         btn.addEventListener("click", () => {
           const open = tr.dataset.open === "true";
           tr.dataset.open = open ? "false" : "true";
-          btn.setAttribute("aria-expanded", open ? "false" : "true");
-          expandTr.hidden = open;
+          btn.setAttribute("aria-expanded", String(!open));
+          ex.hidden = open;
         });
-
-        tbody.appendChild(tr);
-        tbody.appendChild(expandTr);
+        frag.appendChild(tr); frag.appendChild(ex);
       });
+      tbody.appendChild(frag);
     }
 
-    function applyFilter(){
-      const needle = (q.value || "").trim().toLowerCase();
-      if (!needle) { renderTable(data); return; }
-      const filtered = data.filter(d => rowSearchBlob(d).includes(needle));
-      renderTable(filtered);
-    }
+    q.addEventListener("input", () => {
+      const needle = q.value.trim().toLowerCase();
+      renderTable(needle ? DATA.filter(d => searchBlob(d).includes(needle)) : DATA);
+    });
 
-    q.addEventListener("input", applyFilter);
-
-    // ====== PIE CHART ======
-    // Replace your makePalette(n) with this (muted, elegant, publication-style)
-function makePalette(n){
-  const base = [
-    "#1f2937", // slate-800
-    "#374151", // slate-700
-    "#4b5563", // slate-600
-    "#6b7280", // slate-500
-    "#9ca3af", // slate-400
-    "#111827", // gray-900
-    "#475569", // slate-600/700-ish
-  ];
-  // If more slices than base, extend with controlled lightness variants
-  const out = [];
-  for (let i = 0; i < n; i++){
-    out.push(base[i % base.length]);
-  }
-  return out;
-}
-
-
-    function renderLegend(items, colors){
-      const total = items.reduce((s, x) => s + x.value, 0);
-      const ul = document.getElementById("legend");
-      ul.innerHTML = "";
-      items.forEach((it, i) => {
-        const pct = total ? (it.value / total * 100) : 0;
-        const li = document.createElement("li");
-        li.innerHTML = `
-          <span class="left">
-            <span class="swatch" style="background:${colors[i]};"></span>
-            <span class="label">${esc(it.label)}</span>
-          </span>
-          <span class="nums">${it.value} (${pct.toFixed(1)}%)</span>
-        `;
-        ul.appendChild(li);
-      });
-    }
-
-    function renderPie(){
-      const labels = PIE_DATA.map(d => d.label);
-      const values = PIE_DATA.map(d => d.value);
-      const colors = makePalette(PIE_DATA.length);
-      renderLegend(PIE_DATA, colors);
-
-      const ctx = document.getElementById("pie").getContext("2d");
-      new Chart(ctx, {
-        type: "pie",
-        data: {
-          labels,
-          datasets: [{
-            data: values,
-            backgroundColor: colors,
-            borderColor: "rgba(255,255,255,0.18)",
-            borderWidth: 1
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false },
-            tooltip: {
-              callbacks: {
-                label: (tt) => {
-                  const v = tt.raw ?? 0;
-                  const total = values.reduce((s,x)=>s+x,0);
-                  const pct = total ? (v/total*100) : 0;
-                  return ` ${tt.label}: ${v} (${pct.toFixed(1)}%)`;
-                }
-              }
-            }
-          }
+    // ============================================================
+    // AGGREGATION
+    // ============================================================
+    function aggregateFromRows(rows) {
+      const byGroup = {}, byFamily = { left: 0, islamist: 0, bnp: 0 }, byYear = {};
+      rows.forEach(d => {
+        const id = (d.identity || "").trim();
+        const f = fam(id);
+        byGroup[id] = (byGroup[id] || 0) + 1;
+        byFamily[f] = (byFamily[f] || 0) + 1;
+        const yr = parseYear(d.date);
+        if (yr) {
+          byYear[yr] = byYear[yr] || { year: yr, total: 0, fam: { left: 0, islamist: 0, bnp: 0 } };
+          byYear[yr].total++; byYear[yr].fam[f]++;
         }
       });
+      const groups = Object.entries(byGroup).map(([identity, n]) => ({ identity, n }))
+        .sort((a, b) => b.n - a.n);
+      const years = Object.values(byYear).sort((a, b) => a.year - b.year);
+
+      // cells: grouped by family order, then by date
+      const cells = rows.map(d => ({
+        name: d.name, identity: (d.identity || "").trim(), family: fam(d.identity),
+        year: parseYear(d.date), location: d.location, dk: dateKey(d.date)
+      })).sort((a, b) =>
+        FAM_ORDER.indexOf(a.family) - FAM_ORDER.indexOf(b.family) || a.dk.localeCompare(b.dk));
+
+      return { total: rows.length, byGroup, byFamily, groups, years, cells };
     }
 
-    // ====== LOAD CSV ======
-    (async function init(){
-      renderPie();
+    function aggregateFallback() {
+      const byFamily = { left: 0, islamist: 0, bnp: 0 };
+      FALLBACK_GROUPS.forEach(g => byFamily[fam(g.identity)] += g.n);
+      const total = FALLBACK_GROUPS.reduce((s, g) => s + g.n, 0);
+      const groups = FALLBACK_GROUPS.map(g => ({ identity: g.identity, n: g.n }));
+      // synthesize anonymous cells
+      const cells = [];
+      groups.forEach(g => { for (let i = 0; i < g.n; i++) cells.push({ name: "", identity: g.identity, family: fam(g.identity), year: null, location: "", dk: "" }); });
+      cells.sort((a, b) => FAM_ORDER.indexOf(a.family) - FAM_ORDER.indexOf(b.family));
+      return { total, byFamily, groups, years: [], cells };
+    }
 
-      const res = await fetch(CSV_URL, { cache: "no-store" });
-      if (!res.ok) {
-        tbody.innerHTML = `<tr><td colspan="6" class="muted" style="padding:14px 12px;">
-          Failed to load CSV (${res.status}). Check CSV_URL and hosting (needs same-origin or CORS).
-        </td></tr>`;
-        return;
+    function renderAll(agg) {
+      renderNumbers(agg);
+      renderStack(agg);
+      renderGrid(agg);
+      renderBars(agg);
+      if (agg.years && agg.years.length) renderTimeline(agg);
+    }
+
+    // ============================================================
+    // SCROLL PROGRESS
+    // ============================================================
+    (function () {
+      const bar = $("progressBar");
+      function upd() {
+        const max = document.documentElement.scrollHeight - innerHeight;
+        bar.style.width = (max > 0 ? Math.min(100, scrollY / max * 100) : 0) + "%";
       }
-      const text = await res.text();
-      data = parseCSV(text);
+      addEventListener("scroll", upd, { passive: true });
+      addEventListener("resize", upd); upd();
+    })();
 
-      // Optional: sort by date desc then name
-      data.sort((a,b) => (b.date || "").localeCompare(a.date || "") || (a.name || "").localeCompare(b.name || ""));
-
-      renderTable(data);
+    // ============================================================
+    // INIT
+    // ============================================================
+    (async function init() {
+      // Render the story immediately from fallback so it never looks broken.
+      renderAll(aggregateFallback());
+      try {
+        const res = await fetch(CSV_URL, { cache: "no-store" });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        DATA = parseCSV(await res.text());
+        DATA.sort((a, b) => dateKey(b.date).localeCompare(dateKey(a.date)) || (a.name || "").localeCompare(b.name || ""));
+        renderAll(aggregateFromRows(DATA));
+        renderTable(DATA);
+      } catch (err) {
+        rowCount.textContent = "records unavailable";
+        tbody.innerHTML = `<tr><td colspan="5" class="muted" style="padding:16px 12px;">
+          Could not load the records file (${esc(err.message)}). The charts above show the archived totals.</td></tr>`;
+      }
     })();
   </script>
 </body>
+
 </html>
