@@ -1056,8 +1056,8 @@
     }
 
     .tag {
-      display: inline-block;
-      margin-top: 3px;
+      display: block;
+      margin-top: 4px;
       font: 400 10px/1.4 var(--mono);
       letter-spacing: 0.04em;
       text-transform: uppercase;
@@ -1929,7 +1929,7 @@
         const res = await fetch(CSV_URL, { cache: "no-store" });
         if (!res.ok) throw new Error("HTTP " + res.status);
         DATA = parseCSV(await res.text());
-        DATA.sort((a, b) => dateKey(b.date).localeCompare(dateKey(a.date)) || (a.name || "").localeCompare(b.name || ""));
+        DATA.sort((a, b) => dateKey(a.date).localeCompare(dateKey(b.date)) || (a.name || "").localeCompare(b.name || ""));
         renderAll(aggregateFromRows(DATA));
         renderTable(DATA);
       } catch (err) {
