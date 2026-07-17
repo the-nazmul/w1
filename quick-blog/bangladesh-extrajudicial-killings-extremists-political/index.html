@@ -265,7 +265,8 @@
       opacity: 1;
     }
 
-    .share-btn {
+    .share-btn,
+    .cite-btn {
       display: inline-grid;
       place-items: center;
       width: 34px;
@@ -278,10 +279,51 @@
       transition: color 140ms ease, border-color 140ms ease, background 140ms ease;
     }
 
-    .share-btn:hover {
+    .share-btn:hover,
+    .cite-btn:hover,
+    .cite-btn[aria-expanded="true"] {
       color: var(--text);
       border-color: var(--text);
       background: color-mix(in srgb, var(--paper) 60%, transparent);
+    }
+
+    .cite-panel {
+      margin: 12px 0 0;
+      padding: 14px 16px;
+      background: var(--paper);
+      max-width: 640px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .cite-panel[hidden] {
+      display: none;
+    }
+
+    .cite-text {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--text);
+      overflow-wrap: anywhere;
+    }
+
+    .cite-copy {
+      justify-self: start;
+      padding: 8px 14px;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid var(--rule-2);
+      font: 500 11px/1 var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color 140ms ease, border-color 140ms ease;
+    }
+
+    .cite-copy:hover {
+      color: var(--text);
+      border-color: var(--text);
     }
 
     .dl-btn {
@@ -1124,6 +1166,12 @@
           Ahasan</a> <span class="sep">·</span> <time datetime="2025-12-22">22 December 2025</time></p>
       <div class="share-wrap">
         <span class="share-msg" id="shareMsg" aria-live="polite"></span>
+        <button class="cite-btn" id="citeBtn" type="button" aria-label="How to cite this page" title="Cite"
+          aria-expanded="false" aria-controls="citePanel">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+            <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" />
+          </svg>
+        </button>
         <button class="share-btn" id="shareBtn" type="button" aria-label="Share this page" title="Share">
           <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1136,6 +1184,12 @@
         </button>
       </div>
     </div>
+
+    <div class="cite-panel" id="citePanel" hidden>
+      <p class="cite-text" id="citeText"></p>
+      <button class="cite-copy" id="citeCopy" type="button">Copy citation</button>
+    </div>
+
     <hr class="rule" />
 
     <!-- ===================== LEDE ===================== -->
@@ -1834,6 +1888,40 @@
         } else {
           copyFallback();
         }
+      });
+    })();
+
+    // ============================================================
+    // CITATION
+    // ============================================================
+    (function () {
+      const btn = $("citeBtn"), panel = $("citePanel"), textEl = $("citeText"), copyBtn = $("citeCopy");
+      if (!btn) return;
+      const canon = document.querySelector('link[rel="canonical"]');
+      const url = (canon && canon.href) || location.href;
+      const dateEl = document.querySelector(".author time");
+      const date = dateEl ? dateEl.textContent.trim() : "";
+      const citation = `Nazmul Ahasan, “${document.title},” Nazmul’s Quick Blog, ${date}. ${url} — data from Netra News, Body Count (2023).`;
+      textEl.textContent = citation;
+      btn.addEventListener("click", () => {
+        const open = !panel.hidden;
+        panel.hidden = open;
+        btn.setAttribute("aria-expanded", String(!open));
+      });
+      copyBtn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(citation);
+        } catch (e) {
+          const t = document.createElement("textarea");
+          t.value = citation;
+          document.body.appendChild(t);
+          t.select();
+          try { document.execCommand("copy"); } catch (_) { }
+          document.body.removeChild(t);
+        }
+        const orig = copyBtn.textContent;
+        copyBtn.textContent = "Copied";
+        setTimeout(() => { copyBtn.textContent = orig; }, 1800);
       });
     })();
 
