@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Inter:wght@300..600&family=JetBrains+Mono:wght@300..500&display=swap"
     rel="stylesheet">
 
   <style>
@@ -53,9 +53,9 @@
 
       --wrap: 900px;
       --pad: clamp(16px, 4vw, 34px);
-      --serif: "Cormorant Garamond", "Palatino Linotype", Georgia, serif;
-      --body: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
-      --mono: "IBM Plex Mono", "Courier New", monospace;
+      --serif: "Fraunces", "Palatino Linotype", Georgia, serif;
+      --body: "Inter", system-ui, -apple-system, sans-serif;
+      --mono: "JetBrains Mono", "Courier New", monospace;
       --topbar-h: 46px;
     }
 
@@ -207,8 +207,25 @@
       line-height: 1.55;
     }
 
+    .author {
+      margin: 20px 0 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .author a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid var(--rule-2);
+    }
+
+    .author a:hover {
+      border-bottom-color: var(--text);
+    }
+
     .byline {
-      margin: 18px 0 0;
+      margin: 8px 0 0;
       color: var(--faint);
       font: 400 11px/1.6 var(--mono);
       letter-spacing: 0.08em;
@@ -1003,6 +1020,8 @@
       During the Hasina years, police killed thousands of people in so-called “crossfire.” This page looks at the ones
       who were linked to a party or an armed group — and asks who the country still remembers.
     </p>
+    <p class="author">By <a href="https://nazmulahasan.com/" target="_blank" rel="noopener noreferrer">Nazmul
+        Ahasan</a></p>
     <p class="byline">
       Data: Netra News, <a href="https://interactive.netra.news/extrajudicial-killings-bangladesh/" target="_blank"
         rel="noopener noreferrer">Body Count</a> (2023) · 2009–April 2022 · <span id="byRecords">256</span> records
