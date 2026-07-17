@@ -328,8 +328,6 @@
     }
 
     .def {
-      padding-left: 16px;
-      border-left: 2px solid var(--rule-2);
       max-width: 74ch;
     }
 
@@ -372,9 +370,7 @@
     .defs .binary {
       margin-top: 4px;
       padding: 12px 16px;
-      background: var(--paper);
-      border: 1px solid var(--rule);
-      font-size: 0.92rem;
+      background: var(--paper);      font-size: 0.92rem;
       color: var(--muted);
       max-width: 74ch;
     }
@@ -388,9 +384,7 @@
     }
 
     .stat {
-      background: var(--paper);
-      border: 1px solid var(--rule);
-      border-top: 3px solid var(--st, var(--rule-2));
+      background: var(--paper);      border-top: 3px solid var(--st, var(--rule-2));
       padding: 16px 16px 14px;
     }
 
@@ -421,9 +415,7 @@
 
     /* ======================= PANEL ======================= */
     .panel {
-      background: var(--surface-viz);
-      border: 1px solid var(--rule);
-      padding: clamp(16px, 3vw, 24px);
+      background: var(--surface-viz);      padding: clamp(16px, 3vw, 24px);
       margin-top: 18px;
     }
 
@@ -683,9 +675,7 @@
     }
 
     .cav {
-      background: var(--paper);
-      border: 1px solid var(--rule);
-      padding: 18px 20px 20px;
+      background: var(--paper);      padding: 18px 20px 20px;
     }
 
     .cav.show {
@@ -799,9 +789,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      background: var(--surface-viz);
-      border: 1px solid var(--rule-2);
-      padding: 9px 13px;
+      background: var(--surface-viz);      padding: 9px 13px;
     }
 
     .search input {
@@ -826,9 +814,7 @@
     }
 
     .table-wrap {
-      margin-top: 14px;
-      border: 1px solid var(--rule);
-      overflow: auto;
+      margin-top: 14px;      overflow: auto;
       -webkit-overflow-scrolling: touch;
       background: var(--surface-viz);
       max-height: 640px;
@@ -1022,11 +1008,6 @@
     </p>
     <p class="author">By <a href="https://nazmulahasan.com/" target="_blank" rel="noopener noreferrer">Nazmul
         Ahasan</a></p>
-    <p class="byline">
-      Data: Netra News, <a href="https://interactive.netra.news/extrajudicial-killings-bangladesh/" target="_blank"
-        rel="noopener noreferrer">Body Count</a> (2023) · 2009–April 2022 · <span id="byRecords">256</span> records
-    </p>
-
     <hr class="rule" />
 
     <!-- ===================== LEDE ===================== -->
@@ -1055,7 +1036,6 @@
 
     <!-- ===================== HOW GROUPS ARE DEFINED ===================== -->
     <section aria-label="How these groups are defined">
-      <p class="sec-kicker">First, the groups</p>
       <h2>Who is who</h2>
       <p class="sec-note">
         These are the labels from the source, put into four groups. The difference matters: a secret armed group is not
@@ -1097,7 +1077,6 @@
 
     <!-- ===================== KEY FIGURES ===================== -->
     <section aria-label="Key figures">
-      <p class="sec-kicker">The numbers</p>
       <div class="stats" id="stats">
         <div class="stat" style="--st:var(--rule-2)">
           <div class="big" id="kTotal">256</div>
@@ -1122,7 +1101,6 @@
 
     <!-- ===================== HEADLINE STACKED BAR ===================== -->
     <section aria-label="Overall breakdown by group family">
-      <p class="sec-kicker">At a glance</p>
       <h2>Three kinds of victims</h2>
       <p class="sec-note">
         The seven groups, put into three. The first two — leftist and jihadist — are the people the state called
@@ -1139,7 +1117,6 @@
 
     <!-- ===================== UNIT GRID ===================== -->
     <section aria-label="Each square is one person">
-      <p class="sec-kicker">Real people</p>
       <h2>Each square is one person</h2>
       <p class="sec-note">
         Each of the <span id="gridN">256</span> squares is one real person from the data. The colour shows their group.
@@ -1158,7 +1135,6 @@
 
     <!-- ===================== RANKED BARS ===================== -->
     <section aria-label="Breakdown by specific affiliation">
-      <p class="sec-kicker">The detail</p>
       <h2>By the exact group</h2>
       <p class="sec-note">
         The same people, split by their exact label and coloured by kind. Four of the seven are armed jihadist groups
@@ -1172,7 +1148,6 @@
 
     <!-- ===================== TIMELINE ===================== -->
     <section aria-label="Killings over time">
-      <p class="sec-kicker">Over time</p>
       <h2>This went on for years</h2>
       <p class="sec-note">
         These killings did not happen just once. They were high in 2009, dropped, and rose again in 2014–2016. Move
@@ -1189,7 +1164,6 @@
 
     <!-- ===================== WHAT IT SHOWS / DOES NOT ===================== -->
     <section aria-label="What the data does and does not show">
-      <p class="sec-kicker">Read it carefully</p>
       <h2>What this shows — and what it does not</h2>
       <p class="sec-note">
         It is easy to read this like a scoreboard. It is not one. Here is what these <span id="cavN">256</span> records
@@ -1241,7 +1215,6 @@
 
     <!-- ===================== EDITORIAL ===================== -->
     <section class="editorial" aria-label="Everyone here was owed a trial">
-      <p class="sec-kicker">The point</p>
       <h2>Everyone here was owed a trial</h2>
       <p>
         Whatever these <span id="edLeft">163</span> people were said to be — party men, extortionists, members of a
@@ -1265,7 +1238,6 @@
 
     <!-- ===================== TABLE ===================== -->
     <section aria-label="The records">
-      <p class="sec-kicker">Every name</p>
       <h2>The records</h2>
       <p class="sec-note">Search by name, group, force, or place. Click a row to read the case and open its source.</p>
       <div class="toolbar" role="search">
