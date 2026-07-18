@@ -1114,6 +1114,27 @@
       border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
     }
 
+    /* Extra columns tucked into the expanded row on mobile */
+    .meta-cols {
+      display: none;
+      grid-template-columns: 1fr;
+      gap: 5px;
+      margin-bottom: 2px;
+    }
+
+    .meta-cols > div {
+      font-size: 0.9rem;
+    }
+
+    .meta-cols .mc-k {
+      display: inline-block;
+      min-width: 78px;
+      font: 400 10px/1.6 var(--mono);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
     /* ======================= FOOTER ======================= */
     .foot {
       margin-top: 60px;
@@ -1151,6 +1172,28 @@
 
       .bar-row .name {
         font-size: 0.8rem;
+      }
+
+      /* Records table: show only Name/group + Called; rest moves to the expanded row */
+      table {
+        min-width: 0;
+      }
+
+      th.col-extra,
+      td.col-extra {
+        display: none;
+      }
+
+      thead th {
+        width: auto !important;
+      }
+
+      .expand {
+        padding-left: 16px;
+      }
+
+      .meta-cols {
+        display: grid;
       }
     }
   </style>
@@ -1458,9 +1501,9 @@
             <tr>
               <th style="width:32%;">Name / group</th>
               <th style="width:16%;">Called</th>
-              <th style="width:14%;">Killed by</th>
-              <th style="width:12%;">Date</th>
-              <th style="width:16%;">Place</th>
+              <th style="width:14%;" class="col-extra">Killed by</th>
+              <th style="width:12%;" class="col-extra">Date</th>
+              <th style="width:16%;" class="col-extra">Place</th>
             </tr>
           </thead>
           <tbody id="tbody"></tbody>
@@ -1767,9 +1810,9 @@
             </button>
           </td>
           <td class="muted">${esc(d.connotation || "—")}</td>
-          <td>${esc(d.operation_by || "—")}</td>
-          <td class="nowrap">${esc(d.date || "—")}</td>
-          <td>${esc(d.location || "—")}</td>`;
+          <td class="col-extra">${esc(d.operation_by || "—")}</td>
+          <td class="nowrap col-extra">${esc(d.date || "—")}</td>
+          <td class="col-extra">${esc(d.location || "—")}</td>`;
         const ex = document.createElement("tr");
         ex.className = "expand-row"; ex.hidden = true;
         const url = (d.s_url || "").trim();
@@ -1778,6 +1821,11 @@
           : (url && url !== "#") ? `Source: <a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(src)}</a>`
             : `Source: ${esc(src)}`;
         ex.innerHTML = `<td colspan="5"><div class="expand">
+            <div class="meta-cols">
+              <div><span class="mc-k">Killed by</span>${esc(d.operation_by || "—")}</div>
+              <div><span class="mc-k">Date</span>${esc(d.date || "—")}</div>
+              <div><span class="mc-k">Place</span>${esc(d.location || "—")}</div>
+            </div>
             <div class="desc">${esc((d.description || "—").trim())}</div>
             <div class="meta">${srcHTML}</div></div></td>`;
         const btn = tr.querySelector(".name-btn");
