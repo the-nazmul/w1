@@ -307,7 +307,7 @@
      Logos
   ───────────────────────────────────────────────────────── */
   .pubs {
-    background: var(--tint);
+    background: #e1e4d7;
     padding: clamp(28px, 4vw, 48px);
     display: grid; grid-template-columns: 1fr; gap: 36px;
   }
@@ -316,7 +316,7 @@
   }
   .lg-title {
     font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--muted); font-weight: 500;
+    text-transform: uppercase; color: #6f7365; font-weight: 500;
     margin-bottom: 22px;
   }
   .logos { display: flex; flex-wrap: wrap; align-items: center; gap: 26px 40px; }
@@ -326,10 +326,8 @@
     transition: opacity .2s ease, filter .2s ease;
   }
   .logos img:hover { opacity: 1; filter: grayscale(0); }
-  @media (prefers-color-scheme: dark) {
-    .logos img { filter: grayscale(1) brightness(0) invert(1); opacity: .66; }
-    .logos img:hover { opacity: .95; }
-  }
+  .logos img.bloomberg { filter: grayscale(1) brightness(0); }
+  .logos img.bloomberg:hover { filter: brightness(0); opacity: 1; }
   .logos img.tall { height: 35px; }
 
   /* ─────────────────────────────────────────────────────────
