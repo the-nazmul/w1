@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bg="charcoal">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,17 +26,19 @@
      Tokens
   ───────────────────────────────────────────────────────── */
   :root {
-    --bg:        #edefe7;
-    --paper:     #f8f9f4;
-    --ink:       #1b1c15;
-    --ink-2:     #3f4136;
-    --muted:     #85877a;
-    --faint:     #b4b6a8;
-    --line:      rgba(27,28,21,.10);
-    --line-2:    rgba(27,28,21,.18);
-    --accent:    #cf4420;
-    --accent-2:  rgba(207,68,32,.10);
-    --tint:      #e0e4d5;
+    --bg:        #17181b;
+    --paper:     #202227;
+    --ink:       #eef0f2;
+    --ink-2:     #c6c9ce;
+    --muted:     #8b8e96;
+    --faint:     #565a61;
+    --line:      rgba(238,240,242,.12);
+    --line-2:    rgba(238,240,242,.22);
+    --accent:    #ff8a5c;
+    --accent-2:  rgba(255,138,92,.14);
+    --tint:      #21232a;
+    --card:      #1e2025;
+    --card-label: #8b8e96;
 
     --wrap:  1080px;
     --pad:   clamp(20px, 5vw, 52px);
@@ -46,17 +48,19 @@
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg:        #14150e;
-      --paper:     #1c1d15;
-      --ink:       #eef0e5;
-      --ink-2:     #cbccc0;
-      --muted:     #8f9184;
-      --faint:     #565849;
-      --line:      rgba(238,240,229,.12);
-      --line-2:    rgba(238,240,229,.22);
+      --bg:        #17181b;
+      --paper:     #202227;
+      --ink:       #eef0f2;
+      --ink-2:     #c6c9ce;
+      --muted:     #8b8e96;
+      --faint:     #565a61;
+      --line:      rgba(238,240,242,.12);
+      --line-2:    rgba(238,240,242,.22);
       --accent:    #ff8a5c;
-      --accent-2:  rgba(255,138,92,.15);
-      --tint:      #1e2016;
+      --accent-2:  rgba(255,138,92,.14);
+      --tint:      #21232a;
+      --card:      #1e2025;
+      --card-label: #8b8e96;
     }
   }
 
@@ -275,10 +279,20 @@
     transition: opacity .15s ease, transform .15s ease;
     font-size: 13px;
   }
+  .w__thumb {
+    display: none;
+    width: 76px; height: 57px; object-fit: cover;
+    background: var(--tint); align-self: center;
+  }
+  @media (hover: none), (max-width: 900px) {
+    .w { grid-template-columns: 76px 1fr auto; gap: 16px; align-items: center; }
+    .w__thumb { display: block; }
+    .w__year { display: none; }
+  }
   @media (max-width: 640px) {
-    .w { grid-template-columns: 46px 1fr; gap: 14px; }
+    .w { grid-template-columns: 64px 1fr; gap: 13px; }
+    .w__thumb { width: 64px; height: 48px; }
     .w__tags { display: none; }
-    .w__year { font-size: 11.5px; }
   }
 
   .work-more {
@@ -295,7 +309,7 @@
   .preview {
     position: fixed; z-index: 60; pointer-events: none;
     width: 208px; height: 148px; object-fit: cover;
-    border-radius: 8px; box-shadow: 0 14px 40px rgba(0,0,0,.22), 0 0 0 1px var(--line);
+    box-shadow: 0 14px 40px rgba(0,0,0,.22), 0 0 0 1px var(--line);
     opacity: 0; transform: scale(.96) translateY(6px);
     transition: opacity .18s ease, transform .18s ease;
     background: var(--paper);
@@ -307,7 +321,7 @@
      Logos
   ───────────────────────────────────────────────────────── */
   .pubs {
-    background: #e1e4d7;
+    background: var(--card, #1e2025);
     padding: clamp(28px, 4vw, 48px);
     display: grid; grid-template-columns: 1fr; gap: 36px;
   }
@@ -316,7 +330,7 @@
   }
   .lg-title {
     font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
-    text-transform: uppercase; color: #6f7365; font-weight: 500;
+    text-transform: uppercase; color: var(--card-label, #8b8e96); font-weight: 500;
     margin-bottom: 22px;
   }
   .logos { display: flex; flex-wrap: wrap; align-items: center; gap: 26px 40px; }
@@ -329,6 +343,11 @@
   .logos img.bloomberg { filter: grayscale(1) brightness(0); }
   .logos img.bloomberg:hover { filter: brightness(0); opacity: 1; }
   .logos img.tall { height: 35px; }
+  /* Charcoal: light logos on a dark panel */
+  [data-bg="charcoal"] .logos img { filter: grayscale(1) brightness(0) invert(1) !important; opacity: .85; }
+  [data-bg="charcoal"] .logos img[src*="bloomberg"] { filter: grayscale(1) !important; }
+  [data-bg="charcoal"] .logos img[src*="economist"],
+  [data-bg="charcoal"] .logos img[src*="bbc"] { filter: grayscale(1) brightness(1.9) !important; opacity: .95; }
 
   /* ─────────────────────────────────────────────────────────
      Experience
@@ -457,8 +476,7 @@
             <div class="bio-more" id="bio-more">
               <p>
                 Earlier he was an editor at Radio Free Asia's BenarNews, shaping coverage across South and
-                Southeast Asia, and before moving to the United States he worked at <i>The Daily Star</i> and
-                Netra News in Dhaka.
+                Southeast Asia.
               </p>
               <p>
                 He graduated from the UC Berkeley Graduate School of Journalism in 2023. His work has appeared in
@@ -468,6 +486,7 @@
                 <i><a href="https://www.haaretz.com/ty-WRITER/0000017f-da59-d42c-afff-dffbc0150000" target="_blank" rel="noopener noreferrer">Haaretz</a></i>,
                 Columbia Journalism Review, and the
                 <i><a href="https://www.sfchronicle.com/bayarea/article/Facebook-GearLaunch-17024417.php" target="_blank" rel="noopener noreferrer">San Francisco Chronicle</a></i>.
+                Before moving to the United States in 2021, he worked at <i>The Daily Star</i> and Netra News in Dhaka.
               </p>
             </div>
           </div>
@@ -527,6 +546,41 @@
         </div>
 
         <div class="work-list" id="workList">
+
+          <a class="w" data-tags="investigation reporting" href="https://netra.news/2026/bangladesh-measles-vaccine-crisis/" target="_blank" rel="noopener noreferrer" data-img="https://netra.news/content/images/size/w1000/2026/05/newmeaslesfeature3ss-copy.webp">
+            <span class="w__year">2026</span>
+            <span class="w__main"><span class="w__title">How a series of failures became a deadly measles outbreak</span><span class="w__pub">Netra News · May 2026</span></span>
+            <span class="w__tags">Investigative · Reporting</span>
+            <span class="w__arrow">↗</span>
+          </a>
+
+          <a class="w" data-tags="data investigation" href="https://netra.news/2026/bangladesh-election-engineering-claims/" target="_blank" rel="noopener noreferrer" data-img="https://netra.news/content/images/size/w1000/2026/04/form-16-feature.webp">
+            <span class="w__year">2026</span>
+            <span class="w__main"><span class="w__title">Election engineered? Independently collected tally sheets suggest otherwise</span><span class="w__pub">Netra News · Apr 2026</span></span>
+            <span class="w__tags">Data · Investigative</span>
+            <span class="w__arrow">↗</span>
+          </a>
+
+          <a class="w" data-tags="data interactive" href="https://netra.news/2026/bangladesh-2026-election-results-union/" target="_blank" rel="noopener noreferrer" data-img="https://netra.news/content/images/size/w1000/2026/03/bangladesh-election-map-3.webp">
+            <span class="w__year">2026</span>
+            <span class="w__main"><span class="w__title">Bangladesh’s 2026 election results — down to every union</span><span class="w__pub">Netra News · Mar 2026</span></span>
+            <span class="w__tags">Data · Interactive</span>
+            <span class="w__arrow">↗</span>
+          </a>
+
+          <a class="w" data-tags="investigation data" href="https://netra.news/2026/bangladesh-bank-governor-company-s-alam/" target="_blank" rel="noopener noreferrer" data-img="https://netra.news/content/images/size/w1000/2026/03/bankgovernors.webp">
+            <span class="w__year">2026</span>
+            <span class="w__main"><span class="w__title">Shares in governor co-founded firm tied to S. Alam surge around appointment</span><span class="w__pub">Netra News · Mar 2026</span></span>
+            <span class="w__tags">Investigative · Data</span>
+            <span class="w__arrow">↗</span>
+          </a>
+
+          <a class="w" data-tags="analysis" href="https://netra.news/2026/bnp-victory-bangladesh-election/" target="_blank" rel="noopener noreferrer" data-img="https://netra.news/content/images/size/w1000/2026/02/tareq-opeds.webp">
+            <span class="w__year">2026</span>
+            <span class="w__main"><span class="w__title">Why the BNP won — and what could yet undermine it</span><span class="w__pub">Netra News · Feb 2026</span></span>
+            <span class="w__tags">Analysis</span>
+            <span class="w__arrow">↗</span>
+          </a>
 
           <a class="w" data-tags="reporting analysis" href="https://www.haaretz.com/middle-east-news/2026-01-15/ty-article-magazine/.premium/bangladeshs-interest-in-joining-gaza-security-force-comes-with-conditions/0000019b-c20c-decf-a99f-cb7cff330000" target="_blank" rel="noopener noreferrer" data-img="https://img.haarets.co.il/bs/0000019b-c20d-d641-a9bf-c39ddd210001/37/4c/8c6fdcab49cc92ce7e3c8491e2f6/404471.jpg">
             <span class="w__year">2026</span>
@@ -1030,6 +1084,15 @@
         el.addEventListener('mouseleave', function () {
           preview.classList.remove('show');
         });
+      });
+    }
+    if (!canHover) {
+      items.forEach(function (el) {
+        var src = el.getAttribute('data-img');
+        if (!src || el.querySelector('.w__thumb')) return;
+        var t = document.createElement('img');
+        t.className = 'w__thumb'; t.src = src; t.alt = ''; t.loading = 'lazy';
+        el.insertBefore(t, el.firstChild);
       });
     }
   })();
