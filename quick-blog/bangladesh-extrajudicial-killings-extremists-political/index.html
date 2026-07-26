@@ -60,85 +60,44 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Inter:wght@300..600&family=JetBrains+Mono:wght@300..500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet">
 
   <style>
     /* ======================= THEME TOKENS ======================= */
     :root {
-      color-scheme: light;
-
-      --bg: #f5f0e8;
-      --paper: #faf7f2;
-      --paper-2: #f1ebe0;
-      --surface-viz: #fcfcfb;
-      /* near-white so the validated palette holds */
-
-      --text: #1a1410;
-      --muted: #6b5e4e;
-      --faint: #9b8c72;
-      --rule: rgba(120, 100, 70, 0.20);
-      --rule-2: rgba(120, 100, 70, 0.34);
-
-      --accent: #8b1a1a;
-      /* editorial red — chrome only, never a data mark */
-
-      /* Categorical data palette (validated: CVD ΔE ≈ 96) */
-      --c-left: #2a78d6;
-      /* alleged leftist extremists */
-      --c-jihadist: #eb6834;
-      /* alleged jihadists */
-      --c-opposition: #4a3aa7;
-      /* mainstream opposition (BNP, Jamaat) */
-      --c-cht: #008300;
-      /* CHT regional groups (UPDF, PCJSS/JSS) */
-
-      --wrap: 940px;
-      --text-w: 680px;
-      --pad: clamp(16px, 4vw, 34px);
-      --serif: "Fraunces", "Palatino Linotype", Georgia, serif;
-      --body: "Inter", system-ui, -apple-system, sans-serif;
-      --mono: "JetBrains Mono", "Courier New", monospace;
-      --topbar-h: 46px;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root:where(:not([data-theme="light"])) {
-        color-scheme: dark;
-        --bg: #12100c;
-        --paper: #1b1710;
-        --paper-2: #221d15;
-        --surface-viz: #1a1a19;
-        --text: #f2ece1;
-        --muted: #b8ab93;
-        --faint: #8b7f68;
-        --rule: rgba(210, 190, 155, 0.15);
-        --rule-2: rgba(210, 190, 155, 0.28);
-        --accent: #e0736b;
-        --c-left: #3987e5;
-        --c-jihadist: #d95926;
-        --c-opposition: #9085e9;
-        --c-cht: #12a012;
-      }
-    }
-
-    :root[data-theme="dark"] {
       color-scheme: dark;
-      --bg: #12100c;
-      --paper: #1b1710;
-      --paper-2: #221d15;
+
+      --bg: #17181b;
+      --paper: #202227;
+      --paper-2: #21232a;
       --surface-viz: #1a1a19;
-      --text: #f2ece1;
-      --muted: #b8ab93;
-      --faint: #8b7f68;
-      --rule: rgba(210, 190, 155, 0.15);
-      --rule-2: rgba(210, 190, 155, 0.28);
-      --accent: #e0736b;
+      /* validated dark surface for the data palette */
+
+      --text: #eef0f2;
+      --muted: #8b8e96;
+      --faint: #565a61;
+      --rule: rgba(238, 240, 242, 0.12);
+      --rule-2: rgba(238, 240, 242, 0.22);
+
+      --accent: #46cdb9;
+      /* chrome only, never a data mark */
+
+      /* Categorical data palette — validated dark steps */
       --c-left: #3987e5;
       --c-jihadist: #d95926;
       --c-opposition: #9085e9;
       --c-cht: #12a012;
+
+      --wrap: 940px;
+      --text-w: 680px;
+      --pad: clamp(16px, 4vw, 34px);
+      --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+      --body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      --topbar-h: 46px;
     }
+
 
     /* ======================= BASE ======================= */
     *,
@@ -251,7 +210,6 @@
       display: block;
       width: 100%;
       height: auto;
-      border-radius: 4px;
     }
 
     .hero figcaption {
@@ -353,7 +311,6 @@
       color: var(--muted);
       background: transparent;
       border: 1px solid var(--rule-2);
-      border-radius: 999px;
       cursor: pointer;
       transition: color 140ms ease, border-color 140ms ease, background 140ms ease;
     }
@@ -555,7 +512,6 @@
       width: 12px;
       height: 12px;
       flex: 0 0 12px;
-      border-radius: 3px;
     }
 
     .def .sw.hollow {
@@ -644,7 +600,6 @@
       width: 12px;
       height: 12px;
       flex: 0 0 12px;
-      border-radius: 2px;
     }
 
     .legend .n {
@@ -735,7 +690,6 @@
 
     .bar-fill {
       height: 22px;
-      border-radius: 0 4px 4px 0;
       /* rounded data-end, anchored to baseline */
       min-width: 2px;
     }
@@ -759,7 +713,6 @@
 
     .cell {
       aspect-ratio: 1 / 1;
-      border-radius: 2px;
       opacity: 0.92;
       cursor: default;
       transition: transform 90ms ease, opacity 90ms ease, outline-color 90ms ease;
@@ -1129,7 +1082,6 @@
       display: inline-block;
       width: 8px;
       height: 8px;
-      border-radius: 2px;
       margin-right: 8px;
       vertical-align: middle;
     }
